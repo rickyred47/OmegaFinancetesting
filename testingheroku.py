@@ -1,12 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask
 
 app = Flask(__name__)
 
+from routes import loginaccess
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return render_template('login.html')
-
+loginaccess.setup_page_routing(app)
 
 if __name__ == '__main__':
     app.run()

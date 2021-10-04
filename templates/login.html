@@ -34,24 +34,24 @@
           <p></p>
         </div>
       </div>
-
+      <form method="POST">
       <!-- Usernametxtbx (Text Field) -->
       <div id="unametxtbx" class="ax_default text_field" data-label="Usernametxtbx">
         <div id="unametxtbx_div" class=""></div>
-        <input id="unametxtbx_input" type="text" value="" class="u1_input"/>
+        <input id="unametxtbx_input" type="text" value=""  placeholder="username"  required class="u1_input"/>
       </div>
 
       <!-- Passwordtxtbx (Text Field) -->
       <div id="psswrdtxtbx" class="ax_default text_field" data-label="Passwordtxtbx">
         <div id="psswrdtxtbx_div" class=""></div>
-        <input id="psswrdtxtbx_input" type="password" value="" class="u2_input"/>
+        <input id="psswrdtxtbx_input" type="password" value="" placeholder="password" required class="u2_input"/>
       </div>
 
       <!-- Loginbtn (Rectangle) -->
       <div id="loginbtn" class="ax_default button" data-label="Loginbtn">
         <div id="loginbtn_div" class=""></div>
         <div id="loginbtn_text" class="text ">
-          <p><span>LOGIN</span></p>
+          <input type="submit" value="LOGIN" style="background-color: #2A7F62; width: 195px; height: 40px; color: #FFFFFF; font-family: Montserrat, Sans-Serif; font-size: 16px">
         </div>
       </div>
 
@@ -62,7 +62,7 @@
           <p><span>Log In</span></p>
         </div>
       </div>
-
+      </form>
       <!-- Orline (Group) -->
       <div id="orLine" class="ax_default" data-label="Orline" data-left="563.9993657531093" data-top="487" data-width="316.00127286091697" data-height="19">
 
@@ -95,7 +95,7 @@
       <div id="forgotpsswrd" class="ax_default link_button" data-label="forgotPasswordLink">
         <div id="forgotpsswrd_div" class=""></div>
         <div id="forgotpsswrd_text" class="text ">
-          <p><span>Forgot Password?</span></p>
+            <p><a href="{{ url_for('forgot_password')}}" style="text-decoration: none"><span>Forgot Password?</span></a>></p>
         </div>
       </div>
 
