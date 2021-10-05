@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>New User</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/new_user/styles.css')}}" type="text/css" rel="stylesheet"/>
+	<script src="{{ url_for('static', filename= 'files/new_user/data.js')}}"></script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+	  <!-- OmegaFinance Header (Rectangle) -->
+      <div id="omegalbl" class="ax_default heading_1">
+        <div id="omegalbl_div" class=""></div>
+        <div id="omegalbl_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+		
+	  <!-- OmegaIcon (Image) -->
+      <div id="omegaIcon" class="ax_default image">
+        <img id="omegaIcon_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/u19.png')}}"/>
+	  </div>
+		
+      <!-- registerBox (Rectangle) -->
+      <div id="registerbx" class="ax_default box_3">
+        <div id="registerbx_div" class=""></div>
+        <div id="registerbx_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+		
+	  <!-- registerLbl (Rectangle) -->
+      <div id="registerlbl" class="ax_default heading_2">
+        <div id="registerlbl_div" class=""></div>
+        <div id="registerlbl_text" class="text ">
+          <p><span>Register</span></p>
+        </div>
+      </div>
+      
+	  <form method="post">
+		
+      <!-- First Name (Text Field) -->
+      <div id="firstname" class="ax_default text_field" data-label="First Name">
+        <div id="firstname_div" class=""></div>
+        <input id="firstname_input" type="text" value="" placeholder="First Name" class="u1_input" required/>
+      </div>
+
+      <!-- Last Name (Text Field) -->
+      <div id="lastname" class="ax_default text_field" data-label="Last Name">
+        <div id="lastname_div" class=""></div>
+        <input id="lastname_input" type="text" value="" class="u2_input" placeholder="Last Name" required/>
+      </div>
+
+	  <!-- Email (Text Field) -->
+      <div id="emailtxtbx" class="ax_default text_field" data-label="Email">
+        <div id="emailtxtbx_div" class=""></div>
+        <input id="emailtxtbx_input" type="email" value="" class="u8_input" placeholder="Email" required/>
+      </div>
+		
+	  <!-- Password (Text Field) -->
+      <div id="psswrdtxt" class="ax_default text_field" data-label="Password">
+        <div id="psswrdtxt_div" class=""></div>
+        <input id="psswrdtxt_input" type="password" oninput="validPassword()" value="" class="u6_input" placeholder="Passsword"  required/>
+      </div>
+		
+	  <!-- passwordConstraint (Rectangle) -->
+      <div id="psswrdconstlbl" class="ax_default label" data-label="passwordConstraint">
+        <div id="psswrdconstlbl_div" class=""></div>
+        <div id="psswrdconstlbl_text" class="text ">
+          <p><span>Password Must Contain:</span></p>
+        </div>
+      </div>
+
+      <!-- password8char (Rectangle) -->
+      <div id="psswrd8char" class="ax_default label" data-label="password8char">
+        <div id="psswrd8char_div" class=""></div>
+        <div id="psswrd8char_text" class="text ">
+          <p><span>At least 8 characters</span></p>
+        </div>
+      </div>
+		
+	  <!-- check8char (Shape) -->
+      <div id="check8char" class="ax_default icon" data-label="check8char" style="visibility: hidden">
+        <img id="check8char_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/check8char_u27.svg')}}"/>
+        <div id="check8char_text" class="text ">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- passwordcap (Rectangle) -->
+      <div id="psswrdcap" class="ax_default label" data-label="passworcap">
+        <div id="psswrdcap_div" class=""></div>
+        <div id="psswrdcap_text" class="text ">
+          <p><span>At least 1 capital letter</span></p>
+        </div>
+      </div>
+		
+		<!-- checkcap (Shape) -->
+      <div id="checkcap" class="ax_default icon ax_default_hidden" data-label="checkcap" style="visibility: hidden">
+        <img id="checkcap_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/check8char_u27.svg')}}"/>
+        <div id="checkcap_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- passwordnum (Rectangle) -->
+      <div id="psswrdnumlbl" class="ax_default label" data-label="passwordnum">
+        <div id="psswrdnumlbl_div" class=""></div>
+        <div id="psswrdnumlbl_text" class="text ">
+          <p><span>At least 1 number</span></p>
+        </div>
+      </div>
+		
+	  <!-- checknum (Shape) -->
+      <div id="checknum" class="ax_default icon ax_default_hidden" data-label="checknum" style="visibility: hidden">
+        <img id="checknum_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/check8char_u27.svg')}}"/>
+        <div id="checknum_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- passwordspechar (Rectangle) -->
+      <div id="psswrdspecharlbl" class="ax_default label" data-label="passwordspechar">
+        <div id="psswrdspecharlbl_div" class=""></div>
+        <div id="psswrdspecharlbl_text" class="text ">
+          <p><span>At least 1 special character</span></p>
+        </div>
+      </div>
+
+	  <!-- checkspechar (Shape) -->
+      <div id="checkspechar" class="ax_default icon ax_default_hidden" data-label="checkspechar" style="visibility: hidden">
+        <img id="checkspechar_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/check8char_u27.svg')}}"/>
+        <div id="checkspechar_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+		
+	  <!-- Retype Password (Text Field) -->
+      <div id="repsswrdtxtbx" class="ax_default text_field" data-label="RetypePassword">
+        <div id="repsswrdtxtbx_div" class=""></div>
+        <input id="repsswrdtxtbx_input" type="password" oninput="passwordMatch()" value="" class="u21_input" placeholder="Retype Password" required/>
+      </div>
+		
+	  <!-- passwordmatch (Rectangle) -->
+      <div id="psswrdmatchlbl" class="ax_default label" data-label="passwordmatch">
+        <div id="psswrdmatchlbl_div" class=""></div>
+        <div id="psswrdmatchlbl_text" class="text ">
+          <p><span>Passwords Must Match</span></p>
+        </div>
+      </div>
+
+      <!-- checkmatch (Shape) -->
+      <div id="checkmatch" class="ax_default icon ax_default_hidden" data-label="checkmatch" style="display:none; visibility: hidden">
+        <img id="checkmatch_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/check8char_u27.svg')}}"/>
+        <div id="checkmatch_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+		
+	  <!-- StreetAddress (Text Field) -->
+      <div id="streetaddress" class="ax_default text_field" data-label="StreetAddress">
+        <div id="streetaddress_div" class=""></div>
+        <input id="streetaddress_input" type="text" value="" class="u14_input" placeholder="Street Address" required/>
+      </div>
+		
+	  <!-- Country (Droplist) -->
+      <div id="countrydplst" class="ax_default droplist" data-label="Country">
+        <div id="countrydplst_div" class=""></div>
+        <select id="countrydplst_input" class="u17_input">
+          <option class="countrydplst_input_option" value="United States">United States</option>
+        </select>
+      </div>
+
+      <!-- State (Droplist) -->
+      <div id="statedplst" class="ax_default droplist" data-label="State">
+        <div id="statedplst_div" class=""></div>
+        <select id="statedplst_input" class="u18_input">
+          <option class="statedplst_input_option" value="Georgia">Georgia</option>
+        </select>
+      </div>
+		
+	  <!-- Apt.Number (Text Field) -->
+      <div id="aptnum" class="ax_default text_field" data-label="Apt.Number">
+        <div id="aptnum_div" class=""></div>
+        <input id="aptnum_input" type="text" value="" class="u15_input" placeholder="Apt#"/>
+      </div>
+
+      <!-- Zipcode (Text Field) -->
+      <div id="zipcodetxt" class="ax_default text_field" data-label="Zipcode">
+        <div id="zipcodetxt_div" class=""></div>
+        <input id="zipcodetxt_input" type="text" value="" class="u16_input" placeholder="zipcode"/>
+      </div>
+		
+      <!-- DOB (Text Field) -->
+      <div id="dobtxt" class="ax_default text_field" data-label="DOB">
+        <div id="dobtxt_div" class=""></div>
+		  <input id="dobtxt_input" type="date" value="" class="u5_input"/>
+      </div>
+
+	  <!-- Clear Buttom (Rectangle) -->
+      <div id="clearbtn" class="ax_default button" data-label="Register Buttom">
+        <div id="clearbtn_div" class=""></div>
+        <div id="clearbtn_text" class="text ">
+          <input id="clearbtn_input" type="button" onclick="clearPage()" value="Clear"/>
+        </div>
+      </div>
+		
+      <!-- Register Buttom (Rectangle) -->
+      <div id="submitbtn" class="ax_default button" data-label="Register Buttom">
+        <div id="submitbtn_div" class=""></div>
+        <div id="submitbtn_text" class="text ">
+          <input id="submitbtn_input" type="submit" onclick="passwordPassed()" value="Submit"/>
+        </div>
+      </div>
+
+	  </form>
+		  
+      <!-- Or (Group) -->
+      <div id="orGroup" class="ax_default" data-label="Or" data-left="561.9993657531095" data-top="1061" data-width="316.00127286091674" data-height="19">
+
+        <!-- Orlbl (Rectangle) -->
+        <div id="orlbl" class="ax_default label">
+          <div id="orlbl_div" class=""></div>
+          <div id="orlbl_text" class="text ">
+            <p><span>Or</span></p>
+          </div>
+        </div>
+
+        <!-- leftline (Line) -->
+        <div id="leftline" class="ax_default line">
+          <img id="leftline_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/u12.svg')}}"/>
+          <div id="leftline_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- rightline (Line) -->
+        <div id="rightline" class="ax_default line">
+          <img id="rightline_img" class="img " src="{{ url_for('static', filename= 'images/new_user/regen/u13.svg')}}"/>
+          <div id="rightline_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+      </div>
+		
+	  <!-- LoginLink (Rectangle) -->
+      <div id="loginlink" class="ax_default link_button">
+        <div id="loginlink_div" class=""></div>
+        <div id="loginlink_text" class="text ">
+            <p><a href="{{ url_for('login_page')}}"><span>Login Here</span></a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
