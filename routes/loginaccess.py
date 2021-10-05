@@ -1,4 +1,5 @@
 from flask import render_template, request
+from obj import NewUser
 
 
 def setup_page_routing(app, base, db):
@@ -15,7 +16,6 @@ def setup_page_routing(app, base, db):
             username = request.form["username_input"]
             psswrd = request.form["password_input"]
             errormessage = db.session.query(Error_MessageTable).filter_by(id=5).first()
-            print(errormessage.message)
             return render_template('login.html', errormessage=errormessage.message)
         else:
             errormessage = db.session.query(Error_MessageTable).filter_by(id=0).first()
@@ -25,6 +25,9 @@ def setup_page_routing(app, base, db):
     def forgot_password():
         return render_template('forgot_password.html')
 
-    @app.route('/new_user')
+    @app.route('/new_user', methods=['GET', 'POST'])
     def new_user():
-        return render_template('new_user.html')
+        if request.method == "POST":
+            return NewUser.gatherInfo()
+        else:
+            return render_template('new_user.html')
