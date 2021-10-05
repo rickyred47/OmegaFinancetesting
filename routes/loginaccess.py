@@ -28,6 +28,6 @@ def setup_page_routing(app, base, db):
     @app.route('/new_user', methods=['GET', 'POST'])
     def new_user():
         if request.method == "POST":
-            return NewUser.gatherInfo()
+            return render_template('new_user.html')
         else:
             return render_template('new_user.html')
