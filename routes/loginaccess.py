@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from obj import NewUser
 
 
@@ -28,6 +28,6 @@ def setup_page_routing(app, base, db):
     @app.route('/new_user', methods=['GET', 'POST'])
     def new_user():
         if request.method == "POST":
-            return render_template('new_user.html')
+            return redirect(url_for('login_page'))
         else:
             return render_template('new_user.html')
