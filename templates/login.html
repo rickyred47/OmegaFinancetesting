@@ -38,13 +38,13 @@
       <!-- Usernametxtbx (Text Field) -->
       <div id="unametxtbx" class="ax_default text_field" data-label="Usernametxtbx">
         <div id="unametxtbx_div" class=""></div>
-        <input id="unametxtbx_input" type="text" value=""  placeholder="username"  required class="u1_input"/>
+        <input id="unametxtbx_input" type="text" value=""  placeholder="username"  name="username_input" required class="u1_input"/>
       </div>
 
       <!-- Passwordtxtbx (Text Field) -->
       <div id="psswrdtxtbx" class="ax_default text_field" data-label="Passwordtxtbx">
         <div id="psswrdtxtbx_div" class=""></div>
-        <input id="psswrdtxtbx_input" type="password" value="" placeholder="password" required class="u2_input"/>
+        <input id="psswrdtxtbx_input" type="password" value="" placeholder="password" name="password_input" required class="u2_input"/>
       </div>
 
       <!-- Loginbtn (Rectangle) -->
@@ -108,10 +108,10 @@
       </div>
 
       <!-- Errorlbl2AttemptsLeft (Rectangle) -->
-      <div id="errormessage" class="ax_default label ax_default_hidden" data-label="Errorlbl2AttemptsLeft" style="display:none; visibility: hidden">
+      <div id="errormessage" class="ax_default label" data-label="Errorlbl2AttemptsLeft">
         <div id="errormessage_div" class=""></div>
         <div id="errormessage_text" class="text ">
-          <p><span>Invalid Username or Password. (2 Attempts Left)</span></p>
+          <p><span>{{ errormessage }}</span></p>
         </div>
       </div>
     </div>
