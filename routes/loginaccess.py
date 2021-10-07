@@ -1,25 +1,20 @@
 from flask import render_template, request, redirect, url_for
-from obj import NewUser
+from obj import NewUser, LoginEntry
 
 
 def setup_page_routing(app, base, db):
     # set up routes to run
 
     # Database accounts
-    UserTable = base.classes.user
     Error_MessageTable = base.classes.error_message
 
     # the login page route
     @app.route('/', methods=['GET', 'POST'])
     def login_page():
         if request.method == "POST":
-            username = request.form["username_input"]
-            psswrd = request.form["password_input"]
-            errormessage = db.session.query(Error_MessageTable).filter_by(id=5).first()
-            return render_template('login.html', errormessage=errormessage.message)
+            return LoginEntry.is_valid_entry(db, base)
         else:
-            errormessage = db.session.query(Error_MessageTable).filter_by(id=0).first()
-            return render_template('login.html', errormessage=errormessage.message)
+            return LoginEntry.error_message_page(0, base, db)
 
     @app.route('/fgtpsswrd')
     def forgot_password():
@@ -32,7 +27,7 @@ def setup_page_routing(app, base, db):
             # Checks the both passwords are valid
             if NewUser.correct_passwords_input():
                 # gathers the information of the form text fields
-                NewUser.gatherInfo(db, base)
+                NewUser.gatherInfo_and_commit(db, base)
                 # Send to signed_up Page
                 return render_template('signup.html')
         else:

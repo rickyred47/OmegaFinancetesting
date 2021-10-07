@@ -1,7 +1,18 @@
-from flask import render_template, request
+from flask import request
 
 
-def gatherInfo(db, base):
+def gatherInfo_and_commit(db, base):
+    """
+        This will all the information of the form and commit
+        it to the database
+
+        Arguments
+            db: will get the database
+            base: gets the auto_map class to create user tables
+        Returns:
+            None
+    """
+    # Gather User's Information
     firstname = request.form["firstname"]
     lastname = request.form["lastname"]
     email = request.form["email"]
@@ -9,26 +20,43 @@ def gatherInfo(db, base):
     address = request.form["street"]
     state = request.form["state"]
     country = request.form["country"]
-    aptnum = request.form["aptnum"]
+    apt_num = request.form["aptnum"]
     zipcode = request.form["zipcode"]
     dob = request.form["dob"]
-    print("test1")
+    # Creates a NewUser class based on the new_user table
     NewUserTable = base.classes.new_user
+    # Creates a new user object
     newuser = NewUserTable(status="Pending", firstname=firstname, lastname=lastname, email=email, password=password,
-                           street=address, aptnum=aptnum, state=state, country=country, dob=dob, zipcode=zipcode)
-    print("test1")
+                           street=address, aptnum=apt_num, state=state, country=country, dob=dob, zipcode=zipcode)
+    # Adds the Information to the database and commits it
     commit_to_database(db, newuser)
 
 
+# Makes sure that all constraints are being fallowed
 def correct_passwords_input():
+    """
+        The method will first check if the code is valid
+        Then it will check if both password match with each other
+
+        Return:
+            bool: whether the passwords pass both or fail at least once
+    """
+    # Get teh string password from the form
     password = request.form["password"]
+    # Checks if the password is valid
     if is_valid_password(password):
+        # Once teh test is passed it will compare both passwords
+        # Gets the retyped password form the form
         password2 = request.form["password2"]
+        # Checks if the passwords match
         if do_passwords_match(password, password2):
+            # Since it passed both validations it returns true
             return True
         else:
+            # The password did not match, so it will return false
             return False
     else:
+        # The password was not valid, so it will return false
         return False
 
 
@@ -80,6 +108,15 @@ def is_valid_password(password):
 
 # Check that the passwords match
 def do_passwords_match(password, password2):
+    """
+    Arguments:
+        password (str): Raw password string
+        password2 (str): Second password string to compare
+    Returns:
+        bool : Whether both password str matched
+    """
+
+    # Checks both password match
     if password == password2:
         return True
     else:
@@ -90,4 +127,3 @@ def do_passwords_match(password, password2):
 def commit_to_database(db, obj):
     db.session.add(obj)
     db.session.commit()
-    print("test2")
