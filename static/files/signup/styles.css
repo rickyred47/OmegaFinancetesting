@@ -1,0 +1,220 @@
+﻿body {
+  margin:0px;
+  background-color:rgba(0, 119, 182, 1);
+  background-image:none;
+  position:relative;
+  left:-0px;
+  width:1440px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+.form_sketch {
+  border-color:transparent;
+  background-color:transparent;
+}
+#base {
+  position:absolute;
+  z-index:0;
+}
+#loginbx_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:600px;
+  height:401px;
+  background:inherit;
+  background-color:rgba(247, 247, 255, 1);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:0px 0px 5px rgba(128, 128, 128, 0.6980392156862745);
+  -webkit-box-shadow:0px 0px 5px rgba(128, 128, 128, 0.6980392156862745);
+  box-shadow:0px 0px 5px rgba(128, 128, 128, 0.6980392156862745);
+  color:#000000;
+}
+#loginbx {
+  border-width:0px;
+  position:absolute;
+  left:420px;
+  top:165px;
+  width:600px;
+  height:401px;
+  display:flex;
+  color:#000000;
+}
+#loginbx .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#loginbx_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}
+
+}
+#OmegaFinance_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:246px;
+  height:40px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  color:#F7F7FF;
+}
+#OmegaFinance {
+  border-width:0px;
+  position:absolute;
+  left:599px;
+  top:10px;
+  width:246px;
+  height:40px;
+  display:flex;
+  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  color:#F7F7FF;
+}
+#OmegaFinance .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#OmegaFinance_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+#loginlbl_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:78px;
+  height:31px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+  font-weight:700;
+  font-style:normal;
+}
+#loginlbl {
+  border-width:0px;
+  position:absolute;
+  left:550px;
+  top:350px;
+  width:78px;
+  height:31px;
+  display:flex;
+  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+  font-weight:700;
+  font-style:normal;
+}
+#loginlbl .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#loginlbl_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+#registerLink_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:114px;
+  height:23px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#registerLink {
+  border-width:0px;
+  position:absolute;
+  left:650px;
+  top:515px;
+  width:114px;
+  height:23px;
+  display:flex;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#registerLink .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#registerLink_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+#OmegaIcon_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:96px;
+  height:101px;
+}
+#OmegaIcon {
+  border-width:0px;
+  position:absolute;
+  left:669px;
+  top:50px;
+  width:96px;
+  height:101px;
+  display:flex;
+}
+#OmegaIcon .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#OmegaIcon_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}

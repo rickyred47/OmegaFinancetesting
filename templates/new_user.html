@@ -46,25 +46,25 @@
       <!-- First Name (Text Field) -->
       <div id="firstname" class="ax_default text_field" data-label="First Name">
         <div id="firstname_div" class=""></div>
-        <input id="firstname_input" type="text" value="" placeholder="First Name" class="u1_input" required/>
+        <input id="firstname_input" type="text" value="" placeholder="First Name" class="u1_input" name="firstname" required/>
       </div>
 
       <!-- Last Name (Text Field) -->
       <div id="lastname" class="ax_default text_field" data-label="Last Name">
         <div id="lastname_div" class=""></div>
-        <input id="lastname_input" type="text" value="" class="u2_input" placeholder="Last Name" required/>
+        <input id="lastname_input" type="text" value="" class="u2_input" placeholder="Last Name" name="lastname" required/>
       </div>
 
 	  <!-- Email (Text Field) -->
       <div id="emailtxtbx" class="ax_default text_field" data-label="Email">
         <div id="emailtxtbx_div" class=""></div>
-        <input id="emailtxtbx_input" type="email" value="" class="u8_input" placeholder="Email" required/>
+        <input id="emailtxtbx_input" type="email" value="" class="u8_input" placeholder="Email" name="email" required/>
       </div>
 		
 	  <!-- Password (Text Field) -->
       <div id="psswrdtxt" class="ax_default text_field" data-label="Password">
         <div id="psswrdtxt_div" class=""></div>
-        <input id="psswrdtxt_input" type="password" oninput="validPassword()" value="" class="u6_input" placeholder="Passsword"  required/>
+        <input id="psswrdtxt_input" type="password" oninput="validPassword()" value="" class="u6_input" placeholder="Passsword" name="password" required/>
       </div>
 		
 	  <!-- passwordConstraint (Rectangle) -->
@@ -142,7 +142,7 @@
 	  <!-- Retype Password (Text Field) -->
       <div id="repsswrdtxtbx" class="ax_default text_field" data-label="RetypePassword">
         <div id="repsswrdtxtbx_div" class=""></div>
-        <input id="repsswrdtxtbx_input" type="password" oninput="passwordMatch()" value="" class="u21_input" placeholder="Retype Password" required/>
+        <input id="repsswrdtxtbx_input" type="password" oninput="passwordMatch()" value="" class="u21_input" placeholder="Retype Password"  name="password2" required/>
       </div>
 		
 	  <!-- passwordmatch (Rectangle) -->
@@ -164,13 +164,13 @@
 	  <!-- StreetAddress (Text Field) -->
       <div id="streetaddress" class="ax_default text_field" data-label="StreetAddress">
         <div id="streetaddress_div" class=""></div>
-        <input id="streetaddress_input" type="text" value="" class="u14_input" placeholder="Street Address" required/>
+        <input id="streetaddress_input" type="text" value="" class="u14_input" placeholder="Street Address" name="street" required/>
       </div>
 		
 	  <!-- Country (Droplist) -->
       <div id="countrydplst" class="ax_default droplist" data-label="Country">
         <div id="countrydplst_div" class=""></div>
-        <select id="countrydplst_input" class="u17_input">
+        <select id="countrydplst_input" class="u17_input" name="country">
           <option class="countrydplst_input_option" value="United States">United States</option>
         </select>
       </div>
@@ -178,7 +178,7 @@
       <!-- State (Droplist) -->
       <div id="statedplst" class="ax_default droplist" data-label="State">
         <div id="statedplst_div" class=""></div>
-        <select id="statedplst_input" class="u18_input">
+        <select id="statedplst_input" class="u18_input" name="state">
           <option class="statedplst_input_option" value="Georgia">Georgia</option>
         </select>
       </div>
@@ -186,19 +186,19 @@
 	  <!-- Apt.Number (Text Field) -->
       <div id="aptnum" class="ax_default text_field" data-label="Apt.Number">
         <div id="aptnum_div" class=""></div>
-        <input id="aptnum_input" type="text" value="" class="u15_input" placeholder="Apt#"/>
+        <input id="aptnum_input" type="text" value="" class="u15_input" placeholder="Apt#" name="aptnum"/>
       </div>
 
       <!-- Zipcode (Text Field) -->
       <div id="zipcodetxt" class="ax_default text_field" data-label="Zipcode">
         <div id="zipcodetxt_div" class=""></div>
-        <input id="zipcodetxt_input" type="text" value="" class="u16_input" placeholder="zipcode"/>
+        <input id="zipcodetxt_input" type="text" value="" class="u16_input" placeholder="zipcode" name="zipcode" required/>
       </div>
 		
       <!-- DOB (Text Field) -->
       <div id="dobtxt" class="ax_default text_field" data-label="DOB">
         <div id="dobtxt_div" class=""></div>
-		  <input id="dobtxt_input" type="date" value="" class="u5_input"/>
+		  <input id="dobtxt_input" type="date" value="" class="u5_input" name="dob" required />
       </div>
 
 	  <!-- Clear Buttom (Rectangle) -->

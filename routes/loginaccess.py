@@ -25,9 +25,21 @@ def setup_page_routing(app, base, db):
     def forgot_password():
         return render_template('forgot_password.html')
 
+    # The new user Page
     @app.route('/new_user', methods=['GET', 'POST'])
     def new_user():
         if request.method == "POST":
-            return redirect(url_for('login_page'))
+            print("test")
+            # Checks the both passwords are valid
+            if NewUser.correct_passwords_input():
+                # gathers the information of the form text fields
+                print("test")
+                NewUser.gatherInfo(db, base)
+                print("test")
+                return redirect(url_for('signed_up'))
         else:
             return render_template('new_user.html')
+
+    @app.route('/signed_up')
+    def signed_up():
+        return render_template('signup.html')
