@@ -29,17 +29,12 @@ def setup_page_routing(app, base, db):
     @app.route('/new_user', methods=['GET', 'POST'])
     def new_user():
         if request.method == "POST":
-            print("test")
             # Checks the both passwords are valid
             if NewUser.correct_passwords_input():
                 # gathers the information of the form text fields
-                print("test")
                 NewUser.gatherInfo(db, base)
-                print("test")
-                return redirect(url_for('signed_up'))
+                # Send to signed_up Page
+                return render_template('signup.html')
         else:
             return render_template('new_user.html')
 
-    @app.route('/signed_up')
-    def signed_up():
-        return render_template('signup.html')
