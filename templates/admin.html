@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/admin/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Header Box (Rectangle) -->
+      <div id="headerbx" class="ax_default box_1">
+      </div>
+
+      <!-- Omega Label(Rectangle) -->
+      <div id="omegalbl" class="ax_default heading_1">
+        <div id="omegalbl_div" class=""></div>
+        <div id="omegalbl_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+
+      <!-- Omega Icon (Image) -->
+      <div id="omegaicon" class="ax_default image">
+        <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/admin/regen/u2.png')}}"/>
+        <div id="omegaicon_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Dashboard(Group) -->
+      <div id="navlinks" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
+	  <nav>
+
+        <!-- NavBar_Backdrop (Rectangle) -->
+        <div id="navbarbx" class="ax_default box_2" data-label="NavBar_Backdrop">
+          <div id="navbarbx_div" class=""></div>
+          <div id="navbarbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+		  
+		<!-- Home_Nav (Rectangle) -->
+        <div id="home" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="home_div" class=""></div>
+          <div id="home_text" class="text ">
+            <p><span>Home</span></p>
+          </div>
+        </div>
+
+        <!-- Chart_of_Accounts_Nav (Rectangle) -->
+        <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
+          <div id="chartaccounts_div" class=""></div>
+          <div id="chartaccounts_text" class="text ">
+			  <p><a href=""><span>Chart of Accounts</span></a></p>
+          </div>
+        </div>
+
+        <!-- Accounts_Nav (Rectangle) -->
+        <div id="accounts" class="ax_default heading_2" data-label="Accounts_Nav">
+          <div id="accounts_div" class=""></div>
+          <div id="accounts_text" class="text ">
+            <p><span>Accounts</span></p>
+          </div>
+        </div>
+
+        <!-- Users_Nav (Rectangle) -->
+        <div id="users" class="ax_default heading_2" data-label="Users_Nav">
+          <div id="users_div" class=""></div>
+          <div id="users_text" class="text ">
+            <p><span>Users</span></p>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="eventlog" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="eventlog_div" class=""></div>
+          <div id="eventlog_text" class="text ">
+            <p><span>Event Log</span></p>
+          </div>
+        </div>
+
+        <!-- Reports_Nav (Rectangle) -->
+        <div id="reports" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="reports_div" class=""></div>
+          <div id="reports_text" class="text ">
+            <p><span>Reports</span></p>
+          </div>
+        </div>
+		  
+		<!-- My_Account_Nav (Rectangle) -->
+        <div id="myaccount" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="myaccount_div" class=""></div>
+          <div id="myaccount_text" class="text ">
+            <p><span>My Account</span></p>
+          </div>
+        </div>
+
+        <!-- Email_Nav (Rectangle) -->
+        <div id="email" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="email_div" class=""></div>
+          <div id="email_text" class="text ">
+            <p><span>Email</span></p>
+          </div>
+        </div>
+
+        <!-- Box Shade (Rectangle) -->
+        <div id="bxshade" class="ax_default box_1">
+          <div id="bxshade_div" class=""></div>
+          <div id="bxshade_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- IconName (Group) -->
+        <div id="icongrp" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
+
+          <!-- UserName (Text Field) -->
+          <div id="username" class="ax_default text_field" data-label="UserName">
+            <div id="username_div" class=""></div>
+            <input id="username_input" type="text" value="Jane Doe" class="u16_input"/>
+          </div>
+
+          <!-- UserType (Text Field) -->
+          <div id="role" class="ax_default text_field" data-label="UserType">
+            <div id="role_div" class=""></div>
+            <input id="role_input" type="text" value="Administrator" class="u17_input"/>
+          </div>
+
+          <!-- UserIcon (Shape) -->
+          <div id="usericon" class="ax_default icon" data-label="UserIcon">
+            <img id="usericon_img" class="img " src="{{ url_for('static', filename= 'images/admin/regen/usericon_u18.svg')}}"/>
+            <div id="usericon_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="logoff_div" class=""></div>
+          <div id="logoff_text" class="text ">
+            <p><span>Logoff</span></p>
+          </div>
+        </div>
+      </nav>
+      </div>
+		
+	  <!-- Search Input (Group) -->
+      <div id="searchgrp" class="ax_default" data-label="Search Input" data-left="970" data-top="51" data-width="356" data-height="30">
+
+        <!-- Text Input (Text Field) -->
+        <div id="searchtxt" class="ax_default text_field" data-label="Text Input">
+          <div id="searchtxt_div" class=""></div>
+          <input id="searchtxt_input" type="text" value="" class="u27_input" placeholder="search"/>
+        </div>
+
+        <!-- Search Icon (Shape) -->
+        <div id="searchicon" class="ax_default icon" data-label="Search Icon">
+          <img id="searchicon_img" class="img " src="{{ url_for('static', filename= 'images/admin/regen/search_icon_u28.svg')}}"/>
+          <div id="searchicon_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+		  
+		<!-- Search Button (Rectangle) -->
+        <div id="searchbtn" class="ax_default button">
+          <div id="searchbtn_div" class=""></div>
+          <div id="searchbtn_text" class="text ">
+            <p><span>Search</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Accounts (Group) -->
+      <div id="recentaccounts" class="ax_default" data-left="377" data-top="182" data-width="1060" data-height="300">
+
+        <!-- Recent Accounts Box (Rectangle) -->
+        <div id="raccountbx" class="ax_default box_1">
+          <div id="raccountbx_div" class=""></div>
+          <div id="raccountbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent Accounts Label (Rectangle) -->
+        <div id="raccountlbl" class="ax_default label">
+          <div id="raccountlbl_div" class=""></div>
+          <div id="raccountlbl_text" class="text ">
+            <p><span>Recent Accounts</span><span style="font-size: 12px; margin-left: 20px">See all accounts</span></p>
+          </div>
+        </div>
+		  
+		<!-- Recent Accounts Table (Table) -->
+		<table id="raccountstable" style="width: 1040px">
+			<tr>
+			<th style="width: 80px">Account Number</th>
+		    <th style="width: 420px">Account Name</th>
+			<th>Category</th>
+			<th>Sub-Category</th>
+			<th>Term</th>
+			<th>Account<br>State</th>
+			</tr>
+		</table>  
+		  
+      </div>
+
+      <!-- New Users (Group) -->
+      <div id="newusergrp" class="ax_default" data-left="377" data-top="519" data-width="1060" data-height="300">
+
+        <!-- New Users Box (Rectangle) -->
+        <div id="newuserbx" class="ax_default box_1">
+          <div id="newuserbx_div" class=""></div>
+          <div id="newuserbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- New User Label (Rectangle) -->
+        <div id="newuserlbl" class="ax_default label">
+          <div id="newuserlbl_div" class=""></div>
+          <div id="newuserlbl_text" class="text ">
+            <p><span>New Users</span><span style="font-size: 12px; margin-left: 20px">See all new users</span></p>
+          </div>
+        </div>
+		 
+		<!-- New Users Table (Table) -->  
+		<table id="newusertable" style="width: 1040px">
+			<tr>
+			<th style="width: 80px">Account Number</th>
+		    <th style="width: 420px">Account Name</th>
+			<th>Category</th>
+			<th>Sub-Category</th>
+			<th>Term</th>
+			<th>Account<br>State</th>
+			</tr>
+		</table> 
+      </div>
+
+      <!-- Recent Users Group (Group) -->
+      <div id="rusersgrp" class="ax_default" data-left="377" data-top="850" data-width="1060" data-height="300">
+
+        <!-- Recent Users Box (Rectangle) -->
+        <div id="ruserbx" class="ax_default box_1">
+          <div id="ruserbx_div" class=""></div>
+          <div id="ruserbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent User Label (Rectangle) -->
+        <div id="ruserlbl" class="ax_default label">
+          <div id="ruserlbl_div" class=""></div>
+          <div id="ruserlbl_text" class="text">
+            <p><span>Recent Users</span><span style="font-size: 12px; margin-left: 20px">See all users</span></p>
+          </div>
+        </div>
+		  
+		<!-- Recent Users Table (Table) -->  
+		<table id="rusertable" style="width: 1040px">
+			<tr>
+			<th style="width: 80px">Account Number</th>
+		    <th style="width: 420px">Account Name</th>
+			<th>Category</th>
+			<th>Sub-Category</th>
+			<th>Term</th>
+			<th>Account<br>State</th>
+			</tr>
+		</table>
+		  
+      </div>
+
+      <!-- About Link (Rectangle) -->
+      <div id="aboutlink" class="ax_default label">
+        <div id="aboutlink_div" class=""></div>
+        <div id="aboutlink_text" class="text ">
+          <p><span>About</span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
