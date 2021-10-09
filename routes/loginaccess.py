@@ -5,9 +5,6 @@ from obj import NewUser, LoginEntry
 def setup_page_routing(app, base, db):
     # set up routes to run
 
-    # Database accounts
-    Error_MessageTable = base.classes.error_message
-
     # the login page route
     @app.route('/', methods=['GET', 'POST'])
     def login_page():

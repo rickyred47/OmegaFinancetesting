@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect
+from flask import request, render_template, redirect, url_for
 
 
 def is_valid_entry(db, base):
@@ -30,6 +30,7 @@ def search_for_user(username, base, db):
 
 def attempts_tried(user):
     attempts = user.password_incorrect_entries
+    # Store attempts
     attempts = attempts + 1
     if attempts <= 2:
         return attempts
@@ -45,7 +46,7 @@ def error_message_page(num, base, db):
 
 def user_role(role):
     if role == "Administrator":
-        return render_template('signup.html')
+        return redirect(url_for('admin_home_page'))
     if role == "Manager":
         return redirect('')
     if role == "Accountant":
