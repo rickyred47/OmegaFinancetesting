@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>AdminUserAccounts</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/adminuseraccounts/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Header (Rectangle) -->
+      <div id="header" class="ax_default box_1">
+        <div id="header_div" class=""></div>
+        <div id="header_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Omega Label (Rectangle) -->
+      <div id="omegalbl" class="ax_default heading_1">
+        <div id="omegalbl_div" class=""></div>
+        <div id="omegalbl_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+
+      <!-- Omega Icon (Image) -->
+      <div id="omegaicon" class="ax_default image">
+        <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/adminuseraccounts/regen/u2.png')}}"/>
+        <div id="omegaicon_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Usres(Group) -->
+      <div id="usersgrp" class="ax_default" data-left="349" data-top="164" data-width="1502" data-height="1298">
+
+        <!-- White_Box (Rectangle) -->
+        <div id="usersbx" class="ax_default box_1" data-label="White_Box">
+          <div id="usersbx_div" class=""></div>
+          <div id="usersbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- SearchButton (Rectangle) -->
+        <div id="usersearchbtn" class="ax_default primary_button" data-label="SearchButton">
+          <div id="usersearchbtn_div" class=""></div>
+          <div id="usersearchbtn_text" class="text ">
+            <p><span>Search</span></p>
+          </div>
+        </div>
+
+        <!-- SearchBar (Text Field) -->
+        <div id="usersearch" class="ax_default text_field" data-label="SearchBar">
+          <div id="usersearch_div" class=""></div>
+          <input id="usersearch_input" type="text" value="" class="u6_input" placeholder="User Search"/>
+        </div>
+
+        <!-- UsersHeading (Rectangle) -->
+        <div id="userlbl" class="ax_default heading_1" data-label="UsersHeading">
+          <div id="userlbl_div" class=""></div>
+          <div id="userlbl_text" class="text ">
+            <p><span>Users of Omega Finance</span></p>
+          </div>
+        </div>
+
+        <!-- ErrorLblMatch (Rectangle) -->
+        <div id="errorlbl" class="ax_default label" data-label="ErrorLblMatch" style="visibility: hidden">
+          <div id="errorlbl_div" class=""></div>
+          <div id="errorlbl_text" class="text ">
+            <p><span>NO Match Found</span></p>
+          </div>
+        </div>
+
+        <!-- Create New User Link (Rectangle) -->
+        <div id="createuser" class="ax_default label">
+          <div id="createuser_div" class=""></div>
+          <div id="createuser_text" class="text ">
+            <p><span>Create New User?</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav Bar Links (Group) -->
+      <div id="navbarlinks" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
+
+            <!-- NavBar_Backdrop (Rectangle) -->
+            <div id="navbx" class="ax_default box_2" data-label="NavBar_Backdrop">
+              <div id="navbx_div" class=""></div>
+              <div id="navbx_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <!-- Chart_of_Accounts_Nav (Rectangle) -->
+            <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
+              <div id="chartaccounts_div" class=""></div>
+              <div id="chartaccounts_text" class="text ">
+                <p><span>Chart of Accounts</span></p>
+              </div>
+            </div>
+
+            <!-- Accounts_Nav (Rectangle) -->
+            <div id="accountsnav" class="ax_default heading_2" data-label="Accounts_Nav">
+              <div id="accountsnav_div" class=""></div>
+              <div id="accountsnav_text" class="text ">
+                <p><span>Accounts</span></p>
+              </div>
+            </div>
+
+            <!-- Users_Nav (Rectangle) -->
+            <div id="usersnav" class="ax_default heading_2" data-label="Users_Nav">
+              <div id="usernav_div" class=""></div>
+              <div id="usersnav_text" class="text ">
+                <p><span>Users</span></p>
+              </div>
+            </div>
+
+            <!-- Event_Log_Nav (Rectangle) -->
+            <div id="eventlognav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="eventlognav_div" class=""></div>
+              <div id="eventlognav_text" class="text ">
+                <p><span>Event Log</span></p>
+              </div>
+            </div>
+
+            <!-- Reports_Nav (Rectangle) -->
+            <div id="reportsnav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="reportsnav_div" class=""></div>
+              <div id="reportsnav_text" class="text ">
+                <p><span>Reports</span></p>
+              </div>
+            </div>
+
+            <!-- Home_Nav (Rectangle) -->
+            <div id="homenav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="homenav_div" class=""></div>
+              <div id="homenav_text" class="text ">
+                <p><span>Home</span></p>
+              </div>
+            </div>
+
+            <!-- Email_Nav (Rectangle) -->
+            <div id="emailnav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="emailnav_div" class=""></div>
+              <div id="emailnav_text" class="text ">
+                <p><span>Email</span></p>
+              </div>
+            </div>
+
+            <!-- My_Account_Nav (Rectangle) -->
+            <div id="myaccountnav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="myaccountnav_div" class=""></div>
+              <div id="myaccountnav_text" class="text ">
+                <p><span>My Account</span></p>
+              </div>
+            </div>
+
+            <!-- Nav Links Shades (Rectangle) -->
+            <div id="shadebx" class="ax_default box_1">
+              <div id="shadebx_div" class=""></div>
+              <div id="shadebx_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <!-- LinksIconName (Group) -->
+            <div id="icongrp" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
+
+              <!-- UserName (Text Field) -->
+              <div id="usernamelbl" class="ax_default text_field" data-label="UserName">
+                <div id="usernamelbl_div" class=""></div>
+                <input id="usernamelbl_input" type="text" value="Jane Doe" class="u24_input"/>
+              </div>
+
+              <!-- UserType (Text Field) -->
+              <div id="userrole" class="ax_default text_field" data-label="UserType">
+                <div id="userrole_div" class=""></div>
+                <input id="userrole_input" type="text" value="Administrator" class="u25_input"/>
+              </div>
+
+              <!-- UserIcon (Shape) -->
+              <div id="usericon" class="ax_default icon" data-label="UserIcon">
+                <img id="usericon_img" class="img " src="{{ url_for('static', filename= 'images/adminuseraccounts/regen/usericon_u26.svg')}}"/>
+                <div id="usericon_text" class="text " style="display:none; visibility: hidden">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Logoff_Nav (Rectangle) -->
+            <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="logoff_div" class=""></div>
+              <div id="logoff_text" class="text ">
+                <p><span>Logoff</span></p>
+              </div>
+            </div>
+      </div>
+
+      <!-- Search Input Button Grp (Group) -->
+      <div id="searchtxtbtngrp" class="ax_default" data-left="1381" data-top="54" data-width="470" data-height="30">
+
+        <!-- Search Input (Group) -->
+        <div id="searchgrp" class="ax_default" data-label="Search Input" data-left="1381" data-top="54" data-width="356" data-height="30">
+
+          <!-- Text Input (Text Field) -->
+          <div id="searchtxt" class="ax_default text_field" data-label="Text Input">
+            <div id="searchtxt_div" class=""></div>
+            <input id="searchtxt_input" type="text" value="" class="u30_input" placeholder="Search"/>
+          </div>
+
+          <!-- Search Icon (Shape) -->
+          <div id="searchicon" class="ax_default icon" data-label="Search Icon">
+            <img id="searchicon_img" class="img " src="{{ url_for('static', filename= 'images/adminuseraccounts/regen/search_icon_u31.svg')}}"/>
+            <div id="searchicon_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Button (Rectangle) -->
+        <div id="searchbtn" class="ax_default button">
+          <div id="searchbtn_div" class=""></div>
+          <div id="searchbtn_text" class="text ">
+            <p><span>Search</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Link (Rectangle) -->
+      <div id="aboutlink" class="ax_default label">
+        <div id="aboutlink_div" class=""></div>
+        <div id="aboutlink_text" class="text ">
+          <p><span>About</span></p>
+        </div>
+      </div>
+
+      <!-- Usertable (Table) -->
+      <div id="usertable" class="ax_default" data-label="Usertable">
+		  <table style="width: 1450px">
+			  <tr>
+				  <th>ID</th>
+				  <th>Username</th>
+				  <th>Account Active</th>
+				  <th>Activate/<br>Deactivate</th>
+				  <th>Suspend</th>
+				  <th>First Name</th>
+				  <th>Last Name</th>
+				  <th>Email</th>
+				  <th>Address</th>
+				  <th>DoB</th>
+				  <th>Date Created</th>
+			  </tr>
+		  </table>
+      </div>
+    </div>
+  </body>
+</html>

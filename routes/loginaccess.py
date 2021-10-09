@@ -29,4 +29,3 @@ def setup_page_routing(app, base, db):
                 return render_template('signup.html')
         else:
             return render_template('new_user.html')
-
