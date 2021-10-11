@@ -198,12 +198,20 @@
 		<table id="raccountstable" style="width: 1040px">
 			<tr>
 			<th style="width: 80px">Account Number</th>
-		    <th style="width: 420px">Account Name</th>
+		    <th style="width: 100px">Account Name</th>
 			<th>Category</th>
 			<th>Sub-Category</th>
 			<th>Term</th>
 			<th>Account<br>State</th>
 			</tr>
+            {% for account in accounts %}
+                <tr>
+                <td>{{ account.number }}</td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.category }}</td>
+                <td>{{ account.subcategory }}</td>
+                </tr>
+            {% endfor %}
 		</table>  
 		  
       </div>
@@ -230,13 +238,23 @@
 		<!-- New Users Table (Table) -->  
 		<table id="newusertable" style="width: 1040px">
 			<tr>
-			<th style="width: 80px">Account Number</th>
-		    <th style="width: 420px">Account Name</th>
-			<th>Category</th>
-			<th>Sub-Category</th>
-			<th>Term</th>
-			<th>Account<br>State</th>
+			<th style="width: 80px">User Status</th>
+		    <th style="width: 420px">First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>Accept<br>Decline</th>
 			</tr>
+            {% for newuser in newusers %}
+                <tr>
+                <td>{{ newuser.status }}</td>
+                <td>{{ newuser.firstname }}</td>
+                <td>{{ newuser.lastname }}</td>
+                <td>{{ newuser.email }}</td>
+                <td>{{ newuser.street }}</td>
+                <td>buttons</td>
+                </tr>
+            {% endfor %}
 		</table> 
       </div>
 
@@ -262,13 +280,25 @@
 		<!-- Recent Users Table (Table) -->  
 		<table id="rusertable" style="width: 1040px">
 			<tr>
-			<th style="width: 80px">Account Number</th>
-		    <th style="width: 420px">Account Name</th>
-			<th>Category</th>
-			<th>Sub-Category</th>
-			<th>Term</th>
-			<th>Account<br>State</th>
+			<th style="width: 80px">User Id</th>
+		    <th style="width: 100px">Username</th>
+			<th>role</th>
+			<th>Activated</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+            <th>Email</th>
 			</tr>
+            {% for user in users %}
+                <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.activated }}</td>
+                <td>{{ user.f_name }}</td>
+                <td>{{ user.l_name }}</td>
+                <td>{{ user.email }}</td>
+                </tr>
+            {% endfor %}
 		</table>
 		  
       </div>

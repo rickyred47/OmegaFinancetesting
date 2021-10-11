@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request
+from obj import adminprocesses
 
 
 def setup_page_routing(app, base, db):
@@ -7,7 +8,10 @@ def setup_page_routing(app, base, db):
     # The admin pages
     @app.route('/admin_home')
     def admin_home_page():
-        return render_template('admin.html')
+        accounts = adminprocesses.get_accounts_info(base, db)
+        newusers = adminprocesses.get_new_users(base, db)
+        users = adminprocesses.get_user_accounts(base, db)
+        return render_template('admin.html', accounts=accounts, newusers=newusers, users=users)
 
     @app.route('/admin_users_accounts')
     def admin_user_accounts():

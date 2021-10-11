@@ -1131,10 +1131,14 @@
   border-collapse: collapse;
   border-bottom: 1px solid black;
 }
-tr:nth-child(even){
+tr:nth-child(odd){
   background: #DDECF5;
 }
+tr {
+  border-bottom: 1px solid black;
+}
 th {
+  background-color: white;
 }
 #newusergrp {
   border-width:0px;
@@ -1792,4 +1796,9 @@ th {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
 }
