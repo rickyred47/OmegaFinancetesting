@@ -23,15 +23,20 @@ def setup_page_routing(app, base, db):
 
     @app.route('/admin_accounts')
     def admin_accounts():
-        return render_template('accounts_admin.html')
+        accounts = adminprocesses.get_accounts_info(base, db)
+        return render_template('accounts_admin.html', accounts=accounts)
 
-    @app.route('/admin_create_user')
+    @app.route('/admin_create_user', methods=['GET', 'POST'])
     def admin_create_user():
         return render_template('admincreateuser.html')
 
-    @app.route('/admin_create_account')
+    @app.route('/admin_create_account', methods=['GET', 'POST'])
     def admin_create_account():
-        return render_template('createnewaccount.html')
+        if request.method == "POST":
+            adminprocesses.account_form(base, db)
+            return redirect('admin_accounts')
+        else:
+            return render_template('createnewaccount.html')
 
     @app.route('/admin_add_chart_accounts')
     def admin_add_chart_account():

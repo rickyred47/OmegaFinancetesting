@@ -87,7 +87,7 @@
 		
       <!-- Add_Button (Shape) -->
       <div id="addbtn" class="ax_default button" data-label="Add_Button">
-        <input type="button" value="Add An Account" onclick="" style="width: 100%; background-color: green; font-size: 20px; color: white"/>
+        <input type="button" value="Create An Account" onclick="window.location.href='{{ url_for('admin_create_account')}}'" style="width: 100%; background-color: green; font-size: 20px; color: white"/>
       </div>
 
       <!-- Account Category (Droplist) -->
@@ -160,16 +160,27 @@
 		  <tr>
 			  <th>Account<br>Number</th>
 			  <th>Account<br>Name</th>
-			  <th>Account Catergory</th>
+			  <th>Account Category</th>
 			  <th>Account<br>SubCatergory</th>
 			  <th>Account<br>Balance</th>
 			  <th>Account<br>Created By</th>
 			  <th>Date Created</th>
-			  <th>Term</th>
 			  <th>Comment</th>
 			  <th>Account State</th>
 		  </tr>
-          
+          {% for account in accounts %}
+            <tr>
+              <td>{{ account.number }}</td>
+              <td>{{ account.name }}</td>
+              <td>{{ account.category }}</td>
+              <td>{{ account.subcategory }}</td>
+              <td>{{ account.balance }}</td>
+              <td>{{ account.created_by }}</td>
+              <td>{{ account.date_created }}</td>
+              <td>{{ account.comment }}</td>
+              <td>{{ account.active }}</td>
+            </tr>
+          {% endfor %}
 	  </table>	 
 
       <!-- Nav Link Group (Group) -->
