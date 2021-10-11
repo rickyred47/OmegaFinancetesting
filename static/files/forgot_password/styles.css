@@ -39,7 +39,7 @@
   left:420px;
   top:165px;
   width:600px;
-  height:638px;
+  height:685px;
   display:flex;
   color:#000000;
 }
@@ -1649,4 +1649,168 @@
   word-wrap:break-word;
   text-transform:none;
   visibility:hidden;
+}
+#orLine {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:0px;
+  height:0px;
+}
+#orlbl_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:21px;
+  height:19px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:"Montserrat-Regular", "Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#orlbl {
+  border-width:0px;
+  position:absolute;
+  left:710px;
+  top:787px;
+  width:21px;
+  height:19px;
+  display:flex;
+  font-family:"Montserrat-Regular", "Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#orlbl .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#orlbl_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+#orlbl_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:149px;
+  height:2px;
+}
+#lLine {
+  border-width:0px;
+  position:absolute;
+  left:561px;
+  top:796px;
+  width:148px;
+  height:1px;
+  display:flex;
+  -webkit-transform:rotate(0.08119377585242338deg);
+  -moz-transform:rotate(0.08119377585242338deg);
+  -ms-transform:rotate(0.08119377585242338deg);
+  transform:rotate(0.08119377585242338deg);
+}
+#lLine .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#lLine_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}
+#rLine_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:148px;
+  height:2px;
+}
+#rLine {
+  border-width:0px;
+  position:absolute;
+  left:730px;
+  top:796px;
+  width:147px;
+  height:1px;
+  display:flex;
+  -webkit-transform:rotate(-0.08175373216983621deg);
+  -moz-transform:rotate(-0.08175373216983621deg);
+  -ms-transform:rotate(-0.08175373216983621deg);
+  transform:rotate(-0.08175373216983621deg);
+}
+#rLine .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#rLine_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}
+#loginButton_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:94px;
+  height:23px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:"Montserrat-Regular", "Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#loginButton {
+  border-width:0px;
+  position:absolute;
+  left:669px;
+  top:814px;
+  width:94px;
+  height:23px;
+  display:flex;
+  font-family:"Montserrat-Regular", "Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#loginButton .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#loginButton_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
 }
