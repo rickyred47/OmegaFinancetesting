@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>AdminCreateUser</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/admincreateuser/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Header Group (Group) -->
+      <div id="headergrp" class="ax_default" data-left="0" data-top="0" data-width="3000" data-height="147">
+
+        <!-- Header Background (Rectangle) -->
+        <div id="headerbx" class="ax_default box_1">
+          <div id="headerbx_div" class=""></div>
+          <div id="headerbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Omega Finance Label (Rectangle) -->
+        <div id="omegalbl" class="ax_default heading_1">
+          <div id="omegalbl_div" class=""></div>
+          <div id="omegalbl_text" class="text ">
+            <p><span>Omega Finance</span></p>
+          </div>
+        </div>
+
+        <!-- Omega Icon (Image) -->
+        <div id="omegaicon" class="ax_default image">
+          <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/admincreateuser/regen/u3.png')}}"/>
+          <div id="omegaicon_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Search and Button (Group) -->
+        <div id="searchandbtn" class="ax_default" data-left="1381" data-top="54" data-width="470" data-height="30">
+
+          <!-- Search Input (Group) -->
+          <div id="searchinput" class="ax_default" data-label="Search Input" data-left="1381" data-top="54" data-width="356" data-height="30">
+
+            <!-- Text Input (Text Field) -->
+            <div id="searchtxt" class="ax_default text_field" data-label="Text Input">
+              <div id="searchtxt_div" class=""></div>
+              <input id="searchtxt_input" type="text" value="" class="u6_input"/>
+            </div>
+
+            <!-- Search Icon (Shape) -->
+            <div id="searchicon" class="ax_default icon" data-label="Search Icon">
+              <img id="searchicon_img" class="img " src="{{ url_for('static', filename= 'images/admincreateuser/regen/search_icon_u7.svg')}}"/>
+              <div id="searchicon_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Button (Rectangle) -->
+          <div id="searchbtn" class="ax_default button">
+            <div id="searchbtn_div" class=""></div>
+            <div id="searchbtn_text" class="text ">
+              <p><span>Search</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav Bar Group (Group) -->
+      <div id="navbargrp" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
+
+        <!-- NavBar_Backdrop (Rectangle) -->
+        <div id="navbx" class="ax_default box_2" data-label="NavBar_Backdrop">
+          <div id="navbx_div" class=""></div>
+        </div>
+
+		<!-- Home_Nav (Rectangle) -->
+        <div id="home" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="home_div" class=""></div>
+          <div id="home_text" class="text ">
+            <p><a href="{{ url_for('admin_home_page') }}"><span>Home</span></a></p>
+          </div>
+        </div>
+		  
+        <!-- Chart_of_Accounts_Nav (Rectangle) -->
+        <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
+          <div id="chartaccounts_div" class=""></div>
+          <div id="chartaccounts_text" class="text ">
+              <p><a href="{{ url_for('admin_chart_accounts') }}"><span>Chart of Accounts</span></a></p>
+          </div>
+        </div>
+
+        <!-- Accounts_Nav (Rectangle) -->
+        <div id="accountslink" class="ax_default heading_2" data-label="Accounts_Nav">
+          <div id="accountslink_div" class=""></div>
+          <div id="accountslink_text" class="text ">
+              <p><a href="{{ url_for('admin_accounts') }}"><span>Accounts</span></a></p>
+          </div>
+        </div>
+
+        <!-- Users_Nav (Rectangle) -->
+        <div id="userslink" class="ax_default heading_2" data-label="Users_Nav">
+          <div id="userslink_div" class=""></div>
+          <div id="userslink_text" class="text ">
+              <p><a href="{{ url_for('admin_user_accounts') }}"><span>Users</span></a></p>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="eventlog" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="eventlog_div" class=""></div>
+          <div id="eventlog_text" class="text ">
+            <p><span>Event Log</span></p>
+          </div>
+        </div>
+
+        <!-- Reports_Nav (Rectangle) -->
+        <div id="reports" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="reports_div" class=""></div>
+          <div id="reports_text" class="text ">
+            <p><span>Reports</span></p>
+          </div>
+        </div>
+		  
+		<!-- My_Account_Nav (Rectangle) -->
+        <div id="myaccount" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="myaccount_div" class=""></div>
+          <div id="myaccount_text" class="text ">
+            <p><span>My Account</span></p>
+          </div>
+        </div>
+
+        <!-- Email_Nav (Rectangle) -->
+        <div id="email" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="email_div" class=""></div>
+          <div id="email_text" class="text ">
+            <p><span>Email</span></p>
+          </div>
+        </div>
+
+        <!-- Nav Bar Shader (Rectangle) -->
+        <div id="navbarshader" class="ax_default box_1">
+          <div id="navbarshader_div" class=""></div>
+          <div id="navbarshader_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- LinksIconName (Group) -->
+        <div id="linksicongrp" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
+
+          <!-- UserName (Text Field) -->
+          <div id="username" class="ax_default text_field" data-label="UserName">
+            <div id="username_div" class=""></div>
+            <input id="username_input" type="text" value="{{ username }}" class="u21_input"/>
+          </div>
+
+          <!-- UserType (Text Field) -->
+          <div id="role" class="ax_default text_field" data-label="UserType">
+            <div id="role_div" class=""></div>
+            <input id="role_input" type="text" value="Administrator" class="u22_input"/>
+          </div>
+
+          <!-- UserIcon (Shape) -->
+          <div id="usericon" class="ax_default icon" data-label="UserIcon">
+            <img id="usericon_img" class="img " src="{{ url_for('static', filename= 'images/admincreateuser/regen/usericon_u23.svg')}}"/>
+            <div id="usericon_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logoff_Nav (Rectangle) -->
+        <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="logoff_div" class=""></div>
+          <div id="logoff_text" class="text ">
+            <p><span>Logoff</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Create New User Group (Group) -->
+      <div id="createusergrp" class="ax_default" data-left="396" data-top="164" data-width="1373" data-height="787">
+
+        <!-- Create User Background(Rectangle) -->
+        <div id="createuserbx" class="ax_default box_3" data-label="Whitebox">
+          <div id="createuserbx_div" class=""></div>
+          <div id="createuserbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Create New User Box (Rectangle) -->
+        <div id="formbx" class="ax_default box_1" data-label="White_Box">
+          <div id="formbx_div" class=""></div>
+          <div id="formbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- CreateUserHeader (Rectangle) -->
+        <div id="createuserlbl" class="ax_default heading_1" data-label="CreateUserHeader">
+          <div id="createuserlbl_div" class=""></div>
+          <div id="createuserlbl_text" class="text ">
+            <p><span>Create New User</span></p>
+          </div>
+        </div>
+
+        <!-- Fnamelbl (Rectangle) -->
+        <div id="fnamelbl" class="ax_default label" data-label="Fnamelbl">
+          <div id="fnamelbl_div" class=""></div>
+          <div id="fnamelbl_text" class="text ">
+            <p><span>First Name</span></p>
+          </div>
+        </div>
+		  
+		<!-- fNametxtbx (Text Field) -->
+        <div id="fnametxtbx" class="ax_default text_field" data-label="fNametxtbx">
+          <div id="fnametxtbx_div" class=""></div>
+          <input id="fnametxtbx_input" type="text" value="" class="u33_input" required/>
+        </div>
+
+
+        <!-- Lnamelbl (Rectangle) -->
+        <div id="lnamelbl" class="ax_default label" data-label="Lnamelbl">
+          <div id="lnamelbl_div" class=""></div>
+          <div id="lnamelbl_text" class="text ">
+            <p><span>Last Name</span></p>
+          </div>
+        </div>
+		  
+		<!-- lnametxtbx (Text Field) -->
+        <div id="lnametxtbx" class="ax_default text_field" data-label="lnametxtbx">
+          <div id="lnametxtbx_div" class=""></div>
+          <input id="lnametxtbx_input" type="text" value="" class="u34_input" required/>
+        </div>
+
+        <!-- DoBlbl (Rectangle) -->
+        <div id="doblbl" class="ax_default label" data-label="DoBlbl">
+          <div id="doblbl_div" class=""></div>
+          <div id="doblbl_text" class="text ">
+            <p><span>Date of Birth</span></p>
+          </div>
+        </div>
+
+        <!-- dobtxtbx (Text Field) -->
+        <div id="dobtxtbx" class="ax_default text_field" data-label="dobtxtbx">
+          <div id="dobtxtbx_div" class=""></div>
+          <input id="dobtxtbx_input" type="date" value="" class="u35_input" required/>
+        </div>
+
+        <!-- addresslbl (Rectangle) -->
+        <div id="addresslbl" class="ax_default label" data-label="addresslbl">
+          <div id="addresslbl_div" class=""></div>
+          <div id="addresslbl_text" class="text ">
+            <p><span>Address</span></p>
+          </div>
+        </div>
+
+        <!-- addresstxtbx (Text Field) -->
+        <div id="addresstxtbx" class="ax_default text_field" data-label="addresstxtbx">
+          <div id="addresstxtbx_div" class=""></div>
+          <input id="addresstxtbx_input" type="text" value="" class="u37_input" required/>
+        </div>
+		  
+        <!-- aptlbl (Rectangle) -->
+        <div id="aptlbl" class="ax_default label" data-label="nplbl">
+          <div id="aptlbl_div" class=""></div>
+          <div id="aptlbl_text" class="text ">
+            <p><span>Apt#</span></p>
+          </div>
+        </div>
+		  
+		<!-- apttxtbx (Text Field) -->
+        <div id="apttxtbx" class="ax_default text_field" data-label="nptxtbx">
+          <div id="apttxtbx_div" class=""></div>
+          <input id="apttxtbx_input" type="text" value="" class="u51_input"/>
+        </div>
+		  
+		<!-- zipcodetxtbx (Text Field) -->
+        <div id="zipcodetxtbx" class="ax_default text_field" data-label="nptxtbx">
+          <div id="zipcodetxtbx_div" class=""></div>
+          <input id="zipcodetxtbx_input" type="number" value="" class="u53_input"/>
+        </div>
+
+        <!-- zipcodelbl (Rectangle) -->
+        <div id="zipcodelbl" class="ax_default label" data-label="nplbl">
+          <div id="zipcodelbl_div" class=""></div>
+          <div id="zipcodelbl_text" class="text ">
+            <p><span>Zipcode</span></p>
+          </div>
+        </div>
+		  
+		<!-- statelbl (Rectangle) -->
+        <div id="statelbl" class="ax_default label" data-label="rolelbl">
+          <div id="statelbl_div" class=""></div>
+          <div id="statelbl_text" class="text ">
+            <p><span>State</span></p>
+          </div>
+        </div>
+
+        <!-- statedl (Droplist) -->
+        <div id="statedl" class="ax_default droplist" data-label="Roledl">
+          <div id="statedl_div" class=""></div>
+          <select id="statedl_input" class="u50_input">
+            <option class="statedl_input_option" value="Georgia">Georgia</option>
+          </select>
+        </div>
+		  
+		<!-- countrylbl (Rectangle) -->
+        <div id="countrylbl" class="ax_default label" data-label="rolelbl">
+          <div id="countrylbl_div" class=""></div>
+          <div id="countrylbl_text" class="text ">
+            <p><span>Country</span></p>
+          </div>
+        </div>
+
+        <!-- countrydl (Droplist) -->
+        <div id="countrydl" class="ax_default droplist" data-label="Roledl">
+          <div id="countrydl_div" class=""></div>
+          <select id="countrydl_input" class="u48_input">
+            <option class="countrydl_input_option" value="United States">United States</option>
+          </select>
+        </div>
+		  
+		<!-- rolelbl (Rectangle) -->
+        <div id="rolelbl" class="ax_default label" data-label="rolelbl">
+          <div id="rolelbl_div" class=""></div>
+          <div id="rolelbl_text" class="text ">
+            <p><span>Role</span></p>
+          </div>
+        </div>
+
+        <!-- Roledl (Droplist) -->
+        <div id="roledl" class="ax_default droplist" data-label="Roledl">
+          <div id="roledl_div" class=""></div>
+          <select id="roledl_input" class="u40_input">
+            <option class="roledl_input_option" value="Accountant">Accountant</option>
+            <option class="roledl_input_option" value="Manager">Manager</option>
+            <option class="roledl_input_option" value="Administrator">Administrator</option>
+          </select>
+        </div>
+		  
+        <!-- emaillbl (Rectangle) -->
+        <div id="emaillbl" class="ax_default label" data-label="emaillbl">
+          <div id="emaillbl_div" class=""></div>
+          <div id="emaillbl_text" class="text ">
+            <p><span>Email</span></p>
+          </div>
+        </div>
+		  
+		<!-- emailtxtbx (Text Field) -->
+        <div id="emailtxt" class="ax_default text_field" data-label="emailtxtbx">
+          <div id="emailtxt_div" class=""></div>
+          <input id="emailtxt_input" type="email" value="" class="u28_input" required/>
+        </div>
+
+		<!-- nplbl (Rectangle) -->
+        <div id="nplbl" class="ax_default label" data-label="nplbl">
+          <div id="nplbl_div" class=""></div>
+          <div id="nplbl_text" class="text ">
+            <p><span>New Password</span></p>
+          </div>
+        </div>
+		  
+        <!-- nptxtbx (Text Field) -->
+        <div id="nptxtbx" class="ax_default text_field" data-label="nptxtbx">
+          <div id="nptxtbx_div" class=""></div>
+          <input id="nptxtbx_input" type="password" value="" class="u41_input" required/>
+        </div>
+		  
+        <!-- password Constraints lbl (Rectangle) -->
+        <div id="passconlbl" class="ax_default label">
+          <div id="passconlbl_div" class=""></div>
+          <div id="passconlbl_text" class="text ">
+            <p><span>Password Constraints:</span></p>
+          </div>
+        </div>
+
+        <!-- Password 8 Characters Label (Rectangle) -->
+        <div id="password8char" class="ax_default label">
+          <div id="password8char_div" class=""></div>
+          <div id="password8char_text" class="text ">
+            <p><span>At least 8 characters</span></p>
+          </div>
+        </div>
+
+        <!-- Password Capital Letter Label (Rectangle) -->
+        <div id="passwordcap" class="ax_default label">
+          <div id="passwordcap_div" class=""></div>
+          <div id="passwordcap_text" class="text ">
+            <p><span>At least 1 capital Letter</span></p>
+          </div>
+        </div>
+
+        <!-- Password Number Label (Rectangle) -->
+        <div id="passwordnum" class="ax_default label">
+          <div id="passwordnum_div" class=""></div>
+          <div id="passwordnum_text" class="text ">
+            <p><span>At least 1 number</span></p>
+          </div>
+        </div>
+
+        <!-- Password Special Character Label (Rectangle) -->
+        <div id="passwordspechar" class="ax_default label">
+          <div id="passwordspechar_div" class=""></div>
+          <div id="passwordspechar_text" class="text ">
+            <p><span>At least 1 special character</span></p>
+          </div>
+        </div>
+
+        <!-- Retype New Password Label (Rectangle) -->
+        <div id="rnplbl" class="ax_default label" data-label="rnplbl">
+          <div id="rnplbl_div" class=""></div>
+          <div id="rnplbl_text" class="text ">
+            <p><span>Retype new password</span></p>
+          </div>
+        </div>
+
+        <!-- rpntxtbx (Text Field) -->
+        <div id="rpntxtbx" class="ax_default text_field" data-label="rpntxtbx">
+          <div id="rpntxtbx_div" class=""></div>
+          <input id="rpntxtbx_input" type="password" value="" class="u44_input" required/>
+        </div>
+		  
+		<!-- Password Match Label (Rectangle) -->
+        <div id="passwordmatch" class="ax_default label">
+          <div id="passwordmatch_div" class=""></div>
+          <div id="passwordmatch_text" class="text ">
+            <p><span>Password Must Match</span></p>
+          </div>
+        </div>
+
+        <!-- createbtn (Rectangle) -->
+        <div id="createbtn" class="ax_default primary_button" data-label="createbtn">
+          <div id="createbtn_div" class=""></div>
+          <div id="createbtn_text" class="text ">
+            <p><span>Create User</span></p>
+          </div>
+        </div>
+
+        <!-- cancelbtn (Rectangle) -->
+        <div id="cancelbtn" class="ax_default primary_button" data-label="cancelbtn">
+          <div id="cancelbtn_div" class=""></div>
+          <div id="cancelbtn_text" class="text ">
+            <p><span>Cancel</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

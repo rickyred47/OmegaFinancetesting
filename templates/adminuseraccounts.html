@@ -80,7 +80,7 @@
         <div id="createuser" class="ax_default label">
           <div id="createuser_div" class=""></div>
           <div id="createuser_text" class="text ">
-            <p><span>Create New User?</span></p>
+            <p><a href="{{ url_for('admin_create_user') }}"><span>Create New User?</span></a></p>
           </div>
         </div>
       </div>
@@ -96,11 +96,19 @@
               </div>
             </div>
 
+            <!-- Home_Nav (Rectangle) -->
+            <div id="homenav" class="ax_default heading_2" data-label="Event_Log_Nav">
+              <div id="homenav_div" class=""></div>
+              <div id="homenav_text" class="text ">
+                <p><a href="{{ url_for('admin_home_page') }}"><span>Home</span></a></p>
+              </div>
+            </div>
+
             <!-- Chart_of_Accounts_Nav (Rectangle) -->
             <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
               <div id="chartaccounts_div" class=""></div>
               <div id="chartaccounts_text" class="text ">
-                <p><span>Chart of Accounts</span></p>
+                <p><a href="{{ url_for('admin_chart_accounts')}}"><span>Chart of Accounts</span></a></p>
               </div>
             </div>
 
@@ -108,7 +116,7 @@
             <div id="accountsnav" class="ax_default heading_2" data-label="Accounts_Nav">
               <div id="accountsnav_div" class=""></div>
               <div id="accountsnav_text" class="text ">
-                <p><span>Accounts</span></p>
+                  <p><a href="{{ url_for('admin_accounts')}}"><span>Accounts</span></a></p>
               </div>
             </div>
 
@@ -116,7 +124,7 @@
             <div id="usersnav" class="ax_default heading_2" data-label="Users_Nav">
               <div id="usernav_div" class=""></div>
               <div id="usersnav_text" class="text ">
-                <p><span>Users</span></p>
+                  <p><span>Users</span></p>
               </div>
             </div>
 
@@ -133,14 +141,6 @@
               <div id="reportsnav_div" class=""></div>
               <div id="reportsnav_text" class="text ">
                 <p><span>Reports</span></p>
-              </div>
-            </div>
-
-            <!-- Home_Nav (Rectangle) -->
-            <div id="homenav" class="ax_default heading_2" data-label="Event_Log_Nav">
-              <div id="homenav_div" class=""></div>
-              <div id="homenav_text" class="text ">
-                <p><span>Home</span></p>
               </div>
             </div>
 
@@ -174,7 +174,7 @@
               <!-- UserName (Text Field) -->
               <div id="usernamelbl" class="ax_default text_field" data-label="UserName">
                 <div id="usernamelbl_div" class=""></div>
-                <input id="usernamelbl_input" type="text" value="Jane Doe" class="u24_input"/>
+                <input id="usernamelbl_input" type="text" value="{{ username }}" class="u24_input"/>
               </div>
 
               <!-- UserType (Text Field) -->

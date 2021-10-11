@@ -55,7 +55,7 @@
         <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
           <div id="chartaccounts_div" class=""></div>
           <div id="chartaccounts_text" class="text ">
-			  <p><a href=""><span>Chart of Accounts</span></a></p>
+			  <p><a href="{{ url_for('admin_chart_accounts')}}"><span>Chart of Accounts</span></a></p>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
         <div id="accounts" class="ax_default heading_2" data-label="Accounts_Nav">
           <div id="accounts_div" class=""></div>
           <div id="accounts_text" class="text ">
-            <p><span>Accounts</span></p>
+            <p><a href="{{ url_for('admin_accounts') }}"><span>Accounts</span></a></p>
           </div>
         </div>
 
@@ -121,7 +121,7 @@
           <!-- UserName (Text Field) -->
           <div id="username" class="ax_default text_field" data-label="UserName">
             <div id="username_div" class=""></div>
-            <input id="username_input" type="text" value="Jane Doe" class="u16_input"/>
+            <input id="username_input" type="text" value="{{ username }}" class="u16_input"/>
           </div>
 
           <!-- UserType (Text Field) -->
@@ -190,7 +190,7 @@
         <div id="raccountlbl" class="ax_default label">
           <div id="raccountlbl_div" class=""></div>
           <div id="raccountlbl_text" class="text ">
-            <p><span>Recent Accounts</span><span style="font-size: 12px; margin-left: 20px">See all accounts</span></p>
+            <p><span>Recent Accounts</span><a href="{{ url_for('admin_accounts')}}"><span style="font-size: 12px; margin-left: 20px">See all accounts</span></a></p>
           </div>
         </div>
 		  
@@ -255,7 +255,7 @@
         <div id="ruserlbl" class="ax_default label">
           <div id="ruserlbl_div" class=""></div>
           <div id="ruserlbl_text" class="text">
-            <p><span>Recent Users</span><span style="font-size: 12px; margin-left: 20px">See all users</span></p>
+            <p><span>Recent Users</span><a href="{{ url_for('admin_user_accounts')}}"><span style="font-size: 12px; margin-left: 20px">See all users</span></a></p>
           </div>
         </div>
 		  

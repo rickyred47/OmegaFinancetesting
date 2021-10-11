@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Accounts Admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/accounts_admin/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Header Group (Group) -->
+      <div id="headergrp" class="ax_default" data-left="0" data-top="0" data-width="3000" data-height="147">
+
+        <!-- header Background (Rectangle) -->
+        <div id="headerbx" class="ax_default box_1">
+          <div id="headerbx_div" class=""></div>
+          <div id="headerbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Omega Finance Label (Rectangle) -->
+        <div id="omegalbl" class="ax_default heading_1">
+          <div id="omegalbl_div" class=""></div>
+          <div id="omegalbl_text" class="text ">
+            <p><span>Omega Finance</span></p>
+          </div>
+        </div>
+
+        <!-- Omega Icon (Image) -->
+        <div id="omegaicon" class="ax_default image">
+          <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/accounts_admin/regen/u3.png')}}"/>
+          <div id="omegaicon_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Search and Button (Group) -->
+        <div id="searchandbtn" class="ax_default" data-left="1381" data-top="54" data-width="470" data-height="30">
+
+          <!-- Search Input (Group) -->
+          <div id="searchgrp" class="ax_default" data-label="Search Input" data-left="1381" data-top="54" data-width="356" data-height="30">
+
+            <!-- Text Input (Text Field) -->
+            <div id="searchtxt" class="ax_default text_field" data-label="Text Input">
+              <div id="searchtxt_div" class=""></div>
+              <input id="searchtxt_input" type="text" value="" class="u6_input" placeholder="Search"/>
+            </div>
+
+            <!-- Search Icon (Shape) -->
+            <div id="searhicon" class="ax_default icon" data-label="Search Icon">
+              <img id="searhicon_img" class="img " src="{{ url_for('static', filename= 'images/accounts_admin/regen/search_icon_u7.svg')}}"/>
+              <div id="searhicon_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Button (Rectangle) -->
+          <div id="searchbtn" class="ax_default button">
+            <div id="searchbtn_div" class=""></div>
+            <div id="searchbtn_text" class="text ">
+              <p><span>Search</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accounts Background (Rectangle) -->
+      <div id="accountsbx" class="ax_default box_1" data-label="White_Box">
+        <div id="accountsbx_div" class=""></div>
+        <div id="accountsbx_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Accounts_Header (Rectangle) -->
+      <div id="accountslbl" class="ax_default heading_1" data-label="Addtochartofaccounts_Header">
+        <div id="accountslbl_div" class=""></div>
+        <div id="accountslbl_text" class="text ">
+          <p><span>Accounts</span></p>
+        </div>
+      </div>
+		
+      <!-- Add_Button (Shape) -->
+      <div id="addbtn" class="ax_default button" data-label="Add_Button">
+        <input type="button" value="Add An Account" onclick="" style="width: 100%; background-color: green; font-size: 20px; color: white"/>
+      </div>
+
+      <!-- Account Category (Droplist) -->
+      <div id="accountcat" class="ax_default droplist" data-label="AccountType">
+        <div id="accountcat_div" class=""></div>
+        <select id="accountcat_input" class="u13_input">
+          <option class="accountcat_input_option" value="All">All</option>
+          <option class="accountcat_input_option" value="Asset">Asset</option>
+          <option class="accountcat_input_option" value="Liability">Liability</option>
+          <option class="accountcat_input_option" value="Equity">Equity</option>
+          <option class="accountcat_input_option" value="Revenue">Revenue</option>
+          <option class="accountcat_input_option" value="Expenses">Expenses</option>
+        </select>
+      </div>
+
+      <!-- Account Category lbl (Rectangle) -->
+      <div id="accountcatlbl" class="ax_default label" data-label="Account Name">
+        <div id="accountcatlbl_div" class=""></div>
+        <div id="accountcatlbl_text" class="text ">
+          <p><span>Account Category:</span></p>
+        </div>
+      </div>
+
+      <!-- Account Term Label (Rectangle) -->
+      <div id="accounttermlbl" class="ax_default label" data-label="Account Name">
+        <div id="accounttermlbl_div" class=""></div>
+        <div id="accounttermlbl_text" class="text ">
+          <p><span>Account Term:</span></p>
+        </div>
+      </div>
+
+	  <!-- Account Term (Droplist) -->
+      <div id="accountterm" class="ax_default droplist" data-label="AccountType">
+        <div id="accountterm_div" class=""></div>
+        <select id="accountterm_input" class="u17_input">
+          <option class="accountterm_input_option" value="All">All</option>
+          <option class="accountterm_input_option" value="Current">Current</option>
+        </select>
+      </div>
+		
+      <!-- Account Status Label (Rectangle) -->
+      <div id="accountstatlbl" class="ax_default label" data-label="Account Name">
+        <div id="accountstatlbl_div" class=""></div>
+        <div id="accountstatlbl_text" class="text ">
+          <p><span>Account Status:</span></p>
+        </div>
+      </div>
+
+      
+
+      <!-- AccountType (Droplist) -->
+      <div id="accountstatus" class="ax_default droplist" data-label="AccountType">
+        <div id="accountstatus_div" class=""></div>
+        <select id="accountstatus_input" class="u18_input">
+          <option class="accountstatus_input_option" value="All">All</option>
+          <option class="accountstatus_input_option" value="Active">Active</option>
+          <option class="accountstatus_input_option" value="Inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Filter By Label (Rectangle) -->
+      <div id="filterbylbl" class="ax_default label" data-label="Account Name">
+        <div id="filterbylbl_div" class=""></div>
+        <div id="filterbylbl_text" class="text ">
+          <p><span>Filter by:</span></p>
+        </div>
+      </div>
+		
+	  <table>
+		  <tr>
+			  <th>Account<br>Number</th>
+			  <th>Account<br>Name</th>
+			  <th>Account Catergory</th>
+			  <th>Account<br>SubCatergory</th>
+			  <th>Account<br>Balance</th>
+			  <th>Account<br>Created By</th>
+			  <th>Date Created</th>
+			  <th>Term</th>
+			  <th>Comment</th>
+			  <th>Account State</th>
+		  </tr>
+	  </table>	 
+
+      <!-- Nav Link Group (Group) -->
+      <div id="navlinkgrp" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
+
+        <!-- NavBar_Backdrop (Rectangle) -->
+        <div id="navbarbx" class="ax_default box_2" data-label="NavBar_Backdrop">
+          <div id="navbarbx_div" class=""></div>
+          <div id="navbarbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Chart_of_Accounts_Nav (Rectangle) -->
+        <div id="chartaccounts" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
+          <div id="chartaccounts_div" class=""></div>
+          <div id="chartaccounts_text" class="text ">
+              <p><a href="{{ url_for('admin_chart_accounts')}}"><span>Chart of Accounts</span></a></p>
+          </div>
+        </div>
+
+        <!-- Accounts_Nav (Rectangle) -->
+        <div id="accountlink" class="ax_default heading_2" data-label="Accounts_Nav">
+          <div id="accountlink_div" class=""></div>
+          <div id="accountlink_text" class="text ">
+            <p><span>Accounts</span></p>
+          </div>
+        </div>
+
+        <!-- Users_Nav (Rectangle) -->
+        <div id="userlink" class="ax_default heading_2" data-label="Users_Nav">
+          <div id="userlink_div" class=""></div>
+          <div id="userlink_text" class="text ">
+              <p><a href="{{ url_for('admin_user_accounts')}}"><span>Users</span></a></p>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="eventlog" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="eventlog_div" class=""></div>
+          <div id="eventlog_text" class="text ">
+            <p><span>Event Log</span></p>
+          </div>
+        </div>
+
+        <!-- Reports_Nav (Rectangle) -->
+        <div id="reportslink" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="reportslink_div" class=""></div>
+          <div id="reportslink_text" class="text ">
+            <p><span>Reports</span></p>
+          </div>
+        </div>
+
+        <!-- Home_Nav (Rectangle) -->
+        <div id="homelink" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="homelink_div" class=""></div>
+          <div id="homelink_text" class="text ">
+              <p><a href="{{ url_for('admin_home_page')}}"><span>Home</span></a></p>
+          </div>
+        </div>
+
+        <!-- Email_Nav (Rectangle) -->
+        <div id="emaillink" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="emaillink_div" class=""></div>
+          <div id="emaillink_text" class="text ">
+            <p><span>Email</span></p>
+          </div>
+        </div>
+
+        <!-- My_Account_Nav (Rectangle) -->
+        <div id="myaccount" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="myaccount_div" class=""></div>
+          <div id="myaccount_text" class="text ">
+            <p><span>My Account</span></p>
+          </div>
+        </div>
+
+        <!-- Nav Box Shade (Rectangle) -->
+        <div id="navbxshade" class="ax_default box_1">
+          <div id="navbxshade_div" class=""></div>
+        </div>
+
+        <!-- LinksIconName (Group) -->
+        <div id="iconlinkgrp" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
+
+          <!-- UserName (Text Field) -->
+          <div id="username" class="ax_default text_field" data-label="UserName">
+            <div id="username_div" class=""></div>
+            <input id="username_input" type="text" value="{{ username }}" class="u32_input"/>
+          </div>
+
+          <!-- UserType (Text Field) -->
+          <div id="userrole" class="ax_default text_field" data-label="UserType">
+            <div id="userrole_div" class=""></div>
+            <input id="userrole_input" type="text" value="Administrator" class="u33_input"/>
+          </div>
+
+          <!-- UserIcon (Shape) -->
+          <div id="usericon" class="ax_default icon" data-label="UserIcon">
+            <img id="usericon_img" class="img " src="{{ url_for('static', filename= 'images/accounts_admin/regen/usericon_u34.svg')}}"/>
+          </div>
+        </div>
+
+        <!-- Logoff_Nav (Rectangle) -->
+        <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="logoff_div" class=""></div>
+          <div id="logoff_text" class="text ">
+            <p><span>Logoff</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Label (Rectangle) -->
+      <div id="aboutlbl" class="ax_default label">
+        <div id="aboutlbl_div" class=""></div>
+        <div id="aboutlbl_text" class="text ">
+          <p><span>About</span></p>
+        </div>
+      </div>
+
+      <!-- SearchButton (Rectangle) -->
+      <div id="usersearchbtn" class="ax_default primary_button" data-label="SearchButton">
+        <div id="usersearchbtn_div" class=""></div>
+        <div id="usersearchbtn_text" class="text ">
+          <p><span>Search</span></p>
+        </div>
+      </div>
+
+      <!-- SearchBar (Text Field) -->
+      <div id="usersearchtxt" class="ax_default text_field" data-label="SearchBar">
+        <div id="usersearchtxt_div" class=""></div>
+        <input id="usersearchtxt_input" type="text" value="" class="u38_input" placeholder="User Search"/>
+      </div>
+    </div>
+  </body>
+</html>
