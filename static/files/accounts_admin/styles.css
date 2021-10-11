@@ -2380,3 +2380,9 @@ th, td {
 }
 #usersearchtxt.hint.disabled {
 }
+tr:nth-child(odd){
+  background-color: #DDECF5;
+}
+th {
+  background-color: white;
+}
