@@ -52,9 +52,13 @@ def setup_page_routing(app, base, db):
     @app.route('/admin_edit_account/<account_id>', methods=['GET', 'POST'])
     def admin_edit_account(account_id):
         username = "rrojo"
-        AccountTable = base.classes.accounts
-        account = db.session.query(AccountTable).filter_by(id=account_id).first()
+        account = adminprocesses.get_account_info(base, db, account_id)
         if request.method == "POST":
             return adminprocesses.edit_save_account(account, db)
         else:
             return adminprocesses.edit_account(username, account)
+
+    @app.route('/admin_ledger/<account_id>')
+    def admin_account_ledger(account_id):
+        account = adminprocesses.get_account_info(base, db, account_id)
+        return render_template('accounts_ledger.html', name=account.name, number=account.number, balance=account.balance)

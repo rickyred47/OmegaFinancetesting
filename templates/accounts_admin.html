@@ -171,7 +171,7 @@
 		  </tr>
           {% for account in accounts %}
             <tr>
-              <td rowspan="2">{{ account.number }}</td>
+                <td rowspan="2"><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
               <td rowspan="2">{{ account.name }}</td>
               <td rowspan="2">{{ account.category }}</td>
               <td rowspan="2">{{ account.subcategory }}</td>
