@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, url_for
 from obj import adminprocesses
 
 
@@ -41,3 +41,13 @@ def setup_page_routing(app, base, db):
     @app.route('/admin_add_chart_accounts')
     def admin_add_chart_account():
         return render_template('add_to_chart_of_accounts.html')
+
+    @app.route('/admin_edit_account/<account_id>', methods=['GET', 'POST'])
+    def admin_edit_account(account_id):
+        username = "rrojo"
+        AccountTable = base.classes.accounts
+        account = db.session.query(AccountTable).filter_by(id=account_id).first()
+        if request.method == "POST":
+            return adminprocesses.edit_save_account(account, db)
+        else:
+            return adminprocesses.edit_account(username, account)

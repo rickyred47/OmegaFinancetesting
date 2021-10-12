@@ -35,7 +35,7 @@ def account_form(base, db):
     accountnum = concat(initial_num, number)
 
     AccountsTable = base.classes.accounts
-    new_account = AccountsTable(number=accountnum, name=name, discription=description, normal_side=normal_side,
+    new_account = AccountsTable(number=accountnum, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
                                 category=category, subcategory=subcategory, created_by=1234, active=True)
     commit_to_database(new_account, db)
@@ -56,3 +56,32 @@ def commit_to_database(obj, db):
 def concat(number1, number2):
     string = str(number1) + str(number2)
     return int(string)
+
+
+def edit_account(username, account):
+    numstring = str(account.number)
+    initial = int(numstring[0])
+    number = int(numstring[1:])
+    return render_template('editaccount.html', accountcat=account.category, name=account.name,
+                           subcategory=account.subcategory, initial_number=initial, number=number,
+                           description=account.description, normal_side=account.normal_side,
+                           balance=account.balance, comment=account.comment, username=username)
+
+
+def edit_save_account(account, db):
+    account.category = request.form["category"]
+    account.name = request.form["name"]
+    account.subcategory = request.form["subcategory"]
+    initial_num = request.form["initial_num"]
+    number = request.form["number"]
+    account.number = concat(initial_num, number)
+    account.description = request.form["description"]
+    account.normal_side = request.form["normal_side"]
+    account.balance = request.form["initial_balance"]
+    account.comment = request.form["comment"]
+    db.session.commit()
+    return render_template('editaccount.html', accountcat=account.category, name=account.name,
+                           subcategory=account.subcategory, initial_number=initial_num, number=number,
+                           description=account.description, normal_side=account.normal_side,
+                           balance=account.balance, comment=account.comment,)
+

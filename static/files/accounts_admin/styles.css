@@ -2380,9 +2380,25 @@ th, td {
 }
 #usersearchtxt.hint.disabled {
 }
-tr:nth-child(odd){
+tr:nth-child(4n){
+  background-color: #DDECF5;
+}
+tr:nth-child(4n+1){
   background-color: #DDECF5;
 }
 th {
   background-color: white;
+}
+#edit_btn {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #1E98D7;
+}
+
+#deactivate_btn {
+  width: 80px;
+  height: 30px;
+  color: white;
+  background-color: #D9001B;
 }

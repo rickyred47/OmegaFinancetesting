@@ -16,5 +16,6 @@ from routes import loginaccess, adminroutes
 loginaccess.setup_page_routing(app, Base, db)
 adminroutes.setup_page_routing(app, Base, db)
 
+
 if __name__ == '__main__':
     app.run()

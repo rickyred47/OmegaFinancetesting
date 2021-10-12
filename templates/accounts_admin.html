@@ -167,19 +167,30 @@
 			  <th>Date Created</th>
 			  <th>Comment</th>
 			  <th>Account State</th>
+              <th>Buttons</th>
 		  </tr>
           {% for account in accounts %}
             <tr>
-              <td>{{ account.number }}</td>
-              <td>{{ account.name }}</td>
-              <td>{{ account.category }}</td>
-              <td>{{ account.subcategory }}</td>
-              <td>{{ account.balance }}</td>
-              <td>{{ account.created_by }}</td>
-              <td>{{ account.date_created }}</td>
-              <td>{{ account.comment }}</td>
-              <td>{{ account.active }}</td>
-            </tr>
+              <td rowspan="2">{{ account.number }}</td>
+              <td rowspan="2">{{ account.name }}</td>
+              <td rowspan="2">{{ account.category }}</td>
+              <td rowspan="2">{{ account.subcategory }}</td>
+              <td rowspan="2">{{ "$%.2f"|format(account.balance)}}</td>
+              <td rowspan="2">{{ account.created_by }}</td>
+              <td rowspan="2">{{ account.date_created }}</td>
+              <td rowspan="2">{{ account.comment }}</td>
+              <td rowspan="2">{{ account.active }}</td>
+              <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
+              </tr>
+              <tr>
+              <td>
+                  {% if account.acitve == True %}
+                    <input id="deactivate_btn" type="button" value="Deactivate" onclick="">
+                  {% else %}
+                    <input id="deactivate_btn" type="button" value="Activate" style="background-color: #2A7F62">
+                  {% endif %}
+              </td>
+              </tr>
           {% endfor %}
 	  </table>	 
 
