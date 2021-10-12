@@ -75,25 +75,25 @@
 
         <!-- Chart_of_Accounts_Nav (Rectangle) -->
         <div id="chartaccountnav" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
-          <div id="chartaccountnav_div" class="" title = "Browse Index of Financial Accounts in General Ledger"></div>
+          <div id="chartaccountnav_div" class="" ></div>
           <div id="chartaccountnav_text" class="text ">
-            <p><a href="{{ url_for('admin_chart_accounts') }}"><span>Chart of Accounts</span></a></p>
+            <p><a href="{{ url_for('admin_chart_accounts') }}" title = "Browse Index of Financial Accounts in General Ledger"><span>Chart of Accounts</span></a></p>
           </div>
         </div>
 
         <!-- Accounts_Nav (Rectangle) -->
         <div id="accountsnav" class="ax_default heading_2" data-label="Accounts_Nav">
-          <div id="accountsnav_div" class="" title = "Browse All Accounts"></div>
+          <div id="accountsnav_div" class="" ></div>
           <div id="accountsnav_text" class="text ">
-              <p><a href="{{ url_for('admin_accounts') }}"><span>Accounts</span></a></p>
+              <p><a href="{{ url_for('admin_accounts') }}" title = "Browse All Accounts"><span>Accounts</span></a></p>
           </div>
         </div>
 
         <!-- Users_Nav (Rectangle) -->
         <div id="usersnav" class="ax_default heading_2" data-label="Users_Nav">
-          <div id="usersnav_div" class="" title = "Browse Users of Omega Finance"></div>
+          <div id="usersnav_div" class="" ></div>
           <div id="usersnav_text" class="text ">
-              <p><a href="{{ url_for('admin_user_accounts') }}"><span>Users</span></a></p>
+              <p><a href="{{ url_for('admin_user_accounts') }}" title = "Browse Users of Omega Finance"><span>Users</span></a></p>
           </div>
         </div>
 
@@ -171,8 +171,8 @@
 
         <!-- Logoff_Nav (Rectangle) -->
         <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="logoff_div" class="" title = "Logout of Account"></div>
-          <div id="logoff_text" class="text ">
+          <div id="logoff_div" class="" ></div>
+          <div id="logoff_text" class="text " title = "Logout of Account">
             <p><span>Logoff</span></p>
           </div>
         </div>
