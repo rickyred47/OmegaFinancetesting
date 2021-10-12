@@ -32,7 +32,7 @@ def attempts_tried(db, user):
     attempts = user.password_incorrect_entries
     # Store attempts
     attempts = attempts + 1
-    user.password_incorrect_entries = attempts
+    user.password_incorrect_entries = 0
     db.session.commit()
     if attempts <= 2:
         return attempts
