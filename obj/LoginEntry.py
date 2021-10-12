@@ -15,7 +15,7 @@ def is_valid_entry(db, base):
         else:
             return error_message_page(4, base, db)
     else:
-        num = attempts_tried(user)
+        num = attempts_tried(db, user)
         return error_message_page(num, base, db)
 
 
@@ -28,10 +28,12 @@ def search_for_user(username, base, db):
         return None
 
 
-def attempts_tried(user):
+def attempts_tried(db, user):
     attempts = user.password_incorrect_entries
     # Store attempts
     attempts = attempts + 1
+    user.password_incorrect_entires = attempts
+    db.session.commit()
     if attempts <= 2:
         return attempts
     else:
