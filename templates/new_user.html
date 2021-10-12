@@ -203,7 +203,7 @@
 
 	  <!-- Clear Buttom (Rectangle) -->
       <div id="clearbtn" class="ax_default button" data-label="Register Buttom">
-        <div id="clearbtn_div" class=""></div>
+        <div id="clearbtn_div" class="" title = "Clear All Fields"></div>
         <div id="clearbtn_text" class="text ">
           <input id="clearbtn_input" type="button" onclick="clearPage()" value="Clear"/>
         </div>
@@ -211,7 +211,7 @@
 		
       <!-- Register Buttom (Rectangle) -->
       <div id="submitbtn" class="ax_default button" data-label="Register Buttom">
-        <div id="submitbtn_div" class=""></div>
+        <div id="submitbtn_div" class="" title = "Create New User With Information Above"></div>
         <div id="submitbtn_text" class="text ">
           <input id="submitbtn_input" type="submit" onclick="passwordPassed()" value="Submit"/>
         </div>
@@ -251,7 +251,7 @@
       <div id="loginlink" class="ax_default link_button">
         <div id="loginlink_div" class=""></div>
         <div id="loginlink_text" class="text ">
-            <p><a href="{{ url_for('login_page')}}"><span>Login Here</span></a></p>
+            <p><a href="{{ url_for('login_page')}}" title = "Back to Login Page"><span>Login Here</span></a></p>
         </div>
       </div>
     </div>
