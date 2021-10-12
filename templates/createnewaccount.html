@@ -173,7 +173,7 @@
         <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
           <div id="logoff_div" class=""></div>
           <div id="logoff_text" class="text ">
-            <p><span>Logoff</span></p>
+            <p><a href="{{ url_for('login_page')}}"><span>Logoff</span></a></p>
           </div>
         </div>
       </div>
@@ -349,18 +349,18 @@
           <!-- Clear Button (Shape) -->
           <div id="clearbtn" class="ax_default button" data-label="Back_Button">
             <img id="clearbtn_img" class="img " src="{{ url_for('static', filename= 'images/createnewaccount/regen/back_button_u45.svg')}}"/>
-            <div id="clearbtn_text" class="text ">
+            <div id="clearbtn_text" class="text " title = "Reset All Fields">
               <p><span>Clear</span></p>
             </div>
           </div>
 
           <!-- Back_Button (Shape) -->
-          <div id="backbtn" class="ax_default button" data-label="Back_Button">
+          <div id="backbtn" class="ax_default button" data-label="Back_Button" title = "Return to Accounts Page">
             <input type="button" value="Back" onclick="window.location.href='{{ url_for('admin_accounts') }}'" style="width:100%; background-color: #0077B6; color: white"/>
           </div>
 
           <!-- Add_Button (Shape) -->
-          <div id="addbtn" class="ax_default button" data-label="Add_Button">
+          <div id="addbtn" class="ax_default button" data-label="Add_Button" title = "Add Account to System">
             <input type="submit" value="Add" style="width: 100%; background-color: #2A7F62; color: white" />
           </div>
         </div>

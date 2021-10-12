@@ -56,7 +56,7 @@
 
         <!-- SearchBar (Text Field) -->
         <div id="usersearch" class="ax_default text_field" data-label="SearchBar">
-          <div id="usersearch_div" class=""></div>
+          <div id="usersearch_div" class="" title = "Search for User"></div>
           <input id="usersearch_input" type="text" value="" class="u6_input" placeholder="User Search"/>
         </div>
 
@@ -80,7 +80,7 @@
         <div id="createuser" class="ax_default label">
           <div id="createuser_div" class=""></div>
           <div id="createuser_text" class="text ">
-            <p><a href="{{ url_for('admin_create_user') }}"><span>Create New User?</span></a></p>
+            <p><a href="{{ url_for('admin_create_user') }}" title = "Add a New User to the System"><span>Create New User?</span></a></p>
           </div>
         </div>
       </div>
@@ -196,7 +196,7 @@
             <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
               <div id="logoff_div" class=""></div>
               <div id="logoff_text" class="text ">
-                <p><span>Logoff</span></p>
+                <p><a href="{{ url_for('login_page')}}"><span>Logoff</span></a></p>
               </div>
             </div>
       </div>
