@@ -21,10 +21,17 @@ def setup_page_routing(app, base, db):
     def admin_chart_accounts():
         return render_template('chart_accounts_admin.html')
 
-    @app.route('/admin_accounts')
+    @app.route('/admin_accounts', methods=['GET', 'POST'])
     def admin_accounts():
-        accounts = adminprocesses.get_accounts_info(base, db)
-        return render_template('accounts_admin.html', accounts=accounts)
+        if request.method == "POST":
+            idnum = request.form["account_id"]
+            account = adminprocesses.get_account_info(base, db, idnum)
+            adminprocesses.toggle_active(account, db)
+            accounts = adminprocesses.get_accounts_info(base, db)
+            return render_template('accounts_admin.html', accounts=accounts)
+        else:
+            accounts = adminprocesses.get_accounts_info(base, db)
+            return render_template('accounts_admin.html', accounts=accounts)
 
     @app.route('/admin_create_user', methods=['GET', 'POST'])
     def admin_create_user():

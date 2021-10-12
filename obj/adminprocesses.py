@@ -8,6 +8,12 @@ def get_accounts_info(base, db):
     return accounts
 
 
+def get_account_info(base, db, idnum):
+    AccountsTable = base.classes.accounts
+    account = db.session.query(AccountsTable).filter_by(id=idnum).first()
+    return account
+
+
 def get_new_users(base, db):
     NewUsersTable = base.classes.new_user
     newusers = db.session.query(NewUsersTable)
@@ -83,5 +89,12 @@ def edit_save_account(account, db):
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
                            subcategory=account.subcategory, initial_number=initial_num, number=number,
                            description=account.description, normal_side=account.normal_side,
-                           balance=account.balance, comment=account.comment,)
+                           balance=account.balance, comment=account.comment, saved="-SAVED")
 
+
+def toggle_active(account, db):
+    if account.active:
+        account.active = False
+    else:
+        account.active = True
+    db.session.commit()

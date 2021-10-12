@@ -183,13 +183,14 @@
               <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
               </tr>
               <tr>
-              <td>
-                  {% if account.acitve == True %}
-                    <input id="deactivate_btn" type="button" value="Deactivate" onclick="">
+              <td><form method="post">
+                  <input type="text" value="{{ account.id }}" style="display: none; visibility: hidden" name="account_id">
+                  {% if account.active %}
+                    <input id="deactivate_btn" type="submit" value="Deactivate">
                   {% else %}
-                    <input id="deactivate_btn" type="button" value="Activate" style="background-color: #2A7F62">
+                    <input id="deactivate_btn" type="submit" value="Activate" style="background-color: #2A7F62">
                   {% endif %}
-              </td>
+              </form></td>
               </tr>
           {% endfor %}
 	  </table>	 
