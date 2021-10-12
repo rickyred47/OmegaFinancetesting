@@ -201,7 +201,6 @@
 		    <th style="width: 100px">Account Name</th>
 			<th>Category</th>
 			<th>Sub-Category</th>
-			<th>Term</th>
 			<th>Account<br>State</th>
 			</tr>
             {% for account in accounts %}
@@ -210,6 +209,7 @@
                 <td>{{ account.name }}</td>
                 <td>{{ account.category }}</td>
                 <td>{{ account.subcategory }}</td>
+                <td>{{ account.active }}</td>
                 </tr>
             {% endfor %}
 		</table>  
