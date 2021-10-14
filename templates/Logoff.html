@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/signup/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+	  <!-- OmegaFianceLbl (Rectangle) -->
+      <div id="OmegaFinance" class="ax_default heading_1" data-label="OmegaFianceLbl">
+        <div id="OmegaFinance_div" class=""></div>
+        <div id="OmegaFinance_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+		
+	  <!-- OmegaIcon (Image) -->
+      <div id="OmegaIcon" class="ax_default image">
+        <img id="OmegaIcon_img" class="img " src="{{ url_for('static', filename= 'images/login/regen/u13.png')}}"/>
+        <div id="OmegaIcon_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+		
+      <!-- LoginBox (Rectangle) -->
+      <div id="loginbx" class="ax_default box_3" data-label="LoginBox">
+        <div id="loginbx_div" class=""></div>
+        <div id="loginbx_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- loginlbl (Rectangle) -->
+      <div id="loginlbl" class="ax_default heading_2" data-label="loginlbl">
+        <div id="loginlbl_div" class=""></div>
+        <div id="loginlbl_text" class="text ">
+          <p><span>Your have been logged off.</span></p>
+        </div>
+      </div>
+
+      <!-- returnLink (Rectangle) -->
+      <div id="registerLink" class="ax_default link_button" data-label="registerHereLink">
+        <div id="registerLink_div" class=""></div>
+        <div id="registerLink_text" class="text ">
+          <p><a href="{{ url_for('login_page') }}"><span>Return to Login Page</span></a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
