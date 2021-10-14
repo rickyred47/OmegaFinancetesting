@@ -162,7 +162,7 @@
           <!-- UserName (Text Field) -->
           <div id="u22" class="ax_default label1" data-label="UserName">
             <div id="u22_div" class=""></div>
-            <input id="u22_input" type="text" value="Jane Doe" class="u22_input"/>
+            <input id="u22_input" type="text" value="{{ username }}" class="u22_input"/>
           </div>
 
           <!-- UserType (Text Field) -->
@@ -184,7 +184,7 @@
         <div id="u25" class="ax_default heading_2" data-label="Event_Log_Nav">
           <div id="u25_div" class=""></div>
           <div id="u25_text" class="text ">
-              <p><a href="{{ url_for('login_page')}}"><span>Logoff</span></a></p>
+              <p><a href="{{ url_for('logged_off_page')}}"><span>Logoff</span></a></p>
           </div>
         </div>
       </div>

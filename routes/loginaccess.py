@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from obj import NewUser, LoginEntry
 
 
@@ -26,6 +26,14 @@ def setup_page_routing(app, base, db):
                 # gathers the information of the form text fields
                 NewUser.gatherInfo_and_commit(db, base)
                 # Send to signed_up Page
-                return render_template('signup.html')
+                return render_template('signedup.html')
         else:
             return render_template('new_user.html')
+
+    @app.route('/logged_off')
+    def logged_off_page():
+        if "username" in session:
+            session.pop("username", None)
+            return render_template('Logoff.html')
+        else:
+            return redirect('login_page')

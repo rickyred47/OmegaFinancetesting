@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for, session
 
 
 def is_valid_entry(db, base):
@@ -11,6 +11,8 @@ def is_valid_entry(db, base):
         return error_message_page(3, base, db)
     if password == user.password:
         if user.activated:
+            user.password_incorrect_entries = 0
+            session["username"] = user.f_name + " " + user.l_name
             return user_role(user.role)
         else:
             return error_message_page(4, base, db)
@@ -30,8 +32,8 @@ def search_for_user(username, base, db):
 
 def attempts_tried(db, user):
     attempts = user.password_incorrect_entries
-    # Store attempts
     attempts = attempts + 1
+    # Store attempts
     user.password_incorrect_entries = attempts
     db.session.commit()
     if attempts <= 2:

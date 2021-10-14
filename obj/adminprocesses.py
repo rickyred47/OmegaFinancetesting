@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, session
 from datetime import datetime
 
 
@@ -64,7 +64,8 @@ def concat(number1, number2):
     return int(string)
 
 
-def edit_account(username, account):
+def edit_account(account):
+    username = session["username"]
     numstring = str(account.number)
     initial = int(numstring[0])
     number = int(numstring[1:])
@@ -75,6 +76,7 @@ def edit_account(username, account):
 
 
 def edit_save_account(account, db):
+    username = session["username"]
     account.category = request.form["category"]
     account.name = request.form["name"]
     account.subcategory = request.form["subcategory"]
@@ -89,7 +91,7 @@ def edit_save_account(account, db):
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
                            subcategory=account.subcategory, initial_number=initial_num, number=number,
                            description=account.description, normal_side=account.normal_side,
-                           balance=account.balance, comment=account.comment, saved="-SAVED")
+                           balance=account.balance, comment=account.comment, saved="-SAVED", username=username)
 
 
 def toggle_active(account, db):
