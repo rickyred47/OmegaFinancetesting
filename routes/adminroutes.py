@@ -22,7 +22,8 @@ def setup_page_routing(app, base, db):
     def admin_user_accounts():
         if "username" in session:
             username = session["username"]
-            return render_template('adminuseraccounts.html', username=username)
+            users = adminprocesses.get_user_accounts(base, db)
+            return render_template('adminuseraccounts.html', username=username, useraccounts=users)
         else:
             return redirect(url_for('login_page'))
 
@@ -53,8 +54,12 @@ def setup_page_routing(app, base, db):
     @app.route('/admin_create_user', methods=['GET', 'POST'])
     def admin_create_user():
         if "username" in session:
-            username = session["username"]
-            return render_template('admincreateuser.html', username=username)
+            if request.method == "POST":
+                if adminprocesses.new_use_admin(base, db):
+                    return redirect(url_for('admin_user_accounts'))
+            else:
+                username = session["username"]
+                return render_template('admincreateuser.html', username=username)
         else:
             return redirect(url_for('login_page'))
 

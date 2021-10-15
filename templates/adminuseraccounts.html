@@ -255,6 +255,25 @@
 				  <th>DoB</th>
 				  <th>Date Created</th>
 			  </tr>
+              {% for useraccount in useraccounts %}
+                  <tr>
+                  <td>{{ useraccount.id }}</td>
+                  <td>{{ useraccount.username }}</td>
+                  {% if useraccount.active %}
+                    <td>Active</td>
+                  {% else %}
+                    <td>Deactivated</td>
+                  {% endif %}
+                  <td>buttons</td>
+                  <td>suspend?</td>
+                  <td>{{ useraccount.f_name }}</td>
+                  <td>{{ useraccount.l_name }}</td>
+                  <td>{{ useraccount.email }}</td>
+                  <td>{{ useraccount.address }}</td>
+                  <td>{{ useraccount.dob }}</td>
+                  <td>{{ useraccount.account_creation_date }}</td>
+                  </tr>
+              {% endfor %}
 		  </table>
       </div>
     </div>

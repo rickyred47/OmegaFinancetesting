@@ -1,5 +1,7 @@
 from flask import render_template, request, session
 from datetime import datetime
+from datetime import datetime, timedelta
+from obj import NewUser
 
 
 def get_accounts_info(base, db):
@@ -38,10 +40,10 @@ def account_form(base, db):
     comment = request.form["comment"]
     created = datetime.now()
     statement = get_statement_doc(category)
-    accountnum = concat(initial_num, number)
+    account_num = concat(initial_num, number)
 
     AccountsTable = base.classes.accounts
-    new_account = AccountsTable(number=accountnum, name=name, description=description, normal_side=normal_side,
+    new_account = AccountsTable(number=account_num, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
                                 category=category, subcategory=subcategory, created_by=1234, active=True)
     commit_to_database(new_account, db)
@@ -66,9 +68,9 @@ def concat(number1, number2):
 
 def edit_account(account):
     username = session["username"]
-    numstring = str(account.number)
-    initial = int(numstring[0])
-    number = int(numstring[1:])
+    num_string = str(account.number)
+    initial = int(num_string[0])
+    number = int(num_string[1:])
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
                            subcategory=account.subcategory, initial_number=initial, number=number,
                            description=account.description, normal_side=account.normal_side,
@@ -100,3 +102,29 @@ def toggle_active(account, db):
     else:
         account.active = True
     db.session.commit()
+
+
+def new_use_admin(base, db):
+    if NewUser.correct_passwords_input():
+        user = NewUser.get_new_user_info()
+        role = request.form["role"]
+        username = set_username(user[0], user[1], user[9])
+        UserTable = base.classes.user
+        created = datetime.now()
+        password_exp = created + timedelta(days=90)
+        new_user = UserTable(username=username, password=user[3], role=role, activated=True, profile_picture=" ",
+                             f_name=user[0], l_name=user[1], email=user[2], address=user[4], dob=user[9],
+                             account_creation_date=created, password_expire_date=password_exp,
+                             password_incorrect_entries=0, previous_passwords=None, security_questions=None,
+                             security_answers=None, city=None, apt_number=user[7], zip=user[8], state_province=user[5],
+                             country=user[6])
+        NewUser.commit_to_database(db, new_user)
+        return True
+
+    else:
+        return False
+
+
+def set_username(f_name, l_name, dob):
+    username = f_name[0].lower() + l_name.lower() + dob[5:7] + dob[2:4]
+    return username

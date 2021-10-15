@@ -7,6 +7,7 @@
     <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
     <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
     <link href="{{ url_for('static', filename= 'files/admincreateuser/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <script src="{{ url_for('static', filename= 'files/admincreateuser/data.js') }}"></script>
   </head>
   <body>
     <div id="base" class="">
@@ -182,6 +183,7 @@
         </div>
       </div>
 
+        <form method="POST">
       <!-- Create New User Group (Group) -->
       <div id="createusergrp" class="ax_default" data-left="396" data-top="164" data-width="1373" data-height="787">
 
@@ -220,14 +222,14 @@
 		<!-- fNametxtbx (Text Field) -->
         <div id="fnametxtbx" class="ax_default text_field" data-label="fNametxtbx">
           <div id="fnametxtbx_div" class=""></div>
-          <input id="fnametxtbx_input" type="text" value="" class="u33_input" required/>
+          <input id="fnametxtbx_input" type="text" value="" class="u33_input" name="firstname" required/>
         </div>
 
 
         <!-- Lnamelbl (Rectangle) -->
         <div id="lnamelbl" class="ax_default label" data-label="Lnamelbl">
           <div id="lnamelbl_div" class=""></div>
-          <div id="lnamelbl_text" class="text ">
+          <div id="lnamelbl_text" class="text">
             <p><span>Last Name</span></p>
           </div>
         </div>
@@ -235,7 +237,7 @@
 		<!-- lnametxtbx (Text Field) -->
         <div id="lnametxtbx" class="ax_default text_field" data-label="lnametxtbx">
           <div id="lnametxtbx_div" class=""></div>
-          <input id="lnametxtbx_input" type="text" value="" class="u34_input" required/>
+          <input id="lnametxtbx_input" type="text" value="" class="u34_input" name="lastname" required/>
         </div>
 
         <!-- DoBlbl (Rectangle) -->
@@ -249,7 +251,7 @@
         <!-- dobtxtbx (Text Field) -->
         <div id="dobtxtbx" class="ax_default text_field" data-label="dobtxtbx">
           <div id="dobtxtbx_div" class=""></div>
-          <input id="dobtxtbx_input" type="date" value="" class="u35_input" required/>
+          <input id="dobtxtbx_input" type="date" value="" class="u35_input" name="dob" required/>
         </div>
 
         <!-- addresslbl (Rectangle) -->
@@ -263,7 +265,7 @@
         <!-- addresstxtbx (Text Field) -->
         <div id="addresstxtbx" class="ax_default text_field" data-label="addresstxtbx">
           <div id="addresstxtbx_div" class=""></div>
-          <input id="addresstxtbx_input" type="text" value="" class="u37_input" required/>
+          <input id="addresstxtbx_input" type="text" value="" class="u37_input" name="street" required/>
         </div>
 		  
         <!-- aptlbl (Rectangle) -->
@@ -277,13 +279,13 @@
 		<!-- apttxtbx (Text Field) -->
         <div id="apttxtbx" class="ax_default text_field" data-label="nptxtbx">
           <div id="apttxtbx_div" class=""></div>
-          <input id="apttxtbx_input" type="text" value="" class="u51_input"/>
+          <input id="apttxtbx_input" type="text" value="" class="u51_input" name="aptnum"/>
         </div>
 		  
 		<!-- zipcodetxtbx (Text Field) -->
         <div id="zipcodetxtbx" class="ax_default text_field" data-label="nptxtbx">
           <div id="zipcodetxtbx_div" class=""></div>
-          <input id="zipcodetxtbx_input" type="number" value="" class="u53_input"/>
+          <input id="zipcodetxtbx_input" type="number" value="" class="u53_input" name="zipcode"/>
         </div>
 
         <!-- zipcodelbl (Rectangle) -->
@@ -305,7 +307,7 @@
         <!-- statedl (Droplist) -->
         <div id="statedl" class="ax_default droplist" data-label="Roledl">
           <div id="statedl_div" class=""></div>
-          <select id="statedl_input" class="u50_input">
+          <select id="statedl_input" class="u50_input" name="state">
             <option class="statedl_input_option" value="Georgia">Georgia</option>
           </select>
         </div>
@@ -321,7 +323,7 @@
         <!-- countrydl (Droplist) -->
         <div id="countrydl" class="ax_default droplist" data-label="Roledl">
           <div id="countrydl_div" class=""></div>
-          <select id="countrydl_input" class="u48_input">
+          <select id="countrydl_input" class="u48_input" name="country">
             <option class="countrydl_input_option" value="United States">United States</option>
           </select>
         </div>
@@ -337,7 +339,7 @@
         <!-- Roledl (Droplist) -->
         <div id="roledl" class="ax_default droplist" data-label="Roledl">
           <div id="roledl_div" class=""></div>
-          <select id="roledl_input" class="u40_input">
+          <select id="roledl_input" class="u40_input" name="role">
             <option class="roledl_input_option" value="Accountant">Accountant</option>
             <option class="roledl_input_option" value="Manager">Manager</option>
             <option class="roledl_input_option" value="Administrator">Administrator</option>
@@ -355,7 +357,7 @@
 		<!-- emailtxtbx (Text Field) -->
         <div id="emailtxt" class="ax_default text_field" data-label="emailtxtbx">
           <div id="emailtxt_div" class=""></div>
-          <input id="emailtxt_input" type="email" value="" class="u28_input" required/>
+          <input id="emailtxt_input" type="email" value="" class="u28_input" name="email" required/>
         </div>
 
 		<!-- nplbl (Rectangle) -->
@@ -369,13 +371,13 @@
         <!-- nptxtbx (Text Field) -->
         <div id="nptxtbx" class="ax_default text_field" data-label="nptxtbx">
           <div id="nptxtbx_div" class=""></div>
-          <input id="nptxtbx_input" type="password" value="" class="u41_input" required/>
+          <input id="nptxtbx_input" type="password" value="" class="u41_input" name="password" oninput="validPassword()" required/>
         </div>
 		  
         <!-- password Constraints lbl (Rectangle) -->
         <div id="passconlbl" class="ax_default label">
           <div id="passconlbl_div" class=""></div>
-          <div id="passconlbl_text" class="text ">
+          <div id="passconlbl_text" class="text">
             <p><span>Password Constraints:</span></p>
           </div>
         </div>
@@ -423,7 +425,7 @@
         <!-- rpntxtbx (Text Field) -->
         <div id="rpntxtbx" class="ax_default text_field" data-label="rpntxtbx">
           <div id="rpntxtbx_div" class=""></div>
-          <input id="rpntxtbx_input" type="password" value="" class="u44_input" required/>
+          <input id="rpntxtbx_input" type="password" value="" class="u44_input" name="password2" oninput="passwordMatch()" required/>
         </div>
 		  
 		<!-- Password Match Label (Rectangle) -->
@@ -436,20 +438,15 @@
 
         <!-- createbtn (Rectangle) -->
         <div id="createbtn" class="ax_default primary_button" data-label="createbtn">
-          <div id="createbtn_div" class="" ></div>
-          <div id="createbtn_text" class="text " title = "Add New User to the System">
-            <p><span>Create User</span></p>
-          </div>
+          <input type="submit" value="Create User" style="width: 100%; color: white; background-color: #2A7F62">
         </div>
 
         <!-- cancelbtn (Rectangle) -->
         <div id="cancelbtn" class="ax_default primary_button" data-label="cancelbtn">
-          <div id="cancelbtn_div" class=""></div>
-          <div id="cancelbtn_text" class="text ">
-            <p><span>Cancel</span></p>
-          </div>
+          <input type="button" value="Cancel" onclick="window.location.href='{{ url_for('admin_user_accounts') }}" style="width: 100%; color: white; background-color: red">
         </div>
       </div>
+        </form>
     </div>
   </body>
 </html>

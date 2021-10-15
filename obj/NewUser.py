@@ -13,21 +13,12 @@ def gatherInfo_and_commit(db, base):
             None
     """
     # Gather User's Information
-    firstname = request.form["firstname"]
-    lastname = request.form["lastname"]
-    email = request.form["email"]
-    password = request.form["password2"]
-    address = request.form["street"]
-    state = request.form["state"]
-    country = request.form["country"]
-    apt_num = request.form["aptnum"]
-    zipcode = request.form["zipcode"]
-    dob = request.form["dob"]
+    user = get_new_user_info()
     # Creates a NewUser class based on the new_user table
     NewUserTable = base.classes.new_user
     # Creates a new user object
-    newuser = NewUserTable(status="Pending", firstname=firstname, lastname=lastname, email=email, password=password,
-                           street=address, aptnum=apt_num, state=state, country=country, dob=dob, zipcode=zipcode)
+    newuser = NewUserTable(status="Pending", firstname=user[0], lastname=user[1], email=user[2], password=user[3],
+                           street=user[4], aptnum=user[7], state=user[5], country=user[6], dob=user[9], zipcode=user[8])
     # Adds the Information to the database and commits it
     commit_to_database(db, newuser)
 
@@ -127,3 +118,32 @@ def do_passwords_match(password, password2):
 def commit_to_database(db, obj):
     db.session.add(obj)
     db.session.commit()
+
+
+def get_new_user_info():
+    """
+    Gather the basic info of a user
+
+    Returns: [array positions]
+    firstname [0]
+    lastname  [1]
+    email     [2]
+    password  [3]
+    address   [4]
+    state     [5]
+    country   [6]
+    apt_num   [7]
+    zipcode   [8]
+    dob       [9]
+    """
+    firstname = request.form["firstname"]
+    lastname = request.form["lastname"]
+    email = request.form["email"]
+    password = request.form["password2"]
+    address = request.form["street"]
+    state = request.form["state"]
+    country = request.form["country"]
+    apt_num = request.form["aptnum"]
+    zipcode = request.form["zipcode"]
+    dob = request.form["dob"]
+    return firstname, lastname, email, password, address, state, country, apt_num, zipcode, dob
