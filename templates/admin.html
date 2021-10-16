@@ -201,14 +201,16 @@
 		    <th style="width: 100px">Account Name</th>
 			<th>Category</th>
 			<th>Sub-Category</th>
+            <th>Balance</th>
 			<th>Account<br>State</th>
 			</tr>
             {% for account in accounts %}
-                <tr>
+                <tr style="text-align: left">
                 <td>{{ account.number }}</td>
                 <td>{{ account.name }}</td>
                 <td>{{ account.category }}</td>
                 <td>{{ account.subcategory }}</td>
+                <td style="text-align: left; padding-left: 5px">{{ "${:,.2f}".format(account.balance) }}</td>
                 <td>{{ account.active }}</td>
                 </tr>
             {% endfor %}
@@ -237,16 +239,16 @@
 		 
 		<!-- New Users Table (Table) -->  
 		<table id="newusertable" style="width: 1040px">
-			<tr>
-			<th style="width: 80px">User Status</th>
-		    <th style="width: 420px">First Name</th>
+			<tr >
+			<th style="width: 100px">User Status</th>
+		    <th style="width: 100px">First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>
 			<th>Address</th>
 			<th>Accept<br>Decline</th>
 			</tr>
             {% for newuser in newusers %}
-                <tr>
+                <tr style="text-align: left">
                 <td>{{ newuser.status }}</td>
                 <td>{{ newuser.firstname }}</td>
                 <td>{{ newuser.lastname }}</td>
@@ -289,7 +291,7 @@
             <th>Email</th>
 			</tr>
             {% for user in users %}
-                <tr>
+                <tr style="text-align: left">
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>

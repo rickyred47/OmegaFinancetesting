@@ -242,7 +242,7 @@
         <div id="u33" class="ax_default label" data-label="Balance">
           <div id="u33_div" class=""></div>
           <div id="u33_text" class="text ">
-            <p><span>Balance: {{ "$%.2f"|format(balance) }}</span></p>
+            <p><span>Balance: {{ "${:,.2f}".format(balance) }}</span></p>
           </div>
         </div>
       </div>

@@ -170,19 +170,22 @@
               <th>Buttons</th>
 		  </tr>
           {% for account in accounts %}
-            <tr>
+            <tr style="text-align: right">
                 <td rowspan="2"><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
               <td rowspan="2">{{ account.name }}</td>
               <td rowspan="2">{{ account.category }}</td>
               <td rowspan="2">{{ account.subcategory }}</td>
-              <td rowspan="2" style="text-align: right">{{ "$%.2f"|format(account.balance)}}</td>
+              <td rowspan="2" style="text-align: left; padding-left: 10px">{{ "${:,.2f}".format(account.balance)}}</td>
               <td rowspan="2">{{ account.created_by }}</td>
               <td rowspan="2">{{ account.date_created }}</td>
               <td rowspan="2">{{ account.comment }}</td>
-              <td rowspan="2">{{ account.active }}</td>
+              {% if account.active %}
+                <td rowspan="2">Active</td>
+              {% else %}
+                <td>Deactivatec</td>
               <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
               </tr>
-              <tr>
+              <tr style="text-align: right">
               <td><form method="post">
                   <input type="text" value="{{ account.id }}" style="display: none; visibility: hidden" name="account_id">
                   {% if account.active %}
