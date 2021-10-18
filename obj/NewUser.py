@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, session
 
 
 def gatherInfo_and_commit(db, base):
@@ -14,13 +14,20 @@ def gatherInfo_and_commit(db, base):
     """
     # Gather User's Information
     user = get_new_user_info()
-    # Creates a NewUser class based on the new_user table
-    NewUserTable = base.classes.new_user
-    # Creates a new user object
-    newuser = NewUserTable(status="Pending", firstname=user[0], lastname=user[1], email=user[2], password=user[3],
-                           street=user[4], aptnum=user[7], state=user[5], country=user[6], dob=user[9], zipcode=user[8])
-    # Adds the Information to the database and commits it
-    commit_to_database(db, newuser)
+    username = set_username(user[0], user[1], user[9])
+    new_user = find_new_user(username, base, db)
+    if not bool(new_user):
+        # Creates a NewUser class based on the new_user table
+        NewUserTable = base.classes.new_user
+        # Creates a new user object
+        newuser = NewUserTable(status="Pending", firstname=user[0], lastname=user[1], email=user[2], password=user[3],
+                               street=user[4], aptnum=user[7], state=user[5], country=user[6], dob=user[9],
+                               zipcode=user[8],
+                               security_questions=None, security_answers=None, username=username)
+        # Adds the Information to the database and commits it
+        commit_to_database(db, newuser)
+    # Creates a session to complete Questions
+    session["New_user"] = username
 
 
 # Makes sure that all constraints are being fallowed
@@ -147,3 +154,38 @@ def get_new_user_info():
     zipcode = request.form["zipcode"]
     dob = request.form["dob"]
     return firstname, lastname, email, password, address, state, country, apt_num, zipcode, dob
+
+
+def gather_security_info():
+    questions = ["", "", ""]
+    answers = ["", "", ""]
+    questions[0] = request.form["question1"]
+    answers[0] = request.form["answer1"]
+    questions[1] = request.form["question2"]
+    answers[1] = request.form["answer2"]
+    questions[2] = request.form["question3"]
+    answers[2] = request.form["answer3"]
+    return questions, answers
+
+
+def get_new_users_info(base, db):
+    New_UserTable = base.classes.new_user
+    new_users = db.session.query(New_UserTable)
+    return new_users
+
+
+def find_new_user(username, base, db):
+    New_UserTable = base.classes.new_user
+    new_user = db.session.query(New_UserTable).filter_by(username=username).first()
+    return new_user
+
+
+def set_username(f_name, l_name, dob):
+    username = f_name[0].lower() + l_name.lower() + dob[5:7] + dob[2:4]
+    return username
+
+
+def get_error_message(id_num, base, db):
+    Errors = base.classes.error_message
+    error = db.session.query(Errors).filter_by(id=id_num).first()
+    return error.message

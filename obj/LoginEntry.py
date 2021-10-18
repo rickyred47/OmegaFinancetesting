@@ -12,6 +12,7 @@ def is_valid_entry(db, base):
     if password == user.password:
         if user.activated:
             user.password_incorrect_entries = 0
+            db.session.commit()
             session["username"] = user.f_name + " " + user.l_name
             return user_role(user.role)
         else:
@@ -55,3 +56,9 @@ def user_role(role):
         return redirect('')
     if role == "Accountant":
         return redirect('')
+
+
+def error_message_page_fp(num, base, db):
+    Error_message = base.classes.error_message
+    error_message = db.session.query(Error_message).filter_by(id=num).first()
+    return render_template('forgot_password.html', error_message=error_message.message)

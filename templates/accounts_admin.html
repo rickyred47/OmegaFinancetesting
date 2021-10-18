@@ -182,7 +182,8 @@
               {% if account.active %}
                 <td rowspan="2">Active</td>
               {% else %}
-                <td>Deactivatec</td>
+                <td rowspan="2">Deactivatec</td>
+              {% endif %}
               <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
               </tr>
               <tr style="text-align: right">

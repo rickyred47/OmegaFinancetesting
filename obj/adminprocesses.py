@@ -28,6 +28,12 @@ def get_user_accounts(base, db):
     return users
 
 
+def get_user_account(username, base, db):
+    UserTable = base.classes.user
+    user = db.session.query(UserTable).filter_by(username=username).first()
+    return user
+
+
 def account_form(base, db):
     category = request.form["category"]
     name = request.form["name"]
@@ -108,14 +114,15 @@ def new_use_admin(base, db):
     if NewUser.correct_passwords_input():
         user = NewUser.get_new_user_info()
         role = request.form["role"]
-        username = set_username(user[0], user[1], user[9])
+        username = NewUser.set_username(user[0], user[1], user[9])
         UserTable = base.classes.user
         created = datetime.now()
         password_exp = created + timedelta(days=90)
+        pre_passwords = [user[3]]
         new_user = UserTable(username=username, password=user[3], role=role, activated=True, profile_picture=" ",
                              f_name=user[0], l_name=user[1], email=user[2], address=user[4], dob=user[9],
                              account_creation_date=created, password_expire_date=password_exp,
-                             password_incorrect_entries=0, previous_passwords=None, security_questions=None,
+                             password_incorrect_entries=0, previous_passwords=pre_passwords, security_questions=None,
                              security_answers=None, city=None, apt_number=user[7], zip=user[8], state_province=user[5],
                              country=user[6])
         NewUser.commit_to_database(db, new_user)
@@ -125,6 +132,20 @@ def new_use_admin(base, db):
         return False
 
 
-def set_username(f_name, l_name, dob):
-    username = f_name[0].lower() + l_name.lower() + dob[5:7] + dob[2:4]
-    return username
+def get_answers():
+    answers = ["", "", ""]
+    answers[0] = request.form["answer1"]
+    answers[1] = request.form["answer2"]
+    answers[2] = request.form["answer3"]
+    return answers
+
+
+def verify_answers(answers):
+    input_answers = get_answers()
+    correct = [False, False, False]
+    for x in range(0, 3):
+        if answers[x] == input_answers[x]:
+            correct[x] = True
+    return correct
+
+
