@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Security Questions</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/security_questions/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+		<!-- Omega Finance Label (Rectangle) -->
+      <div id="omegalbl" class="ax_default heading_1">
+        <div id="omegalbl_div" class=""></div>
+        <div id="omegalbl_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+		
+		<!-- Omega Icon (Image) -->
+      <div id="omegaicon" class="ax_default image">
+        <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/security_questions/regen/u17.png')}}"/>
+      </div>
+		
+      <!-- backgroundbx (Rectangle) -->
+      <div id="backgroundbx" class="ax_default box_3">
+        <div id="backgroundbx_div" class=""></div>
+        <div id="backgroundbx_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+      
+      <!-- Security Questions Label (Rectangle) -->
+      <div id="sequrityquestionlbl" class="ax_default heading_2">
+        <div id="sequrityquestionlbl_div" class=""></div>
+        <div id="sequrityquestionlbl_text" class="text ">
+          <p><span>Security Questions</span></p>
+        </div>
+      </div>
+		
+		<!-- Direction Label (Rectangle) -->
+      <div id="directionlbl" class="ax_default label">
+        <div id="directionlbl_div" class=""></div>
+        <div id="directionlbl_text" class="text ">
+          <p><span>Answer the questions to reset your password.&nbsp;&nbsp;</span></p>
+        </div>
+      </div>
+
+      <form method="post">
+      <!-- Security Question Label (Rectangle) -->
+      <div id="securityques1lbl" class="ax_default label">
+        <div id="securityques1lbl_div" class=""></div>
+        <div id="securityques1lbl_text" class="text ">
+          <p><span>Security Question</span></p>
+        </div>
+      </div>
+		
+		<!-- NewUserSecurityQuestion2 (Droplist) -->
+      <div id="securityquesdp" class="ax_default droplist" data-label="NewUserSecurityQuestion2">
+        <div id="securityquesdp_div" class=""></div>
+        <input id="securityquesdp_input" type="text" readonly value="{{ question1 }}" class="u7_input">
+      </div>
+
+      <!-- Answer 1 (Rectangle) -->
+      <div id="answer1lbl" class="ax_default label">
+        <div id="answer1lbl_div" class=""></div>
+        <div id="answer1lbl_text" class="text ">
+          <p><span>Answer</span></p>
+        </div>
+      </div>
+		
+		<!-- NewUserAnswer1 (Text Field) -->
+      <div id="answer1" class="ax_default text_field" data-label="NewUserAnswer1">
+        <div id="answer1_div" class=""></div>
+        {% if correct[0] %}
+            <input id="answer1_input" type="text" value="" name="answer1" class="u4_input"/>
+        {% else %}
+            <input id="answer1_input" type="text" value="" name="answer1" class="u4_input" style="border-color: red; box-shadow: 0 0 10px red; outline: none"/>
+        {% endif %}
+      </div>
+
+		<!-- Security Question2 (Rectangle) -->
+      <div id="securityquest2" class="ax_default label">
+        <div id="securityquest2_div" class=""></div>
+        <div id="securityquest2_text" class="text ">
+          <p><span>Security Question</span></p>
+        </div>
+      </div>
+
+      <!-- NewUserSecurityQuestion2 (Droplist) -->
+      <div id="securityquest2dp" class="ax_default droplist" data-label="NewUserSecurityQuestion2">
+        <div id="securityquest2dp_div" class=""></div>
+        <input id="securityquest2dp_input" type="text" value="{{ question2 }}" readonly class="u11_input">
+      </div>
+		
+		<!-- Answer 2 (Rectangle) -->
+      <div id="answer2lbl" class="ax_default label">
+        <div id="answer2lbl_div" class=""></div>
+        <div id="answer2lbl_text" class="text ">
+          <p><span>Answer</span></p>
+        </div>
+      </div>
+		
+		<!-- NewUserAnswer2 (Text Field) -->
+      <div id="answer2" class="ax_default text_field" data-label="NewUserAnswer2">
+        <div id="answer2_div" class=""></div>
+        {% if correct[1] %}
+            <input id="answer1_input" type="text" value="" name="answer2" class="u4_input"/>
+        {% else %}
+            <input id="answer1_input" type="text" value="" name="answer2" class="u4_input" style="border-color: red; box-shadow: 0 0 10px red; outline: none"/>
+        {% endif %}
+      </div>
+
+      <!-- SQ3 (Rectangle) -->
+      <div id="securityquest3" class="ax_default label" data-label="SQ3">
+        <div id="securityquest3_div" class=""></div>
+        <div id="securityquest3_text" class="text ">
+          <p><span>Security Question</span></p>
+        </div>
+      </div>
+		
+		<!-- NewUserSecurityQuestion3 (Droplist) -->
+      <div id="securityquest3dp" class="ax_default droplist" data-label="NewUserSecurityQuestion3">
+        <div id="securityquest3dp_div" class=""></div>
+        <input id="securityquest3dp_input" type="text" value="{{ question3 }}" readonly class="u15_input">
+      </div>
+
+      <!-- Answer 3 (Rectangle) -->
+      <div id="answer3lbl" class="ax_default label">
+        <div id="answer3lbl_div" class=""></div>
+        <div id="answer3lbl_text" class="text ">
+          <p><span>Answer</span></p>
+        </div>
+      </div>
+		
+		<!-- NewUserAnswer3 (Text Field) -->
+      <div id="answer3" class="ax_default text_field" data-label="NewUserAnswer3">
+        <div id="answer3_div" class=""></div>
+        {% if correct[2] %}
+            <input id="answer1_input" type="text" value="" name="answer3" class="u4_input"/>
+        {% else %}
+            <input id="answer1_input" type="text" value="" name="answer3" class="u4_input" style="border-color: red; box-shadow: 0 0 10px red; outline: none"/>
+        {% endif %}
+      </div>
+
+      <!-- Clear Button (Rectangle) -->
+      <div id="clearbtn" class="ax_default button" data-label="SubmitSecurityQuestion">
+        <input type="button" value="Cancel" onclick="window.location.href='{{ url_for('login_page')}}'" style="width: 100%; color: white; background-color: red">
+      </div>
+		
+		<!-- SubmitSecurityQuestion Button (Rectangle) -->
+      <div id="submitbtn" class="ax_default button" data-label="SubmitSecurityQuestion">
+        <input type="submit" value="Submit" style="width: 100%; color: white; background-color: #2A7F62">
+      </div>
+      </form>
+    </div>
+  </body>
+</html>
