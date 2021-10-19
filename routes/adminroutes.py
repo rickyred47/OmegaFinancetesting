@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, url_for, session
-from obj import adminprocesses
+from obj import adminprocesses, NewUser
 
 
 def setup_page_routing(app, base, db):
@@ -103,3 +103,8 @@ def setup_page_routing(app, base, db):
                                    balance=account.balance)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/admin/new_user')
+    def admin_new_user_accounts():
+        new_users = NewUser.get_new_users_info(base, db)
+        return render_template('admin_new_user_accounts.html', newusers=new_users)

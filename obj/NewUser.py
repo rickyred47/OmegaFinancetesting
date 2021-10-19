@@ -1,4 +1,5 @@
 from flask import request, session
+from datetime import datetime
 
 
 def gatherInfo_and_commit(db, base):
@@ -17,13 +18,14 @@ def gatherInfo_and_commit(db, base):
     username = set_username(user[0], user[1], user[9])
     new_user = find_new_user(username, base, db)
     if not bool(new_user):
+        created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         # Creates a NewUser class based on the new_user table
         NewUserTable = base.classes.new_user
         # Creates a new user object
         newuser = NewUserTable(status="Pending", firstname=user[0], lastname=user[1], email=user[2], password=user[3],
                                street=user[4], aptnum=user[7], state=user[5], country=user[6], dob=user[9],
-                               zipcode=user[8],
-                               security_questions=None, security_answers=None, username=username)
+                               zipcode=user[8], security_questions=None, security_answers=None, username=username,
+                               Date_created=created)
         # Adds the Information to the database and commits it
         commit_to_database(db, newuser)
     # Creates a session to complete Questions
