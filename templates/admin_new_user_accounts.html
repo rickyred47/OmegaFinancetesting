@@ -11,6 +11,7 @@
   <body>
     <div id="base" class="">
 
+
       <!-- Header (Rectangle) -->
       <div id="header" class="ax_default box_1">
         <div id="header_div" class=""></div>
@@ -263,12 +264,41 @@
                   <td>{{ newuser.dob }}</td>
                   <td>{{ newuser.username }}</td>
                   <td>{{ newuser.date_created }}</td>
-                  <td style="width: 70px"><input type="button" value="Accept" style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
+                  <td style="width: 70px"><input type="button" value="Accept" onclick="show_popup(event)" style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
                   <td style="width: 70px"><input type="button" value="Decline" style="background-color: red; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
                   </tr>
               {% endfor %}
 		  </table>
       </div>
     </div>
+    <div id="cover" ></div>
+      <div id="popup">
+          <p id="popup_text"><span>Choose the role for the user</span></p>
+          <select id="popup_input" class="u40_input" name="role">
+            <option class="popup_input_option" value="Accountant">Accountant</option>
+            <option class="popup_input_option" value="Manager">Manager</option>
+            <option class="popup_input_option" value="Administrator">Administrator</option>
+          </select>
+          <input id="popup_btn" type="button" value="Submit">
+          <input id="popup_cancel" type="button" onclick="close_popup(event)" value="Cancel">
+      </div>
+    <script>
+        function show_popup(event) {
+            var x = event.clientX;
+            var y = event.clientY;
+            var left = "" + x + "px";
+            var top = "" + y + "px";
+            document.getElementById("popup").style.left = left;
+            document.getElementById("popup").style.top = top;
+            document.getElementById("cover").style.width = "100%"
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function close_popup(event) {
+            document.getElementById("cover").style.width = "0%"
+            document.getElementById("popup").style.display= "none";
+        }
+
+    </script>
   </body>
 </html>
