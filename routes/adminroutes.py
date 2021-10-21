@@ -103,3 +103,11 @@ def setup_page_routing(app, base, db):
                                    balance=account.balance)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/admin_about')
+    def admin_about():
+        if "username" in session:
+            username = session["username"]
+            return render_template('admin_about.html', username=username)
+        else:
+            return redirect(url_for('login_page'))

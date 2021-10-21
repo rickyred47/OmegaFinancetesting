@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+  <head>
+    <title>Admin About</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename= 'files/admin_about/styles.css')}}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u0" class="ax_default box_1">
+        <div id="u0_div" class=""></div>
+        <div id="u0_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1" class="ax_default heading_1">
+        <div id="u1_div" class=""></div>
+        <div id="u1_text" class="text ">
+          <p><span>Omega Finance</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u2" class="ax_default image">
+        <img id="u2_img" class="img " src="{{ url_for('static', filename= 'images/admin_about/regen/u2.png')}}"/>
+        <div id="u2_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u3" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0">
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u4" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
+
+        <!-- NavBar_Backdrop (Rectangle) -->
+        <div id="u5" class="ax_default box_2" data-label="NavBar_Backdrop">
+          <div id="u5_div" class=""></div>
+          <div id="u5_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Chart_of_Accounts_Nav (Rectangle) -->
+        <div id="u6" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
+          <div id="u6_div" class=""></div>
+          <div id="u6_text" class="text ">
+            <p><a href="{{ url_for('admin_accounts')}}" title = "Browse All Accounts"><span>Accounts</span></a></p>
+          </div>
+        </div>
+
+        <!-- Users_Nav (Rectangle) -->
+        <div id="u7" class="ax_default heading_2" data-label="Users_Nav">
+          <div id="u7_div" class=""></div>
+          <div id="u7_text" class="text ">
+            <p><a href="{{ url_for('admin_user_accounts')}}" title = "Browse Users of Omega Finance"><span>Users</span></a></p>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="u8" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="u8_div" class=""></div>
+          <div id="u8_text" class="text ">
+            <p><span>Event Log</span></p>
+          </div>
+        </div>
+
+        <!-- Reports_Nav (Rectangle) -->
+        <div id="u9" class="ax_default heading_2" data-label="Reports_Nav">
+          <div id="u9_div" class=""></div>
+          <div id="u9_text" class="text ">
+            <p><span>Reports</span></p>
+          </div>
+        </div>
+
+        <!-- Home_Nav (Rectangle) -->
+        <div id="u10" class="ax_default heading_2" data-label="Home_Nav">
+          <div id="u10_div" class=""></div>
+          <div id="u10_text" class="text ">
+            <p><a href="{{ url_for('admin_home_page')}}"><span>Home</span></a></p>
+          </div>
+        </div>
+
+        <!-- Email_Nav (Rectangle) -->
+        <div id="u11" class="ax_default heading_2" data-label="Email_Nav">
+          <div id="u11_div" class=""></div>
+          <div id="u11_text" class="text ">
+            <p><span>Email</span></p>
+          </div>
+        </div>
+
+        <!-- My_Profile_Nav (Rectangle) -->
+        <div id="u12" class="ax_default heading_2" data-label="My_Profile_Nav">
+          <div id="u12_div" class=""></div>
+          <div id="u12_text" class="text ">
+            <p><span>My Profile</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u13" class="ax_default box_1">
+          <div id="u13_div" class=""></div>
+          <div id="u13_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- LinksIconName (Group) -->
+        <div id="u14" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
+
+          <!-- UserName (Text Field) -->
+          <div id="username" class="ax_default text_field" data-label="UserName">
+            <div id="username_div" class=""></div>
+            <input id="username_input" type="text" value="{{ username }}" class="u15_input"/>
+          </div>
+
+          <!-- UserType (Text Field) -->
+          <div id="u16" class="ax_default text_field" data-label="UserType">
+            <div id="u16_div" class=""></div>
+            <input id="u16_input" type="text" value="Administrator" class="u16_input"/>
+          </div>
+
+          <!-- UserIcon (Shape) -->
+          <div id="u17" class="ax_default icon" data-label="UserIcon">
+            <img id="u17_img" class="img " src="{{ url_for('static', filename= 'images/admin_about/regen/usericon_u18.svg')}}"/>
+            <div id="u17_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event_Log_Nav (Rectangle) -->
+        <div id="u18" class="ax_default heading_2" data-label="Event_Log_Nav">
+          <div id="u18_div" class=""></div>
+          <div id="u18_text" class="text ">
+            <p><a href="{{ url_for('logged_off_page')}}" title = "Logout of Account"><span>Logoff</span></a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About_Title (Group) -->
+      <div id="u19" class="ax_default" data-label="About_Title" data-left="377" data-top="182" data-width="1060" data-height="991">
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u20" class="ax_default box_1">
+          <div id="u20_div" class=""></div>
+          <div id="u20_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u21" class="ax_default label">
+          <div id="u21_div" class=""></div>
+          <div id="u21_text" class="text ">
+            <p><span>About</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Input (Group) -->
+      <div id="u22" class="ax_default" data-label="Search Input" data-left="970" data-top="51" data-width="356" data-height="30">
+
+        <!-- Text Input (Text Field) -->
+        <div id="u23" class="ax_default text_field" data-label="Text Input">
+          <div id="u23_div" class=""></div>
+          <input id="u23_input" type="text" value="" class="u23_input"/>
+        </div>
+
+        <!-- Search Icon (Shape) -->
+        <div id="u24" class="ax_default icon" data-label="Search Icon">
+          <img id="u24_img" class="img " src="{{ url_for('static', filename= 'images/admin_about/regen/search_icon_u25.svg')}}"/>
+          <div id="u24_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u25" class="ax_default label">
+        <div id="u25_div" class=""></div>
+        <div id="u25_text" class="text ">
+          <p><span>About</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u26" class="ax_default button">
+        <div id="u26_div" class=""></div>
+        <div id="u26_text" class="text ">
+          <p><span>Search</span></p>
+        </div>
+      </div>
+
+      <!-- Home_Header (Rectangle) -->
+      <div id="u27" class="ax_default heading_2" data-label="Home_Header">
+        <div id="u27_div" class=""></div>
+        <div id="u27_text" class="text ">
+          <p><span>Home</span></p>
+        </div>
+      </div>
+
+      <!-- Chart_of_Accounts_Header (Rectangle) -->
+      <div id="u28" class="ax_default heading_2" data-label="Chart_of_Accounts_Header">
+        <div id="u28_div" class=""></div>
+        <div id="u28_text" class="text ">
+          <p><span>Chart of Accounts</span></p>
+        </div>
+      </div>
+
+      <!-- Users_Header (Rectangle) -->
+      <div id="u29" class="ax_default heading_2" data-label="Users_Header">
+        <div id="u29_div" class=""></div>
+        <div id="u29_text" class="text ">
+          <p><span>Users</span></p>
+        </div>
+      </div>
+
+      <!-- Event_Log_Header (Rectangle) -->
+      <div id="u30" class="ax_default heading_2" data-label="Event_Log_Header">
+        <div id="u30_div" class=""></div>
+        <div id="u30_text" class="text ">
+          <p><span>Event Log</span></p>
+        </div>
+      </div>
+
+      <!-- Reports_Header (Rectangle) -->
+      <div id="u31" class="ax_default heading_2" data-label="Reports_Header">
+        <div id="u31_div" class=""></div>
+        <div id="u31_text" class="text ">
+          <p><span>Reports</span></p>
+        </div>
+      </div>
+
+      <!-- My_Profile_Header (Rectangle) -->
+      <div id="u32" class="ax_default heading_2" data-label="My_Profile_Header">
+        <div id="u32_div" class=""></div>
+        <div id="u32_text" class="text ">
+          <p><span>My Profile</span></p>
+        </div>
+      </div>
+
+      <!-- Email_Header (Rectangle) -->
+      <div id="u33" class="ax_default heading_2" data-label="Email_Header">
+        <div id="u33_div" class=""></div>
+        <div id="u33_text" class="text ">
+          <p><span>Email</span></p>
+        </div>
+      </div>
+
+      <!-- Home_Description (Rectangle) -->
+      <div id="u34" class="ax_default paragraph" data-label="Home_Description">
+        <div id="u34_div" class=""></div>
+        <div id="u34_text" class="text ">
+          <p><span>Page containing useful information like recently viewed accounts, newly created users, and recently viewed users.</span></p>
+        </div>
+      </div>
+
+      <!-- ChartofAccounts_Description (Rectangle) -->
+      <div id="u35" class="ax_default paragraph" data-label="ChartofAccounts_Description">
+        <div id="u35_div" class=""></div>
+        <div id="u35_text" class="text ">
+          <p><span>Page containing index of all the financial accounts in the general ledger. This page provides a digestible breakdown of all the financial transactions that a company conducted during a specific accounting period.</span></p>
+        </div>
+      </div>
+
+      <!-- Users_Description (Rectangle) -->
+      <div id="u36" class="ax_default paragraph" data-label="Users_Description">
+        <div id="u36_div" class=""></div>
+        <div id="u36_text" class="text ">
+          <p><span>Page containing information about users of the system. This information includes users’ ID, username, account status, first name, last name, email, address, DOB, and the date which the account was created. It also offers activation, deactivation, and suspension options. </span></p>
+        </div>
+      </div>
+
+      <!-- Eventlog_Description (Rectangle) -->
+      <div id="u37" class="ax_default paragraph" data-label="Eventlog_Description">
+        <div id="u37_div" class=""></div>
+        <div id="u37_text" class="text ">
+          <p><span>Page showing the before and after image of each record added, modified, or deactivated. A new image will be generated each time data is changed by any user. Information such as the user ID, time, and date of changes will be saved here.</span></p>
+        </div>
+      </div>
+
+      <!-- Reports_Description (Rectangle) -->
+      <div id="u38" class="ax_default paragraph" data-label="Reports_Description">
+        <div id="u38_div" class=""></div>
+        <div id="u38_text" class="text ">
+          <p><span>Page containing a report of all expired passwords.</span></p>
+        </div>
+      </div>
+
+      <!-- Profile_Description (Rectangle) -->
+      <div id="u39" class="ax_default paragraph" data-label="Profile_Description">
+        <div id="u39_div" class=""></div>
+        <div id="u39_text" class="text ">
+          <p><span>Page containing information about the user currently logged in. </span></p>
+        </div>
+      </div>
+
+      <!-- Email_Description (Rectangle) -->
+      <div id="u40" class="ax_default paragraph" data-label="Email_Description">
+        <div id="u40_div" class=""></div>
+        <div id="u40_text" class="text ">
+          <p><span>Page providing a section for administrators to email all users in the system</span></p>
+        </div>
+      </div>
+    </div>
+    <script src="resources/scripts/axure/ios.js"></script>
+  </body>
+</html>
