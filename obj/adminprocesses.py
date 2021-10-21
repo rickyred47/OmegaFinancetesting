@@ -44,7 +44,7 @@ def account_form(base, db):
     normal_side = request.form["normal_side"]
     balance = request.form["initial_balance"]
     comment = request.form["comment"]
-    created = datetime.now()
+    created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     statement = get_statement_doc(category)
     account_num = concat(initial_num, number)
 

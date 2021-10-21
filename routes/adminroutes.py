@@ -111,3 +111,8 @@ def setup_page_routing(app, base, db):
             return render_template('admin_about.html', username=username)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/admin/new_user')
+    def admin_new_user_accounts():
+        new_users = NewUser.get_new_users_info(base, db)
+        return render_template('admin_new_user_accounts.html', newusers=new_users)

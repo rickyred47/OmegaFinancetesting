@@ -233,31 +233,36 @@
         <div id="newuserlbl" class="ax_default label">
           <div id="newuserlbl_div" class=""></div>
           <div id="newuserlbl_text" class="text ">
-            <p><span>New Users</span><span style="font-size: 12px; margin-left: 20px">See all new users</span></p>
+              <p><span>New Users</span><span style="font-size: 12px; margin-left: 20px"><a href="{{ url_for('admin_new_user_accounts')}}">See all new users</a></span></p>
           </div>
         </div>
 		 
-		<!-- New Users Table (Table) -->  
+		<!-- New Users Table (Table) -->
 		<table id="newusertable" style="width: 1040px">
 			<tr >
 			<th style="width: 100px">User Status</th>
 		    <th style="width: 100px">First Name</th>
-			<th>Last Name</th>
-			<th>Email</th>
-			<th>Address</th>
-			<th>Accept<br>Decline</th>
+			<th style="width: 100px">Last Name</th>
+			<th style="width: 300px">Email</th>
+			<th style="width: 300px">Address</th>
+			<th rowspan="2" style="width: 140px">Accept<br>Decline</th>
 			</tr>
+        </table>
+        <div style="width: 1040px; height: 200px; overflow-y: auto; position:absolute; left: 393px; top:610px">
+        <table style="width: 1040px">
             {% for newuser in newusers %}
                 <tr style="text-align: left">
-                <td>{{ newuser.status }}</td>
-                <td>{{ newuser.firstname }}</td>
-                <td>{{ newuser.lastname }}</td>
-                <td>{{ newuser.email }}</td>
-                <td>{{ newuser.street }}</td>
-                <td>buttons</td>
+                <td style="width: 100px">{{ newuser.status }}</td>
+                <td style="width: 100px">{{ newuser.firstname }}</td>
+                <td style="width: 100px">{{ newuser.lastname }}</td>
+                <td style="width: 300px">{{ newuser.email }}</td>
+                <td style="width: 300px">{{ newuser.street }}</td>
+                <td style="width: 70px"><input type="button" value="Accept" style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
+                <td style="width: 70px"><input type="button" value="Decline" style="background-color: red; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
                 </tr>
             {% endfor %}
-		</table> 
+		</table>
+        </div>
       </div>
 
       <!-- Recent Users Group (Group) -->
