@@ -116,3 +116,11 @@ def setup_page_routing(app, base, db):
     def admin_new_user_accounts():
         new_users = NewUser.get_new_users_info(base, db)
         return render_template('admin_new_user_accounts.html', newusers=new_users)
+
+    @app.route('/admin_password_report')
+    def admin_password_report():
+        if "username" in session:
+            username = session["username"]
+            return render_template('admin_password_report.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
