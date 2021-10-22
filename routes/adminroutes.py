@@ -124,3 +124,11 @@ def setup_page_routing(app, base, db):
             return render_template('admin_password_report.html', username=username)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/admin_email')
+    def admin_email():
+            if "username" in session:
+                username = session["username"]
+                return render_template('admin_email.html', username=username)
+            else:
+                return redirect(url_for('login_page'))
