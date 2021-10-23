@@ -31,7 +31,7 @@ def setup_page_routing(app, base, db):
     def admin_journalize():
         if "username" in session:
             username = session["username"]
-            return render_template('chart_accounts_admin.html', username=username)
+            return render_template('journalize_admin.html', username=username)
         else:
             return redirect(url_for('login_page'))
 
@@ -44,10 +44,10 @@ def setup_page_routing(app, base, db):
                 account = adminprocesses.get_account_info(base, db, idnum)
                 adminprocesses.toggle_active(account, db)
                 accounts = adminprocesses.get_accounts_info(base, db)
-                return render_template('accounts_admin.html', accounts=accounts, username=username)
+                return render_template('admin_char_accounts.html', accounts=accounts, username=username)
             else:
                 accounts = adminprocesses.get_accounts_info(base, db)
-                return render_template('accounts_admin.html', accounts=accounts, username=username)
+                return render_template('admin_char_accounts.html', accounts=accounts, username=username)
         else:
             return redirect(url_for('login_page'))
 
