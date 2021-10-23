@@ -53,7 +53,7 @@ def user_role(role):
     if role == "Administrator":
         return redirect(url_for('admin_home_page'))
     if role == "Manager":
-        return redirect('')
+        return redirect('manager_home_page')
     if role == "Accountant":
         return redirect('')
 

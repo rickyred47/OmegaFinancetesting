@@ -14,7 +14,7 @@ def setup_page_routing(app, base, db):
             newusers = adminprocesses.get_new_users(base, db)
             users = adminprocesses.get_user_accounts(base, db)
             username = session["username"]
-            return render_template('admin.html', accounts=accounts, newusers=newusers, users=users, username=username)
+            return render_template('admin_home_page.html', accounts=accounts, newusers=newusers, users=users, username=username)
         else:
             return redirect(url_for('login_page'))
 
@@ -28,7 +28,7 @@ def setup_page_routing(app, base, db):
             return redirect(url_for('login_page'))
 
     @app.route('/admin_chart_accounts')
-    def admin_chart_accounts():
+    def admin_journalize():
         if "username" in session:
             username = session["username"]
             return render_template('chart_accounts_admin.html', username=username)
@@ -36,7 +36,7 @@ def setup_page_routing(app, base, db):
             return redirect(url_for('login_page'))
 
     @app.route('/admin_accounts', methods=['GET', 'POST'])
-    def admin_accounts():
+    def admin_chart_accounts():
         if "username" in session:
             username = session["username"]
             if request.method == "POST":
@@ -112,7 +112,7 @@ def setup_page_routing(app, base, db):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/admin/new_user')
+    @app.route('/admin/new_users')
     def admin_new_user_accounts():
         new_users = NewUser.get_new_users_info(base, db)
         return render_template('admin_new_user_accounts.html', newusers=new_users)

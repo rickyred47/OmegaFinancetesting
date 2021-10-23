@@ -1,5 +1,4 @@
 from flask import render_template, request, session
-from datetime import datetime
 from datetime import datetime, timedelta
 from obj import NewUser
 

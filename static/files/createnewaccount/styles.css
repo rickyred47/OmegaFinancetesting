@@ -907,7 +907,7 @@
   word-wrap:break-word;
   text-transform:none;
 }
-#myaccount_div {
+#profile_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -927,7 +927,7 @@
   font-size:20px;
   color:#043F60;
 }
-#myaccount {
+#profile {
   border-width:0px;
   position:absolute;
   left:78px;
@@ -941,14 +941,14 @@
   font-size:20px;
   color:#043F60;
 }
-#myaccount .text {
+#profile .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#myaccount_text {
+#profile_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
