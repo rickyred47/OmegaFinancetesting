@@ -1,182 +1,10 @@
-﻿<!DOCTYPE html>
-<html>
-  <head>
-    <title>CreateNewAccount</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <link href="{{ url_for('static', filename= 'resources/css/axure_rp_page.css')}}" type="text/css" rel="stylesheet"/>
-    <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
+﻿{% extends "base_admin.html" %}
+    {% block title %}Create Account{% endblock %}
+    {% block head %}
     <link href="{{ url_for('static', filename= 'files/createnewaccount/styles.css')}}" type="text/css" rel="stylesheet"/>
       <script src="{{ url_for('static', filename= 'files/createnewaccount/data.js')}}"></script>
-  </head>
-  <body>
-    <div id="base" class="">
-
-      <!-- Header Group (Group) -->
-      <div id="headergrp" class="ax_default" data-left="0" data-top="0" data-width="3000" data-height="147">
-
-        <!-- Header Background (Rectangle) -->
-        <div id="headerback" class="ax_default box_1">
-          <div id="headerback_div" class=""></div>
-          <div id="headerback_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Omega Finance Label (Rectangle) -->
-        <div id="omegalbl" class="ax_default heading_1">
-          <div id="omegalbl_div" class=""></div>
-          <div id="omegalbl_text" class="text ">
-            <p><span>Omega Finance</span></p>
-          </div>
-        </div>
-
-        <!-- Omega Icon (Image) -->
-        <div id="omegaicon" class="ax_default image">
-          <img id="omegaicon_img" class="img " src="{{ url_for('static', filename= 'images/createnewaccount/regen/u3.png')}}"/>
-          <div id="omegaicon_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Text Input (Text Field) -->
-        <div id="searchtxt" class="ax_default text_field" data-label="Text Input">
-          <div id="searchtxt_div" class=""></div>
-          <input id="searchtxt_input" type="text" value="" class="u4_input"/>
-        </div>
-
-        <!-- Search Icon (Shape) -->
-        <div id="searchicon" class="ax_default icon" data-label="Search Icon">
-          <img id="searchicon_img" class="img " src="{{ url_for('static', filename= 'images/createnewaccount/regen/search_icon_u5.svg')}}"/>
-          <div id="searchicon_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Search Button (Rectangle) -->
-        <div id="searchbtn" class="ax_default button">
-          <div id="searchbtn_div" class=""></div>
-          <div id="searchbtn_text" class="text ">
-            <p><span>Search</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nav Bar Group (Group) -->
-      <div id="navbargrp" class="ax_default" data-left="12" data-top="164" data-width="317" data-height="1009">
-
-        <!-- NavBar_Backdrop (Rectangle) -->
-        <div id="navbarback" class="ax_default box_2" data-label="NavBar_Backdrop">
-          <div id="navbarback_div" class=""></div>
-          <div id="navbarback_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Chart_of_Accounts_Nav (Rectangle) -->
-        <div id="chartaccountnav" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
-          <div id="chartaccountnav_div" class="" ></div>
-          <div id="chartaccountnav_text" class="text ">
-            <p><a href="{{ url_for('admin_chart_accounts') }}" title = "Browse Index of Financial Accounts in General Ledger"><span>Chart of Accounts</span></a></p>
-          </div>
-        </div>
-
-        <!-- Accounts_Nav (Rectangle) -->
-        <div id="accountsnav" class="ax_default heading_2" data-label="Accounts_Nav">
-          <div id="accountsnav_div" class="" ></div>
-          <div id="accountsnav_text" class="text ">
-              <p><a href="{{ url_for('admin_accounts') }}" title = "Browse All Accounts"><span>Accounts</span></a></p>
-          </div>
-        </div>
-
-        <!-- Users_Nav (Rectangle) -->
-        <div id="usersnav" class="ax_default heading_2" data-label="Users_Nav">
-          <div id="usersnav_div" class="" ></div>
-          <div id="usersnav_text" class="text ">
-              <p><a href="{{ url_for('admin_user_accounts') }}" title = "Browse Users of Omega Finance"><span>Users</span></a></p>
-          </div>
-        </div>
-
-        <!-- Event_Log_Nav (Rectangle) -->
-        <div id="eventlog" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="eventlog_div" class=""></div>
-          <div id="eventlog_text" class="text ">
-            <p><span>Event Log</span></p>
-          </div>
-        </div>
-
-        <!-- Reports_Nav (Rectangle) -->
-        <div id="reports" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="reports_div" class=""></div>
-          <div id="reports_text" class="text ">
-            <p><a href="{{ url_for('admin_password_report')}}" title = "Report of All Expired Passwords"><span>Reports</span></a></p>
-          </div>
-        </div>
-
-        <!-- Home_Nav (Rectangle) -->
-        <div id="homenav" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="homenav_div" class=""></div>
-          <div id="homenav_text" class="text ">
-              <p><a href="{{ url_for('admin_home_page') }}"><span>Home</span></a></p>
-          </div>
-        </div>
-
-        <!-- Email_Nav (Rectangle) -->
-        <div id="emailnav" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="emailnav_div" class=""></div>
-          <div id="emailnav_text" class="text ">
-            <p><a href="{{ url_for('admin_email')}}" title = "Send Emails to All Users Within the System"><span>Email</span></a></p>
-          </div>
-        </div>
-
-        <!-- My_Account_Nav (Rectangle) -->
-        <div id="profile" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="profile_div" class=""></div>
-          <div id="profile_text" class="text ">
-            <p><span>My Account</span></p>
-          </div>
-        </div>
-
-        <!-- Nav Bar Shader (Rectangle) -->
-        <div id="navbarshader" class="ax_default box_1">
-          <div id="navbarshader_div" class=""></div>
-          <div id="navbarshader_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- LinksIconName (Group) -->
-        <div id="linkicongrp" class="ax_default" data-label="LinksIconName" data-left="98" data-top="191" data-width="134" data-height="151">
-
-          <!-- UserName (Text Field) -->
-          <div id="username" class="ax_default text_field" data-label="UserName">
-            <div id="username_div" class=""></div>
-            <input id="username_input" type="text" value="{{ username }}" class="u19_input"/>
-          </div>
-
-          <!-- UserType (Text Field) -->
-          <div id="role" class="ax_default text_field" data-label="UserType">
-            <div id="role_div" class=""></div>
-            <input id="role_input" type="text" value="Administrator" class="u20_input"/>
-          </div>
-
-          <!-- UserIcon (Shape) -->
-          <div id="usericon" class="ax_default icon" data-label="UserIcon">
-            <img id="usericon_img" class="img " src="{{ url_for('static', filename= 'images/createnewaccount/regen/usericon_u21.svg')}}"/>
-            <div id="usericon_text" class="text " style="display:none; visibility: hidden">
-              <p></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Logoff_Nav (Rectangle) -->
-        <div id="logoff" class="ax_default heading_2" data-label="Event_Log_Nav">
-          <div id="logoff_div" class="" ></div>
-          <div id="logoff_text" class="text ">
-            <p><a href="{{ url_for('logged_off_page')}}" title = "Logout of Account"><span>Logoff</span></a></p>
-          </div>
-        </div>
-      </div>
+    {% endblock %}
+    {% block content %}
 
       <!-- Create An Account Group (Group) -->
       <div id="createaccountgrp" class="ax_default" data-left="380" data-top="164" data-width="824" data-height="661">
@@ -356,7 +184,7 @@
 
           <!-- Back_Button (Shape) -->
           <div id="backbtn" class="ax_default button" data-label="Back_Button" title = "Return to Accounts Page">
-            <input type="button" value="Back" onclick="window.location.href='{{ url_for('admin_accounts') }}'" style="width:100%; background-color: #0077B6; color: white"/>
+            <input type="button" value="Back" onclick="window.location.href='{{ url_for('admin_chart_accounts') }}'" style="width:100%; background-color: #0077B6; color: white"/>
           </div>
 
           <!-- Add_Button (Shape) -->
@@ -366,6 +194,4 @@
         </div>
         </form>
       </div>
-    </div>
-  </body>
-</html>
+    {% endblock %}
