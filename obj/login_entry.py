@@ -57,8 +57,7 @@ def error_message_page_fp(num, database):
     return render_template('forgot_password.html', error_message=error_message.message)
 
 
-def gather_security_questions(username, database):
-    user = database.get_new_user(username)
+def gather_security_questions_commit(user, database):
     security_info = NewUser.gather_security_info()
     user.security_questions = security_info[0]
     user.security_answers = security_info[1]

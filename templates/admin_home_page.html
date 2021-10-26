@@ -25,9 +25,9 @@
 
 		<!-- Recent Accounts Table (Table) -->
 		<table id="raccountstable" style="width: 1040px">
-			<tr>
-			<th style="width: 80px">Account Number</th>
-		    <th style="width: 100px">Account Name</th>
+			<tr style="text-align: left">
+			<th>Account Number</th>
+		    <th>Account Name</th>
 			<th>Category</th>
 			<th>Sub-Category</th>
             <th>Balance</th>
@@ -68,7 +68,7 @@
 
 		<!-- New Users Table (Table) -->
 		<table id="newusertable" style="width: 1040px">
-			<tr >
+			<tr style="text-align: left" >
 			<th style="width: 100px">User Status</th>
             <th style="width: 140px">Username</th>
 		    <th style="width: 100px">First Name</th>
@@ -114,11 +114,11 @@
 
 		<!-- Recent Users Table (Table) -->
 		<table id="rusertable" style="width: 1040px">
-			<tr>
-			<th style="width: 80px">User Id</th>
-		    <th style="width: 100px">Username</th>
+			<tr style="text-align: left">
+			<th>User Id</th>
+		    <th>Username</th>
 			<th>role</th>
-			<th>Activated</th>
+			<th>Active</th>
 			<th>First Name</th>
 			<th>Last Name</th>
             <th>Email</th>
@@ -128,7 +128,11 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.role }}</td>
-                <td>{{ user.activated }}</td>
+                {% if user.activated %}
+                    <td>Active</td>
+                {% else %}
+                    <td>Deactivate</td>
+                {% endif %}
                 <td>{{ user.f_name }}</td>
                 <td>{{ user.l_name }}</td>
                 <td>{{ user.email }}</td>

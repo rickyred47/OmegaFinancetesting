@@ -66,7 +66,7 @@ class DatabaseHandler:
 
     def get_user_fullname(self, username):
         self.UserTable = self.base.classes.user
-        select_user = self.db.session.query(self.UserTable).filter_by(username=username).frist()
+        select_user = self.db.session.query(self.UserTable).filter_by(username=username).first()
         return select_user.f_name + " " + select_user.l_name
     # End of User Database Methods
 

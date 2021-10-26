@@ -56,7 +56,8 @@ def setup_page_routing(app, database):
         if "user" in session:
             username = session["user"]
             if request.method == "POST":
-                login_entry.gather_security_questions(username, database)
+                user = database.get_user_account(username)
+                login_entry.gather_security_questions_commit(user, database)
                 role = database.get_user_role(username)
                 session.pop("user", None)
                 session["username"] = database.get_user_fullname(username)
@@ -66,12 +67,13 @@ def setup_page_routing(app, database):
         if "New_user" in session:
             username = session["New_user"]
             if request.method == "POST":
-                login_entry.gather_security_questions(username, database)
+                newuser = database.get_new_user(username)
+                login_entry.gather_security_questions_commit(newuser, database)
                 return redirect('signed_up')
             else:
                 return render_template('security_questions.html')
         else:
-            return redirect('login_page')
+            return redirect(url_for('login_page'))
 
     @app.route('/signed_up')
     def signed_up():
