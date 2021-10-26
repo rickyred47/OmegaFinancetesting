@@ -1,32 +1,32 @@
 from flask import render_template, request, redirect, url_for, session
-from obj import NewUser, LoginEntry, adminprocesses
+from obj import NewUser, login_entry, admin_processes
 
 
-def setup_page_routing(app, base, db):
+def setup_page_routing(app, database):
     # set up routes to run
 
     # the login page route
     @app.route('/', methods=['GET', 'POST'])
     def login_page():
         if request.method == "POST":
-            return LoginEntry.is_valid_entry(db, base)
+            return login_entry.is_valid_entry(database)
         else:
-            return LoginEntry.error_message_page(0, base, db)
+            return login_entry.error_message_page(0, database)
 
     @app.route('/forgot_password', methods=['GET', 'POST'])
     def forgot_password():
         if request.method == "POST":
             email = request.form["email"]
             username = request.form["username"]
-            user = adminprocesses.get_user_account(username, base, db)
+            user = database.get_user_account(username)
             if bool(user):
                 if user.email == email:
                     session["user"] = user.username
                     return redirect(url_for('security_questions_fp'))
                 else:
-                    return LoginEntry.error_message_page_fp(6, base, db)
+                    return login_entry.error_message_page_fp(6, database)
             else:
-                return LoginEntry.error_message_page_fp(5, base, db)
+                return login_entry.error_message_page_fp(5, database)
         else:
             return render_template('forgot_password.html')
 
@@ -37,7 +37,7 @@ def setup_page_routing(app, base, db):
             # Checks the both passwords are valid
             if NewUser.correct_passwords_input():
                 # gathers the information of the form text fields
-                NewUser.gatherInfo_and_commit(db, base)
+                NewUser.gatherInfo_and_commit(database)
                 # Sends to Security questions
                 return redirect(url_for('security_question_new_user'))
         else:
@@ -53,14 +53,20 @@ def setup_page_routing(app, base, db):
 
     @app.route('/security_questions', methods=['GET', 'POST'])
     def security_question_new_user():
+        if "user" in session:
+            username = session["user"]
+            if request.method == "POST":
+                login_entry.gather_security_questions(username, database)
+                role = database.get_user_role(username)
+                session.pop("user", None)
+                session["username"] = database.get_user_fullname(username)
+                return login_entry.user_role(role)
+            else:
+                return render_template('security_questions.html')
         if "New_user" in session:
             username = session["New_user"]
             if request.method == "POST":
-                user = NewUser.find_new_user(username, base, db)
-                security_info = NewUser.gather_security_info()
-                user.security_questions = security_info[0]
-                user.security_answers = security_info[1]
-                db.session.commit()
+                login_entry.gather_security_questions(username, database)
                 return redirect('signed_up')
             else:
                 return render_template('security_questions.html')
@@ -79,11 +85,11 @@ def setup_page_routing(app, base, db):
     def security_questions_fp():
         if "user" in session:
             username = session["user"]
-            user = adminprocesses.get_user_account(username, base, db)
+            user = database.get_user_account(username)
             questions = user.security_questions
             if request.method == "POST":
                 answers = user.security_answers
-                correct_answers = adminprocesses.verify_answers(answers)
+                correct_answers = admin_processes.verify_answers(answers)
                 if correct_answers[0] and correct_answers[1] and correct_answers[2]:
                     return redirect(url_for('create_new_password'))
                 else:
@@ -99,26 +105,26 @@ def setup_page_routing(app, base, db):
     def create_new_password():
         if "user" in session:
             username = session["user"]
-            user = adminprocesses.get_user_account(username, base, db)
+            user = database.get_user_account(username)
             passwords = user.previous_passwords
             if request.method == "POST":
                 used = False
-                password_input = request.form["password1"]
+                password_in = request.form["password1"]
                 password2 = request.form["password2"]
-                if NewUser.is_valid_password(password_input) and NewUser.do_passwords_match(password_input, password2):
+                if new_user.is_valid_password(password_in) and new_user.do_passwords_match(password_in, password2):
                     for password in passwords:
-                        if password == password_input:
+                        if password == password_in:
                             used = True
                     if not used:
-                        user.password = password_input
-                        db.session.commit()
-                        passwords.append(password_input)
+                        user.password = password_in
+                        database.commit_info()
+                        passwords.append(password_in)
                         user.previous_passwords = passwords
-                        db.session.commit()
+                        database.commit_info()
                         return redirect(url_for('login_page'))
                     else:
-                        message = NewUser.get_error_message(7, base, db)
-                        return render_template('new_password.html', error_message=message)
+                        error = database.get_error_message(7)
+                        return render_template('new_password.html', error_message=error.message)
                 return render_template('new_password.html')
             else:
                 return render_template('new_password.html')

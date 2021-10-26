@@ -2,7 +2,7 @@ from flask import request, session
 from datetime import datetime
 
 
-def gatherInfo_and_commit(db, base):
+def gatherInfo_and_commit(database):
     """
         This will all the information of the form and commit
         it to the database
@@ -16,18 +16,19 @@ def gatherInfo_and_commit(db, base):
     # Gather User's Information
     user = get_new_user_info()
     username = set_username(user[0], user[1], user[9])
-    new_user = find_new_user(username, base, db)
+    new_user = database.get_new_user(username)
     if not bool(new_user):
-        created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        # Time of creation, Format Year-month-date Hour:minutes:seconds
+        created = datetime.now()
         # Creates a NewUser class based on the new_user table
-        NewUserTable = base.classes.new_user
+        NewUserTable = database.get_new_user_Table()
         # Creates a new user object
         newuser = NewUserTable(status="Pending", firstname=user[0], lastname=user[1], email=user[2], password=user[3],
                                street=user[4], aptnum=user[7], state=user[5], country=user[6], dob=user[9],
                                zipcode=user[8], security_questions=None, security_answers=None, username=username,
-                               Date_created=created)
+                               date_created=created)
         # Adds the Information to the database and commits it
-        commit_to_database(db, newuser)
+        database.commit_to_database(newuser)
     # Creates a session to complete Questions
     session["New_user"] = username
 
@@ -123,17 +124,11 @@ def do_passwords_match(password, password2):
         return False
 
 
-# Sends the information to the database
-def commit_to_database(db, obj):
-    db.session.add(obj)
-    db.session.commit()
-
-
 def get_new_user_info():
     """
     Gather the basic info of a user
 
-    Returns: [array positions]
+    Returns: [positions]
     firstname [0]
     lastname  [1]
     email     [2]
@@ -170,24 +165,6 @@ def gather_security_info():
     return questions, answers
 
 
-def get_new_users_info(base, db):
-    New_UserTable = base.classes.new_user
-    new_users = db.session.query(New_UserTable)
-    return new_users
-
-
-def find_new_user(username, base, db):
-    New_UserTable = base.classes.new_user
-    new_user = db.session.query(New_UserTable).filter_by(username=username).first()
-    return new_user
-
-
 def set_username(f_name, l_name, dob):
     username = f_name[0].lower() + l_name.lower() + dob[5:7] + dob[2:4]
     return username
-
-
-def get_error_message(id_num, base, db):
-    Errors = base.classes.error_message
-    error = db.session.query(Errors).filter_by(id=id_num).first()
-    return error.message

@@ -4,6 +4,7 @@ gmail_user = 'omega.finance.corp@gmail.com'
 gmail_password = 'yf4vJA39qHh8QHd'
 gmail_smtp_server = ('smtp.gmail.com', 465)
 
+
 def send_email(recipient_list, subject, body):
     """
     Sends an email to everyone on the recipient list.

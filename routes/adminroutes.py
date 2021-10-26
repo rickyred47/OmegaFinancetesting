@@ -1,8 +1,8 @@
 from flask import render_template, redirect, request, url_for, session
-from obj import adminprocesses, NewUser
+from obj import admin_processes
 
 
-def setup_page_routing(app, base, db):
+def setup_page_routing(app, database):
     # set up routes to run
 
     # The admin pages
@@ -10,10 +10,9 @@ def setup_page_routing(app, base, db):
     def admin_home_page():
         if "username" in session:
             username = session["username"]
-            accounts = adminprocesses.get_accounts_info(base, db)
-            newusers = adminprocesses.get_new_users(base, db)
-            users = adminprocesses.get_user_accounts(base, db)
-            username = session["username"]
+            accounts = database.get_accounts_info()
+            newusers = database.get_new_users()
+            users = database.get_user_accounts()
             return render_template('admin_home_page.html', accounts=accounts, newusers=newusers, users=users,
                                    username=username)
         else:
@@ -23,7 +22,7 @@ def setup_page_routing(app, base, db):
     def admin_user_accounts():
         if "username" in session:
             username = session["username"]
-            users = adminprocesses.get_user_accounts(base, db)
+            users = database.get_user_accounts()
             return render_template('adminuseraccounts.html', username=username, useraccounts=users)
         else:
             return redirect(url_for('login_page'))
@@ -42,12 +41,12 @@ def setup_page_routing(app, base, db):
             username = session["username"]
             if request.method == "POST":
                 idnum = request.form["account_id"]
-                account = adminprocesses.get_account_info(base, db, idnum)
-                adminprocesses.toggle_active(account, db)
-                accounts = adminprocesses.get_accounts_info(base, db)
+                account = database.get_account_info(idnum)
+                admin_processes.toggle_active(account, database)
+                accounts = database.get_accounts_info()
                 return render_template('admin_char_accounts.html', accounts=accounts, username=username)
             else:
-                accounts = adminprocesses.get_accounts_info(base, db)
+                accounts = database.get_accounts_info()
                 return render_template('admin_char_accounts.html', accounts=accounts, username=username)
         else:
             return redirect(url_for('login_page'))
@@ -56,7 +55,7 @@ def setup_page_routing(app, base, db):
     def admin_create_user():
         if "username" in session:
             if request.method == "POST":
-                if adminprocesses.new_use_admin(base, db):
+                if admin_processes.new_use_admin(database):
                     return redirect(url_for('admin_user_accounts'))
             else:
                 username = session["username"]
@@ -69,7 +68,7 @@ def setup_page_routing(app, base, db):
         if "username" in session:
             username = session["username"]
             if request.method == "POST":
-                adminprocesses.account_form(base, db)
+                admin_processes.account_form(database)
                 return redirect('admin_accounts')
             else:
                 return render_template('createnewaccount.html', username=username)
@@ -87,19 +86,18 @@ def setup_page_routing(app, base, db):
     @app.route('/admin_edit_account/<account_id>', methods=['GET', 'POST'])
     def admin_edit_account(account_id):
         if "username" in session:
-            username = session["username"]
-            account = adminprocesses.get_account_info(base, db, account_id)
+            account = database.get_account_info(account_id)
             if request.method == "POST":
-                return adminprocesses.edit_save_account(account, db)
+                return admin_processes.edit_save_account(account, database)
             else:
-                return adminprocesses.edit_account(account)
+                return admin_processes.edit_account(account)
         else:
             return redirect(url_for('login_page'))
 
     @app.route('/admin_ledger/<account_id>')
     def admin_account_ledger(account_id):
         if "username" in session:
-            account = adminprocesses.get_account_info(base, db, account_id)
+            account = database.get_account_info(account_id)
             return render_template('accounts_ledger.html', name=account.name, number=account.number,
                                    balance=account.balance)
         else:
@@ -115,7 +113,7 @@ def setup_page_routing(app, base, db):
 
     @app.route('/admin/new_users')
     def admin_new_user_accounts():
-        new_users = NewUser.get_new_users_info(base, db)
+        new_users = database.get_new_users()
         return render_template('admin_new_user_accounts.html', newusers=new_users)
 
     @app.route('/admin_password_report')
@@ -133,3 +131,19 @@ def setup_page_routing(app, base, db):
             return render_template('admin_email.html', username=username)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/background_accept_user', methods=['POST'])
+    def admin_accept_user():
+        if request.method == "POST":
+            username = request.form["username_input"]
+            role = request.form["role"]
+            admin_processes.transfer_User_info(username, role, database)
+            user = database.get_user_account(username)
+            admin_processes.send_acceptance_email(user)
+            return redirect(url_for('admin_new_user_accounts'))
+
+    @app.route('/background_reject_user/<username>')
+    def admin_reject_user(username):
+        new_user = database.get_new_user(username)
+        database.delete_row(new_user)
+        return redirect(url_for('admin_new_user_accounts'))

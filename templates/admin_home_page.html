@@ -70,11 +70,11 @@
 		<table id="newusertable" style="width: 1040px">
 			<tr >
 			<th style="width: 100px">User Status</th>
+            <th style="width: 140px">Username</th>
 		    <th style="width: 100px">First Name</th>
 			<th style="width: 100px">Last Name</th>
 			<th style="width: 300px">Email</th>
 			<th style="width: 300px">Address</th>
-			<th rowspan="2" style="width: 140px">Accept<br>Decline</th>
 			</tr>
         </table>
         <div style="width: 1040px; height: 200px; overflow-y: auto; position:absolute; left: 393px; top:610px">
@@ -82,12 +82,11 @@
             {% for newuser in newusers %}
                 <tr style="text-align: left">
                 <td style="width: 100px">{{ newuser.status }}</td>
+                <td style="width: 140px">{{ newuser.username }}</td>
                 <td style="width: 100px">{{ newuser.firstname }}</td>
                 <td style="width: 100px">{{ newuser.lastname }}</td>
                 <td style="width: 300px">{{ newuser.email }}</td>
                 <td style="width: 300px">{{ newuser.street }}</td>
-                <td style="width: 70px"><input type="button" value="Accept" style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
-                <td style="width: 70px"><input type="button" value="Decline" style="background-color: red; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
                 </tr>
             {% endfor %}
 		</table>

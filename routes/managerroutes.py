@@ -1,12 +1,10 @@
 from flask import render_template, request, session
 
 
-def setup_page_routing(app, base, db):
+def setup_page_routing(app, database):
     """
 
     :param app:
-    :param base:
-    :param db:
     :return:
 
     Set Up routes to run for the manager

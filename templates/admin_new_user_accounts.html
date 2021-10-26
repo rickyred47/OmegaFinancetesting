@@ -13,6 +13,7 @@
           <div id="usersbx_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
+          <div id="cover" ></div>
         </div>
 
         <!-- SearchButton (Rectangle) -->
@@ -58,55 +59,53 @@
 		  <table style="width: 1450px">
 			  <tr>
 				  <th>User Status</th>
+                  <th>username</th>
 				  <th>First Name</th>
 				  <th>Last Name</th>
 				  <th>Email</th>
 				  <th>Address</th>
 				  <th>Dob</th>
-				  <th>username</th>
 				  <th>Date Created</th>
 				  <th colspan="2">Accept<br>Decline</th>
 			  </tr>
               {% for newuser in newusers %}
                   <tr>
                   <td>{{ newuser.status }}</td>
+                  <td>{{ newuser.username }}</td>
                   <td>{{ newuser.firstname }}</td>
                   <td>{{ newuser.lastname }}</td>
                   <td>{{ newuser.email }}</td>
                   <td>{{ newuser.street }}</td>
                   <td>{{ newuser.dob }}</td>
-                  <td>{{ newuser.username }}</td>
                   <td>{{ newuser.date_created }}</td>
-                  <td style="width: 70px"><input type="button" value="Accept" onclick="show_popup(event)" style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
-                  <td style="width: 70px"><input type="button" value="Decline" style="background-color: red; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
+                  <td style="width: 70px"><input type="button" value="Accept" onclick='show_popup({{ newuser.username | tojson }})' style="background-color: #2A7F62; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
+                  <td style="width: 70px"><input type="button" value="Decline" onclick="window.location.href='{{ url_for('admin_reject_user', username=newuser.username) }}'" style="background-color: red; color: white; border-radius: 5px; width: 60px; height: 30px"></td>
                   </tr>
               {% endfor %}
 		  </table>
       </div>
-    <div id="cover" ></div>
       <div id="popup">
-          <p id="popup_text"><span>Choose the role for the user</span></p>
+      <form action="{{ url_for('admin_accept_user') }}" method="post">
+          <p id="popup_text"><span>Choose the role for </span><span id="name"></span></p>
+          <input id="username_data" type="text" value="" style="display: none" name="username_input">
           <select id="popup_input" class="u40_input" name="role">
             <option class="popup_input_option" value="Accountant">Accountant</option>
             <option class="popup_input_option" value="Manager">Manager</option>
             <option class="popup_input_option" value="Administrator">Administrator</option>
           </select>
-          <input id="popup_btn" type="button" value="Submit">
-          <input id="popup_cancel" type="button" onclick="close_popup(event)" value="Cancel">
+          <input id="popup_btn" type="submit" value="Submit">
+          <input id="popup_cancel" type="button" onclick="close_popup()" value="Cancel">
+      </form>
       </div>
     <script>
-        function show_popup(event) {
-            var x = event.clientX;
-            var y = event.clientY;
-            var left = "" + x + "px";
-            var top = "" + y + "px";
-            document.getElementById("popup").style.left = left;
-            document.getElementById("popup").style.top = top;
+        function show_popup(username) {
+            document.getElementById("name").innerText=username
+            document.getElementById("username_data").value = username
             document.getElementById("cover").style.width = "100%"
             document.getElementById("popup").style.display = "block";
         }
 
-        function close_popup(event) {
+        function close_popup() {
             document.getElementById("cover").style.width = "0%"
             document.getElementById("popup").style.display= "none";
         }

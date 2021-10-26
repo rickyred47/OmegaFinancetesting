@@ -431,10 +431,11 @@ tr:nth-child(even) {
 #popup {
   display: None;
   position: absolute;
-  left: 100px;
-  top: 100px;
-  width: 200px;
-  height: 200px;
+  left: 1000px;
+  top: 500px;
+  width: 230px;
+  height: 230px;
+  z-index: 1;
   background-color: #F7F7FF;
   border-color: #1E98D7;
   box-shadow: 0 0 10px #1E98D7;
@@ -447,31 +448,42 @@ tr:nth-child(even) {
 }
 #popup_input {
   position: absolute;
-  left: 30px;
+  left: 20px;
   top: 100px;
-  width: 100px;
+  width: 110px;
 }
 #popup_btn {
   position: absolute;
-  left:130px;
-  top: 100px;
+  border-radius: 5px;
+  left:135px;
+  top: 98px;
+  width: 80px;
+  height: 25px;
+  background-color: #2A7F62;
+  color: white;
 }
 #popup_text {
   position: absolute;
   top:50px;
+  margin-left: 10px;
 }
 #popup_cancel {
   position: absolute;
+  border-radius:5px;
   left: 66px;
   top: 160px;
-  width: 66px;
+  width: 80px;
+  height: 25px;
+  background-color: red;
+  color: white;
 }
 #cover {
-  position: absolute;
+  position: inherit;
   left: 0;
   top: 0;
   width: 0%;
   height: 100%;
   background-color: black;
   opacity: 70%;
+  z-index: 1;
 }

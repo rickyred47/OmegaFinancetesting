@@ -60,9 +60,10 @@
 			  <tr>
 				  <th>ID</th>
 				  <th>Username</th>
+                  <th>Role</th>
 				  <th>Account Active</th>
 				  <th>Activate/<br>Deactivate</th>
-				  <th>Suspend</th>
+				  <th>Password Expiration</th>
 				  <th>First Name</th>
 				  <th>Last Name</th>
 				  <th>Email</th>
@@ -74,13 +75,15 @@
                   <tr>
                   <td>{{ useraccount.id }}</td>
                   <td>{{ useraccount.username }}</td>
-                  {% if useraccount.active %}
+                  <td>{{ useraccount.role }}</td>
+                  {% if useraccount.activated %}
                     <td>Active</td>
+                    <td><input type="button" value="Deactivate" style="background-color: red; color: white; height: 30px"></td>
                   {% else %}
                     <td>Deactivated</td>
+                    <td><input type="button" value="Activate" style="background-color: #2A7F62; color: white; height: 30px"></td>
                   {% endif %}
-                  <td>buttons</td>
-                  <td>suspend?</td>
+                  <td>{{ useraccount.password_expire_date }}</td>
                   <td>{{ useraccount.f_name }}</td>
                   <td>{{ useraccount.l_name }}</td>
                   <td>{{ useraccount.email }}</td>
@@ -91,4 +94,7 @@
               {% endfor %}
 		  </table>
       </div>
+    <script>
+
+    </script>
 {% endblock %}

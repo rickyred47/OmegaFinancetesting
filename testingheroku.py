@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
+from obj.database_handler import DatabaseHandler
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Futureime21"
@@ -11,11 +12,16 @@ db = SQLAlchemy(app)
 Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
-from routes import loginaccess, adminroutes
+omega_database = DatabaseHandler()
+omega_database.db = db
+omega_database.base = Base
 
-loginaccess.setup_page_routing(app, Base, db)
-adminroutes.setup_page_routing(app, Base, db)
+from routes import loginroutes, adminroutes, managerroutes, accountantroutes
 
+loginroutes.setup_page_routing(app, omega_database)
+adminroutes.setup_page_routing(app, omega_database)
+managerroutes.setup_page_routing(app, omega_database)
+accountantroutes.setup_page_routing(app, omega_database)
 
 if __name__ == '__main__':
     app.run()
