@@ -644,7 +644,7 @@ body {
 #general_ledger {
   position: absolute;
   left: 78px;
-  top: 480px;
+  top: 445px;
   width: 251px;
   height: 480px;
   display:flex;
@@ -678,7 +678,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:515px;
+  top:480px;
   width:251px;
   height:35px;
   display:flex;
@@ -724,7 +724,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:550px;
+  top:515px;
   width:251px;
   height:35px;
   display:flex;
@@ -749,7 +749,7 @@ body {
 #new_users {
   position: absolute;
   left: 78px;
-  top: 585px;
+  top: 550px;
   width: 251px;
   height: 35px;
   display: flex;
@@ -783,7 +783,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:620px;
+  top:585px;
   width:251px;
   height:35px;
   display:flex;
@@ -829,7 +829,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:655px;
+  top:620px;
   width:251px;
   height:35px;
   display:flex;
@@ -921,7 +921,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:725px;
+  top:690px;
   width:251px;
   height:35px;
   display:flex;
@@ -967,7 +967,7 @@ body {
   border-width:0px;
   position:absolute;
   left:78px;
-  top:690px;
+  top:655px;
   width:251px;
   height:35px;
   display:flex;
