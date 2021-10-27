@@ -68,7 +68,9 @@ def edit_save_account(account, database):
 
 def toggle_active(account, database):
     if account.active:
-        account.active = False
+        if not account.balance:
+            # TODO: give error message when account balance is nonzero
+            account.active = False
     else:
         account.active = True
     database.commit_info()

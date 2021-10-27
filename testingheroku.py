@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from obj.database_handler import DatabaseHandler
+from routine import password_expire_check
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Futureime21"
@@ -25,3 +26,6 @@ accountantroutes.setup_page_routing(app, omega_database)
 
 if __name__ == '__main__':
     app.run()
+
+    # Run routine checks
+    password_expire_check.begin(omega_database)
