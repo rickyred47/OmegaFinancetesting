@@ -13,7 +13,7 @@ def setup_page_routing(app, database):
             accounts = database.get_accounts_info()
             newusers = database.get_new_users()
             users = database.get_user_accounts()
-            return render_template('admin_home_page.html', accounts=accounts, newusers=newusers, users=users,
+            return render_template('admin_home_page.html', accounts=accounts[-6:], newusers=newusers[-6:], users=users[-6:],
                                    username=username)
         else:
             return redirect(url_for('login_page'))
