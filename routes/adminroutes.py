@@ -132,6 +132,14 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
+    @app.route('/eventlog')
+    def eventlog():
+        if "username" in session:
+            username = session["username"]
+            return render_template('eventlog.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+
     @app.route('/background_accept_user', methods=['POST'])
     def admin_accept_user():
         if request.method == "POST":

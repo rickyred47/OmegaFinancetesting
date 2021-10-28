@@ -1447,6 +1447,50 @@ body {
   text-transform:none;
   visibility:hidden;
 }
+#about_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:86px;
+  height:35px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:"Merriweather-Bold", "Merriweather Bold", "Merriweather", sans-serif;
+  font-weight:700;
+  font-style:normal;
+  color:#043F60;
+}
+#about {
+  border-width:0px;
+  position:absolute;
+  left:148px;
+  top:1125px;
+  width:45px;
+  height:18px;
+  display:flex;
+  font-family:"Merriweather-Bold", "Merriweather Bold", "Merriweather", sans-serif;
+  font-weight:700;
+  font-style:normal;
+  color:#043F60;
+}
+#about .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#about_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+}
 #logoff_div {
   border-width:0px;
   position:absolute;
@@ -1496,6 +1540,6 @@ body {
   text-transform:none;
 }
 #logoff_link:hover, #home_link:hover, #journal_link:hover, #general_ledger_link:hover, #accountslink_link:hover, #userslink_link:hover,
-#new_users_link:hover, #email_link:hover{
+#new_users_link:hover, #about_link:hover, #email_link:hover{
   color: #1E98D7;
 }

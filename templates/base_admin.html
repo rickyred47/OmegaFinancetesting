@@ -115,7 +115,7 @@
         <div id="eventlog" class="ax_default heading_2" data-label="Event_Log_Nav">
           <div id="eventlog_div" class=""></div>
           <div id="eventlog_text" class="text ">
-            <p><span>Event Log</span></p>
+            <p><a id="eventloglink_link" href="{{ url_for('eventlog') }}" title = "Browse Changes Made"><span>Event Log</span></a></p>
           </div>
         </div>
 
@@ -182,6 +182,14 @@
             <p><a id="logoff_link" href="{{ url_for('logged_off_page')}}" title = "Logout of Account"><span>Logoff</span></a></p>
           </div>
         </div>
+
+        <!-- About_Nav (Rectangle) -->
+      <div id="about" class="ax_default label" data-label="About_Nav">
+        <div id="about_div" class=""></div>
+        <div id="about_text" class="text ">
+          <p><a id="about_link" href="{{ url_for('admin_about')}}" title = "Get Information About this Software"><span>About</span></a></p>
+        </div>
+      </div>
 
         {% block content %}{% endblock %}
       </div>
