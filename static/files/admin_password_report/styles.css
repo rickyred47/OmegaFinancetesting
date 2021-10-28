@@ -1,4 +1,4 @@
-﻿#u9_div {
+﻿#whitebx_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -20,7 +20,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u9 {
+#whitebx {
   border-width:0px;
   position:absolute;
   left:354px;
@@ -33,14 +33,14 @@
   font-style:normal;
   color:#043F60;
 }
-#u9 .text {
+#whitebx .text {
   position:absolute;
   align-self:center;
   padding:2px 2px 2px 2px;
   box-sizing:border-box;
   width:100%;
 }
-#u9_text {
+#whitebx_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
