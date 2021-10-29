@@ -140,3 +140,9 @@ def send_acceptance_email(user):
     body.format(name, username)
     subject = "Account Accepted"
     email_manager.send_email(user_email, subject, body)
+
+def email(database):
+    email_manager.send_email([request.form['to_input']], request.form['subject_input'], request.form['body_input'])
+    username = session["username"]
+    users = database.get_user_accounts()
+    return render_template('admin_email.html', username=username, users=users)
