@@ -6,6 +6,7 @@ def setup_page_routing(app, database):
     # set up routes to run
 
     # The admin pages
+
     @app.route('/admin_home')
     def admin_home_page():
         if "username" in session:
@@ -113,8 +114,12 @@ def setup_page_routing(app, database):
 
     @app.route('/admin/new_users')
     def admin_new_user_accounts():
-        new_users = database.get_new_users()
-        return render_template('admin_new_user_accounts.html', newusers=new_users)
+        if "username" in session:
+            username = session["username"]
+            new_users = database.get_new_users()
+            return render_template('admin_new_user_accounts.html', newusers=new_users, username=username)
+        else:
+            return redirect(url_for('login_page'))
 
     @app.route('/admin_password_report')
     def admin_password_report():
@@ -155,3 +160,24 @@ def setup_page_routing(app, database):
         new_user = database.get_new_user(username)
         database.delete_row(new_user)
         return redirect(url_for('admin_new_user_accounts'))
+
+    @app.route('/background_deactivate_user', methods=['POST'])
+    def admin_deactivate_user():
+        if request.method == "POST":
+            username = request.form["username_input"]
+            user = database.get_user_account(username)
+            selection = request.form["time"]
+            if selection == "Indefinite":
+                admin_processes.deactivated_user(user, database)
+                return redirect(url_for('admin_user_accounts'))
+            else:
+                admin_processes.set_suspension(user, database)
+                return redirect(url_for('admin_user_accounts'))
+
+    @app.route('/background_activate_user/<username>')
+    def admin_activate_user(username):
+        user = database.get_user_account(username)
+        user.activated = True
+        user.is_suspended = False
+        database.commit_info()
+        return redirect(url_for('admin_user_accounts'))

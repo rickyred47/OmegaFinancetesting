@@ -1,5 +1,5 @@
 from flask import render_template, request, session
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from obj import NewUser, email_manager
 
 
@@ -90,7 +90,7 @@ def new_use_admin(database):
                              account_creation_date=created, password_expire_date=password_exp,
                              password_incorrect_entries=0, previous_passwords=pre_passwords, security_questions=None,
                              security_answers=None, city=None, apt_number=user[7], zip=user[8], state_province=user[5],
-                             country=user[6])
+                             country=user[6], suspension_start=None, suspension_end=None, is_suspended=False)
         database.commit_to_database(new_user)
         return True
 
@@ -127,7 +127,7 @@ def transfer_User_info(username, role, database):
                      password_expire_date=passwordExpire, password_incorrect_entries=0, previous_passwords=passwords,
                      security_questions=new_user.security_questions, security_answers=new_user.security_answers,
                      city=None, apt_number=new_user.aptnum, zip=new_user.zipcode, state_province=new_user.state,
-                     country=new_user.country)
+                     country=new_user.country, suspension_start=None, suspension_end=None, is_suspended=False)
     database.commit_to_database(user)
     database.delete_row(new_user)
 
@@ -140,3 +140,32 @@ def send_acceptance_email(user):
     body.format(name, username)
     subject = "Account Accepted"
     email_manager.send_email(user_email, subject, body)
+
+
+def deactivated_user(user, database):
+    user.activated = False
+    database.commit_info()
+
+
+def set_suspension(user, database):
+    start_date = request.form["start_date"]
+    end_date = request.form["end_date"]
+    now = date.today()
+    if now.strftime("%Y-%m-%d") == start_date:
+        deactivated_user(user, database)
+    user.suspension_start = start_date
+    user.suspension_end = end_date
+    user.is_suspended = True
+    database.commit_info()
+
+
+def auto_activate_deactivate_users(database):
+    # Could put a while forever loop it can keep on checking
+    suspended_users = database.get_suspended_users
+    for suspended_user in suspended_users:
+        if suspended_user.suspension_start == date.today():
+            deactivated_user(suspended_user, database)
+        if suspended_user.suspension_end < date.today():
+            suspended_users.activated = True
+            suspended_user.is_suspended = False
+            database.commit_info()
