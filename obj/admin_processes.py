@@ -157,15 +157,3 @@ def set_suspension(user, database):
     user.suspension_end = end_date
     user.is_suspended = True
     database.commit_info()
-
-
-def auto_activate_deactivate_users(database):
-    # Could put a while forever loop it can keep on checking
-    suspended_users = database.get_suspended_users
-    for suspended_user in suspended_users:
-        if suspended_user.suspension_start == date.today():
-            deactivated_user(suspended_user, database)
-        if suspended_user.suspension_end < date.today():
-            suspended_users.activated = True
-            suspended_user.is_suspended = False
-            database.commit_info()
