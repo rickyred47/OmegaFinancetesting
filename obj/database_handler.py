@@ -68,6 +68,12 @@ class DatabaseHandler:
         self.UserTable = self.base.classes.user
         select_user = self.db.session.query(self.UserTable).filter_by(username=username).first()
         return select_user.f_name + " " + select_user.l_name
+
+    def get_suspended_users(self):
+        self.UserTable= self.base.classes.user
+        users = self.db.session.query(self.UserTable).filter_by(is_suspended=True)
+        return users
+
     # End of User Database Methods
 
     def get_error_message(self, id_num):

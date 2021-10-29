@@ -2,6 +2,7 @@
 {% block title %}Users{% endblock %}
 {% block head %}
     <link href="{{ url_for('static', filename= 'files/adminuseraccounts/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <script src="{{ url_for('static', filename='files/adminuseraccounts/data.js') }}"></script>
 {% endblock %}
 {% block content %}
       <!-- Usres(Group) -->
@@ -13,6 +14,7 @@
           <div id="usersbx_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
+          <div id="cover"></div>
         </div>
 
         <!-- SearchButton (Rectangle) -->
@@ -78,10 +80,10 @@
                   <td>{{ useraccount.role }}</td>
                   {% if useraccount.activated %}
                     <td>Active</td>
-                    <td><input type="button" value="Deactivate" style="background-color: red; color: white; height: 30px; width: 80px; border-radius: 5px"></td>
+                    <td><input type="button" value="Deactivate" onclick='showpopup({{ useraccount.username | tojson }})' style="background-color: red; color: white; height: 30px; width: 80px; border-radius: 5px"></td>
                   {% else %}
                     <td>Deactivated</td>
-                    <td><input type="button" value="Activate" style="background-color: #2A7F62; color: white; height: 30px"></td>
+                    <td><input type="button" value="Activate" onclick="window.location.href='{{ url_for('admin_activate_user', username=useraccount.username)}}'" style="background-color: #2A7F62; color: white; height: 30px"></td>
                   {% endif %}
                   <td>{{ useraccount.password_expire_date }}</td>
                   <td>{{ useraccount.f_name }}</td>
@@ -94,7 +96,22 @@
               {% endfor %}
 		  </table>
       </div>
-    <script>
-
-    </script>
+      <div id="popup_suspension">
+      <form action="{{ url_for('admin_deactivate_user')}}" method="post">
+        <p><span>Time for Deactivation</span></p>
+        <p><span>user: </span><span id="user_name"></span></p><br>
+        <input id="user" type="text" value="" name="username_input" style="display: none">
+          <label>
+              <input id="Indefinite" type="radio" onchange="required_dates()" checked value="Indefinite" name="time">Indefinite
+          </label><br><br>
+          <label>
+              <input id="Range" type="radio" onchange="required_dates()" value="Range" name="time">Choose data range<br>
+              <input id="date_start" type="date" onchange="correct_date_range()" name="start_date">
+              <br>to<br>
+              <input id="date_end" type="date" onchange="correct_date_range()" name="end_date">
+          </label><br><br>
+          <input id="popup_btn_sus" type="submit" value="Submit">
+          <input id="popup_cancel_sus" type="button" onclick="closepopup()" value="Cancel">
+      </form>
+      </div>
 {% endblock %}
