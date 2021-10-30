@@ -27,10 +27,18 @@
         <input type="button" value="Create An Account" onclick="window.location.href='{{ url_for('admin_create_account')}}'" style="width: 100%; background-color: green; font-size: 20px; color: white"/>
       </div>
 
+        <!-- Account Category lbl (Rectangle) -->
+      <div id="accountcatlbl" class="ax_default label" data-label="Account Name">
+        <div id="accountcatlbl_div" class=""></div>
+        <div id="accountcatlbl_text" class="text ">
+          <p><span>Account Category:</span></p>
+        </div>
+      </div>
+
       <!-- Account Category (Droplist) -->
       <div id="accountcat" class="ax_default droplist" data-label="AccountType">
         <div id="accountcat_div" class=""></div>
-        <select id="accountcat_input" class="u13_input">
+        <select id="accountcat_input" class="u13_input" onchange="filter()">
           <option class="accountcat_input_option" value="All">All</option>
           <option class="accountcat_input_option" value="Asset">Asset</option>
           <option class="accountcat_input_option" value="Liability">Liability</option>
@@ -40,26 +48,18 @@
         </select>
       </div>
 
-      <!-- Account Category lbl (Rectangle) -->
-      <div id="accountcatlbl" class="ax_default label" data-label="Account Name">
-        <div id="accountcatlbl_div" class=""></div>
-        <div id="accountcatlbl_text" class="text ">
-          <p><span>Account Category:</span></p>
-        </div>
-      </div>
-
       <!-- Account Term Label (Rectangle) -->
       <div id="accounttermlbl" class="ax_default label" data-label="Account Name">
         <div id="accounttermlbl_div" class=""></div>
         <div id="accounttermlbl_text" class="text ">
-          <p><span>Account Term:</span></p>
+          <p><span>Account subcategory:</span></p>
         </div>
       </div>
 
 	  <!-- Account Term (Droplist) -->
-      <div id="accountterm" class="ax_default droplist" data-label="AccountType">
+      <div id="accountsubcat" class="ax_default droplist" data-label="AccountType">
         <div id="accountterm_div" class=""></div>
-        <select id="accountterm_input" class="u17_input">
+        <select id="accountsubcat_input" class="u17_input" onchange="filter()">
           <option class="accountterm_input_option" value="All">All</option>
           <option class="accountterm_input_option" value="Current">Current</option>
         </select>
@@ -73,12 +73,10 @@
         </div>
       </div>
 
-      
-
       <!-- AccountType (Droplist) -->
       <div id="accountstatus" class="ax_default droplist" data-label="AccountType">
         <div id="accountstatus_div" class=""></div>
-        <select id="accountstatus_input" class="u18_input">
+        <select id="accountstatus_input" class="u18_input" onchange="filter()">
           <option class="accountstatus_input_option" value="All">All</option>
           <option class="accountstatus_input_option" value="Active">Active</option>
           <option class="accountstatus_input_option" value="Inactive">Inactive</option>
@@ -120,7 +118,7 @@
               {% if account.active %}
                 <td>Active</td>
               {% else %}
-                <td>Deactivated</td>
+                <td>Inactive</td>
               {% endif %}
               <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
               <td><form method="post">

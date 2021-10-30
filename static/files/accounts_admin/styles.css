@@ -374,7 +374,7 @@
   word-wrap:break-word;
   text-transform:none;
 }
-#accountterm_input {
+#accountsubcat_input {
   position:absolute;
   left:0px;
   top:0px;
@@ -393,7 +393,7 @@
   background-color:transparent;
   border-color:transparent;
 }
-#accountterm_input.disabled {
+#accountsubcat_input.disabled {
   position:absolute;
   left:0px;
   top:0px;
@@ -435,7 +435,7 @@
   font-size:16px;
   color:#043F60;
 }
-#accountterm {
+#accountsubcat {
   border-width:0px;
   position:absolute;
   left:696px;
@@ -449,7 +449,7 @@
   font-size:16px;
   color:#043F60;
 }
-#accountterm .text {
+#accountsubcat .text {
   position:absolute;
   align-self:flex-start;
   padding:2px 2px 2px 2px;
@@ -479,7 +479,7 @@
   font-size:16px;
   color:#043F60;
 }
-#accountterm.disabled {
+#accountsubcat.disabled {
 }
 .accountterm_input_option {
   font-weight:400;
@@ -870,10 +870,7 @@ th, td {
 }
 #usersearchtxt.hint.disabled {
 }
-tr:nth-child(4n){
-  background-color: #DDECF5;
-}
-tr:nth-child(4n+1){
+tr:nth-child(even){
   background-color: #DDECF5;
 }
 th {
