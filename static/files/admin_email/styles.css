@@ -345,7 +345,7 @@
 }
 #u4.hint.disabled {
 }
-#u5_input {
+#subject_input {
   position:absolute;
   left:0px;
   top:0px;
@@ -364,7 +364,7 @@
   background-color:transparent;
   border-color:transparent;
 }
-#u5_input.hint {
+#subject_input.hint {
   position:absolute;
   left:0px;
   top:0px;
@@ -383,7 +383,7 @@
   background-color:transparent;
   border-color:transparent;
 }
-#u5_input.disabled {
+#subject_input.disabled {
   position:absolute;
   left:0px;
   top:0px;
@@ -402,7 +402,7 @@
   background-color:transparent;
   border-color:transparent;
 }
-#u5_input.hint.disabled {
+#subject_input.hint.disabled {
   position:absolute;
   left:0px;
   top:0px;
@@ -535,27 +535,27 @@
 }
 #u5.hint.disabled {
 }
-#u6_input {
+#body_input {
   position:absolute;
   left:0px;
   top:0px;
   width:823px;
   height:365px;
-  padding:2px 2px 2px 2px;
+  padding:2px 2px 345px 2px;
   font-family:"Montserrat-Regular", "Montserrat", sans-serif;
   font-weight:400;
   font-style:normal;
   font-size:16px;
   letter-spacing:normal;
   color:#000000;
-  vertical-align:none;
+  vertical-align:top;
   text-align:left;
   text-transform:none;
   background-color:transparent;
   border-color:transparent;
   resize:none;
 }
-#u6_input.hint {
+#body_input.hint {
   position:absolute;
   left:0px;
   top:0px;
@@ -575,7 +575,7 @@
   border-color:transparent;
   resize:none;
 }
-#u6_input.disabled {
+#body_input.disabled {
   position:absolute;
   left:0px;
   top:0px;
@@ -595,7 +595,7 @@
   border-color:transparent;
   resize:none;
 }
-#u6_input.hint.disabled {
+#body_input.hint.disabled {
   position:absolute;
   left:0px;
   top:0px;

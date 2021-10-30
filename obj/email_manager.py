@@ -21,8 +21,12 @@ def send_email(recipient_list, subject, body):
     email_text += body
 
     # Attempt to send the email
-    smtp_server = smtplib.SMTP_SSL(gmail_smtp_server[0], gmail_smtp_server[1])
-    smtp_server.ehlo()
-    smtp_server.login(gmail_user, gmail_password)
-    smtp_server.sendmail(gmail_user, recipient_list, email_text)
-    smtp_server.close()
+    try:
+        smtp_server = smtplib.SMTP_SSL(gmail_smtp_server[0], gmail_smtp_server[1])
+        smtp_server.ehlo()
+        smtp_server.login(gmail_user, gmail_password)
+        smtp_server.sendmail(gmail_user, recipient_list, email_text)
+        smtp_server.close()
+        return True
+    except smtplib.SMTPRecipientsRefused:
+        return False

@@ -133,11 +133,16 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/admin_email')
+    @app.route('/admin_email', methods=['GET', 'POST'])
     def admin_email():
         if "username" in session:
-            username = session["username"]
-            return render_template('admin_email.html', username=username)
+            if request.method == "POST":
+                print(request.form)
+                return admin_processes.email(database)
+            else:
+                username = session["username"]
+                users = database.get_user_accounts()
+                return render_template('admin_email.html', username=username, users=users)
         else:
             return redirect(url_for('login_page'))
 
