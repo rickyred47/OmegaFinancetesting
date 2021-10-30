@@ -2,6 +2,7 @@
     {% block title %}Chart of Accounts{% endblock %}
     {% block head %}
     <link href="{{ url_for('static', filename= 'files/accounts_admin/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <script src="{{ url_for('static', filename= 'files/accounts_admin/data.js') }}"></script>
     {% endblock %}
     {% block content %}
 
@@ -92,7 +93,7 @@
         </div>
       </div>
 		
-	  <table>
+	  <table id="accounts_table">
 		  <tr>
 			  <th>Account<br>Number</th>
 			  <th>Account<br>Name</th>
@@ -103,26 +104,25 @@
 			  <th>Date Created</th>
 			  <th>Comment</th>
 			  <th>Account State</th>
-              <th>Buttons</th>
+              <th>Edit</th>
+              <th>Activate<br>Deactivate</th>
 		  </tr>
           {% for account in accounts %}
             <tr style="text-align: right">
-                <td rowspan="2"><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
-              <td rowspan="2">{{ account.name }}</td>
-              <td rowspan="2">{{ account.category }}</td>
-              <td rowspan="2">{{ account.subcategory }}</td>
-              <td rowspan="2" style="text-align: left; padding-left: 10px">{{ "${:,.2f}".format(account.balance)}}</td>
-              <td rowspan="2">{{ account.created_by }}</td>
-              <td rowspan="2">{{ account.date_created }}</td>
-              <td rowspan="2">{{ account.comment }}</td>
+                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
+              <td>{{ account.name }}</td>
+              <td>{{ account.category }}</td>
+              <td>{{ account.subcategory }}</td>
+              <td style="text-align: left; padding-left: 10px">{{ "${:,.2f}".format(account.balance)}}</td>
+              <td>{{ account.created_by }}</td>
+              <td>{{ account.date_created }}</td>
+              <td>{{ account.comment }}</td>
               {% if account.active %}
-                <td rowspan="2">Active</td>
+                <td>Active</td>
               {% else %}
-                <td rowspan="2">Deactivatec</td>
+                <td>Deactivated</td>
               {% endif %}
               <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
-              </tr>
-              <tr style="text-align: right">
               <td><form method="post">
                   <input type="text" value="{{ account.id }}" style="display: none; visibility: hidden" name="account_id">
                   {% if account.active %}
@@ -145,7 +145,10 @@
 
       <!-- SearchBar (Text Field) -->
       <div id="usersearchtxt" class="ax_default text_field" data-label="SearchBar">
-        <div id="usersearchtxt_div" class=""></div>
-        <input id="usersearchtxt_input" type="text" value="" class="u38_input" placeholder="User Search"/>
+        <p><label for="search_options"></label><select id="search_options" name="search_options" onchange="accounts_search()">
+            <option value="Number">Number</option>
+            <option value="Name">Name</option>
+        </select>
+            <input id="search_input" type="text" value="" class="u38_input" onkeyup="accounts_search()" placeholder="User Search"/></p>
       </div>
 {% endblock %}
