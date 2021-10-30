@@ -69,8 +69,12 @@ def setup_page_routing(app, database):
         if "username" in session:
             username = session["username"]
             if request.method == "POST":
-                admin_processes.account_form(database)
-                return redirect('admin_accounts')
+                if admin_processes.is_valid_name_number(database):
+                    admin_processes.account_form(database)
+                    return redirect(url_for('admin_chart_accounts'))
+                else:
+                    error = database.get_error_message()
+                    return render_template('createnewaccount.html', username=username, error_message=error.message)
             else:
                 return render_template('createnewaccount.html', username=username)
         else:

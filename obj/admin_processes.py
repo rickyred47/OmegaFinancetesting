@@ -9,19 +9,32 @@ def account_form(database):
     subcategory = request.form["subcategory"]
     initial_num = request.form["initial_num"]
     number = request.form["number"]
+    account_num = concat(initial_num, number)
     description = request.form["description"]
     normal_side = request.form["normal_side"]
     balance = request.form["initial_balance"]
     comment = request.form["comment"]
     created = datetime.now()
     statement = get_statement_doc(category)
-    account_num = concat(initial_num, number)
 
     AccountsTable = database.get_accounts_table()
     new_account = AccountsTable(number=account_num, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
                                 category=category, subcategory=subcategory, created_by=1234, active=True)
     database.commit_to_database(new_account)
+
+
+def is_valid_name_number(database):
+    name = request.form["name"]
+    number = request.form["number"]
+    accounts = database.get_accounts_table()
+    for account in accounts:
+        if name.lower() == account.name.lower():
+            return False
+        if number == account.number:
+            return False
+        else:
+            return True
 
 
 def get_statement_doc(categories):
@@ -40,7 +53,7 @@ def edit_account(account):
     username = session["username"]
     num_string = str(account.number)
     initial = int(num_string[0])
-    number = int(num_string[1:])
+    number = num_string[1:]
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
                            subcategory=account.subcategory, initial_number=initial, number=number,
                            description=account.description, normal_side=account.normal_side,
