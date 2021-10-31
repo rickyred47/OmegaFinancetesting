@@ -103,7 +103,7 @@
           <!-- Account Number Text Field (Text Field) -->
           <div id="numbertxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="numbertxt_div" class=""></div>
-            <input id="numbertxt_input" type="number" value="" class="u35_input" name="number" required/>
+            <input id="numbertxt_input" type="number" value="" pattern="[0-9]" onkeypress="return !(event.charCode === 46)" class="u35_input" name="number" required/>
           </div>
 
           <!-- Description Label (Rectangle) -->
