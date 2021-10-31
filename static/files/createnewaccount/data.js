@@ -21,7 +21,3 @@
         document.getElementById("catnumber_input").value = 5;
     }
 }
-
-function deny_decimal_space(){
-
-}
