@@ -1,4 +1,4 @@
-﻿{% extends "base_admin.html" %}
+﻿{% extends "base_accountant.html" %}
     {% block title %}Chart of Accounts{% endblock %}
     {% block head %}
     <link href="{{ url_for('static', filename= 'files/accounts_admin/styles.css')}}" type="text/css" rel="stylesheet"/>
@@ -28,11 +28,6 @@
         <div id="filterbylbl_text" class="text ">
           <p><span>Filter by:</span></p>
         </div>
-      </div>
-		
-      <!-- Add_Button (Shape) -->
-      <div id="addbtn" class="ax_default button" data-label="Add_Button">
-        <input type="button" value="Create An Account" onclick="window.location.href='{{ url_for('admin_create_account')}}'" style="width: 100%; background-color: green; font-size: 20px; color: white"/>
       </div>
 
         <!-- Account Category lbl (Rectangle) -->
@@ -133,12 +128,10 @@
 			  <th>Date Created</th>
 			  <th>Comment</th>
 			  <th>Account State</th>
-              <th>Edit</th>
-              <th>Activate<br>Deactivate</th>
 		  </tr>
           {% for account in accounts %}
             <tr style="text-align: right">
-                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
+                <td><a href="{{ url_for('accountant_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
               <td>{{ account.name }}</td>
               <td>{{ account.category }}</td>
               <td>{{ account.subcategory }}</td>
@@ -151,15 +144,6 @@
               {% else %}
                 <td>Inactive</td>
               {% endif %}
-              <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
-              <td><form method="post">
-                  <input type="text" value="{{ account.id }}" style="display: none; visibility: hidden" name="account_id">
-                  {% if account.active %}
-                    <input id="deactivate_btn" type="submit" value="Deactivate">
-                  {% else %}
-                    <input id="deactivate_btn" type="submit" value="Activate" style="background-color: #2A7F62">
-                  {% endif %}
-              </form></td>
               </tr>
           {% endfor %}
 	  </table>

@@ -1,0 +1,69 @@
+﻿{% extends "base_manager.html" %}
+    {% block title %}Ledger{% endblock %}
+    {% block head %}
+    <link href="{{ url_for('static', filename= 'files/ledger/styles.css')}}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+    {% block content %}
+
+      <!-- Unnamed (Group) -->
+      <div id="u27" class="ax_default" data-left="362" data-top="164" data-width="1564" data-height="1298">
+
+        <!-- White_Box (Rectangle) -->
+        <div id="u28" class="ax_default box_1" data-label="White_Box">
+          <div id="u28_div" class=""></div>
+          <div id="u28_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- SearchButton (Rectangle) -->
+        <div id="u29" class="ax_default primary_button" data-label="SearchButton">
+          <div id="u29_div" class=""></div>
+          <div id="u29_text" class="text ">
+            <p><span>Search</span></p>
+          </div>
+        </div>
+
+        <!-- SearchBar (Text Field) -->
+        <div id="u30" class="ax_default text_field" data-label="SearchBar">
+          <div id="u30_div" class=""></div>
+          <input id="u30_input" type="text" value="" class="u30_input"/>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u31" class="ax_default heading_1">
+          <div id="u31_div" class=""></div>
+          <div id="u31_text" class="text ">
+            <p><span>{{ name }} Ledger</span></p>
+          </div>
+        </div>
+
+        <!-- Account Number (Rectangle) -->
+        <div id="u32" class="ax_default label" data-label="Account Number">
+          <div id="u32_div" class=""></div>
+          <div id="u32_text" class="text ">
+            <p><span>Account No. {{ number }}</span></p>
+          </div>
+        </div>
+
+        <!-- Balance (Rectangle) -->
+        <div id="u33" class="ax_default label" data-label="Balance">
+          <div id="u33_div" class=""></div>
+          <div id="u33_text" class="text ">
+            <p><span>Balance: {{ "${:,.2f}".format(balance) }}</span></p>
+          </div>
+        </div>
+        <div id="account_table_div">
+        <table id="account_table">
+            <tr>
+                <th>Date</th>
+                <th>Post Reference</th>
+                <th>Description</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Balance</th>
+            </tr>
+        </table>
+        </div>
+      </div>
+    {% endblock %}

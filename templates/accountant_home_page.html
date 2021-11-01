@@ -1,0 +1,143 @@
+{% extends "base_accountant.html" %}
+{% block title %}Admin Home{% endblock %}
+{% block head %}
+    <link href="{{ url_for('static', filename= 'files/admin/styles.css')}}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <!-- Recent Accounts (Group) -->
+      <div id="recentaccounts" class="ax_default" data-left="377" data-top="182" data-width="1060" data-height="300">
+
+        <!-- Recent Accounts Box (Rectangle) -->
+        <div id="raccountbx" class="ax_default box_1">
+          <div id="raccountbx_div" class=""></div>
+          <div id="raccountbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent Accounts Label (Rectangle) -->
+        <div id="raccountlbl" class="ax_default label">
+          <div id="raccountlbl_div" class=""></div>
+          <div id="raccountlbl_text" class="text ">
+            <p><span>Recent Accounts</span><a href="{{ url_for('admin_chart_accounts')}}" title = "Navigate to Accounts Page"><span style="font-size: 12px; margin-left: 20px">See all accounts</span></a></p>
+          </div>
+        </div>
+
+		<!-- Recent Accounts Table (Table) -->
+		<table id="raccountstable" style="width: 1040px">
+			<tr style="text-align: left">
+			<th>Account Number</th>
+		    <th>Account Name</th>
+			<th>Category</th>
+			<th>Sub-Category</th>
+            <th>Balance</th>
+			<th>Account<br>State</th>
+			</tr>
+            {% for account in accounts %}
+                <tr style="text-align: left">
+                <td>{{ account.number }}</td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.category }}</td>
+                <td>{{ account.subcategory }}</td>
+                <td style="text-align: left; padding-left: 5px">{{ "${:,.2f}".format(account.balance) }}</td>
+                <td>{{ account.active }}</td>
+                </tr>
+            {% endfor %}
+		</table>
+
+      </div>
+
+      <!-- New Users (Group) -->
+      <div id="newusergrp" class="ax_default" data-left="377" data-top="519" data-width="1060" data-height="300">
+
+        <!-- New Users Box (Rectangle) -->
+        <div id="newuserbx" class="ax_default box_1">
+          <div id="newuserbx_div" class=""></div>
+          <div id="newuserbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- New User Label (Rectangle) -->
+        <div id="newuserlbl" class="ax_default label">
+          <div id="newuserlbl_div" class=""></div>
+          <div id="newuserlbl_text" class="text ">
+              <p><span>New Users</span><span style="font-size: 12px; margin-left: 20px"><a href="{{ url_for('admin_new_user_accounts')}}">See all new users</a></span></p>
+          </div>
+        </div>
+
+		<!-- New Users Table (Table) -->
+		<table id="newusertable" style="width: 1040px">
+			<tr style="text-align: left" >
+			<th style="width: 100px">User Status</th>
+            <th style="width: 140px">Username</th>
+		    <th style="width: 100px">First Name</th>
+			<th style="width: 100px">Last Name</th>
+			<th style="width: 300px">Email</th>
+			<th style="width: 300px">Address</th>
+			</tr>
+        </table>
+        <div style="width: 1040px; height: 200px; overflow-y: auto; position:absolute; left: 393px; top:610px">
+        <table style="width: 1040px">
+            {% for newuser in newusers %}
+                <tr style="text-align: left">
+                <td style="width: 100px">{{ newuser.status }}</td>
+                <td style="width: 140px">{{ newuser.username }}</td>
+                <td style="width: 100px">{{ newuser.firstname }}</td>
+                <td style="width: 100px">{{ newuser.lastname }}</td>
+                <td style="width: 300px">{{ newuser.email }}</td>
+                <td style="width: 300px">{{ newuser.street }}</td>
+                </tr>
+            {% endfor %}
+		</table>
+        </div>
+      </div>
+
+      <!-- Recent Users Group (Group) -->
+      <div id="rusersgrp" class="ax_default" data-left="377" data-top="850" data-width="1060" data-height="300">
+
+        <!-- Recent Users Box (Rectangle) -->
+        <div id="ruserbx" class="ax_default box_1">
+          <div id="ruserbx_div" class=""></div>
+          <div id="ruserbx_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent User Label (Rectangle) -->
+        <div id="ruserlbl" class="ax_default label">
+          <div id="ruserlbl_div" class=""></div>
+          <div id="ruserlbl_text" class="text">
+            <p><span>Recent Users</span><a href="{{ url_for('admin_user_accounts')}}" title = "Navigate to Users Page"><span style="font-size: 12px; margin-left: 20px">See all users</span></a></p>
+          </div>
+        </div>
+
+		<!-- Recent Users Table (Table) -->
+		<table id="rusertable" style="width: 1040px">
+			<tr style="text-align: left">
+			<th>User Id</th>
+		    <th>Username</th>
+			<th>role</th>
+			<th>Active</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+            <th>Email</th>
+			</tr>
+            {% for user in users %}
+                <tr style="text-align: left">
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                {% if user.activated %}
+                    <td>Active</td>
+                {% else %}
+                    <td>Deactivate</td>
+                {% endif %}
+                <td>{{ user.f_name }}</td>
+                <td>{{ user.l_name }}</td>
+                <td>{{ user.email }}</td>
+                </tr>
+            {% endfor %}
+		</table>
+      </div>
+{% endblock %}
