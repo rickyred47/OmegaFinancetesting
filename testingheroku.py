@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from obj.database_handler import DatabaseHandler
-from routine import password_expire_check, user_activation_check
+from routine import password_expire_check
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Futureime21"
@@ -29,4 +29,3 @@ if __name__ == '__main__':
 
     # Run routine checks
     password_expire_check.begin(omega_database)
-    user_activation_check.begin(omega_database)
