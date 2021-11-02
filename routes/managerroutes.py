@@ -37,3 +37,11 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
+    @app.route('/manager/journal')
+    def manager_journal():
+        if "Manager" in session:
+            username = session["Manager"]
+            accounts = database.get_active_accounts()
+            return render_template('manager_journal.html', username=username, accounts=accounts)
+        else:
+            return redirect(url_for('login_page'))
