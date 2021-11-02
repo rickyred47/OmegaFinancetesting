@@ -19,10 +19,18 @@ function min_date_today() {
     let year = d.getFullYear();
     let date;
     if (month < 10) {
-	    date = "" + year + "-0" + month + "-" + day;
+	    if(day < 10) {
+            date = "" + year + "-0" + month + "-0" + day;
+        }else{
+            date = "" + year + "-0" + month + "-" + day;
+        }
     }
     else {
-	    date = "" + year + "-" + month + "-" + day;
+	    if(day < 10){
+            date = "" + year + "-" + month + "-0" + day;
+        }else {
+            date = "" + year + "-" + month + "-" + day;
+        }
     }
     document.getElementById("date_start").min = date;
     document.getElementById("date_end").min = date;

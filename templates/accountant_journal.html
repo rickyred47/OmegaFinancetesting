@@ -15,7 +15,7 @@
 			<input id="add_btn_input" type="button" value="+Add" onclick="show_journal_entry()">
 		</div>
 		<div id="journal_entry" style="padding:20px">
-		<form>
+		<form action="{{ url_for('accountant_journal_submit') }}" method="post">
 			<table id="journal_table_entry">
 				<tr>
 					<th style="width: 400px">Journal Entry</th>
@@ -27,7 +27,7 @@
 					<td>
                         <br>
 						<div style="padding-left:10px">
-							<p><span>Date: </span><span><input id="journal_date" type="date"></span></p>
+							<p><span>Date: </span><span><input id="journal_date" type="date" name="date_entry"></span></p>
 							<br>
 							<select id="journal_type" name="journal_type" style="width: 400px">
 								<option value="Regular">Regular</option>
@@ -36,15 +36,16 @@
 								<option value="Closing">Closing</option>
 							</select>
 							<br><br>
-							<textarea id="description" rows="5" cols="50" placeholder="Description here ..."></textarea>
+							<textarea id="description" rows="5" cols="50" placeholder="Description here ..." name="description"></textarea>
 							<p>Choose a file to upload:</p>
-  								<label for="myfile">Select a file:</label>
-  								<input type="file" id="file_btn" name="my_file">
+  								<label for="file">Select a file:</label>
+  								<input type="file" id="file_btn" name="file">
 						</div>
 					</td>
 					<td>
 						<div id="debit_accounts_div" style="padding-left:10px">
-							<select id="debit_account" class="debit_select_accounts" name="debit_account">
+                        <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
+							<select id="debit_account" class="debit_select_accounts" name="debit_account_select">
                                 {% for account in accounts %}
                                 <option value="{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
@@ -53,7 +54,8 @@
                         </div>
 						<br>
 						<div id="credit_accounts_div" style="padding-left:50px">
-							<select id="credit_account" name="credit_account">
+                        <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
+							<select id="credit_account" name="credit_account_select">
                                 {% for account in accounts %}
                                 <option value="{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
@@ -63,12 +65,12 @@
 					</td>
 					<td>
 						<div id="debit_amount" style="padding-left:10px">
-							<label>&#36; </label><input id="debit_amount_input" type="number" placeholder="0.00">
+							<label>&#36; </label><input id="debit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="debit_account_amount">
 						</div>
 					</td>
 					<td>
 						<div id="credit_amount" style="padding-left:30px; padding-top:55px">
-							<label>&#36; </label><input id="credit_amount_input" type="number" placeholder="0.00">
+							<label>&#36; </label><input id="credit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="credit_account_amount">
 						</div>
 					</td>
 				</tr>
@@ -116,4 +118,28 @@
 			</tr>
 		</table>
 	</div>
+        <script>
+        const now = new Date();
+let now_day = now.getDate();
+let now_month = now.getMonth();
+now_month = now_month + 1;
+let year = now.getFullYear();
+let date;
+if (now_month < 10) {
+    if(now_day < 10) {
+        date = "" + year + "-0" + now_month + "-0" + now_day;
+    } else {
+        date = "" + year + "-0" + now_month + "-" + now_day;
+    }
+}
+else {
+    if(now_day < 10){
+        date = "" + year + "-" + now_month + "-0" + now_day;
+    } else {
+        date = "" + year + "-" + now_month + "-" + now_day;
+    }
+}
+document.getElementById("journal_date").min = date;
+document.getElementById("journal_date").value = date;
+        </script>
     {% endblock %}

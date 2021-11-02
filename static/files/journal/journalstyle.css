@@ -115,3 +115,6 @@
 	#description {
 		resize: none;
 	}
+	.input_amounts {
+		text-align: right;
+	}

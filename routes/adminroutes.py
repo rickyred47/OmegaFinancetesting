@@ -28,26 +28,20 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/admin_chart_accounts')
-    def admin_journalize():
-        if "Administrator" in session:
-            username = session["Administrator"]
-            return render_template('journalize_admin.html', username=username)
-        else:
-            return redirect(url_for('login_page'))
-
-    @app.route('/admin_accounts', methods=['GET', 'POST'])
+    @app.route('/admin_chart_accounts', methods=['GET', 'POST'])
     def admin_chart_accounts():
         if "Administrator" in session:
             username = session["Administrator"]
             if request.method == "POST":
                 idnum = request.form["account_id"]
                 account = database.get_account_info(idnum)
-                admin_processes.toggle_active(account, database)
-                accounts = database.get_accounts_info()
-                return render_template('admin_char_accounts.html', accounts=accounts, username=username)
+                num = admin_processes.toggle_active(account, database)
+                accounts = database.get_active_accounts()
+                error = database.get_error_message(num)
+                return render_template('admin_char_accounts.html', accounts=accounts, username=username,
+                                       error_message=error.message)
             else:
-                accounts = database.get_accounts_info()
+                accounts = database.get_active_accounts()
                 return render_template('admin_char_accounts.html', accounts=accounts, username=username)
         else:
             return redirect(url_for('login_page'))
@@ -73,7 +67,7 @@ def setup_page_routing(app, database):
                     admin_processes.account_form(database)
                     return redirect(url_for('admin_chart_accounts'))
                 else:
-                    error = database.get_error_message()
+                    error = database.get_error_message(8)
                     return render_template('createnewaccount.html', username=username, error_message=error.message)
             else:
                 return render_template('createnewaccount.html', username=username)
@@ -84,6 +78,7 @@ def setup_page_routing(app, database):
     def admin_add_chart_account():
         if "Administrator" in session:
             username = session["Administrator"]
+            accounts = database.get_inactive_accounts()
             return render_template('add_to_chart_of_accounts.html', username=username)
         else:
             return redirect(url_for('login_page'))

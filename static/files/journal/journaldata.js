@@ -1,6 +1,7 @@
 let debit_counter = 0;
 let credit_counter =  0;
 
+
 function show_journal_entry(){
     document.getElementById("journal_entry").style.display = "block";
 }
@@ -24,18 +25,24 @@ function add_account_input(type){
   document.getElementById(amount_name).appendChild(cln1);
   if(type === 'debit') {
       debit_counter++;
+      set_counter_input_text(debit_counter,type);
       var name = "" + type + "_account_select" + debit_counter;
       var name2 = "" + type + "_account_amount" + debit_counter;
       cln.setAttribute("id", name);
+      cln.setAttribute("name", name)
       cln1.setAttribute("id", name2);
+      cln1.setAttribute("name", name2);
       document.getElementById("credit_amount").style.paddingTop = padding1;
       cln1.style.height = "30px";
   }else if(type === 'credit') {
       credit_counter++;
+      set_counter_input_text(credit_counter, type);
       var name1 = "" + type + "_account_select" + credit_counter;
       var name3 = "" + type + "_account_amount" + credit_counter;
       cln.setAttribute("id",name1);
+      cln.setAttribute("name", name1);
       cln1.setAttribute("id", name3);
+      cln1.setAttribute("name", name3)
       cln1.style.height = "30px";
   }
 }
@@ -52,6 +59,7 @@ function delete_account_input(type){
             select_input.remove();
             amount_input.remove();
             debit_counter--;
+            set_counter_input_text(debit_counter, type);
         }
     }else if(type === 'credit') {
         if(credit_counter > 0){
@@ -62,6 +70,11 @@ function delete_account_input(type){
             select_input1.remove();
             amount_input1.remove();
             credit_counter--;
+            set_counter_input_text(credit_counter, type);
         }
     }
+}
+function set_counter_input_text(counter, type){
+    var element_id = "" + type + "_accounts_counter";
+    document.getElementById(element_id ).value = counter;
 }

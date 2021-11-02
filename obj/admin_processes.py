@@ -27,7 +27,7 @@ def account_form(database):
 def is_valid_name_number(database):
     name = request.form["name"]
     number = request.form["number"]
-    accounts = database.get_accounts_table()
+    accounts = database.get_accounts_info()
     for account in accounts:
         if name.lower() == account.name.lower():
             return False
@@ -35,6 +35,7 @@ def is_valid_name_number(database):
             return False
         else:
             return True
+    return True
 
 
 def get_statement_doc(categories):
@@ -80,13 +81,15 @@ def edit_save_account(account, database):
 
 
 def toggle_active(account, database):
+    num = 0
     if account.active:
         if not account.balance:
-            # TODO: give error message when account balance is nonzero
             account.active = False
-    else:
-        account.active = True
+            num = 0
+        else:
+            num = 10
     database.commit_info()
+    return num
 
 
 def new_use_admin(database):

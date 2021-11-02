@@ -1,4 +1,5 @@
 from flask import render_template, request, session, redirect, url_for
+from obj import journal
 
 
 def setup_page_routing(app, database):
@@ -43,5 +44,16 @@ def setup_page_routing(app, database):
             username = session["Accountant"]
             accounts = database.get_active_accounts()
             return render_template('accountant_journal.html', username=username, accounts=accounts)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/journal/submit', methods=['GET', 'POST'])
+    def accountant_journal_submit():
+        if "Accountant" in session:
+            if request.method == "POST":
+                journal.journal_entry_form()
+                return redirect(url_for('accountant_journal'))
+            else:
+                return '', 204
         else:
             return redirect(url_for('login_page'))
