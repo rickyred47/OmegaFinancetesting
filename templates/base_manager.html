@@ -83,7 +83,7 @@
         <div id="home" class="ax_default heading_2" data-label="Event_Log_Nav">
           <div id="home_div" class=""></div>
           <div id="home_text" class="text ">
-            <p><a href="{{ url_for('admin_home_page') }}"><span>Home</span></a></p>
+            <p><a href="{{ url_for('manager_home_page') }}"><span>Home</span></a></p>
           </div>
         </div>
 
@@ -91,7 +91,7 @@
         <div id="journal" class="ax_default heading_2" data-label="Chart_of_Accounts_Nav">
           <div id="journal_div" class="" ></div>
           <div id="journal_text" class="text ">
-              <p><a href="" title = "Journalize"><span>Journalize</span></a></p>
+              <p><a href="{{ url_for('manager_journal') }}" title = "Journalize"><span>Journalize</span></a></p>
           </div>
         </div>
 
@@ -99,7 +99,7 @@
         <div id="accountslink" class="ax_default heading_2" data-label="Accounts_Nav">
           <div id="accountslink_div" class="" ></div>
           <div id="accountslink_text" class="text ">
-              <p><a href="{{ url_for('admin_accounts') }}" title = "Browse Index of Financial Accounts in General Ledger"><span>Chart of Accounts</span></a></p>
+              <p><a href="{{ url_for('manager_chart_accounts') }}" title = "Browse Index of Financial Accounts in General Ledger"><span>Chart of Accounts</span></a></p>
           </div>
         </div>
 
@@ -107,7 +107,7 @@
         <div id="userslink" class="ax_default heading_2" data-label="Users_Nav">
           <div id="userslink_div" class="" ></div>
           <div id="userslink_text" class="text ">
-              <p><a href="{{ url_for('admin_user_accounts') }}" title = "Browse Users of Omega Finance"><span>Users</span></a></p>
+              <p><a href="" title = "Browse Users of Omega Finance"><span>Users</span></a></p>
           </div>
         </div>
 

@@ -29,7 +29,8 @@
         <div id="createlbl" class="ax_default heading_1" data-label="Addtochartofaccounts_Header">
           <div id="createlbl_div" class=""></div>
           <div id="createlbl_text" class="text ">
-            <p><span>Create an Account</span></p>
+            <p><span>Create an Account      </span>
+            <span id="error_message">{{ error_message }}</span></p>
           </div>
         </div>
 
@@ -102,7 +103,7 @@
           <!-- Account Number Text Field (Text Field) -->
           <div id="numbertxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="numbertxt_div" class=""></div>
-            <input id="numbertxt_input" type="number" value="" class="u35_input" name="number" required/>
+            <input id="numbertxt_input" type="number" value="" pattern="[0-9]" onkeypress="return !(event.charCode === 46)" class="u35_input" name="number" required/>
           </div>
 
           <!-- Description Label (Rectangle) -->
@@ -116,7 +117,7 @@
           <!-- Description Text (Text Field) -->
           <div id="descriptiontxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="descriptiontxt_div" class=""></div>
-            <input id="descriptiontxt_input" type="text" value="" class="u37_input" name="description" required/>
+              <textarea id="descriptiontxt_input" placeholder="Description here ..." name="description"></textarea>
           </div>
 
           <!-- Normal Side Label (Rectangle) -->
@@ -170,7 +171,7 @@
           <!-- Comment Text (Text Field) -->
           <div id="commenttxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="commenttxt_div" class=""></div>
-            <input id="commenttxt_input" type="text" value="" class="u46_input" name="comment" required/>
+              <textarea id="commenttxt_input" name="comment" placeholder="Comment here ..."></textarea>
           </div>
 
 

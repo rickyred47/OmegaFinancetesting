@@ -45,11 +45,16 @@ def setup_page_routing(app, database):
 
     @app.route('/logged_off')
     def logged_off_page():
-        if "username" in session:
-            session.pop("username", None)
+        if "Administrator" in session:
+            session.pop("Administrator", None)
+            return render_template('Logoff.html')
+        elif "Manager" in session:
+            session.pop("Manager", None)
+            return render_template('Logoff.html')
+        elif "Accountant" in session:
             return render_template('Logoff.html')
         else:
-            return redirect('login_page')
+            return redirect(url_for('login_page'))
 
     @app.route('/security_questions', methods=['GET', 'POST'])
     def security_question_new_user():

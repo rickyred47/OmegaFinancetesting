@@ -1,0 +1,69 @@
+{% extends "base_accountant.html" %}
+{% block title %}Admin Home{% endblock %}
+{% block head %}
+    <link href="{{ url_for('static', filename= 'files/accountant_home/styles.css')}}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <!-- Recent Accounts (Group) -->
+      <div id="recentaccounts" class="ax_default" data-left="377" data-top="182" data-width="1060" data-height="300">
+
+        <!-- Recent_Approved_Journal_Entries_Group (Group) -->
+      <div id="u7" class="ax_default" data-label="Recent_Approved_Journal_Entries_Group" data-left="377" data-top="182" data-width="1060" data-height="300">
+
+        <!-- Recent_Approved_Journal_Entries_Backdrop (Rectangle) -->
+        <div id="u8" class="ax_default box_2" data-label="Recent_Approved_Journal_Entries_Backdrop">
+          <div id="u8_div" class=""></div>
+          <div id="u8_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent_Approved_Journal_Entries (Rectangle) -->
+        <div id="u9" class="ax_default label" data-label="Recent_Approved_Journal_Entries">
+          <div id="u9_div" class=""></div>
+          <div id="u9_text" class="text ">
+            <p><span>Recent Approved Journal Entries</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent_Pending_Entries_Group (Group) -->
+      <div id="u10" class="ax_default" data-label="Recent_Pending_Entries_Group" data-left="377" data-top="519" data-width="1060" data-height="300">
+
+        <!-- Recent_Pending_Journal_Entries_Backdrop (Rectangle) -->
+        <div id="u11" class="ax_default box_1" data-label="Recent_Pending_Journal_Entries_Backdrop">
+          <div id="u11_div" class=""></div>
+          <div id="u11_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent_Pending_Journal_Entries (Rectangle) -->
+        <div id="u12" class="ax_default label" data-label="Recent_Pending_Journal_Entries">
+          <div id="u12_div" class=""></div>
+          <div id="u12_text" class="text ">
+            <p><span>Recent Pending Journal Entries</span></p>
+          </div>
+        </div>
+      </div>
+
+       <!-- Recent_Rejected_Journal_Entries_Group (Group) -->
+      <div id="u13" class="ax_default" data-label="Recent_Rejected_Journal_Entries_Group" data-left="377" data-top="873" data-width="1060" data-height="300">
+
+        <!-- Recent_Rejected_Journal_Entries_Backdrop (Rectangle) -->
+        <div id="u14" class="ax_default box_1" data-label="Recent_Rejected_Journal_Entries_Backdrop">
+          <div id="u14_div" class=""></div>
+          <div id="u14_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Recent_Rejected_Journal_Entries (Rectangle) -->
+        <div id="u15" class="ax_default label" data-label="Recent_Rejected_Journal_Entries">
+          <div id="u15_div" class=""></div>
+          <div id="u15_text" class="text ">
+            <p><span>Recent Rejected Journal Entries</span></p>
+          </div>
+        </div>
+      </div>
+{% endblock %}

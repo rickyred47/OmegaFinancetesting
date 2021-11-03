@@ -17,8 +17,7 @@ def is_valid_entry(database):
                 return redirect(url_for('security_question_new_user'))
             user.password_incorrect_entries = 0
             database.commit_info()
-            session["username"] = user.f_name + " " + user.l_name
-            return user_role(user.role)
+            return user_role(user)
         else:
             return error_message_page(4, database)
     else:
@@ -43,13 +42,17 @@ def error_message_page(num, database):
     return render_template('login.html', error_message=error_message.message)
 
 
-def user_role(role):
+def user_role(user):
+    role = user.role
     if role == "Administrator":
+        session["Administrator"] = user.f_name + " " + user.l_name
         return redirect(url_for('admin_home_page'))
     if role == "Manager":
-        return redirect('manager_home_page')
+        session["Manager"] = user.f_name + " " + user.l_name
+        return redirect(url_for('manager_home_page'))
     if role == "Accountant":
-        return redirect('accountant_home_page')
+        session["Accountant"] = user.f_name + " " + user.l_name
+        return redirect(url_for('accountant_home_page'))
 
 
 def error_message_page_fp(num, database):

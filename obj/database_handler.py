@@ -21,6 +21,16 @@ class DatabaseHandler:
         self.AccountsTable = self.base.classes.accounts
         account = self.db.session.query(self.AccountsTable).filter_by(id=id_num).first()
         return account
+
+    def get_active_accounts(self):
+        self.AccountsTable = self.base.classes.accounts
+        accounts = self.db.session.query(self.AccountsTable).filter_by(active=True)
+        return accounts
+
+    def get_inactive_accounts(self):
+        self.AccountsTable = self.base.classes.accounts
+        accounts = self.db.session.query(self.AccountsTable).filter_by(active=False)
+        return accounts
     # End of Accounts Database Methods
 
     # New User Database Methods

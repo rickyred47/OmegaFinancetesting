@@ -1,0 +1,120 @@
+#background_bx {
+    	position: absolute;
+    	left: 349px;
+ 		top: 164px;
+    	width:1500px;
+    	height:1300px;
+    	background-color: white;
+    	border-color: #797979FF;
+    	padding: 30px;
+		font-size: 20px;
+		color: #043F60;
+	}
+	#journal_lbl {
+    	text-align: left;
+    	font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+		font-weight: bold;
+    	font-size:40px;
+    	color: #0077B6FF;
+		width:150px;
+	}
+	#search_bx {
+		position: absolute;
+		top:30px;
+		left:1300px;
+		font-family:"Montserrat Bold", "Montserrat Regular", "Montserrat", sans-serif;
+	}
+	#add_btn{
+		position: absolute;
+		left:200px;
+		top:40px;
+	}
+	#add_btn_input {
+		width: 80px;
+		background-color: #2A7F62;
+		border-radius:5px;
+		color:white;
+	}
+	#journal_entry {
+		display:none;
+		border: 1px solid black;
+		width: 1400px;
+		background-color: #B6BFC8;
+		font-family:"Montserrat Bold", "Montserrat Regular", "Montserrat", sans-serif;
+	}
+	td {
+		vertical-align: top;
+	}
+	#debit_account, #credit_account{
+		width:200px;
+		height:30px;
+	}
+	#debit_amount, #credit_amount{
+		width:200px
+	}
+	#buttons {
+		left:1200px;
+	}
+	#close {
+		background-color: #f78b8b;
+		border-radius:5px;
+		width:80px;
+		color: white;
+	}
+	#clear {
+		background-color: red;
+		border-radius:5px;
+		width:80px;
+		color: white;
+	}
+	#submit {
+		background-color: #2A7F62;
+		border-radius: 5px;
+		width: 80px;
+		color: white;
+	}
+	#journal_table_entry, #journal_table {
+		border-collapse: collapse;
+		text-align: left;
+	}
+	th {
+		border-bottom: 1px solid black;
+	}
+	#date_range{
+		width:400px;
+	}
+	#status {
+		padding-left:20px
+	}
+	select {
+		height:30px;
+		font-size:18px;
+	}
+	textarea {
+		font-size:18px;
+	}
+	input{
+		font-size: 18px;
+	}
+	#debit_amount_input, #credit_amount_input {
+		text-align:right;
+		width: 180px;
+		height: 30px;
+	}
+	.flex_container {
+		display: flex;
+	}
+	.plus_minus_btns {
+		width:30px;
+		border-radius: 5px;
+		background-color: #7dbce7;
+	}
+	#file_btn {
+		border-radius:5px;
+	}
+	#description {
+		resize: none;
+	}
+	.input_amounts {
+		text-align: right;
+	}

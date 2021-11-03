@@ -9,19 +9,33 @@ def account_form(database):
     subcategory = request.form["subcategory"]
     initial_num = request.form["initial_num"]
     number = request.form["number"]
+    account_num = concat(initial_num, number)
     description = request.form["description"]
     normal_side = request.form["normal_side"]
     balance = request.form["initial_balance"]
     comment = request.form["comment"]
     created = datetime.now()
     statement = get_statement_doc(category)
-    account_num = concat(initial_num, number)
 
     AccountsTable = database.get_accounts_table()
     new_account = AccountsTable(number=account_num, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
                                 category=category, subcategory=subcategory, created_by=1234, active=True)
     database.commit_to_database(new_account)
+
+
+def is_valid_name_number(database):
+    name = request.form["name"]
+    number = request.form["number"]
+    accounts = database.get_accounts_info()
+    for account in accounts:
+        if name.lower() == account.name.lower():
+            return False
+        if number == account.number:
+            return False
+        else:
+            return True
+    return True
 
 
 def get_statement_doc(categories):
@@ -40,7 +54,7 @@ def edit_account(account):
     username = session["username"]
     num_string = str(account.number)
     initial = int(num_string[0])
-    number = int(num_string[1:])
+    number = num_string[1:]
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
                            subcategory=account.subcategory, initial_number=initial, number=number,
                            description=account.description, normal_side=account.normal_side,
@@ -67,13 +81,15 @@ def edit_save_account(account, database):
 
 
 def toggle_active(account, database):
+    num = 0
     if account.active:
         if not account.balance:
-            # TODO: give error message when account balance is nonzero
             account.active = False
-    else:
-        account.active = True
+            num = 0
+        else:
+            num = 10
     database.commit_info()
+    return num
 
 
 def new_use_admin(database):
@@ -141,11 +157,13 @@ def send_acceptance_email(user):
     subject = "Account Accepted"
     email_manager.send_email(user_email, subject, body)
 
+
 def email(database):
     email_manager.send_email([request.form['to_input']], request.form['subject_input'], request.form['body_input'])
     username = session["username"]
     users = database.get_user_accounts()
     return render_template('admin_email.html', username=username, users=users)
+
 
 def deactivated_user(user, database):
     user.activated = False
@@ -162,15 +180,3 @@ def set_suspension(user, database):
     user.suspension_end = end_date
     user.is_suspended = True
     database.commit_info()
-
-
-def auto_activate_deactivate_users(database):
-    # Could put a while forever loop it can keep on checking
-    suspended_users = database.get_suspended_users
-    for suspended_user in suspended_users:
-        if suspended_user.suspension_start == date.today():
-            deactivated_user(suspended_user, database)
-        if suspended_user.suspension_end < date.today():
-            suspended_users.activated = True
-            suspended_user.is_suspended = False
-            database.commit_info()

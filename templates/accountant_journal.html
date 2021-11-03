@@ -1,0 +1,145 @@
+{% extends "base_accountant.html" %}
+    {% block title %}Journal{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/journal/journalstyle.css') }}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/journal/journaldata.js') }}"></script>
+    {% endblock %}
+    {% block content %}
+    <!--White ground box -->
+    <div id="background_bx">
+		<div id="journal_lbl">
+			<p>Journal</p>
+		</div>
+
+		<div id="add_btn">
+			<input id="add_btn_input" type="button" value="+Add" onclick="show_journal_entry()">
+		</div>
+		<div id="journal_entry" style="padding:20px">
+		<form action="{{ url_for('accountant_journal_submit') }}" method="post">
+			<table id="journal_table_entry">
+				<tr>
+					<th style="width: 400px">Journal Entry</th>
+					<th style="width: 500px">Accounts</th>
+					<th style="width: 250px">Debit</th>
+					<th style="width: 250px">Credit</th>
+				</tr>
+				<tr>
+					<td>
+                        <br>
+						<div style="padding-left:10px">
+							<p><span>Date: </span><span><input id="journal_date" type="date" name="date_entry"></span></p>
+							<br>
+							<select id="journal_type" name="journal_type" style="width: 400px">
+								<option value="Regular">Regular</option>
+								<option value="Adjusting">Adjusting</option>
+								<option value="Reversing">Reversing</option>
+								<option value="Closing">Closing</option>
+							</select>
+							<br><br>
+							<textarea id="description" rows="5" cols="50" placeholder="Description here ..." name="description"></textarea>
+							<p>Choose a file to upload:</p>
+  								<label for="file">Select a file:</label>
+  								<input type="file" id="file_btn" name="file">
+						</div>
+					</td>
+					<td>
+						<div id="debit_accounts_div" style="padding-left:10px">
+                        <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
+							<select id="debit_account" class="debit_select_accounts" name="debit_account_select">
+                                {% for account in accounts %}
+                                <option value="{{ account.name }}">{{ account.name }}</option>
+                                {% endfor %}
+                            </select>
+							<input id="debit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('debit')"><input id="debit_minus_btn" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('debit')">
+                        </div>
+						<br>
+						<div id="credit_accounts_div" style="padding-left:50px">
+                        <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
+							<select id="credit_account" name="credit_account_select">
+                                {% for account in accounts %}
+                                <option value="{{ account.name }}">{{ account.name }}</option>
+                                {% endfor %}
+                            </select>
+							<input id="credit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('credit')"><input id="credit_minus_btn" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('credit')">
+						</div>
+					</td>
+					<td>
+						<div id="debit_amount" style="padding-left:10px">
+							<label>&#36; </label><input id="debit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="debit_account_amount">
+						</div>
+					</td>
+					<td>
+						<div id="credit_amount" style="padding-left:30px; padding-top:55px">
+							<label>&#36; </label><input id="credit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="credit_account_amount">
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="buttons">
+                <input id="close" type="button" value="Close" onclick="close_journal_entry()">
+			    <input id="clear" type="reset" value="Clear">
+			    <input id="submit" type="submit" value="Submit">
+			</div>
+			</form>
+		</div>
+
+		<div id="search_bx">
+			<input type="text" placeholder="Journal Search">
+		</div>
+        <br><br>
+        <div class="flex_container">
+		<div id="date_range">
+			<p>Filter: Date Range</p>
+			<p><input type="date"> to <input type="date"></p>
+		</div>
+		<div id="status">
+			<p>Filter: Status</p>
+			<p>
+				<select id="select_status" name="select_status" style="width:200px">
+					<option value="All">All</option>
+					<option value="Pending">Pending</option>
+					<option value="Apporved">Approved</option>
+					<option value="Rejected">Rejected</option>
+				</select>
+			</p>
+		</div>
+        </div>
+        <br>
+		<table id="journal_table">
+			<tr>
+				<th style="width:200px">Date</th>
+				<th style="width:200px">Type</th>
+				<th style="width:45px">PR</th>
+				<th style="width:100px">Created By</th>
+				<th style="width:325px">Accounts</th>
+				<th style="width:200px">Debit</th>
+				<th style="width:200px">Credit</th>
+				<th style="width:145px">Status</th>
+			</tr>
+		</table>
+	</div>
+        <script>
+        const now = new Date();
+let now_day = now.getDate();
+let now_month = now.getMonth();
+now_month = now_month + 1;
+let year = now.getFullYear();
+let date;
+if (now_month < 10) {
+    if(now_day < 10) {
+        date = "" + year + "-0" + now_month + "-0" + now_day;
+    } else {
+        date = "" + year + "-0" + now_month + "-" + now_day;
+    }
+}
+else {
+    if(now_day < 10){
+        date = "" + year + "-" + now_month + "-0" + now_day;
+    } else {
+        date = "" + year + "-" + now_month + "-" + now_day;
+    }
+}
+document.getElementById("journal_date").min = date;
+document.getElementById("journal_date").value = date;
+        </script>
+    {% endblock %}

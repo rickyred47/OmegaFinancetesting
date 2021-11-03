@@ -357,7 +357,6 @@
   text-transform:none;
 }
 #u33_div {
-  border-width:0px;
   position:absolute;
   left:0px;
   top:0px;
@@ -401,4 +400,21 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+#account_table_div {
+  position:absolute;
+  left:375px;
+  top:320px;
+  width:1500px;
+  height:32px;
+  display:flex;
+  font-family:"Merriweather", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:25px;
+  color:#043F60;
+}
+#account_table {
+  width: inherit;
+  border-bottom: 1px solid black;
 }
