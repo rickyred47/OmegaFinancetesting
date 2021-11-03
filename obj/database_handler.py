@@ -22,6 +22,11 @@ class DatabaseHandler:
         account = self.db.session.query(self.AccountsTable).filter_by(id=id_num).first()
         return account
 
+    def get_all_accounts(self):
+        self.AccountsTable = self.base.classes.accounts
+        accounts = self.db.session.query(self.AccountsTable)
+        return accounts
+
     def get_active_accounts(self):
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable).filter_by(active=True)

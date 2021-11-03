@@ -78,8 +78,8 @@ def edit_save_account(account, database):
     normal_side = request.form["normal_side"]
     balance = request.form["initial_balance"]
 
-    AccountEventsTable = database.get_account_events_table()
     if any([name != account.name, number != account.number, normal_side != account.normal_side, str(balance) != str(account.balance)]):
+        AccountEventsTable = database.get_account_events_table()
         created = datetime.now()
         new_account_event = AccountEventsTable(event_type='Modified', username=session['username'], date_made=created,
                                                account_id=account.id, account_number_before=account.number,
