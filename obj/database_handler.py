@@ -33,6 +33,12 @@ class DatabaseHandler:
         return accounts
     # End of Accounts Database Methods
 
+    # Account events database methods
+    def get_account_events_table(self):
+        self.account_events_table = self.base.classes.account_event
+        return self.account_events_table
+    # End of account events database methods
+
     # New User Database Methods
     def get_new_user_Table(self):
         self.NewUsersTable = self.base.classes.new_user
