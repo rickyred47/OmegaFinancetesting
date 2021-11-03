@@ -114,6 +114,22 @@ def toggle_active(account, database):
             num = 0
         else:
             num = 10
+    else:
+        account.active = True
+        num = 0
+
+    if num == 0:
+        AccountEventsTable = database.get_account_events_table()
+        created = datetime.now()
+        new_account_event = AccountEventsTable(event_type='Modified', username=session['username'], date_made=created,
+                                               account_id=account.id, account_number_before=account.number,
+                                               account_number_after=account.number, account_name_before=account.name,
+                                               account_name_after=account.name, account_balance_before=account.balance,
+                                               account_balance_after=account.balance, account_normal_side_before=account.normal_side,
+                                               account_normal_side_after=account.normal_side, account_active_before=not account.active,
+                                               account_active_after=account.active)
+        database.commit_to_database(new_account_event)
+
     database.commit_info()
     return num
 
