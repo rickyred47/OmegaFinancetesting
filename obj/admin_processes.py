@@ -72,15 +72,32 @@ def edit_account(account):
 
 def edit_save_account(account, database):
     username = session["username"]
-    account.category = request.form["category"]
-    account.name = request.form["name"]
-    account.subcategory = request.form["subcategory"]
     initial_num = request.form["initial_num"]
-    number = request.form["number"]
-    account.number = concat(initial_num, number)
+    name = request.form["name"]
+    number = int(str(concat(initial_num, request.form["number"]))[1:])
+    normal_side = request.form["normal_side"]
+    balance = request.form["initial_balance"]
+
+    AccountEventsTable = database.get_account_events_table()
+    if any([name != account.name, number != account.number, normal_side != account.normal_side, str(balance) != str(account.balance)]):
+        created = datetime.now()
+        new_account_event = AccountEventsTable(event_type='Modified', username=session['username'], date_made=created,
+                                               account_id=account.id, account_number_before=account.number,
+                                               account_number_after=number, account_name_before=account.name,
+                                               account_name_after=name, account_balance_before=account.balance,
+                                               account_balance_after=balance, account_normal_side_before=account.normal_side,
+                                               account_normal_side_after=normal_side, account_active_before=account.active,
+                                               account_active_after=account.active)
+        database.commit_to_database(new_account_event)
+
+    # Edit account
+    account.category = request.form["category"]
+    account.name = name
+    account.subcategory = request.form["subcategory"]
+    account.number = number
     account.description = request.form["description"]
-    account.normal_side = request.form["normal_side"]
-    account.balance = request.form["initial_balance"]
+    account.normal_side = normal_side
+    account.balance = balance
     account.comment = request.form["comment"]
     database.commit_info()
     return render_template('editaccount.html', accountcat=account.category, name=account.name,
