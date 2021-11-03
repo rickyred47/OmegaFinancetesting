@@ -36,7 +36,7 @@ def setup_page_routing(app, database):
                 idnum = request.form["account_id"]
                 account = database.get_account_info(idnum)
                 num = admin_processes.toggle_active(account, database)
-                accounts = database.get_all_accounts()
+                accounts = database.get_active_accounts()
                 error = database.get_error_message(num)
                 return render_template('admin_char_accounts.html', accounts=accounts, username=username,
                                        error_message=error.message)
