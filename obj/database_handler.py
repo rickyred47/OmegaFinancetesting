@@ -100,6 +100,16 @@ class DatabaseHandler:
 
     # End of User Database Methods
 
+    # Journal Database Methods
+    def get_journal_table(self):
+        self.Journal_Table = self.base.classes.journal
+        return self.Journal_Table
+
+    def get_journal_entries(self):
+        self.Journal_Table = self.base.classes.journal
+        journal_entries = self.db.session.query(self.Journal_Table)
+        return journal_entries
+
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message
         error = self.db.session.query(self.ErrorTable).filter_by(id=id_num).first()
