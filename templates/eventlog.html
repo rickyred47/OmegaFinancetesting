@@ -40,11 +40,11 @@
 		  </tr>
           {% for event in events %}
             <tr style="text-align: right">
-                <td> {{ event.event_type }}</td>
+                <td> {{ event.id }}</td>
                 <td> {{ event.date_made }}</td>
               <td> {{ event.event_type }}</td>
-              <td> {{ event.account_number_before }}</td>
-              <td> {{ event.account_number_after }}</td>
+              <td> {{ event.account_number_before }} <br> {{ event.account_name_before }} <br> {{ "${:,.2f}".format(event.account_balance_before) }} <br> {{ event.account_normal_side_before }} <br> {{ event.account_active_before }}</td>
+              <td> {{ event.account_number_after }} <br> {{ event.account_name_after }} <br> {{ "${:,.2f}".format(event.account_balance_after) }} <br> {{ event.account_normal_side_after }} <br> {{ event.account_active_after }}</td>
               <td> {{ event.account_id }}</td>
               <td> {{ event.username }}</td>
             </tr>
