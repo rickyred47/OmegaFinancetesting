@@ -16,6 +16,8 @@
 		</div>
 		<div id="journal_entry" style="padding:20px">
 		<form action="{{ url_for('accountant_journal_submit') }}" method="post">
+        <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
+        <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
 			<table id="journal_table_entry">
 				<tr>
 					<th style="width: 400px">Journal Entry</th>
@@ -42,35 +44,36 @@
   								<input type="file" id="file_btn" name="file">
 						</div>
 					</td>
-					<td>
-						<div id="debit_accounts_div" style="padding-left:10px">
-                        <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
-							<select id="debit_account" class="debit_select_accounts" name="debit_account_select">
+                <!-- Accounts selection -->
+					<td id="accounts_column">
+						<div id="debit_accounts_div0" style="padding-left:10px">
+							<select id="debit_account_select0" class="debit_select_accounts" name="debit_account_select0">
+                                <option value="">--Accounts--</option>
                                 {% for account in accounts %}
                                 <option value="{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
                             </select>
-							<input id="debit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('debit')"><input id="debit_minus_btn" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('debit')">
+							<input id="debit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('debit')"><input id="debit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('debit', this.id)">
                         </div>
-						<br>
-						<div id="credit_accounts_div" style="padding-left:50px">
-                        <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
-							<select id="credit_account" name="credit_account_select">
+                        <br id="break">
+						<div id="credit_accounts_div0" style="padding-left:50px">
+							<select id="credit_account_select0" class="credit_select_accounts" name="credit_account_select0">
+                                <option value="">--Accounts--</option>
                                 {% for account in accounts %}
                                 <option value="{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
                             </select>
-							<input id="credit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('credit')"><input id="credit_minus_btn" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('credit')">
+							<input id="credit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('credit')"><input id="credit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('credit', this.id)">
 						</div>
 					</td>
-					<td>
-						<div id="debit_amount" style="padding-left:10px">
-							<label>&#36; </label><input id="debit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="debit_account_amount">
+					<td id="debit_amount_column">
+						<div id="debit_amount0" style="padding-left:10px">
+							<label>&#36; </label><input id="debit_amount_input0" class="input_amounts" type="number" placeholder="0.00" name="debit_amount_input0" style="width: 150px">
 						</div>
 					</td>
-					<td>
-						<div id="credit_amount" style="padding-left:30px; padding-top:55px">
-							<label>&#36; </label><input id="credit_amount_input" class="input_amounts" type="number" placeholder="0.00" name="credit_account_amount">
+					<td id="credit_amount_column" style="padding-top:55px">
+						<div id="credit_amount0" style="padding-left:30px">
+							<label>&#36; </label><input id="credit_amount_input0" class="input_amounts" type="number" placeholder="0.00" name="credit_amount_input0" style="width: 150px">
 						</div>
 					</td>
 				</tr>
@@ -116,6 +119,34 @@
 				<th style="width:200px">Credit</th>
 				<th style="width:145px">Status</th>
 			</tr>
+            {% for entry in entries %}
+            <tr style="border-bottom: 2px solid black">
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.type }}</td>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.created_by }}</td>
+                <td style="padding-left: 30px">
+                    {% for daccounts in entry.debit_accounts%}
+                        {{ daccounts }}<br>
+                    {% endfor %}
+                    {% for caccounts in entry.credit_accounts %}
+                       <p style="margin-left: 30px">{{ caccounts }}</p>
+                    {% endfor %}
+                     <p>Description: {{ entry.description }}</p>
+                </td>
+                <td>
+                    {% for damount in entry.debit_amounts %}
+                        {{ damount }} <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for camount in entry.credit_amounts %}
+                        {{ camount }} <br>
+                    {% endfor %}
+                </td>
+                <td>{{ entry.status }}</td>
+            </tr>
+            {% endfor %}
 		</table>
 	</div>
         <script>

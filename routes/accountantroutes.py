@@ -43,15 +43,17 @@ def setup_page_routing(app, database):
         if "Accountant" in session:
             username = session["Accountant"]
             accounts = database.get_active_accounts()
-            return render_template('accountant_journal.html', username=username, accounts=accounts)
+            entries = database.get_journal_entries()
+            return render_template('accountant_journal.html', username=username, accounts=accounts, entries=entries)
         else:
             return redirect(url_for('login_page'))
 
     @app.route('/accountant/journal/submit', methods=['GET', 'POST'])
     def accountant_journal_submit():
         if "Accountant" in session:
+            user = session["Accountant"]
             if request.method == "POST":
-                journal.journal_entry_form()
+                journal.journal_entry_form(user, database)
                 return redirect(url_for('accountant_journal'))
             else:
                 return '', 204
