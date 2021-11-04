@@ -6,6 +6,7 @@ class DatabaseHandler:
         self.NewUsersTable = None
         self.UserTable = None
         self.ErrorTable = None
+        self.AccountEventsTable = None
 
     # Accounts Database Methods
     def get_accounts_table(self):
@@ -40,8 +41,9 @@ class DatabaseHandler:
 
     # Account events database methods
     def get_account_events_table(self):
-        self.account_events_table = self.base.classes.account_event
-        return self.account_events_table
+        self.AccountEventsTable = self.base.classes.account_event
+        events = self.db.session.query(self.AccountEventsTable)
+        return events
     # End of account events database methods
 
     # New User Database Methods
