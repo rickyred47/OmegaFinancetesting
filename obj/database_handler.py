@@ -6,7 +6,7 @@ class DatabaseHandler:
         self.NewUsersTable = None
         self.UserTable = None
         self.ErrorTable = None
-        self.account_events_table = None
+        self.AccountEventsTable = None
         self.Journal_Table = None
 
     # Accounts Database Methods
@@ -38,14 +38,13 @@ class DatabaseHandler:
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable).filter_by(active=False)
         return accounts
-
     # End of Accounts Database Methods
 
     # Account events database methods
     def get_account_events_table(self):
-        self.account_events_table = self.base.classes.account_event
-        return self.account_events_table
-
+        self.AccountEventsTable = self.base.classes.account_event
+        events = self.db.session.query(self.AccountEventsTable)
+        return events
     # End of account events database methods
 
     # New User Database Methods
@@ -62,7 +61,6 @@ class DatabaseHandler:
         self.NewUsersTable = self.base.classes.new_user
         new_user = self.db.session.query(self.NewUsersTable).filter_by(username=username).first()
         return new_user
-
     # End of New User Database Methods
 
     # User Database Methods
@@ -96,21 +94,11 @@ class DatabaseHandler:
         return select_user.f_name + " " + select_user.l_name
 
     def get_suspended_users(self):
-        self.UserTable = self.base.classes.user
+        self.UserTable= self.base.classes.user
         users = self.db.session.query(self.UserTable).filter_by(is_suspended=True)
         return users
 
     # End of User Database Methods
-
-    # Journal Database Methods
-    def get_journal_table(self):
-        self.Journal_Table = self.base.classes.journal
-        return self.Journal_Table
-
-    def get_journal_entries(self):
-        self.Journal_Table = self.base.classes.journal
-        journals = self.db.session.query(self.Journal_Table)
-        return journals
 
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message
