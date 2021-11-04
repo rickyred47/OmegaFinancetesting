@@ -74,7 +74,7 @@ def edit_save_account(account, database):
     username = session["username"]
     initial_num = request.form["initial_num"]
     name = request.form["name"]
-    number = int(str(concat(initial_num, request.form["number"]))[1:])
+    number = int(str(concat(initial_num, request.form["number"])))
     normal_side = request.form["normal_side"]
     balance = request.form["initial_balance"]
 

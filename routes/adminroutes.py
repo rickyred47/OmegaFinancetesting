@@ -145,7 +145,7 @@ def setup_page_routing(app, database):
     def eventlog():
         if "Administrator" in session:
             username = session["Administrator"]
-            events = database.get_account_events_table()
+            events = database.get_all_account_events()
             return render_template('eventlog.html', username=username, events=events)
         else:
             return redirect(url_for('login_page'))

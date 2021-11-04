@@ -88,7 +88,7 @@
   white-space:nowrap;
   text-transform:none;
 }
-#filter_date_range_txt_div {
+#filterbylbl_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -102,37 +102,64 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
-  font-family:"Montserrat-Regular", "Montserrat Regular", "Montserrat", sans-serif;
+  font-family:"Montserrat Regular", "Montserrat", sans-serif;
   font-weight:400;
   font-style:normal;
   font-size:18px;
   color:#043F60;
 }
-#filter_date_range_txt {
+#filterbylbl {
   border-width:0px;
   position:absolute;
-  left:407px;
-  top:256px;
+  left:379px;
+  top:264px;
   width:174px;
   height:22px;
   display:flex;
-  font-family:"Montserrat-Regular", "Montserrat Regular", "Montserrat", sans-serif;
+  font-family:"Montserrat Regular", "Montserrat", sans-serif;
   font-weight:400;
   font-style:normal;
   font-size:18px;
   color:#043F60;
 }
-#filter_date_range_txt .text {
+#filterbylbl .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#filter_date_range_txt_text {
+#filterbylbl_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+#date_filter {
+  border-width:0px;
+  position:absolute;
+  left:1150px;
+  top:247px;
+  width: 700px;
+  display:flex;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:18px;
+  color:#043F60;
+}
+#date_range_input {
+  border-width:0px;
+  position:absolute;
+  left:1150px;
+  top:278px;
+  width: 700px;
+  height:25px;
+  display:flex;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+  color:#043F60;
 }
 table {
 	position:absolute;

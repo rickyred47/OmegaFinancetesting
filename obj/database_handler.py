@@ -42,8 +42,12 @@ class DatabaseHandler:
     # Account events database methods
     def get_account_events_table(self):
         self.AccountEventsTable = self.base.classes.account_event
-        events = self.db.session.query(self.AccountEventsTable)
-        return events
+        return self.AccountEventsTable
+
+    def get_all_account_events(self):
+        self.AccountEventsTable = self.base.classes.account_event
+        account_events = self.db.session.query(self.AccountEventsTable)
+        return account_events
     # End of account events database methods
 
     # New User Database Methods
