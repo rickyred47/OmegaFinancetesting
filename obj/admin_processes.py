@@ -24,7 +24,7 @@ def account_form(database):
     database.commit_to_database(new_account)
 
     AccountEventsTable = database.get_account_events_table()
-    new_account_event = AccountEventsTable(event_type='Created', username=session['username'], date_made=created,
+    new_account_event = AccountEventsTable(event_type='Created', username=session['Administrator'], date_made=created,
                                            account_id=new_account.id, account_number_before=None,
                                            account_number_after=account_num, account_name_before=None,
                                            account_name_after=name, account_balance_before=None,
