@@ -20,11 +20,11 @@ def account_form(database):
     AccountsTable = database.get_accounts_table()
     new_account = AccountsTable(number=account_num, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
-                                category=category, subcategory=subcategory, created_by=1234, active=True)
+                                category=category, subcategory=subcategory, created_by=["username"], active=True)
     database.commit_to_database(new_account)
 
     AccountEventsTable = database.get_account_events_table()
-    new_account_event = AccountEventsTable(event_type='Created', username=session['Administrator'], date_made=created,
+    new_account_event = AccountEventsTable(event_type='Created', username=session['username'], date_made=created,
                                            account_id=new_account.id, account_number_before=None,
                                            account_number_after=account_num, account_name_before=None,
                                            account_name_after=name, account_balance_before=None,
@@ -32,6 +32,7 @@ def account_form(database):
                                            account_normal_side_after=normal_side, account_active_before=None,
                                            account_active_after=True)
     database.commit_to_database(new_account_event)
+
 
 def is_valid_name_number(database):
     name = request.form["name"]

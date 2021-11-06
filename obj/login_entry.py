@@ -44,6 +44,7 @@ def error_message_page(num, database):
 
 def user_role(user):
     role = user.role
+    session["username"] = user.username
     if role == "Administrator":
         session["Administrator"] = user.f_name + " " + user.l_name
         return redirect(url_for('admin_home_page'))

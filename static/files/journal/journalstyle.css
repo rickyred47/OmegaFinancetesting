@@ -42,8 +42,21 @@
 		background-color: #B6BFC8;
 		font-family:"Montserrat Bold", "Montserrat Regular", "Montserrat", sans-serif;
 	}
+	table, td, tr, th {
+		border-collapse: collapse;
+	}
+	th {
+	text-align: center;
+	}
 	td {
 		vertical-align: top;
+		padding: 5px;
+	}
+	.entries_info{
+		 border-bottom: 2px solid black;
+	}
+	.entries_info:hover {
+		background-color: #DDECF5;
 	}
 	#debit_account, #credit_account{
 		width:200px;
