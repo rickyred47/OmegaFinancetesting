@@ -50,7 +50,7 @@
 							<select id="debit_account_select0" class="debit_select_accounts" name="debit_account_select0">
                                 <option value="">--Accounts--</option>
                                 {% for account in accounts %}
-                                <option value="{{ account.name }}">{{ account.name }}</option>
+                                <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
                             </select>
 							<input id="debit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('debit')"><input id="debit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('debit', this.id)">
@@ -60,7 +60,7 @@
 							<select id="credit_account_select0" class="credit_select_accounts" name="credit_account_select0">
                                 <option value="">--Accounts--</option>
                                 {% for account in accounts %}
-                                <option value="{{ account.name }}">{{ account.name }}</option>
+                                <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
                                 {% endfor %}
                             </select>
 							<input id="credit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('credit')"><input id="credit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('credit', this.id)">

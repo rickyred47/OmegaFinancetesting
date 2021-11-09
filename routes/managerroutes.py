@@ -40,6 +40,14 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
+    @app.route('/manager/<account_number>_to_id')
+    def manager_number_id(account_number):
+        if"Manager" in session:
+            account = database.get_account_info_by_number(account_number)
+            return redirect(url_for('manager_account_ledger', account_id=account.id))
+        else:
+            return '', 204
+
     @app.route('/manager/journal')
     def manager_journal():
         if "Manager" in session:

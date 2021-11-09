@@ -24,6 +24,11 @@ class DatabaseHandler:
         account = self.db.session.query(self.AccountsTable).filter_by(id=id_num).first()
         return account
 
+    def get_account_info_by_number(self, number):
+        self.AccountsTable = self.base.classes.accounts
+        account = self.db.session.query(self.AccountsTable).filter_by(number=number).first()
+        return account
+
     def get_all_accounts(self):
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable)
