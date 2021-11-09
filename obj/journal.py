@@ -39,3 +39,4 @@ def journal_entry_form(user, database):
                               debit_amounts=debit_accounts_amount, credit_amounts=credit_accounts_amount,
                               status="Pending", description=description)
     database.commit_to_database(new_entry)
+

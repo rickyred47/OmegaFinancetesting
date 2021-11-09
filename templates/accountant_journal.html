@@ -15,7 +15,7 @@
 			<input id="add_btn_input" type="button" value="+Add" onclick="show_journal_entry()">
 		</div>
 		<div id="journal_entry" style="padding:20px">
-		<form action="{{ url_for('accountant_journal_submit') }}" method="post">
+		<form action="{{ url_for('accountant_entry') }}" method="post">
         <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
         <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
 			<table id="journal_table_entry">
@@ -68,12 +68,12 @@
 					</td>
 					<td id="debit_amount_column">
 						<div id="debit_amount0" style="padding-left:10px">
-							<label>&#36; </label><input id="debit_amount_input0" class="input_amounts" type="number" placeholder="0.00" name="debit_amount_input0" style="width: 150px">
+							<label>&#36; </label><input id="debit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" name="debit_amount_input0" style="width: 150px">
 						</div>
 					</td>
 					<td id="credit_amount_column" style="padding-top:55px">
 						<div id="credit_amount0" style="padding-left:30px">
-							<label>&#36; </label><input id="credit_amount_input0" class="input_amounts" type="number" placeholder="0.00" name="credit_amount_input0" style="width: 150px">
+							<label>&#36; </label><input id="credit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" name="credit_amount_input0" style="width: 150px">
 						</div>
 					</td>
 				</tr>
@@ -81,7 +81,8 @@
 			<div id="buttons">
                 <input id="close" type="button" value="Close" onclick="close_journal_entry()">
 			    <input id="clear" type="reset" value="Clear">
-			    <input id="submit" type="submit" value="Submit">
+			    <button id="submit" type="submit" value="Submit" disabled>Submit</button>
+                <p id="balanced_error" style="color: red; display: none">{{ error_message }}</p>
 			</div>
 			</form>
 		</div>

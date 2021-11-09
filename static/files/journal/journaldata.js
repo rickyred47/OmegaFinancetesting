@@ -156,3 +156,48 @@ function selected_options(){
 
     }
 }
+function balanced(){
+    var debit_amount_id, credit_amount_id, amount;
+    var debit_total = 0;
+    var credit_total = 0;
+    for(var i = 0; i <= debit_counter; i++){
+        debit_amount_id = "debit_amount_input" + i;
+        amount = document.getElementById(debit_amount_id).value;
+        if(amount === ""){
+            amount = "0";
+        }
+        debit_total = debit_total + parseInt(amount);
+    }
+    for(var j = 0; j <= credit_counter; j++){
+        credit_amount_id = "credit_amount_input" + j;
+        amount = document.getElementById(credit_amount_id).value;
+        if(amount === ""){
+            amount = "0";
+        }
+        credit_total = credit_total + parseInt(amount);
+    }
+    if(credit_total === debit_total){
+        document.getElementById("balanced_error").style.display = "none";
+        document.getElementById("submit").disabled = false;
+        for(var k = 0; k <= debit_counter; k++){
+            debit_amount_id = "debit_amount_input" + k;
+            document.getElementById(debit_amount_id).style.boxShadow = "0px 0px 10px green";
+        }
+        for(var l = 0; l <= credit_counter; l++){
+            credit_amount_id = "credit_amount_input" + l;
+            document.getElementById(credit_amount_id).style.boxShadow = "0px 0px 10px green";
+        }
+
+    }else {
+        document.getElementById("balanced_error").style.display = "";
+        document.getElementById("submit").disabled = true;
+        for(var m = 0; m <= debit_counter; m++){
+            debit_amount_id = "debit_amount_input" + m;
+            document.getElementById(debit_amount_id).style.boxShadow = "0px 0px 10px red";
+        }
+        for(var n = 0; n <= credit_counter; n++){
+            credit_amount_id = "credit_amount_input" + n;
+            document.getElementById(credit_amount_id).style.boxShadow = "0px 0px 10px red";
+        }
+    }
+}
