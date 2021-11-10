@@ -201,3 +201,25 @@ function balanced(){
         }
     }
 }
+function filter(){
+    var table, tr, txtValueStatus,td7, i;
+    var status = document.getElementById("select_status").value;
+    table = document.getElementById("journal_table");
+    tr = table.getElementsByTagName("tr");
+    if(status === "All"){
+        status = "";
+    }
+    status = status.toUpperCase();
+    for(i = 0; i < tr.length; i++){
+        td7 = tr[i].getElementsByTagName("td")[14];
+        if(td7){
+            var td_p = td7.children;
+            txtValueStatus = td_p[0].textContent || td_p[0].innerText;
+            if(txtValueStatus.toUpperCase().indexOf(status) > -1){
+                tr[i].style.display = "";
+            }else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}

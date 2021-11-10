@@ -99,10 +99,10 @@
 		<div id="status">
 			<p>Filter: Status</p>
 			<p>
-				<select id="select_status" name="select_status" style="width:200px">
+				<select id="select_status" name="select_status" style="width:200px" onchange="filter()">
 					<option value="All">All</option>
 					<option value="Pending">Pending</option>
-					<option value="Apporved">Approved</option>
+					<option value="Accepted">Accepted</option>
 					<option value="Rejected">Rejected</option>
 				</select>
 			</p>
@@ -162,7 +162,7 @@
                     </table>
                 </td>
                 <td>
-                    <p style="text-align: center">{{ entry.status }}</p>
+                    <p id="entry_status" style="text-align: center">{{ entry.status }}</p>
                     {% if entry.status == "Pending" %}
                         <form action="{{ url_for('manager_accept_reject_entry') }}" method="post">
                             <input type="text" value="{{ entry.id }}" style="display: none" name="entry_id">
