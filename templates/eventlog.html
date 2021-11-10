@@ -60,7 +60,7 @@
         </script>
 
     <table id="events_table">
-		  <tr>
+		  <tr style="font-weight: Bold; text-align: center">
 			  <th>Event ID</th>
 			  <th>Time Date</th>
 			  <th>Field Changed</th>
@@ -70,14 +70,14 @@
 			  <th>User</th>
 		  </tr>
           {% for event in events %}
-            <tr style="text-align: right">
+            <tr style="text-align: center">
                 <td> {{ event.id }}</td>
                 <td> {{ event.date_made }}</td>
-              <td> {{ event.event_type }}</td>
-              <td> {{ event.account_number_before }} <br> {{ event.account_name_before }} <br> {{ "${:,.2f}".format(event.account_balance_before) }} <br> {{ event.account_normal_side_before }} <br> {{ 'Active' if event.account_active_before else 'Inactive' }}</td>
-              <td> {{ event.account_number_after }} <br> {{ event.account_name_after }} <br> {{ "${:,.2f}".format(event.account_balance_after) }} <br> {{ event.account_normal_side_after }} <br> {{ 'Active' if event.account_active_after else 'Inactive' }}</td>
-              <td> {{ event.account_id }}</td>
-              <td> {{ event.username }}</td>
+                <td> {{ event.event_type }}</td>
+                <td> {{ event.account_number_before }} <br> {{ event.account_name_before }} <br> {{ event.account_balance_before }} <br> {{ event.account_normal_side_before }} <br> {{ 'Active' if event.account_active_before else 'Inactive' }}</td>
+                <td> {{ event.account_number_after }} <br> {{ event.account_name_after }} <br> {{ event.account_balance_after }} <br> {{ event.account_normal_side_after }} <br> {{ 'Active' if event.account_active_after else 'Inactive' }}</td>
+                <td> {{ event.account_id }}</td>
+                <td> {{ event.username }}</td>
             </tr>
           {% endfor %}
     </table>
