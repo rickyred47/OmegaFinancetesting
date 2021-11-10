@@ -42,8 +42,21 @@
 		background-color: #B6BFC8;
 		font-family:"Montserrat Bold", "Montserrat Regular", "Montserrat", sans-serif;
 	}
+	table, td, tr, th {
+		border-collapse: collapse;
+	}
+	th {
+	text-align: center;
+	}
 	td {
 		vertical-align: top;
+		padding: 5px;
+	}
+	.entries_info{
+		 border-bottom: 2px solid black;
+	}
+	.entries_info:hover {
+		background-color: #DDECF5;
 	}
 	#debit_account, #credit_account{
 		width:200px;
@@ -58,20 +71,26 @@
 	#close {
 		background-color: #f78b8b;
 		border-radius:5px;
+		height: 30px;
 		width:80px;
 		color: white;
 	}
-	#clear {
+	#clear, #reject {
 		background-color: red;
 		border-radius:5px;
 		width:80px;
+		height: 30px;
 		color: white;
 	}
-	#submit {
+	#submit, #accept {
 		background-color: #2A7F62;
 		border-radius: 5px;
+		height: 30px;
 		width: 80px;
 		color: white;
+	}
+	#accept, #reject, #submit {
+		font-size: 16px;
 	}
 	#journal_table_entry, #journal_table {
 		border-collapse: collapse;

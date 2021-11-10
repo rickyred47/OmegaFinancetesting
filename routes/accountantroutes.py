@@ -48,8 +48,8 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/accountant/journal/submit', methods=['GET', 'POST'])
-    def accountant_journal_submit():
+    @app.route('/accountant/journal/submit_entry', methods=['GET', 'POST'])
+    def accountant_entry():
         if "Accountant" in session:
             user = session["Accountant"]
             if request.method == "POST":

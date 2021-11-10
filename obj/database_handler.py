@@ -24,6 +24,11 @@ class DatabaseHandler:
         account = self.db.session.query(self.AccountsTable).filter_by(id=id_num).first()
         return account
 
+    def get_account_info_by_number(self, number):
+        self.AccountsTable = self.base.classes.accounts
+        account = self.db.session.query(self.AccountsTable).filter_by(number=number).first()
+        return account
+
     def get_all_accounts(self):
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable)
@@ -98,7 +103,7 @@ class DatabaseHandler:
         return select_user.f_name + " " + select_user.l_name
 
     def get_suspended_users(self):
-        self.UserTable= self.base.classes.user
+        self.UserTable = self.base.classes.user
         users = self.db.session.query(self.UserTable).filter_by(is_suspended=True)
         return users
 
@@ -113,6 +118,19 @@ class DatabaseHandler:
         self.Journal_Table = self.base.classes.journal
         journal_entries = self.db.session.query(self.Journal_Table)
         return journal_entries
+
+    def get_journal_entry(self, id_num):
+        self.Journal_Table = self.base.classes.journal
+        journal_entry = self.db.session.query(self.Journal_Table).filter_by(id=id_num).first()
+        return journal_entry
+
+    def get_journal_contains_account(self, account_name):
+        self.Journal_Table = self.base.classes.journal
+        account_entries = self.db.session.query(self.Journal_Table).filter(
+            self.Journal_Table.debit_accounts.contains([account_name]) |
+            self.Journal_Table.credit_accounts.contains([account_name])).filter_by(status="Accepted")
+        return account_entries
+    # End Journal Database Methods
 
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message

@@ -45,6 +45,7 @@ def setup_page_routing(app, database):
 
     @app.route('/logged_off')
     def logged_off_page():
+        session.pop("username", None)
         if "Administrator" in session:
             session.pop("Administrator", None)
             return render_template('Logoff.html')
@@ -52,6 +53,7 @@ def setup_page_routing(app, database):
             session.pop("Manager", None)
             return render_template('Logoff.html')
         elif "Accountant" in session:
+            session.pop("Accountant", None)
             return render_template('Logoff.html')
         else:
             return redirect(url_for('login_page'))

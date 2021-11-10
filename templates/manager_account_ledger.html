@@ -63,6 +63,31 @@
                 <th>Credit</th>
                 <th>Balance</th>
             </tr>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.id }}</td>
+                <td>{{ entry.description }}</td>
+                <td>
+                    {% if name in entry.debit_accounts %}
+                        {% for x in range(0, (entry.debit_accounts | length)) %}
+                            {% if entry.debit_accounts[x] == name %}
+                                {{ "${:,.2f}".format(entry.debit_amounts[x]) }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if name in entry.credit_accounts %}
+                        {% for x in range(0, (entry.credit_accounts | length)) %}
+                            {% if entry.credit_accounts[x] == name %}
+                                {{ "${:,.2f}".format(entry.credit_amounts[x]) }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
         </table>
         </div>
       </div>
