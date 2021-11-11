@@ -124,7 +124,8 @@ def setup_page_routing(app, database):
     def admin_password_report():
         if "Administrator" in session:
             username = session["Administrator"]
-            return render_template('admin_password_report.html', username=username)
+            users = database.get_user_accounts()
+            return render_template('admin_password_report.html', username=username, users=users)
         else:
             return redirect(url_for('login_page'))
 
