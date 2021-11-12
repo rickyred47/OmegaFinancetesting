@@ -79,17 +79,9 @@ def setup_page_routing(app, database):
             if request.method == "POST":
                 entry_id = request.form["entry_id"]
                 entry = database.get_journal_entry(entry_id)
-                modified = False
-                if request.form['accept_reject'] == 'Accept':
-                    entry.status = "Accepted"
+                if request.form['accept_reject'] in ['Accept', 'Reject']:
+                    entry.status = 'Accepted' if request.form['accept_reject'] == 'Accept' else 'Rejected'
                     database.commit_info()
-                    modified = True
-                elif request.form['accept_reject'] == 'Reject':
-                    entry.status = "Rejected"
-                    database.commit_info()
-                    modified = True
-                # Create journal event entry
-                if modified:
                     journal_event = database.get_journal_event_table()
                     new_entry2 = journal_event(journal_type_before=entry.type, journal_type_after=entry.type,
                                                journal_debit_accounts_before=entry.debit_accounts, journal_debit_accounts_after=entry.debit_accounts,
