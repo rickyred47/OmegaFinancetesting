@@ -1,4 +1,5 @@
-from flask import request
+from flask import request, session
+from datetime import datetime
 
 
 def journal_entry_form(user, database):
@@ -56,4 +57,14 @@ def journal_entry_form(user, database):
                               status="Pending", description=description, debit_accounts_numbers=debit_account_ids,
                               credit_accounts_numbers=credit_accounts_ids)
     database.commit_to_database(new_entry)
+
+    journal_event = database.get_journal_event_table()
+    new_entry2 = journal_event(journal_type_before=None, journal_type_after=journal_type,
+                               journal_debit_accounts_before=None, journal_debit_accounts_after=debit_accounts,
+                               journal_debit_amounts_before=None, journal_debit_amounts_after=debit_accounts_amount,
+                               journal_credit_accounts_before=None, journal_credit_accounts_after=credit_accounts,
+                               journal_credit_amounts_before=None, journal_credit_amounts_after=credit_accounts_amount,
+                               journal_status_before=None, journal_status_after='Pending',
+                               date_made=datetime.now(), event_type='Created', username=session['username'])
+    database.commit_to_database(new_entry2)
 
