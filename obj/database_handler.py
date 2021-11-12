@@ -132,6 +132,17 @@ class DatabaseHandler:
         return account_entries
     # End Journal Database Methods
 
+    # Journal Event Database Methods
+    def get_journal_event_table(self):
+        self.Journal_Event_Table = self.base.classes.journal_event
+        return self.Journal_Event_Table
+
+    def get_all_journal_events(self):
+        self.JournalEventsTable = self.base.classes.journal_event
+        journal_events = self.db.session.query(self.JournalEventsTable)
+        return journal_events
+    # End Journal Event Database Methods
+
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message
         error = self.db.session.query(self.ErrorTable).filter_by(id=id_num).first()
