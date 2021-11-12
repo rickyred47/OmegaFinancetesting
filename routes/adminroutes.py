@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, url_for, session
+from functools import cmp_to_key
 from obj import admin_processes
 
 
@@ -146,7 +147,12 @@ def setup_page_routing(app, database):
     def eventlog():
         if "Administrator" in session:
             username = session["Administrator"]
-            events = database.get_all_account_events()
+            account_events = [(event, 'Account') for event in database.get_all_account_events()]
+            journal_events = [(event, 'Journal') for event in database.get_all_journal_events()]
+            events = account_events + journal_events
+            def event_compare(item1, item2):
+                return (item1[0].date_made - item2[0].date_made).total_seconds()
+            events = sorted(events, key=cmp_to_key(event_compare), reverse=True)
             return render_template('eventlog.html', username=username, events=events)
         else:
             return redirect(url_for('login_page'))
