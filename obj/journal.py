@@ -65,6 +65,7 @@ def journal_entry_form(user, database):
                                journal_credit_accounts_before=None, journal_credit_accounts_after=credit_accounts,
                                journal_credit_amounts_before=None, journal_credit_amounts_after=credit_accounts_amount,
                                journal_status_before=None, journal_status_after='Pending',
-                               date_made=datetime.now(), event_type='Created', username=session['username'])
+                               date_made=datetime.now(), event_type='Created', username=session['username'],
+                               journal_id=new_entry.id)
     database.commit_to_database(new_entry2)
 

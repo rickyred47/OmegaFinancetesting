@@ -90,7 +90,8 @@ def setup_page_routing(app, database):
                                                journal_credit_amounts_before=entry.credit_amounts, journal_credit_amounts_after=entry.credit_amounts,
                                                journal_status_before='Pending',
                                                journal_status_after='Accepted' if request.form['accept_reject'] == 'Accept' else 'Rejected',
-                                               date_made=datetime.now(), event_type='Modified', username=session['username'])
+                                               date_made=datetime.now(), event_type='Modified', username=session['username'],
+                                               journal_id=entry.id)
                     database.commit_to_database(new_entry2)
                 return redirect(url_for('manager_journal'))
             else:
