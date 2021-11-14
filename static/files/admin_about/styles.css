@@ -564,7 +564,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u27 {
+#ledger_group {
   border-width:0px;
   position:absolute;
   left:500px;
@@ -577,7 +577,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u27 .text {
+#ledger_group .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
@@ -589,7 +589,7 @@
   word-wrap:break-word;
   text-transform:none;
 }
-#u28_div {
+#white_box_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -608,7 +608,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u28 {
+#white_box {
   border-width:0px;
   position:absolute;
   left:758px;
@@ -621,19 +621,19 @@
   font-style:normal;
   color:#043F60;
 }
-#u28 .text {
+#white_box .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u28_text {
+#white_box_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
 }
-#u29_div {
+#search_btn_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -652,7 +652,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u29 {
+#search_btn {
   border-width:0px;
   position:absolute;
   left:1148px;
@@ -665,19 +665,19 @@
   font-style:normal;
   color:#043F60;
 }
-#u29 .text {
+#search_btn .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u29_text {
+#search_btn_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
 }
-#u30_div {
+#search_bar_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -696,7 +696,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u30 {
+#search_bar {
   border-width:0px;
   position:absolute;
   left:479px;
@@ -709,7 +709,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u30 .text {
+#search_bar .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
@@ -721,7 +721,7 @@
   word-wrap:break-word;
   text-transform:none;
 }
-#u31_div {
+#account_name_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -740,7 +740,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u31 {
+#account_name_lbl {
   border-width:0px;
   position:absolute;
   left:802px;
@@ -753,19 +753,19 @@
   font-style:normal;
   color:#043F60;
 }
-#u31 .text {
+#account_name_lbl .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u31_text {
+#account_name_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
 }
-#u32_div {
+#account_number_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -784,7 +784,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u32 {
+#account_number {
   border-width:0px;
   position:absolute;
   left:1119px;
@@ -797,19 +797,19 @@
   font-style:normal;
   color:#043F60;
 }
-#u32 .text {
+#account_number .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u32_text {
+#account_number_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
 }
-#u33_div {
+#balance_div {
   border-width:0px;
   position:absolute;
   left:0px;
@@ -828,7 +828,7 @@
   font-style:normal;
   color:#043F60;
 }
-#u33 {
+#balance {
   border-width:0px;
   position:absolute;
   left:500px;
@@ -841,14 +841,14 @@
   font-style:normal;
   color:#043F60;
 }
-#u33 .text {
+#balance .text {
   position:absolute;
   align-self:flex-start;
   padding:0px 0px 0px 0px;
   box-sizing:border-box;
   width:100%;
 }
-#u33_text {
+#balance_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;

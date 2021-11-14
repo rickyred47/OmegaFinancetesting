@@ -98,9 +98,11 @@ def setup_page_routing(app, database):
     @app.route('/admin_ledger/<account_id>')
     def admin_account_ledger(account_id):
         if "Administrator" in session:
+            username = session["Administrator"]
             account = database.get_account_info(account_id)
-            return render_template('accounts_ledger.html', name=account.name, number=account.number,
-                                   balance=account.balance)
+            ledger_entries = database.get_account_ledger_info(account.number)
+            return render_template('admin_accounts_ledger.html', username=username, account=account,
+                                   ledger_entries=ledger_entries)
         else:
             return redirect(url_for('login_page'))
 

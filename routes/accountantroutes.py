@@ -33,8 +33,9 @@ def setup_page_routing(app, database):
         if "Accountant" in session:
             username = session["Accountant"]
             account = database.get_account_info(account_id)
-            return render_template('accountant_account_ledger.html', username=username, name=account.name,
-                                   number=account.number, balance=account.balance)
+            ledger_entries = database.get_account_ledger_info(account.number)
+            return render_template('accountant_account_ledger.html', username=username, account=account,
+                                   ledger_entries=ledger_entries)
         else:
             return redirect(url_for('login_page'))
 
