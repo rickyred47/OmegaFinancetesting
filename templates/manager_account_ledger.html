@@ -34,7 +34,7 @@
         <div id="u31" class="ax_default heading_1">
           <div id="u31_div" class=""></div>
           <div id="u31_text" class="text ">
-            <p><span>{{ name }} Ledger</span></p>
+            <p><span>{{ account.name }} Ledger</span></p>
           </div>
         </div>
 
@@ -42,7 +42,7 @@
         <div id="u32" class="ax_default label" data-label="Account Number">
           <div id="u32_div" class=""></div>
           <div id="u32_text" class="text ">
-            <p><span>Account No. {{ number }}</span></p>
+            <p><span>Account No. {{ account.number }}</span></p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
         <div id="u33" class="ax_default label" data-label="Balance">
           <div id="u33_div" class=""></div>
           <div id="u33_text" class="text ">
-            <p><span>Balance: {{ "${:,.2f}".format(balance) }}</span></p>
+            <p><span>Balance: {{ "${:,.2f}".format(account.balance) }}</span></p>
           </div>
         </div>
         <div id="account_table_div">
@@ -63,29 +63,30 @@
                 <th>Credit</th>
                 <th>Balance</th>
             </tr>
-            {% for entry in entries %}
+            <tr>
+                <td>{{ account.date_created.strftime('%Y-%m-%d') }}</td>
+                <td></td>
+                <td>{{ account.name }} Created</td>
+                <td></td>
+                <td></td>
+                <td>{{ account.initial_balance }}</td>
+            </tr>
+            {% for entry in ledger_entries %}
             <tr>
                 <td>{{ entry.date }}</td>
-                <td>{{ entry.id }}</td>
+                <td>{{ entry.pr_number }}</td>
                 <td>{{ entry.description }}</td>
                 <td>
-                    {% if name in entry.debit_accounts %}
-                        {% for x in range(0, (entry.debit_accounts | length)) %}
-                            {% if entry.debit_accounts[x] == name %}
-                                {{ "${:,.2f}".format(entry.debit_amounts[x]) }}
-                            {% endif %}
-                        {% endfor %}
+                    {% if entry.debit_amount != none %}
+                        {{ "${:,.2f}".format(entry.debit_amount) }}
                     {% endif %}
                 </td>
                 <td>
-                    {% if name in entry.credit_accounts %}
-                        {% for x in range(0, (entry.credit_accounts | length)) %}
-                            {% if entry.credit_accounts[x] == name %}
-                                {{ "${:,.2f}".format(entry.credit_amounts[x]) }}
-                            {% endif %}
-                        {% endfor %}
+                    {% if entry.credit_amount != none %}
+                        {{ "${:,.2f}".format(entry.credit_amount) }}
                     {% endif %}
                 </td>
+                <td>{{ "${:,.2f}".format(entry.new_balance) }}</td>
             </tr>
             {% endfor %}
         </table>
