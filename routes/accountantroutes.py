@@ -1,3 +1,5 @@
+from functools import cmp_to_key
+
 from flask import render_template, request, session, redirect, url_for
 from obj import journal
 
@@ -57,5 +59,21 @@ def setup_page_routing(app, database):
                 return redirect(url_for('accountant_journal'))
             else:
                 return '', 204
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/eventlog')
+    def accountant_eventlog():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            account_events = [(event, 'Account') for event in database.get_all_account_events()]
+            journal_events = [(event, 'Journal') for event in database.get_all_journal_events()]
+            events = account_events + journal_events
+
+            def event_compare(item1, item2):
+                return (item1[0].date_made - item2[0].date_made).total_seconds()
+
+            events = sorted(events, key=cmp_to_key(event_compare), reverse=True)
+            return render_template('accountant_eventlog.html', username=username, events=events)
         else:
             return redirect(url_for('login_page'))

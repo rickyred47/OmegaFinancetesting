@@ -1,0 +1,122 @@
+﻿{% extends "base_accountant.html" %}
+{% block title %}accountant_eventlog{% endblock %}
+{% block head %}
+    <link href="{{ url_for('static', filename= 'files/eventlog/styles.css')}}" type="text/css" rel="stylesheet"/>
+    <script src="{{ url_for('static', filename= 'files/eventlog/data.js') }}"></script>
+{% endblock %}
+{% block content %}
+        <!-- White_Box (Rectangle) -->
+        <div id="white_box" class="ax_default box_1" data-label="White_Box">
+          <div id="white_box_div" class=""></div>
+          <div id="white_box_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Events_Log_Header (Rectangle) -->
+        <div id="event_log_header" class="ax_default heading_1" data-label="Events_Log_Header">
+          <div id="event_log_header_div" class=""></div>
+          <div id="event_log_header_text" class="text ">
+            <p><span>Event Log</span></p>
+          </div>
+        </div>
+    <!-- Filter By Label (Rectangle) -->
+      <div id="filterbylbl" class="ax_default label" data-label="Account Name">
+        <div id="filterbylbl_div" class=""></div>
+        <div id="filterbylbl_text" class="text ">
+          <p><span>Filter by:</span></p>
+        </div>
+      </div>
+
+    <!-- Date Range -->
+      <div id="date_filter" data-label="Date_range">
+          <p><span>Date range:</span></p>
+      </div>
+      <div id="date_range_input">
+        <p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()">
+      </div>
+        <script>
+            const now = new Date();
+            let now_day = now.getDate();
+            let now_month = now.getMonth();
+            now_month = now_month + 1;
+            let year = now.getFullYear();
+            let date;
+            if (now_month < 10) {
+                if(now_day < 10) {
+                    date = "" + year + "-0" + now_month + "-0" + now_day;
+                } else {
+                    date = "" + year + "-0" + now_month + "-" + now_day;
+                }
+            }
+            else {
+                if(now_day < 10){
+                    date = "" + year + "-" + now_month + "-0" + now_day;
+                } else {
+                    date = "" + year + "-" + now_month + "-" + now_day;
+                }
+            }
+            document.getElementById("end_date").value = date;
+        </script>
+
+    <table id="events_table">
+		  <tr style=" text-align: center">
+			  <th>Event ID</th>
+			  <th>Time Date</th>
+			  <th>Field Changed</th>
+			  <th>From</th>
+			  <th>To</th>
+			  <th>Account ID</th>
+			  <th>User</th>
+		  </tr>
+          {% for event in events %}
+            {% if event[1] == 'Account' %}
+                <tr style="text-align: center">
+                    <td> {{ event[0].id }}</td>
+                    <td> {{ event[0].date_made }}</td>
+                    <td> {{ event[0].event_type }}</td>
+                    <td> {{ event[0].account_number_before }} <br> {{ event[0].account_name_before }} <br> {{ event[0].account_balance_before }} <br> {{ event[0].account_normal_side_before }} <br> {{ ('Active' if event[0].account_active_before else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
+                    <td> {{ event[0].account_number_after }} <br> {{ event[0].account_name_after }} <br> {{ event[0].account_balance_after }} <br> {{ event[0].account_normal_side_after }} <br> {{ ('Active' if event[0].account_active_after else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
+                    <td> {{ event[0].account_id }}</td>
+                    <td> {{ event[0].username }}</td>
+                </tr>
+            {% else %}
+                <tr style="text-align: center">
+                    <td> {{ event[0].id }}</td>
+                    <td> {{ event[0].date_made }}</td>
+                    <td> {{ event[0].event_type }}</td>
+                    <td> {{ event[0].journal_type_before }} <br>
+                        {% if event[0].journal_debit_accounts_before %}
+                            {% for i in range(event[0].journal_debit_accounts_before|length) %}
+                                {{ event[0].journal_debit_accounts_before[i] + ' - ' + event[0].journal_debit_amounts_before[i]|string + ' (Debit)' }} <br>
+                            {% endfor %}
+                        {% else %}
+                            {% for i in range(event[0].journal_debit_accounts_after|length) %}
+                                None <br>
+                            {% endfor %}
+                        {% endif %}
+                        {% if event[0].journal_credit_accounts_before %}
+                            {% for i in range(event[0].journal_credit_accounts_before|length) %}
+                                {{ event[0].journal_credit_accounts_before[i] + ' - ' + event[0].journal_credit_amounts_before[i]|string + ' (Credit)' }} <br>
+                            {% endfor %}
+                        {% else %}
+                            {% for i in range(event[0].journal_credit_accounts_after|length) %}
+                                None <br>
+                            {% endfor %}
+                        {% endif %}
+                        {{ event[0].journal_status_before }}</td>
+                    <td> {{ event[0].journal_type_after }} <br>
+                        {% for i in range(event[0].journal_debit_accounts_after|length) %}
+                            {{ event[0].journal_debit_accounts_after[i] + ' - ' + event[0].journal_debit_amounts_after[i]|string + ' (Debit)' }} <br>
+                        {% endfor %}
+                        {% for i in range(event[0].journal_credit_accounts_after|length) %}
+                            {{ event[0].journal_credit_accounts_after[i] + ' - ' + event[0].journal_credit_amounts_after[i]|string + ' (Credit)' }} <br>
+                        {% endfor %}
+                        {{ event[0].journal_status_after }}</td>
+                    <td> {{ event[0].journal_id }}</td>
+                    <td> {{ event[0].username }}</td>
+                </tr>
+            {% endif %}
+          {% endfor %}
+    </table>
+{% endblock %}
