@@ -1,4 +1,4 @@
-from sqlalchemy import desc
+from sqlalchemy import desc, asc
 
 
 class DatabaseHandler:
@@ -158,9 +158,10 @@ class DatabaseHandler:
 
     def get_account_ledger_info(self, account_num):
         self.Ledger_Table = self.base.classes.general_ledger
-        account_info = self.db.session.query(self.Ledger_Table).filter_by(account_number=account_num).order_by(desc(
+        account_info = self.db.session.query(self.Ledger_Table).filter_by(account_number=account_num).order_by(asc(
             self.Ledger_Table.id))
         return account_info
+    # End General Ledger Methods
 
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message

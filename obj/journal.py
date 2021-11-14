@@ -82,8 +82,8 @@ def post_info(entry, database):
         account.balance = new_balance
         database.commit_info()
     for y in range(0, len(entry.credit_accounts)):
-        account = database.get_account_info_by_number(entry.credit_accounts_numbers[y], False)
-        new_balance = calculate_balance(account.balance, account.normal_side, entry.credit_amounts[y])
+        account = database.get_account_info_by_number(entry.credit_accounts_numbers[y])
+        new_balance = calculate_balance(account.balance, account.normal_side, entry.credit_amounts[y], False)
         new_ledger_entry = Ledger(pr_number=entry.id, date=entry.date, description=entry.description,
                                   debit_amount=None, credit_amount=entry.credit_amounts[y], old_balance=account.balance,
                                   new_balance=new_balance, account_number=account.number)

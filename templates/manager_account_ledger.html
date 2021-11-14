@@ -57,36 +57,36 @@
         <table id="account_table">
             <tr>
                 <th>Date</th>
-                <th>Post Reference</th>
-                <th>Description</th>
-                <th>Debit</th>
-                <th>Credit</th>
-                <th>Balance</th>
+                <th>PR</th>
+                <th style="width: 600px">Description</th>
+                <th style="width: 200px">Debit</th>
+                <th style="width: 200px">Credit</th>
+                <th style="width: 200px">Balance</th>
             </tr>
-            <tr>
+            <tr class="ledger_entries">
                 <td>{{ account.date_created.strftime('%Y-%m-%d') }}</td>
                 <td></td>
                 <td>{{ account.name }} Created</td>
                 <td></td>
                 <td></td>
-                <td>{{ account.initial_balance }}</td>
+                <td style="text-align: right">{{ account.initial_balance }}</td>
             </tr>
             {% for entry in ledger_entries %}
-            <tr>
+            <tr class="ledger_entries">
                 <td>{{ entry.date }}</td>
                 <td>{{ entry.pr_number }}</td>
                 <td>{{ entry.description }}</td>
-                <td>
+                <td style="text-align: right">
                     {% if entry.debit_amount != none %}
                         {{ "${:,.2f}".format(entry.debit_amount) }}
                     {% endif %}
                 </td>
-                <td>
+                <td style="text-align: right">
                     {% if entry.credit_amount != none %}
                         {{ "${:,.2f}".format(entry.credit_amount) }}
                     {% endif %}
                 </td>
-                <td>{{ "${:,.2f}".format(entry.new_balance) }}</td>
+                <td style="text-align: right">{{ "${:,.2f}".format(entry.new_balance) }}</td>
             </tr>
             {% endfor %}
         </table>

@@ -416,5 +416,15 @@
 }
 #account_table {
   width: inherit;
-  border-bottom: 1px solid black;
+}
+th {
+  border-bottom: 2px solid black;
+}
+td {
+  border: 2px solid #043F60;
+  padding:10px;
+  font-size: 18px;
+}
+.ledger_entries:hover {
+  background-color: #DDECF5;
 }
