@@ -1,3 +1,6 @@
+from sqlalchemy import desc, asc
+
+
 class DatabaseHandler:
     def __init__(self):
         self.db = None
@@ -8,6 +11,7 @@ class DatabaseHandler:
         self.ErrorTable = None
         self.AccountEventsTable = None
         self.Journal_Table = None
+        self.Ledger_Table = None
 
     # Accounts Database Methods
     def get_accounts_table(self):
@@ -43,6 +47,7 @@ class DatabaseHandler:
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable).filter_by(active=False)
         return accounts
+
     # End of Accounts Database Methods
 
     # Account events database methods
@@ -54,6 +59,7 @@ class DatabaseHandler:
         self.AccountEventsTable = self.base.classes.account_event
         account_events = self.db.session.query(self.AccountEventsTable)
         return account_events
+
     # End of account events database methods
 
     # New User Database Methods
@@ -70,6 +76,7 @@ class DatabaseHandler:
         self.NewUsersTable = self.base.classes.new_user
         new_user = self.db.session.query(self.NewUsersTable).filter_by(username=username).first()
         return new_user
+
     # End of New User Database Methods
 
     # User Database Methods
@@ -116,7 +123,7 @@ class DatabaseHandler:
 
     def get_journal_entries(self):
         self.Journal_Table = self.base.classes.journal
-        journal_entries = self.db.session.query(self.Journal_Table)
+        journal_entries = self.db.session.query(self.Journal_Table).order_by(desc(self.Journal_Table.date))
         return journal_entries
 
     def get_journal_entry(self, id_num):
@@ -128,7 +135,8 @@ class DatabaseHandler:
         self.Journal_Table = self.base.classes.journal
         account_entries = self.db.session.query(self.Journal_Table).filter(
             self.Journal_Table.debit_accounts.contains([account_name]) |
-            self.Journal_Table.credit_accounts.contains([account_name])).filter_by(status="Accepted")
+            self.Journal_Table.credit_accounts.contains([account_name])).filter_by(status="Accepted").order_by(desc(
+            self.Journal_Table.date))
         return account_entries
     # End Journal Database Methods
 
@@ -142,6 +150,18 @@ class DatabaseHandler:
         journal_events = self.db.session.query(self.JournalEventsTable)
         return journal_events
     # End Journal Event Database Methods
+
+    # General Ledger Database Methods
+    def get_ledger_table_class(self):
+        self.Ledger_Table = self.base.classes.general_ledger
+        return self.Ledger_Table
+
+    def get_account_ledger_info(self, account_num):
+        self.Ledger_Table = self.base.classes.general_ledger
+        account_info = self.db.session.query(self.Ledger_Table).filter_by(account_number=account_num).order_by(asc(
+            self.Ledger_Table.id))
+        return account_info
+    # End General Ledger Methods
 
     def get_error_message(self, id_num):
         self.ErrorTable = self.base.classes.error_message

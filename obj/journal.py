@@ -13,7 +13,7 @@ def journal_entry_form(user, database):
     a = account_name_number.index("-")
     id_num = account_name_number[:a]
     debit_account_ids = [id_num]
-    account = account_name_number[(a+1):]
+    account = account_name_number[(a + 1):]
     debit_accounts = [account]
     account_name_number1 = request.form["credit_account_select0"]
     b = account_name_number1.index("-")
@@ -32,7 +32,7 @@ def journal_entry_form(user, database):
             account_name_number = request.form[account_name]
             split = account_name_number.index("-")
             id_num = account_name_number[:split]
-            account = account_name_number[(split+1):]
+            account = account_name_number[(split + 1):]
             amount = request.form[amount_name]
             debit_accounts.append(account)
             debit_account_ids.append(id_num)
@@ -68,4 +68,42 @@ def journal_entry_form(user, database):
                                date_made=datetime.now(), event_type='Created', username=session['username'],
                                journal_id=new_entry.id)
     database.commit_to_database(new_entry2)
+
+
+def post_info(entry, database):
+    Ledger = database.get_ledger_table_class()
+    for x in range(0, len(entry.debit_accounts)):
+        account = database.get_account_info_by_number(entry.debit_accounts_numbers[x])
+        new_balance = calculate_balance(account.balance, account.normal_side, entry.debit_amounts[x], True)
+        new_ledger_entry = Ledger(pr_number=entry.id, date=entry.date, description=entry.description,
+                                  debit_amount=entry.debit_amounts[x], credit_amount=None, old_balance=account.balance,
+                                  new_balance=new_balance, account_number=account.number)
+        database.commit_to_database(new_ledger_entry)
+        account.balance = new_balance
+        database.commit_info()
+    for y in range(0, len(entry.credit_accounts)):
+        account = database.get_account_info_by_number(entry.credit_accounts_numbers[y])
+        new_balance = calculate_balance(account.balance, account.normal_side, entry.credit_amounts[y], False)
+        new_ledger_entry = Ledger(pr_number=entry.id, date=entry.date, description=entry.description,
+                                  debit_amount=None, credit_amount=entry.credit_amounts[y], old_balance=account.balance,
+                                  new_balance=new_balance, account_number=account.number)
+        database.commit_to_database(new_ledger_entry)
+        account.balance = new_balance
+        database.commit_info()
+
+
+def calculate_balance(balance, side, amount, is_debit):
+    new_balance = 0
+    if is_debit:
+        if side == "Left":
+            new_balance = balance + amount
+        elif side == "Right":
+            new_balance = balance - amount
+    else:
+        if side == "Left":
+            new_balance = balance - amount
+        elif side == "Right":
+            new_balance = balance + amount
+    return new_balance
+
 

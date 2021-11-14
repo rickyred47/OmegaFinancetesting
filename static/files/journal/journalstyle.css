@@ -137,3 +137,6 @@
 	.input_amounts {
 		text-align: right;
 	}
+	.debit_select_accounts, .credit_select_accounts {
+		width: 300px
+	}

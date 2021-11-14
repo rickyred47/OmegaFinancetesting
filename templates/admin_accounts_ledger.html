@@ -1,4 +1,4 @@
-﻿{% extends "base_accountant.html" %}
+﻿{% extends "base_admin.html" %}
     {% block title %}Ledger{% endblock %}
     {% block head %}
     <link href="{{ url_for('static', filename= 'files/ledger/styles.css')}}" type="text/css" rel="stylesheet"/>
@@ -30,7 +30,7 @@
           <input id="search_bar_input" type="text" value="" class="u30_input"/>
         </div>
 
-        <!-- Account Name Label (Rectangle) -->
+        <!-- Unnamed (Rectangle) -->
         <div id="account_name_lbl" class="ax_default heading_1">
           <div id="account_name_div" class=""></div>
           <div id="account_name_text" class="text ">

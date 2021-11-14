@@ -6,86 +6,87 @@
     {% block content %}
 
       <!-- Unnamed (Group) -->
-      <div id="u27" class="ax_default" data-left="362" data-top="164" data-width="1564" data-height="1298">
+      <div id="ledger_group" class="ax_default" data-left="362" data-top="164" data-width="1564" data-height="1298">
 
         <!-- White_Box (Rectangle) -->
-        <div id="u28" class="ax_default box_1" data-label="White_Box">
-          <div id="u28_div" class=""></div>
-          <div id="u28_text" class="text " style="display:none; visibility: hidden">
+        <div id="white_box" class="ax_default box_1" data-label="White_Box">
+          <div id="white_box_div" class=""></div>
+          <div id="white_box_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
         </div>
 
         <!-- SearchButton (Rectangle) -->
-        <div id="u29" class="ax_default primary_button" data-label="SearchButton">
-          <div id="u29_div" class=""></div>
-          <div id="u29_text" class="text ">
+        <div id="search_btn" class="ax_default primary_button" data-label="SearchButton">
+          <div id="search_btn_div" class=""></div>
+          <div id="search_btn_text" class="text ">
             <p><span>Search</span></p>
           </div>
         </div>
 
         <!-- SearchBar (Text Field) -->
-        <div id="u30" class="ax_default text_field" data-label="SearchBar">
-          <div id="u30_div" class=""></div>
-          <input id="u30_input" type="text" value="" class="u30_input"/>
+        <div id="search_bar" class="ax_default text_field" data-label="SearchBar">
+          <div id="search_bar_div" class=""></div>
+          <input id="search_bar_input" type="text" value="" class="u30_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u31" class="ax_default heading_1">
-          <div id="u31_div" class=""></div>
-          <div id="u31_text" class="text ">
-            <p><span>{{ name }} Ledger</span></p>
+        <div id="account_name_lbl" class="ax_default heading_1">
+          <div id="account_name_div" class=""></div>
+          <div id="account_name_text" class="text ">
+            <p><span>{{ account.name }} Ledger</span></p>
           </div>
         </div>
 
         <!-- Account Number (Rectangle) -->
-        <div id="u32" class="ax_default label" data-label="Account Number">
-          <div id="u32_div" class=""></div>
-          <div id="u32_text" class="text ">
-            <p><span>Account No. {{ number }}</span></p>
+        <div id="account_number" class="ax_default label" data-label="Account Number">
+          <div id="account_number_div" class=""></div>
+          <div id="account_number_text" class="text ">
+            <p><span>Account No. {{ account.number }}</span></p>
           </div>
         </div>
 
         <!-- Balance (Rectangle) -->
-        <div id="u33" class="ax_default label" data-label="Balance">
-          <div id="u33_div" class=""></div>
-          <div id="u33_text" class="text ">
-            <p><span>Balance: {{ "${:,.2f}".format(balance) }}</span></p>
+        <div id="balance" class="ax_default label" data-label="Balance">
+          <div id="balance_div" class=""></div>
+          <div id="balance_text" class="text ">
+            <p><span>Balance: {{ "${:,.2f}".format(account.balance) }}</span></p>
           </div>
         </div>
         <div id="account_table_div">
         <table id="account_table">
             <tr>
                 <th>Date</th>
-                <th>Post Reference</th>
-                <th>Description</th>
-                <th>Debit</th>
-                <th>Credit</th>
-                <th>Balance</th>
+                <th>PR</th>
+                <th style="width: 600px">Description</th>
+                <th style="width: 200px">Debit</th>
+                <th style="width: 200px">Credit</th>
+                <th style="width: 200px">Balance</th>
             </tr>
-            {% for entry in entries %}
-            <tr>
+            <tr class="ledger_entries">
+                <td>{{ account.date_created.strftime('%Y-%m-%d') }}</td>
+                <td></td>
+                <td>{{ account.name }} Created</td>
+                <td></td>
+                <td></td>
+                <td style="text-align: right">{{ account.initial_balance }}</td>
+            </tr>
+            {% for entry in ledger_entries %}
+            <tr class="ledger_entries">
                 <td>{{ entry.date }}</td>
-                <td>{{ entry.id }}</td>
+                <td>{{ entry.pr_number }}</td>
                 <td>{{ entry.description }}</td>
-                <td>
-                    {% if name in entry.debit_accounts %}
-                        {% for x in range(0, (entry.debit_accounts | length)) %}
-                            {% if entry.debit_accounts[x] == name %}
-                                {{ "${:,.2f}".format(entry.debit_amounts[x]) }}
-                            {% endif %}
-                        {% endfor %}
+                <td style="text-align: right">
+                    {% if entry.debit_amount != none %}
+                        {{ "${:,.2f}".format(entry.debit_amount) }}
                     {% endif %}
                 </td>
-                <td>
-                    {% if name in entry.credit_accounts %}
-                        {% for x in range(0, (entry.credit_accounts | length)) %}
-                            {% if entry.credit_accounts[x] == name %}
-                                {{ "${:,.2f}".format(entry.credit_amounts[x]) }}
-                            {% endif %}
-                        {% endfor %}
+                <td style="text-align: right">
+                    {% if entry.credit_amount != none %}
+                        {{ "${:,.2f}".format(entry.credit_amount) }}
                     {% endif %}
                 </td>
+                <td style="text-align: right">{{ "${:,.2f}".format(entry.new_balance) }}</td>
             </tr>
             {% endfor %}
         </table>

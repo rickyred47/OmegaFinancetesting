@@ -37,9 +37,9 @@ def setup_page_routing(app, database):
         if "Manager" in session:
             username = session["Manager"]
             account = database.get_account_info(account_id)
-            entries = database.get_journal_contains_account(account.name)
-            return render_template('manager_account_ledger.html', username=username, name=account.name,
-                                   number=account.number, balance=account.balance, entries=entries)
+            ledger_entries = database.get_account_ledger_info(account.number)
+            return render_template('manager_account_ledger.html', username=username, account=account,
+                                   ledger_entries=ledger_entries)
         else:
             return redirect(url_for('login_page'))
 
@@ -97,6 +97,8 @@ def setup_page_routing(app, database):
             if request.method == "POST":
                 entry_id = request.form["entry_id"]
                 entry = database.get_journal_entry(entry_id)
+                if request.form['accept_reject'] == 'Accept':
+                    journal.post_info(entry, database)
                 if request.form['accept_reject'] in ['Accept', 'Reject']:
                     entry.status = 'Accepted' if request.form['accept_reject'] == 'Accept' else 'Rejected'
                     database.commit_info()
