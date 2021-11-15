@@ -461,6 +461,17 @@ body {
   font-size:20px;
   color:#043F60;
 }
+.nav_reports_links {
+  display: none;
+  padding:10px;
+  background-color: #32404d;
+  border: 1px solid black;
+  font-size:16px;
+}
+.nav_reports_links:hover {
+  background-color: #7dbce7;
+  color: #043F60;
+}
 .nav_links_div {
   padding-top: 10px;
   padding-bottom: 10px;

@@ -7,7 +7,7 @@
     <link href="{{ url_for('static', filename= 'resources/css/pagestyle.css')}}" type="text/css" rel="stylesheet"/>
     <link href="{{ url_for('static', filename= 'data/styles.css')}}" type="text/css" rel="stylesheet"/>
     <link href="{{ url_for('static', filename= 'files/basecss/base_style.css')}}" type="text/css" rel="stylesheet"/>
-    <script src="{{ url_for('static', filename= 'files/admincreateuser/data.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'files/basecss/baseJs.js') }}"></script>
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -119,8 +119,20 @@
             </div>
 
             <!-- Reports_Nav (Rectangle) -->
-            <div id="reports" class="nav_links_div" onclick="">
+            <div id="reports" class="nav_links_div" onmouseover="showReports()" onmouseout="hideReports()">
                 <p class="nav_link_p">Reports</p>
+                <div id="trial_balance" class="nav_reports_links">
+                    <p>Trial Balance</p>
+                </div>
+                <div id="income_statement" class="nav_reports_links">
+                    <p>Income Statement</p>
+                </div>
+                <div id="balance_sheet" class="nav_reports_links">
+                    <p>Balance Sheet</p>
+                </div>
+                <div id="retained_statement" class="nav_reports_links">
+                    <p>Retained Earnings Statement</p>
+                </div>
             </div>
 
             <!-- Email_Nav (Rectangle) -->
