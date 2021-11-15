@@ -34,7 +34,7 @@
         <div id="account_name_lbl" class="ax_default heading_1">
           <div id="account_name_div" class=""></div>
           <div id="account_name_text" class="text ">
-            <p><span>{{ name }} Ledger</span></p>
+            <p><span>{{ account.name }} Ledger</span></p>
           </div>
         </div>
 
@@ -42,7 +42,7 @@
         <div id="account_number" class="ax_default label" data-label="Account Number">
           <div id="account_number_div" class=""></div>
           <div id="account_number_text" class="text ">
-            <p><span>Account No. {{ number }}</span></p>
+            <p><span>Account No. {{ account.number }}</span></p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
         <div id="balance" class="ax_default label" data-label="Balance">
           <div id="balance_div" class=""></div>
           <div id="balance_text" class="text ">
-            <p><span>Balance: {{ "${:,.2f}".format(balance) }}</span></p>
+            <p><span>Balance: {{ "${:,.2f}".format(account.balance) }}</span></p>
           </div>
         </div>
         <div id="account_table_div">

@@ -136,10 +136,9 @@ def setup_page_routing(app, database):
     def admin_email():
         if "Administrator" in session:
             if request.method == "POST":
-                print(request.form)
                 return admin_processes.email(database)
             else:
-                username = session["username"]
+                username = session["Administrator"]
                 users = database.get_user_accounts()
                 return render_template('admin_email.html', username=username, users=users)
         else:
