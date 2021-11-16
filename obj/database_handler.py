@@ -1,4 +1,6 @@
 from sqlalchemy import desc, asc
+from datetime import datetime
+import pytz
 
 
 class DatabaseHandler:
@@ -113,6 +115,18 @@ class DatabaseHandler:
         self.UserTable = self.base.classes.user
         users = self.db.session.query(self.UserTable).filter_by(is_suspended=True)
         return users
+
+    def get_expired_users(self):
+        users = self.get_user_accounts()
+        current_time = datetime.today()
+        current_time = pytz.utc.localize(current_time)
+        userlist = []
+        for user in users:
+            user.password_expire_date.replace(tzinfo=current_time.tzinfo)
+            if user.password_expire_date < current_time:
+                print(user.password_expire_date)
+                userlist.append(user)
+        return userlist
 
     # End of User Database Methods
 
