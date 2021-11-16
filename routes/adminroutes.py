@@ -1,6 +1,7 @@
 from flask import render_template, redirect, request, url_for, session
 from functools import cmp_to_key
 from obj import admin_processes
+import base64
 
 
 def setup_page_routing(app, database):
@@ -128,6 +129,9 @@ def setup_page_routing(app, database):
         if "Administrator" in session:
             username = session["Administrator"]
             users = database.get_expired_users()
+            for user in users:
+                user.the_password_hash = base64.b64encode(bytes(user.previous_passwords[0], 'utf-8'))
+                user.the_password_hash = '#' + str(base64.b64encode(user.the_password_hash + base64.b64encode(user.the_password_hash)))[2:-1]
             return render_template('admin_password_report.html', username=username, users=users)
         else:
             return redirect(url_for('login_page'))
