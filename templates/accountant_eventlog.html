@@ -6,32 +6,16 @@
 {% endblock %}
 {% block content %}
         <!-- White_Box (Rectangle) -->
-        <div id="white_box" class="ax_default box_1" data-label="White_Box">
-          <div id="white_box_div" class=""></div>
-          <div id="white_box_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Events_Log_Header (Rectangle) -->
-        <div id="event_log_header" class="ax_default heading_1" data-label="Events_Log_Header">
-          <div id="event_log_header_div" class=""></div>
-          <div id="event_log_header_text" class="text ">
-            <p><span>Event Log</span></p>
-          </div>
-        </div>
-    <!-- Filter By Label (Rectangle) -->
-      <div id="filterbylbl" class="ax_default label" data-label="Account Name">
-        <div id="filterbylbl_div" class=""></div>
-        <div id="filterbylbl_text" class="text ">
-          <p><span>Filter by:</span></p>
-        </div>
-      </div>
+    <div id="white_box">
+    <div id="event_log_header">
+        <p>EventLog</p>
+    </div>
 
     <!-- Date Range -->
-      <div id="date_filter" data-label="Date_range">
-          <p><span>Date range:</span></p>
+      <div id="date_filter" data-label="Date_range" style="padding-left:10px">
+          <p><span>Filter: Date Range</span></p>
       </div>
+
       <div id="date_range_input">
         <p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()">
       </div>
@@ -59,6 +43,7 @@
             document.getElementById("end_date").value = date;
         </script>
 
+    <div style="height: 1100px; overflow: auto">
     <table id="events_table">
 		  <tr style=" text-align: center">
 			  <th>Event ID</th>
@@ -119,4 +104,5 @@
             {% endif %}
           {% endfor %}
     </table>
+    </div>
 {% endblock %}

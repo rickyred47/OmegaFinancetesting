@@ -1,182 +1,41 @@
-﻿#white_box_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:1375px;
-  height:1298px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 1);
-  box-sizing:border-box;
-  border-width:1px;
-  border-style:solid;
-  border-color:rgba(121, 121, 121, 1);
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Montserrat-Bold", "Montserrat Bold", "Montserrat", sans-serif;
-  font-weight:700;
-  font-style:normal;
-}
-#white_box {
-  border-width:0px;
-  position:absolute;
-  left:354px;
-  top:164px;
-  width:1375px;
-  height:1298px;
-  display:flex;
-  font-family:"Montserrat-Bold", "Montserrat Bold", "Montserrat", sans-serif;
-  font-weight:700;
-  font-style:normal;
-}
-#white_box .text {
-  position:absolute;
-  align-self:center;
-  padding:2px 2px 2px 2px;
-  box-sizing:border-box;
-  width:100%;
-}
-#white_box_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-  visibility:hidden;
-}
-#event_log_header_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:161px;
-  height:40px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
-  font-weight:700;
-  font-style:normal;
-  color:#020202;
-}
+﻿#white_box {
+    	position: absolute;
+    	left: 349px;
+ 		top: 164px;
+    	width:1500px;
+    	height:1300px;
+    	background-color: white;
+    	border-color: #797979FF;
+    	padding: 30px;
+		font-size: 20px;
+		color: #043F60;
+	}
 #event_log_header {
-  border-width:0px;
-  position:absolute;
-  left:407px;
-  top:194px;
-  width:161px;
-  height:40px;
-  display:flex;
-  font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
-  font-weight:700;
-  font-style:normal;
-  color:#020202;
+    	text-align: left;
+    	font-family:'Merriweather-Bold', 'Merriweather Bold', 'Merriweather', sans-serif;
+		font-weight: bold;
+    	font-size:40px;
+    	color: #0077B6FF;
+		width:150px;
+	}
+table, td, tr, th {
+    border-collapse: collapse;
+
 }
-#event_log_header .text {
-  position:absolute;
-  align-self:flex-start;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
+th {
+text-align: center;
 }
-#event_log_header_text {
-  border-width:0px;
-  white-space:nowrap;
-  text-transform:none;
-}
-#filterbylbl_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:174px;
-  height:22px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Montserrat Regular", "Montserrat", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:18px;
-  color:#043F60;
-}
-#filterbylbl {
-  border-width:0px;
-  position:absolute;
-  left:379px;
-  top:264px;
-  width:174px;
-  height:22px;
-  display:flex;
-  font-family:"Montserrat Regular", "Montserrat", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:18px;
-  color:#043F60;
-}
-#filterbylbl .text {
-  position:absolute;
-  align-self:flex-start;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#filterbylbl_text {
-  border-width:0px;
-  word-wrap:break-word;
-  text-transform:none;
-}
-#date_filter {
-  border-width:0px;
-  position:absolute;
-  left:491px;
-  top:264px;
-  height:22px;
-  width: 700px;
-  display:flex;
-  font-family:"Montserrat", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:18px;
-  color:#043F60;
-}
-#date_range_input {
-  border-width:0px;
-  position:absolute;
-  left:610px;
-  top:264px;
-  height:22px;
-  width: 700px;
-  display:flex;
-  font-family:"Montserrat", sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:16px;
-  color:#043F60;
-}
-table {
-	position:absolute;
-	left:379px;
-	top:310px;
-	width:1300px;
-	font-size:16px;
-	text-align: center;
-	color:#043F60;
-}
-th, td {
-	border-bottom: 1px solid black;
+td {
+    vertical-align: top;
+    padding: 5px;
 }
 tr:nth-child(even){
   background-color: #DDECF5;
 }
-th {
-  background-color: white;
+.flex_container {
+    display: flex;
 }
+#date_range{
+		width:400px;
+	}
+

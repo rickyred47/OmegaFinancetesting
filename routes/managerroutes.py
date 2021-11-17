@@ -19,7 +19,8 @@ def setup_page_routing(app, database):
     @app.route('/manager_home')
     def manager_home_page():
         if "Manager" in session:
-            return render_template('manager_home_page.html', username="Ricardo Rojo")
+            username = session["Manager"]
+            return render_template('manager_home_page.html', username=username)
         else:
             return redirect(url_for('login_page'))
 
@@ -32,7 +33,7 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/manager/<account_id>_ledger')
+    @app.route('/manager/<account_id>_345643')
     def manager_account_ledger(account_id):
         if "Manager" in session:
             username = session["Manager"]
