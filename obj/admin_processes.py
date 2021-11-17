@@ -20,7 +20,7 @@ def account_form(database):
     AccountsTable = database.get_accounts_table()
     new_account = AccountsTable(number=account_num, name=name, description=description, normal_side=normal_side,
                                 balance=balance, date_created=created, statement=statement, comment=comment,
-                                category=category, subcategory=subcategory, created_by=["username"], active=True)
+                                category=category, subcategory=subcategory, active=True, created_by=session["username"])
     database.commit_to_database(new_account)
 
     AccountEventsTable = database.get_account_events_table()

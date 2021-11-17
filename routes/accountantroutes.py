@@ -1,7 +1,7 @@
 from functools import cmp_to_key
 
 from flask import render_template, request, session, redirect, url_for
-from obj import journal
+from obj import journal, documentation
 
 
 def setup_page_routing(app, database):
@@ -76,5 +76,40 @@ def setup_page_routing(app, database):
 
             events = sorted(events, key=cmp_to_key(event_compare), reverse=True)
             return render_template('accountant_eventlog.html', username=username, events=events)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/reports/trial_balance')
+    def accountant_trial_balance():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            accounts = database.get_active_accounts()
+            total_amounts = documentation.get_total_amounts(accounts)
+            return render_template('accountant_trial_balance.html', username=username, accounts=accounts,
+                                   total_amounts=total_amounts)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/reports/income_statement')
+    def accountant_income_statement():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            return render_template('accountant_income_statement.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/reports/balance_sheet')
+    def accountant_balance_sheet():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            return render_template('accountant_balance_sheet.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/accountant/report/retained_earnings')
+    def accountant_retained_earnings():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            return render_template('accountant_retained_earning.html', username=username)
         else:
             return redirect(url_for('login_page'))

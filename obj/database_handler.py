@@ -42,12 +42,19 @@ class DatabaseHandler:
 
     def get_active_accounts(self):
         self.AccountsTable = self.base.classes.accounts
-        accounts = self.db.session.query(self.AccountsTable).filter_by(active=True)
+        accounts = self.db.session.query(self.AccountsTable).filter_by(active=True).order_by(asc(
+            self.AccountsTable.order))
         return accounts
 
     def get_inactive_accounts(self):
         self.AccountsTable = self.base.classes.accounts
         accounts = self.db.session.query(self.AccountsTable).filter_by(active=False)
+        return accounts
+
+    def get_accounts_by_category(self, category):
+        self.AccountsTable = self.base.classes.accounts
+        accounts = self.db.session.query(self.AccountsTable).filter_by(category=category).order_by(asc(
+            self.AccountsTable.order))
         return accounts
 
     # End of Accounts Database Methods
@@ -152,6 +159,7 @@ class DatabaseHandler:
             self.Journal_Table.credit_accounts.contains([account_name])).filter_by(status="Accepted").order_by(desc(
             self.Journal_Table.date))
         return account_entries
+
     # End Journal Database Methods
 
     # Journal Event Database Methods
@@ -163,6 +171,7 @@ class DatabaseHandler:
         self.JournalEventsTable = self.base.classes.journal_event
         journal_events = self.db.session.query(self.JournalEventsTable)
         return journal_events
+
     # End Journal Event Database Methods
 
     # General Ledger Database Methods
@@ -175,6 +184,7 @@ class DatabaseHandler:
         account_info = self.db.session.query(self.Ledger_Table).filter_by(account_number=account_num).order_by(asc(
             self.Ledger_Table.id))
         return account_info
+
     # End General Ledger Methods
 
     def get_error_message(self, id_num):

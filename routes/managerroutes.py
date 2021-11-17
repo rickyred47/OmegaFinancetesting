@@ -2,7 +2,7 @@ from functools import cmp_to_key
 
 from flask import render_template, request, session, redirect, url_for
 from datetime import datetime
-from obj import journal
+from obj import journal, documentation
 
 
 def setup_page_routing(app, database):
@@ -28,7 +28,7 @@ def setup_page_routing(app, database):
     def manager_chart_accounts():
         if "Manager" in session:
             username = session["Manager"]
-            accounts = database.get_accounts_info()
+            accounts = database.get_active_accounts()
             return render_template('manager_char_accounts.html', username=username, accounts=accounts)
         else:
             return redirect(url_for('login_page'))
@@ -119,3 +119,39 @@ def setup_page_routing(app, database):
                 return '', 204
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/manager/reports/trial_balance')
+    def manager_trial_balance():
+        if "Manager" in session:
+            username = session["Manager"]
+            accounts = database.get_active_accounts()
+            total_amounts = documentation.get_total_amounts(accounts)
+            return render_template('manager_trial_balance.html', username=username, accounts=accounts,
+                                   total_amounts=total_amounts)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/manager/reports/income_statement')
+    def manager_income_statement():
+        if"Manger" in session:
+            username = session["Manager"]
+            return render_template('manager_income_statement.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/manger/reports/balance_sheet')
+    def manager_balance_sheet():
+        if "Manager" in session:
+            username = session["Manager"]
+            return render_template('manager_balance_sheet.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/manager/report/retained_earnings')
+    def manger_retained_earnings():
+        if "Manager" in session:
+            username = session["Manger"]
+            return render_template('manager_retained_earning.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
+

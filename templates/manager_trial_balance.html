@@ -1,0 +1,42 @@
+{% extends "base_manager.html" %}
+    {% block title %}Trial Balance{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/documentation/documentation_style.css') }}" type="text/css" rel="stylesheet"/>
+
+    {% endblock %}
+    {% block content %}
+        <!--White background Box -->
+        <div id="white_div">
+            <h1 id="trial_balance_lbl">Trial Balance</h1>
+            <div id="trial_balance_report">
+                <table id="trial_balance_table">
+                    <tr>
+                        <th>Accounts</th>
+                        <th class="trial_amount">Debits</th>
+                        <th class="trial_amount">Credits</th>
+                    </tr>
+                    {% for account in accounts %}
+                        {% if account.balance != 0 %}
+                            <tr>
+                            {% if account.normal_side == "Left" %}
+                                <td class="account_name_column">{{ account.name }}</td>
+                                <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                <td></td>
+                            {% elif account.normal_side == "Right" %}
+                                <td class="account_name_column"><span id="credit_name">{{ account.name }}</span></td>
+                                <td></td>
+                                <td class="credit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                            {% endif %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr></tr>
+                    <tr>
+                        <td></td>
+                        <td class="total_amount">{{ "${:,.2f}".format(total_amounts[0]) }}</td>
+                        <td class="total_amount">{{ "${:,.2f}".format(total_amounts[1]) }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endblock %}

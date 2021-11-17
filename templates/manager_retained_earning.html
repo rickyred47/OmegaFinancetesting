@@ -1,0 +1,35 @@
+{% extends "base_manager.html" %}
+    {% block title %}Income Statement{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/documentation/documentation_style.css') }}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+    {% block content %}
+        <div id="white_div">
+            <h1>Retained Earnings</h1>
+            <div id="retained_div">
+                <table id="retained_table">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Beg Retained Earnings, {{ start_date }}</td>
+                        <td>{{ retained_balance }}</td>
+                    </tr>
+                    <tr>
+                        <td>Add: Net Income</td>
+                        <td>{{ income_balacne }}</td>
+                    </tr>
+                    <tr>
+                        <td>Less: Dividends</td>
+                        <td>{{ dividends_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>End Retained Earnings, {{ end_date }}</td>
+                        <td>{{ new_retained_balacne }}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    {% endblock %}

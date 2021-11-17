@@ -1,0 +1,53 @@
+{% extends "base_accountant.html" %}
+    {% block title %}Income Statement{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/documentation/documentation_style.css') }}" type="text/css" rel="stylesheet"/>
+    {% endblock %}
+    {% block content %}
+        <!-- White background Box-->
+        <div id="white_div">
+            <h1>Income Statement</h1>
+            <div id="income_statement" >
+                <table id="income_statement_table">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Revenues</td>
+                        <td></td>
+                    </tr>
+                    {% for r_acount in r_accounts %}
+                    <tr>
+                        <td>{{ r_acount.name }}</td>
+                        <td>{{ r_acount.balance }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Revenue</td>
+                        <td>{{ total_revenue }}</td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Expenses</td>
+                        <td></td>
+                    </tr>
+                    {% for exp_account in exp_accounts %}
+                    <tr>
+                        <td>{{ exp_account.name }}</td>
+                        <td>{{ exp_account.balacne }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Expenses</td>
+                        <td>{{ total_expenses }}</td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Net Income</td>
+                        <td>{{ total_netIncome }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endblock %}

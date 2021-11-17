@@ -113,16 +113,16 @@
             <!-- Reports_Nav (Rectangle) -->
             <div id="reports" class="nav_links_div" onmouseover="showReports()" onmouseout="hideReports()">
                 <p class="nav_link_p">Reports</p>
-                <div id="trial_balance" class="nav_reports_links">
+                <div id="trial_balance" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_trial_balance') }}'">
                     <p>Trial Balance</p>
                 </div>
-                <div id="income_statement" class="nav_reports_links">
+                <div id="income_statement" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_income_statement') }}">
                     <p>Income Statement</p>
                 </div>
-                <div id="balance_sheet" class="nav_reports_links">
+                <div id="balance_sheet" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_balance_statement') }}">
                     <p>Balance Sheet</p>
                 </div>
-                <div id="retained_statement" class="nav_reports_links">
+                <div id="retained_statement" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_retained_earnings') }}">
                     <p>Retained Earnings Statement</p>
                 </div>
             </div>
