@@ -17,7 +17,7 @@
                     </tr>
                     {% for account in accounts %}
                         {% if account.balance != 0 %}
-                            <tr>
+                            <tr class="account_row">
                             {% if account.normal_side == "Left" %}
                                 <td class="account_name_column">{{ account.name }}</td>
                                 <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>

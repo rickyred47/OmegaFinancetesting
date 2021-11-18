@@ -7,44 +7,49 @@
         <!-- White background Box-->
         <div id="white_div">
             <h1>Income Statement</h1>
-            <div id="income_statement" >
+            <div id="header" class="report_style">
+                <h1>{companyName}</h1>
+                <h2>Income Statement</h2>
+                <h2>{date}</h2>
+            </div>
+            <div id="income_statement" class="report_style">
                 <table id="income_statement_table">
                     <tr>
                         <th></th>
                         <th></th>
                     </tr>
                     <tr>
-                        <td>Revenues</td>
+                        <td class="account_name_column">Revenues</td>
                         <td></td>
                     </tr>
                     {% for r_acount in r_accounts %}
                     <tr>
-                        <td>{{ r_acount.name }}</td>
+                        <td class="account_name_column"><span style="margin-left: 30px">{{ r_acount.name }}</span></td>
                         <td>{{ r_acount.balance }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td>Total Revenue</td>
+                        <td class="account_name_column">Total Revenue</td>
                         <td>{{ total_revenue }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
-                        <td>Expenses</td>
+                        <td class="account_name_column">Expenses</td>
                         <td></td>
                     </tr>
                     {% for exp_account in exp_accounts %}
                     <tr>
-                        <td>{{ exp_account.name }}</td>
+                        <td class="account_name_column">{{ exp_account.name }}</td>
                         <td>{{ exp_account.balacne }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td>Total Expenses</td>
+                        <td class="account_name_column">Total Expenses</td>
                         <td>{{ total_expenses }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
-                        <td>Net Income</td>
+                        <td class="account_name_column">Net Income</td>
                         <td>{{ total_netIncome }}</td>
                     </tr>
                 </table>

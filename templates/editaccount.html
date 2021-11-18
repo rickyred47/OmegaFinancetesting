@@ -1,5 +1,5 @@
 ﻿{% extends "base_admin.html" %}
-    {% block title %}CreateNewAccount{% endblock %}
+    {% block title %}Edit Account{% endblock %}
     {% block head %}
     <link href="{{ url_for('static', filename= 'files/createnewaccount/styles.css')}}" type="text/css" rel="stylesheet"/>
       <script src="{{ url_for('static', filename= 'files/createnewaccount/data.js')}}"></script>
@@ -48,8 +48,8 @@
             <!-- AccountType (Droplist) -->
           <div id="accountcat" class="ax_default droplist" data-label="AccountType">
             <div id="accountcat_div" class=""></div>
-            <select id="accountcat_input" class="u33_input" name="category">
-                {% if accountcat == 'Asset' %}
+            <select id="accountcat_input" class="u33_input" name="category" onchange="changeCatNum()">
+                {% if account.category == 'Asset' %}
                     <option class="accountcat_input_option" value="Asset" selected>Asset</option>
                 {% else %}
                     <option class="accountcat_input_option" value="Asset">Asset</option>
@@ -88,7 +88,7 @@
           <!-- Account_Name_Text_Field (Text Field) -->
           <div id="nametxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="nametxt_div" class=""></div>
-            <input id="nametxt_input" type="text" value="{{ name }}" class="u32_input" name="name" required/>
+            <input id="nametxt_input" type="text" value="{{ account.name }}" class="u32_input" name="name" required/>
           </div>
 
             <!-- Account Subcatergory Label (Rectangle) -->
@@ -102,7 +102,7 @@
           <!-- Account Subcatergory Text (Text Field) -->
           <div id="subcattxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="subcattxt_div" class=""></div>
-            <input id="subcattxt_input" type="text" value="{{ subcategory }}" class="u39_input" name="subcategory" required/>
+            <input id="subcattxt_input" type="text" value="{{ account.subcategory }}" class="u39_input" name="subcategory" required/>
           </div>
 
           <!-- Account Number Label (Rectangle) -->
@@ -136,7 +136,7 @@
           <!-- Description Text (Text Field) -->
           <div id="descriptiontxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="descriptiontxt_div" class=""></div>
-            <input id="descriptiontxt_input" type="text" value="{{ description }}" class="u37_input" name="description" required/>
+              <textarea id="descriptiontxt_input">{{ account.description }}</textarea>
           </div>
 
           <!-- Normal Side Label (Rectangle) -->
@@ -175,7 +175,7 @@
           <!-- Opening Balance Text Box (Text Field) -->
           <div id="openbaltxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="openbaltxt_div" class=""></div>
-            <input id="openbaltxt_input" type="number" value="{{ balance }}" class="u43_input" name="initial_balance" required/>
+            <input id="openbaltxt_input" type="number" value="{{ account.balance }}" class="u43_input" name="initial_balance" disabled/>
           </div>
 
           <!-- Dollar Sign (Shape) -->
@@ -198,7 +198,7 @@
           <!-- Comment Text (Text Field) -->
           <div id="commenttxt" class="ax_default text_field" data-label="Initital_Balance_Text_Field">
             <div id="commenttxt_div" class=""></div>
-            <input id="commenttxt_input" type="text" value="{{ comment }}" class="u46_input" name="comment" required/>
+            <textarea id="commenttxt_input">{{ account.comment }}</textarea>
           </div>
 
 

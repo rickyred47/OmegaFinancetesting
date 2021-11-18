@@ -1,4 +1,5 @@
 #white_div {
+    padding: 40px;
     position: absolute;
     top:165px;
     left:340px;
@@ -7,29 +8,37 @@
     width:1540px;
     height: auto;
 }
-#trial_balance_report{
+.account_row {
+    border-bottom: 1px solid black;
+}
+.report_style{
+    position: relative;
+    left: 300px;
+    width:860px;
+    padding: 30px;
+    border: 2px solid black;
     text-align: center;
+}
+#header{
+    height: 150px;
 }
 #trial_balance_lbl {
     color: #043F60;
 }
-th{
-    font-size:18px;
+th, td{
+    font-size:20px;
     color: #043F60;
     font-weight: bold;
 }
-.trial_amount{
-    border-bottom: 3px solid black;
-}
-#trial_balance_table {
+
+#trial_balance_table, #income_statement_table, #retained_table {
+    border-collapse: collapse;
     width: 800px;
-    border-spacing: 20px;
-    border: 2px solid black;
 }
 .account_name_column {
     text-align: left;
 }
-.debit_side, .credit_side{
+.debit_side, .credit_side, .money_value, .total, #net_total{
     text-align: right;
     padding-right: 20px;
 }
@@ -40,4 +49,14 @@ th{
     border-style: none none double none;
     text-align: right;
     padding-right: 20px;
+}
+tr{
+    height:50px ;
+}
+.total{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+#net_total, #total_retained{
+    border-style:solid none double none;
 }

@@ -1,0 +1,103 @@
+{% extends "base_admin.html" %}
+    {% block title %}Edit Account{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/createnewaccount/account_modify.css')}}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/createnewaccount/data.js')}}"></script>
+    {% endblock %}
+    {% block content %}
+        <div id="white_background">
+            <h1>Edit Account</h1>
+            <form action="{{ url_for('admin_save_account') }}" method="post">
+            <input type="text" value="{{ account.id }}" name="account_id" style="display: none">
+                <div id="background_shader">
+                    <table id="edit_table">
+                        <tr>
+                            <td>Account Name</td>
+                            <td><input id="name_input" type="text" class="Input_info" value="{{ account.name }}" name="name" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Account Category</td>
+                            <td>
+                                <select id="account_cat_selection" class="Input_info" name="category" onchange="changeCatNum()">
+                                    {% if account.category == 'Asset' %}
+                                        <option class="accountcat_input_option" value="Asset" selected>Asset</option>
+                                    {% else %}
+                                        <option class="accountcat_input_option" value="Asset">Asset</option>
+                                    {% endif %}
+                                    {% if account.category == 'Liability' %}
+                                        <option class="accountcat_input_option" value="Liability" selected>Liability</option>
+                                    {% else %}
+                                        <option class="accountcat_input_option" value="Liability">Liability</option>
+                                    {% endif %}
+                                    {% if account.category == 'Equity' %}
+                                        <option class="accountcat_input_option" value="Equity" selected>Equity</option>
+                                    {% else %}
+                                        <option class="accountcat_input_option" value="Equity">Equity</option>
+                                    {% endif %}
+                                    {% if account.category == 'Revenue' %}
+                                        <option class="accountcat_input_option" value="Revenue" selected>Revenue</option>
+                                    {% else %}
+                                        <option class="accountcat_input_option" value="Revenue">Revenue</option>
+                                    {% endif %}
+                                    {% if account.category == 'Expenses' %}
+                                        <option class="accountcat_input_option" value="Expenses" selected>Expenses</option>
+                                    {% else %}
+                                        <option class="accountcat_input_option" value="Expenses">Expenses</option>
+                                    {% endif %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Account Subcategory</td>
+                            <td><input id="subcategory_input" type="text" value="{{ account.subcategory }}" class="Input_info" name="subcategory" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Account Number</td>
+                            <td><input id="initial_number_input" type="text" value="{{ initial_number }}" class="Input_info" name="initial_num" readonly/>
+                                <input id="number_input" type="number" value="{{ number }}" class="Input_info" pattern="[0-9]" onkeypress="return !(event.charCode === 46)" name="number" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea id="description" class="Input_info" name="description">{{ account.description }}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Normal Side</td>
+                            <td>
+                                <select id="normal_side_selection" class="Input_info" name="normal_side">
+                                {% if side == 'Left' %}
+                                    <option class="normalsidedl_input_option" value="Left" selected>Left</option>
+                                {% else %}
+                                    <option class="normalsidedl_input_option" value="Left">Left</option>
+                                {% endif %}
+                                {% if side == 'Right' %}
+                                    <option class="normalsidedl_input_option" value="Right" selected>Right</option>
+                                {% else %}
+                                    <option class="normalsidedl_input_option" value="Right">Right</option>
+                                {% endif %}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Balance</td>
+                            <td id="balance_column"><img id="dollarsign_img" src="{{ url_for('static', filename= 'images/createnewaccount/regen/u44.svg')}}" alt="Dollar_sign"/>
+                                <input id="balance_input" type="number" class="Input_info" readonly value="{{ account.balance }}" name="balance"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Comments</td>
+                            <td><textarea id="comment_input" class="Input_info" name="comment">{{ account.comment }}</textarea></td>
+                        </tr>
+                    </table>
+                </div>
+            <table id="button_table">
+                <tr>
+                    <td><button id="back_button" class="button_class" type="button" onclick="window.location.href='{{ url_for('admin_chart_accounts') }}'">Back</button></td>
+                    <td><button id="save_button" class="button_class" type="submit">Save</button></td>
+                    <td><button id="reset_button" class="button_class" type="button" onclick="window.location.reload()">Reset</button></td>
+                </tr>
+            </table>
+            </form>
+
+        </div>
+    {% endblock %}

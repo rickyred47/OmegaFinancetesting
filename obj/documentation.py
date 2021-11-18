@@ -7,3 +7,10 @@ def get_total_amounts(accounts):
         elif account.normal_side == "Right":
             total_credit += account.balance
     return total_debit, total_credit
+
+
+def get_total_amount(accounts):
+    amount = 0
+    for account in accounts:
+        amount += account.balance
+    return amount

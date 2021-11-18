@@ -8,7 +8,12 @@
         <!--White background Box -->
         <div id="white_div">
             <h1 id="trial_balance_lbl">Trial Balance</h1>
-            <div id="trial_balance_report">
+            <div id="header" class="report_style">
+                <h1>Company Name</h1>
+                <h2>Trial Balance</h2>
+                <h2>{date}</h2>
+            </div>
+            <div id="trial_balance_report" class="report_style">
                 <table id="trial_balance_table">
                     <tr>
                         <th>Accounts</th>
@@ -17,7 +22,7 @@
                     </tr>
                     {% for account in accounts %}
                         {% if account.balance != 0 %}
-                            <tr>
+                            <tr class="account_row">
                             {% if account.normal_side == "Left" %}
                                 <td class="account_name_column">{{ account.name }}</td>
                                 <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>
@@ -30,7 +35,7 @@
                             </tr>
                         {% endif %}
                     {% endfor %}
-                    <tr></tr>
+                    <tr id="empty"></tr>
                     <tr>
                         <td></td>
                         <td class="total_amount">{{ "${:,.2f}".format(total_amounts[0]) }}</td>

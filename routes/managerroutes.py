@@ -133,9 +133,16 @@ def setup_page_routing(app, database):
 
     @app.route('/manager/reports/income_statement')
     def manager_income_statement():
-        if"Manger" in session:
+        if"Manager" in session:
             username = session["Manager"]
-            return render_template('manager_income_statement.html', username=username)
+            r_accounts = database.get_accounts_by_category("Revenue")
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            return render_template('manager_income_statement.html', username=username, r_accounts=r_accounts,
+                                   exp_accounts=exp_accounts, total_revenue=total_revenue, total_expenses=total_expense,
+                                   total_netIncome=net_total)
         else:
             return redirect(url_for('login_page'))
 
@@ -148,10 +155,17 @@ def setup_page_routing(app, database):
             return redirect(url_for('login_page'))
 
     @app.route('/manager/report/retained_earnings')
-    def manger_retained_earnings():
+    def manager_retained_earnings():
         if "Manager" in session:
-            username = session["Manger"]
-            return render_template('manager_retained_earning.html', username=username)
+            username = session["Manager"]
+            r_accounts = database.get_accounts_by_category("Revenue")
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            new_balance = net_total - 0
+            return render_template('manager_retained_earning.html', username=username, income_balance=net_total,
+                                   retained_balance=0, dividends_amount=0, new_retained_balance=new_balance)
         else:
             return redirect(url_for('login_page'))
 
