@@ -20,7 +20,7 @@
 	}
 table, td, tr, th {
     border-collapse: collapse;
-
+    width: 1520px;
 }
 th {
 text-align: center;
@@ -32,10 +32,51 @@ td {
 tr:nth-child(even){
   background-color: #DDECF5;
 }
+th, td {
+	border-bottom: 1px solid black;
+}
 .flex_container {
     display: flex;
 }
-#date_range{
-		width:400px;
-	}
+#date_filter {
+  border-width:0px;
+  position:absolute;
+  left:150px;
+  top:95px;
+  width: 700px;
+  display:flex;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:18px;
+  color:#043F60;
+}
+#date_range_input {
+  border-width:0px;
+  position:absolute;
+  left:150px;
+  top:120px;
+  width: 700px;
+  height:25px;
+  display:flex;
+  font-family:"Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+  color:#043F60;
+}
+#filterbylbl {
+  border-width:0px;
+  position:absolute;
+  left:40px;
+  top:120px;
+  width:174px;
+  height:22px;
+  display:flex;
+  font-family:"Montserrat Regular", "Montserrat", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:18px;
+  color:#043F60;
+}
 
