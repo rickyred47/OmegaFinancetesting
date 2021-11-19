@@ -60,36 +60,31 @@ def concat(number1, number2):
     return int(string)
 
 
-def edit_account(account):
-    username = session["username"]
-    num_string = str(account.number)
-    initial = int(num_string[0])
-    number = num_string[1:]
-    return render_template('editaccount.html', accountcat=account.category, name=account.name,
-                           subcategory=account.subcategory, initial_number=initial, number=number,
-                           description=account.description, normal_side=account.normal_side,
-                           balance=account.balance, comment=account.comment, username=username)
-
-
 def edit_save_account(account, database):
-    username = session["username"]
     initial_num = request.form["initial_num"]
     name = request.form["name"]
     number = int(str(concat(initial_num, request.form["number"])))
     normal_side = request.form["normal_side"]
-    balance = request.form["initial_balance"]
+    balance = request.form["balance"]
 
-    if any([name != account.name, number != account.number, normal_side != account.normal_side, str(balance) != str(account.balance)]):
+    if any([name != account.name, number != account.number, normal_side != account.normal_side,
+            str(balance) != str(account.balance)]):
         AccountEventsTable = database.get_account_events_table()
         created = datetime.now()
         new_account_event = AccountEventsTable(event_type='Modified', username=session['username'], date_made=created,
                                                account_id=account.id, account_number_before=account.number,
                                                account_number_after=number, account_name_before=account.name,
                                                account_name_after=name, account_balance_before=account.balance,
-                                               account_balance_after=balance, account_normal_side_before=account.normal_side,
-                                               account_normal_side_after=normal_side, account_active_before=account.active,
+                                               account_balance_after=balance,
+                                               account_normal_side_before=account.normal_side,
+                                               account_normal_side_after=normal_side,
+                                               account_active_before=account.active,
                                                account_active_after=account.active)
         database.commit_to_database(new_account_event)
+
+    if name != account.name or number != account.number:
+        change_journal(account, name, number, database)
+        change_ledger(account, number, database)
 
     # Edit account
     account.category = request.form["category"]
@@ -101,10 +96,6 @@ def edit_save_account(account, database):
     account.balance = balance
     account.comment = request.form["comment"]
     database.commit_info()
-    return render_template('editaccount.html', accountcat=account.category, name=account.name,
-                           subcategory=account.subcategory, initial_number=initial_num, number=number,
-                           description=account.description, normal_side=account.normal_side,
-                           balance=account.balance, comment=account.comment, saved="-SAVED", username=username)
 
 
 def toggle_active(account, database):
@@ -126,8 +117,10 @@ def toggle_active(account, database):
                                                account_id=account.id, account_number_before=account.number,
                                                account_number_after=account.number, account_name_before=account.name,
                                                account_name_after=account.name, account_balance_before=account.balance,
-                                               account_balance_after=account.balance, account_normal_side_before=account.normal_side,
-                                               account_normal_side_after=account.normal_side, account_active_before=not account.active,
+                                               account_balance_after=account.balance,
+                                               account_normal_side_before=account.normal_side,
+                                               account_normal_side_after=account.normal_side,
+                                               account_active_before=not account.active,
                                                account_active_after=account.active)
         database.commit_to_database(new_account_event)
 
@@ -223,3 +216,42 @@ def set_suspension(user, database):
     user.suspension_end = end_date
     user.is_suspended = True
     database.commit_info()
+
+
+def change_journal(account, name, number, database):
+    entries = database.get_journal_contains_account(account.name)
+    for entry in entries:
+        journal_entry = database.get_journal_entry(entry.id)
+        accounts = journal_entry.debit_accounts
+        numbers = journal_entry.debit_accounts_numbers
+        if account.name in accounts:
+            x = accounts.index(account.name)
+            accounts[x] = name
+            numbers[x] = number
+            database.commit_info()
+            journal_entry.debit_accounts = accounts
+            database.commit_info()
+            journal_entry.debit_accounts_numbers = numbers
+            database.commit_info()
+
+        accounts = journal_entry.credit_accounts
+        numbers = journal_entry.credit_accounts_numbers
+        if account.name in accounts:
+            x = accounts.index(account.name)
+            accounts[x] = name
+            numbers[x] = number
+            database.commit_info()
+            journal_entry.credit_accounts = accounts
+            database.commit_info()
+            journal_entry.credit_accounts_numbers = numbers
+            database.commit_info()
+
+
+def change_ledger(account, number, database):
+    ledger_entries = database.get_account_ledger_info(account.number)
+    for ledger_entry in ledger_entries:
+        ledger = database.get_ledger_entry(ledger_entry.id)
+        if ledger.account_number == account.number:
+            database.commit_info()
+            ledger.account_number = number
+            database.commit_info()

@@ -1,0 +1,80 @@
+#white_background {
+	margin-top:0;
+	position: absolute;
+	left: 350px;
+	top: 164px;
+	width:800px;
+	height:auto;
+	background-color: white;
+	border-color: #797979FF;
+	padding: 30px;
+	font-size: 20px;
+	color: #043F60;
+	}
+#background_shader {
+	background-color: #b5c5d8;
+	border: 1px solid #043F60;
+}
+.Input_info {
+	font-family: "Merriweather-Regular", "Merriweather", sans-serif;
+	font-size:16px;
+	border-radius: 5px;
+	border:1px solid black;
+}
+.Input_info:focus {
+	box-shadow: 0 0 10px #7dbce7;
+	border-color: #7dbce7;
+}
+td{
+	padding:10px;
+}
+#edit_table{
+	font-size: 20px;
+}
+#name_input, #subcategory_input, #description, #comment_input{
+	width: 300px;
+}
+#description{
+	height: 100px;
+}
+#comment_input{
+	height: 50px;
+}
+#name_input, #subcategory_input, #account_cat_selection, #balance_input, #initial_number_input, #number_input,
+#normal_side_selection {
+	height: 25px;
+}
+#initial_number_input{
+	width: 20px;
+	text-align: center;
+}
+#balance_column {
+	vertical-align: center;
+}
+#dollarsign_img{
+	height: 20px;
+}
+.button_class{
+	font-size:20px;
+	width: 200px;
+	height: 50px;
+}
+#button_table{
+	text-align: center;
+	vertical-align: center;
+}
+#back_button{
+	background-color: #0077B6;
+	color:white;
+}
+#save_button{
+	background-color: #2A7F62;
+	color:white;
+}
+#reset_button{
+	background-color: red;
+	color:white;
+}
+#balance_input{
+	text-align: right;
+}

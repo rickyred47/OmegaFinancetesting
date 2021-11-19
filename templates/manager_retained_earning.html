@@ -6,27 +6,32 @@
     {% block content %}
         <div id="white_div">
             <h1>Retained Earnings</h1>
-            <div id="retained_div">
+            <div id="header" class="report_style">
+                <h1>Company Name</h1>
+                <h2>Retained Earning Statement</h2>
+                <h2>{date}</h2>
+            </div>
+            <div id="retained_div" class="report_style">
                 <table id="retained_table">
                     <tr>
                         <th></th>
                         <th></th>
                     </tr>
                     <tr>
-                        <td>Beg Retained Earnings, {{ start_date }}</td>
-                        <td>{{ retained_balance }}</td>
+                        <td class="account_name_column">Beg Retained Earnings, {{ start_date }}</td>
+                        <td class="money_value">{{ "${:,.2f}".format(retained_balance) }}</td>
                     </tr>
                     <tr>
-                        <td>Add: Net Income</td>
-                        <td>{{ income_balacne }}</td>
+                        <td class="account_name_column">Add: Net Income</td>
+                        <td class="money_value">{{ "${:,.2f}".format(income_balance) }}</td>
                     </tr>
                     <tr>
-                        <td>Less: Dividends</td>
-                        <td>{{ dividends_amount }}</td>
+                        <td class="account_name_column">Less: Dividends</td>
+                        <td class="money_value">{{ "${:,.2f}".format(dividends_amount) }}</td>
                     </tr>
                     <tr>
-                        <td>End Retained Earnings, {{ end_date }}</td>
-                        <td>{{ new_retained_balacne }}</td>
+                        <td class="account_name_column">End Retained Earnings, {{ end_date }}</td>
+                        <td id="total_retained" class="money_value">{{ "${:,.2f}".format(new_retained_balance) }}</td>
                     </tr>
                 </table>
             </div>

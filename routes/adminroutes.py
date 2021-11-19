@@ -85,16 +85,31 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/admin_edit_account/<account_id>', methods=['GET', 'POST'])
+    @app.route('/admin_edit_account/<account_id>')
     def admin_edit_account(account_id):
         if "Administrator" in session:
+            username = session["Administrator"]
             account = database.get_account_info(account_id)
-            if request.method == "POST":
-                return admin_processes.edit_save_account(account, database)
-            else:
-                return admin_processes.edit_account(account)
+            num_string = str(account.number)
+            initial = int(num_string[0])
+            number = num_string[1:]
+            return render_template('edit_account.html', username=username, account=account, initial_number=initial,
+                                   number=number)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/admin_edit_account/save_account', methods=['POST', 'GET'])
+    def admin_save_account():
+        if "Administrator" in session:
+            if request.method == "POST":
+                account_id = request.form["account_id"]
+                account = database.get_account_info(account_id)
+                admin_processes.edit_save_account(account, database)
+                return redirect(url_for('admin_chart_accounts'))
+            else:
+                redirect(url_for('login_page'))
+        else:
+            return '', 204
 
     @app.route('/admin_ledger/<account_id>')
     def admin_account_ledger(account_id):
