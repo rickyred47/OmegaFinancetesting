@@ -3,6 +3,7 @@
     {% block head %}
         <link href="{{ url_for('static', filename= 'files/journal/journalstyle.css') }}" type="text/css" rel="stylesheet"/>
         <script src="{{ url_for('static', filename= 'files/journal/journaldata.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% endblock %}
     {% block content %}
     <!--White ground box -->
@@ -89,6 +90,16 @@
 
 		<div id="search_bx">
 			<input type="text" placeholder="Journal Search">
+            <script>
+                $(document).ready(function() {
+                    $("#search_input").on("keyup",function() {
+                        var value = $(this).val().toLowerCase();
+                        $(".entries_info").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                        });
+                    });
+                });
+            </script>
 		</div>
         <br><br>
         <div class="flex_container">
@@ -131,9 +142,9 @@
 						<table id="inner_table">
 							<tr id="debit_info">
 								<td style="width: 400px; font-weight: bold">
-									{% for debit_account in entry.debit_accounts %}
-										<p>{{ debit_account }}</p>
-									{% endfor %}
+									{% for x in range(0, (entry.debit_accounts|length)) %}
+                                    <p><a href="{{ url_for('accountant_number_id', account_number=entry.debit_accounts_numbers[x]) }}">{{ entry.debit_accounts_numbers[x] }}</a> - {{ entry.debit_accounts[x] }}</p>
+                                {% endfor %}
 								</td>
 								<td style="width: 200px; text-align: right">
 									{% for debit_amounts in entry.debit_amounts %}
@@ -144,9 +155,9 @@
 							</tr>
 							<tr id="credit_info">
 								<td style="font-weight: bold">
-									{% for credit_account in entry.credit_accounts %}
-									   <p style="margin-left: 30px">{{ credit_account }}</p>
-									{% endfor %}
+									{% for y in range(0, (entry.credit_accounts|length)) %}
+                                    <p style="margin-left: 30px"><a href="{{ url_for('accountant_number_id', account_number=entry.credit_accounts_numbers[y]) }}">{{ entry.credit_accounts_numbers[y] }}</a> - {{ entry.credit_accounts[y] }}</p>
+                                {% endfor %}
 								</td>
 								<td></td>
 								<td style="margin-left: 30px; text-align: right">

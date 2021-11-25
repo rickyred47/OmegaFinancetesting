@@ -1,7 +1,6 @@
 let debit_counter = 0;
 let credit_counter =  0;
 
-
 function show_journal_entry(){
     document.getElementById("journal_entry").style.display = "block";
 }
@@ -222,4 +221,15 @@ function filter(){
             }
         }
     }
+}
+function journal_search(){
+ var input, search, table, tr, td, txtValue;
+ var choice = document.getElementById("search_select").options.selectedIndex;
+ input = document.getElementById("search_input").value.toUpperCase();
+ table = document.getElementById("journal_table_body");
+ tr = table.children;
+ var txt ="";
+ for(var i = 0; i < tr.length; i++){
+    txt = txt + tr[i].tagName + " ";
+ }
 }

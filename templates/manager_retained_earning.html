@@ -18,7 +18,7 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <td class="account_name_column">Beg Retained Earnings, {{ start_date }}</td>
+                        <td class="account_name_column">Retained Earnings,Begin {{ start_date }}</td>
                         <td class="money_value">{{ "${:,.2f}".format(retained_balance) }}</td>
                     </tr>
                     <tr>
@@ -30,7 +30,7 @@
                         <td class="money_value">{{ "${:,.2f}".format(dividends_amount) }}</td>
                     </tr>
                     <tr>
-                        <td class="account_name_column">End Retained Earnings, {{ end_date }}</td>
+                        <td class="account_name_column">Retained Earnings,End {{ end_date }}</td>
                         <td id="total_retained" class="money_value">{{ "${:,.2f}".format(new_retained_balance) }}</td>
                     </tr>
                 </table>

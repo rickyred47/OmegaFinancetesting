@@ -3,6 +3,7 @@
     {% block head %}
         <link href="{{ url_for('static', filename= 'files/journal/journalstyle.css') }}" type="text/css" rel="stylesheet"/>
         <script src="{{ url_for('static', filename= 'files/journal/journaldata.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% endblock %}
     {% block content %}
     <!--White ground box -->
@@ -88,7 +89,17 @@
 		</div>
 
 		<div id="search_bx">
-			<input type="text" placeholder="Journal Search">
+			<input id="search_input" type="text" placeholder="Journal Search" autocomplete="off">
+            <script>
+                $(document).ready(function() {
+                    $("#search_input").on("keyup",function() {
+                        var value = $(this).val().toLowerCase();
+                        $(".entries_info").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                        });
+                    });
+                });
+            </script>
 		</div>
         <br><br>
         <div class="flex_container">
@@ -121,6 +132,7 @@
 				<th style="width:200px">Credit</th>
 				<th style="width:195px">Status</th>
 			</tr>
+            <tbody id="journal_table_body">
             {% for entry in entries %}
             <tr class="entries_info">
                 <td>{{ entry.date }}</td>
@@ -128,7 +140,7 @@
                 <td>{{ entry.id }}</td>
                 <td>{{ entry.created_by }}</td>
                 <td colspan="3">
-                    <table id="inner_table">
+                    <table id="inner_table" class="inner_table">
                         <tr id="debit_info">
                             <td style="width: 400px; font-weight: bold">
                                 {% for x in range(0, (entry.debit_accounts|length)) %}
@@ -174,6 +186,7 @@
                 </td>
             </tr>
             {% endfor %}
+            </tbody>
 		</table>
 	</div>
         <script>

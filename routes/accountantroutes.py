@@ -47,9 +47,19 @@ def setup_page_routing(app, database):
             username = session["Accountant"]
             accounts = database.get_active_accounts()
             entries = database.get_journal_entries()
-            return render_template('accountant_journal.html', username=username, accounts=accounts, entries=entries)
+            error = database.get_error_message(11)
+            return render_template('accountant_journal.html', username=username, accounts=accounts, entries=entries,
+                                   error_message=error.message)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/accountant/<account_number>_to_id')
+    def accountant_number_id(account_number):
+        if "Accountant" in session:
+            account = database.get_account_info_by_number(account_number)
+            return redirect(url_for('accountant_account_ledger', account_id=account.id))
+        else:
+            return '', 204
 
     @app.route('/accountant/journal/submit_entry', methods=['GET', 'POST'])
     def accountant_entry():
