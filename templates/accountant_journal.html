@@ -136,7 +136,7 @@
 				<tr class="entries_info">
 					<td>{{ entry.date }}</td>
 					<td>{{ entry.type }}</td>
-					<td>{{ entry.id }}</td>
+                    <td><a href="{{ url_for('accountant_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
 					<td>{{ entry.created_by }}</td>
 					<td colspan="3">
 						<table id="inner_table">
@@ -202,5 +202,6 @@
 		document.getElementById("journal_date").min = date;
 		document.getElementById("journal_date").value = date;
         </script>
+    </div>
     {% endblock %}
-	</div>
+

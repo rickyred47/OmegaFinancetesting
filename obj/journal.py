@@ -8,7 +8,9 @@ def journal_entry_form(user, database):
     entry_date = request.form["date_entry"]
     journal_type = request.form["journal_type"]
     description = request.form["description"]
-    # file = request.form["file"]
+    # print("testing")
+    # files = request.files.get('file')
+    # print(files.filename)
     account_name_number = request.form["debit_account_select0"]
     a = account_name_number.index("-")
     id_num = account_name_number[:a]
@@ -55,7 +57,7 @@ def journal_entry_form(user, database):
                               debit_accounts=debit_accounts, credit_accounts=credit_accounts,
                               debit_amounts=debit_accounts_amount, credit_amounts=credit_accounts_amount,
                               status="Pending", description=description, debit_accounts_numbers=debit_account_ids,
-                              credit_accounts_numbers=credit_accounts_ids)
+                              credit_accounts_numbers=credit_accounts_ids, file_name=None, file=None)
     database.commit_to_database(new_entry)
 
     journal_event = database.get_journal_event_table()

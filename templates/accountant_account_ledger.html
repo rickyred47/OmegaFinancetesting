@@ -1,95 +1,81 @@
 ﻿{% extends "base_accountant.html" %}
-    {% block title %}Ledger{% endblock %}
+    {% block title %}{{ account.name }} Ledger{% endblock %}
     {% block head %}
-    <link href="{{ url_for('static', filename= 'files/ledger/styles.css')}}" type="text/css" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename= 'files/ledger/styles.css')}}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/ledger/data.js') }}"></script>
     {% endblock %}
     {% block content %}
 
-      <!-- Unnamed (Group) -->
-      <div id="ledger_group" class="ax_default" data-left="362" data-top="164" data-width="1564" data-height="1298">
-
-        <!-- White_Box (Rectangle) -->
-        <div id="white_box" class="ax_default box_1" data-label="White_Box">
-          <div id="white_box_div" class=""></div>
-          <div id="white_box_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
+      <div id="background_bx">
+            <h1>{{ account.name }} Ledger</h1>
+            <h2><span id="account_lbl">Account No. - {{ account.number }}</span><span id="balance_lbl">Balance: {{ "${:,.2f}".format(account.balance) }}</span></h2>
+            <div>
+                <label>Filter Date:<br>
+                    <input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()">
+                </label>
+            </div>
+            <div id="account_table_div">
+                <table id="account_table">
+                    <tr>
+                        <th>Date</th>
+                        <th>PR</th>
+                        <th style="width: 600px">Description</th>
+                        <th style="width: 200px">Debit</th>
+                        <th style="width: 200px">Credit</th>
+                        <th style="width: 200px">Balance</th>
+                    </tr>
+                    <tr class="ledger_entries">
+                        <td>{{ account.date_created.strftime('%Y-%m-%d') }}</td>
+                        <td></td>
+                        <td>{{ account.name }} Created</td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right">{{ account.initial_balance }}</td>
+                    </tr>
+                    {% for entry in ledger_entries %}
+                    <tr class="ledger_entries">
+                        <td>{{ entry.date }}</td>
+                        <td><a href="{{ url_for('accountant_post_reference', post_reference=entry.pr_number) }}">{{ entry.pr_number }}</a></td>
+                        <td>{{ entry.description }}</td>
+                        <td style="text-align: right">
+                            {% if entry.debit_amount != none %}
+                                {{ "${:,.2f}".format(entry.debit_amount) }}
+                            {% endif %}
+                        </td>
+                        <td style="text-align: right">
+                            {% if entry.credit_amount != none %}
+                                {{ "${:,.2f}".format(entry.credit_amount) }}
+                            {% endif %}
+                        </td>
+                        <td style="text-align: right">{{ "${:,.2f}".format(entry.new_balance) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        <script>
+        const now = new Date();
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("end_date").value = date;
+        document.getElementById("end_date").max = date;
+        document.getElementById("start_date").max = date;
+        </script>
         </div>
-
-        <!-- SearchButton (Rectangle) -->
-        <div id="search_btn" class="ax_default primary_button" data-label="SearchButton">
-          <div id="search_btn_div" class=""></div>
-          <div id="search_btn_text" class="text ">
-            <p><span>Search</span></p>
-          </div>
-        </div>
-
-        <!-- SearchBar (Text Field) -->
-        <div id="search_bar" class="ax_default text_field" data-label="SearchBar">
-          <div id="search_bar_div" class=""></div>
-          <input id="search_bar_input" type="text" value="" class="u30_input"/>
-        </div>
-
-        <!-- Account Name Label (Rectangle) -->
-        <div id="account_name_lbl" class="ax_default heading_1">
-          <div id="account_name_div" class=""></div>
-          <div id="account_name_text" class="text ">
-            <p><span>{{ name }} Ledger</span></p>
-          </div>
-        </div>
-
-        <!-- Account Number (Rectangle) -->
-        <div id="account_number" class="ax_default label" data-label="Account Number">
-          <div id="account_number_div" class=""></div>
-          <div id="account_number_text" class="text ">
-            <p><span>Account No. {{ number }}</span></p>
-          </div>
-        </div>
-
-        <!-- Balance (Rectangle) -->
-        <div id="balance" class="ax_default label" data-label="Balance">
-          <div id="balance_div" class=""></div>
-          <div id="balance_text" class="text ">
-            <p><span>Balance: {{ "${:,.2f}".format(account.balance) }}</span></p>
-          </div>
-        </div>
-        <div id="account_table_div">
-        <table id="account_table">
-            <tr>
-                <th>Date</th>
-                <th>Post Reference</th>
-                <th>Description</th>
-                <th>Debit</th>
-                <th>Credit</th>
-                <th>Balance</th>
-            </tr>
-            <tr>
-                <td>{{ account.date_created.strftime('%Y-%m-%d') }}</td>
-                <td></td>
-                <td>{{ account.name }} Created</td>
-                <td></td>
-                <td></td>
-                <td>{{ account.initial_balance }}</td>
-            </tr>
-            {% for entry in ledger_entries %}
-            <tr>
-                <td>{{ entry.date }}</td>
-                <td>{{ entry.pr_number }}</td>
-                <td>{{ entry.description }}</td>
-                <td>
-                    {% if entry.debit_amount != none %}
-                        {{ "${:,.2f}".format(entry.debit_amount) }}
-                    {% endif %}
-                </td>
-                <td>
-                    {% if entry.credit_amount != none %}
-                        {{ "${:,.2f}".format(entry.credit_amount) }}
-                    {% endif %}
-                </td>
-                <td>{{ "${:,.2f}".format(entry.new_balance) }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        </div>
-      </div>
     {% endblock %}

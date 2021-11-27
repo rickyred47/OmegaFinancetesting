@@ -1,0 +1,61 @@
+{% extends "base_accountant.html" %}
+    {% block title %}Post Entry{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/journal/journalstyle.css') }}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/journal/journaldata.js') }}"></script>
+    {% endblock %}
+    {% block content %}
+        <!-- White box -->
+        <div id="background_bx">
+            <h1>Journal Entry - {{ entry.id }}</h1>
+            <div>
+                <table id="post_table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Created_by</th>
+                        <th>Status</th>
+                        <th>Accounts</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                    </tr>
+                    <tr>
+                        <td class="post_td" rowspan="{{ (entry.debit_accounts|length) + (entry.credit_accounts|length) + 1}}">{{ entry.date }}</td>
+                        <td class="post_td" rowspan="{{ (entry.debit_accounts|length) + (entry.credit_accounts|length) + 1}}">{{ entry.type }}</td>
+                        <td class="post_td" rowspan="{{ (entry.debit_accounts|length) + (entry.credit_accounts|length) + 1}}">{{ entry.created_by }}</td>
+                        <td class="post_td" rowspan="{{ (entry.debit_accounts|length) + (entry.credit_accounts|length) + 1}}">{{ entry.status }}</td>
+                    </tr>
+                    {% for x in range(0, (entry.debit_accounts|length)) %}
+                    <tr>
+                        <td class="post_td"><a href="{{ url_for('accountant_number_id', account_number=entry.debit_accounts_numbers[x]) }}">{{ entry.debit_accounts_numbers[x] }} - {{ entry.debit_accounts[x] }}</a></td>
+                        <td class="account_amount">{{ "${:,.2f}".format(entry.debit_amounts[x]) }}</td>
+                        <td class="post_td"></td>
+                    </tr>
+                    {% endfor %}
+                    {% for y in range(0, (entry.credit_accounts|length)) %}
+                    <tr>
+                        <td class="post_td"><span id="credit_accounts"><a href="{{ url_for('accountant_number_id', account_number=entry.credit_accounts_numbers[y]) }}">{{ entry.credit_accounts_numbers[y] }} - {{ entry.credit_accounts[y] }}</a></span></td>
+                        <td></td>
+                        <td class="account_amount">{{ "${:,.2f}".format(entry.credit_amounts[y]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="description_div">
+                <label>Description<br>
+                    <textarea id="post_description">{{ entry.description }}</textarea>
+                </label>
+            </div>
+            <div id="comment_div">
+            {% if entry.status == "Rejected" %}
+                <label>Reason for Rejection<br>
+                    <textarea id="post_comments">{{ entry.comment_rejection }}</textarea>
+                </label>
+            {% endif %}
+            </div>
+            <div id="files_div">
+                <p>Files:</p>
+                <embed type="application/pdf">
+            </div>
+        </div>
+    {% endblock %}

@@ -25,7 +25,7 @@ def setup_page_routing(app, database):
     def accountant_chart_accounts():
         if "Accountant" in session:
             username = session["Accountant"]
-            accounts = database.get_accounts_info()
+            accounts = database.get_active_accounts()
             return render_template('accountant_char_accounts.html', username=username, accounts=accounts)
         else:
             return redirect(url_for('login_Page'))
@@ -37,7 +37,7 @@ def setup_page_routing(app, database):
             account = database.get_account_info(account_id)
             ledger_entries = database.get_account_ledger_info(account.number)
             return render_template('accountant_account_ledger.html', username=username, account=account,
-                                   Omaledger_entries=ledger_entries)
+                                   ledger_entries=ledger_entries)
         else:
             return redirect(url_for('login_page'))
 
@@ -52,6 +52,13 @@ def setup_page_routing(app, database):
                                    error_message=error.message)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/accountant/pr=<post_reference>_journal_entry')
+    def accountant_post_reference(post_reference):
+        if "Accountant" in session:
+            username = session["Accountant"]
+            post_entry = database.get_journal_entry(post_reference)
+            return render_template("accountant_journal_entry.html", username=username, entry=post_entry)
 
     @app.route('/accountant/<account_number>_to_id')
     def accountant_number_id(account_number):

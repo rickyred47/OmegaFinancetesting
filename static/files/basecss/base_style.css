@@ -552,3 +552,16 @@ body {
   color:#043F60;
   text-align:center;
 }
+
+#background_bx {
+  position: absolute;
+  left: 349px;
+  top: 164px;
+  width:1500px;
+  height:auto;
+  background-color: white;
+  border-color: #797979FF;
+  padding: 30px;
+  font-size: 20px;
+  color: #043F60;
+}

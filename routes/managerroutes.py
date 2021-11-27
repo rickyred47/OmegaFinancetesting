@@ -33,7 +33,7 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/manager/<account_id>_345643')
+    @app.route('/manager/<account_id>_ledger')
     def manager_account_ledger(account_id):
         if "Manager" in session:
             username = session["Manager"]
@@ -80,6 +80,15 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
+    @app.route('/manager/pr=<post_reference>_journal_entry')
+    def manager_post_reference(post_reference):
+        if "Manager" in session:
+            username = session["Manager"]
+            post_entry = database.get_journal_entry(post_reference)
+            return render_template("manager_journal_entry.html", username=username, entry=post_entry)
+        else:
+            return '', 204
+
     @app.route('/manager/journal/submit_entry', methods=['GET', 'POST'])
     def manager_entry():
         if "Manager" in session:
@@ -100,6 +109,8 @@ def setup_page_routing(app, database):
                 entry = database.get_journal_entry(entry_id)
                 if request.form['accept_reject'] == 'Accept':
                     journal.post_info(entry, database)
+                else:
+                    entry.comment_rejection=request.form["reason"]
                 if request.form['accept_reject'] in ['Accept', 'Reject']:
                     entry.status = 'Accepted' if request.form['accept_reject'] == 'Accept' else 'Rejected'
                     database.commit_info()
@@ -116,7 +127,7 @@ def setup_page_routing(app, database):
                     database.commit_to_database(new_entry2)
                 return redirect(url_for('manager_journal'))
             else:
-                return '', 204
+                return render_template("manager_journal_entry.html")
         else:
             return redirect(url_for('login_page'))
 

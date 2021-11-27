@@ -201,8 +201,12 @@ function balanced(){
     }
 }
 function filter(){
-    var table, tr, txtValueStatus,td7, i;
+    var table, tr, txtValueStatus,td7, i, txtDateValue, td0;
     var status = document.getElementById("select_status").value;
+    var start_date = document.getElementById("start_date").value;
+    var end_date = document.getElementById("end_date").value;
+    const s_date = new Date(start_date.substr(0,4), start_date.substr(5,2), start_date.substr(8,2));
+    const e_date = new Date(end_date.substr(0,4), end_date.substr(5,2), end_date.substr(8,2));
     table = document.getElementById("journal_table");
     tr = table.getElementsByTagName("tr");
     if(status === "All"){
@@ -211,10 +215,13 @@ function filter(){
     status = status.toUpperCase();
     for(i = 0; i < tr.length; i++){
         td7 = tr[i].getElementsByTagName("td")[14];
-        if(td7){
+        td0 = tr[i].getElementsByTagName("td")[0];
+        if(td7 && td0){
             var td_p = td7.children;
             txtValueStatus = td_p[0].textContent || td_p[0].innerText;
-            if(txtValueStatus.toUpperCase().indexOf(status) > -1){
+            txtDateValue = td0.textContent || td0.innerText;
+            const contentDate = new Date(txtDateValue.substr(0,4), txtDateValue.substr(5,2), txtDateValue.substr(8,2));
+            if(txtValueStatus.toUpperCase().indexOf(status) > -1 && s_date <= contentDate && contentDate <= e_date){
                 tr[i].style.display = "";
             }else {
                 tr[i].style.display = "none";
@@ -222,14 +229,23 @@ function filter(){
         }
     }
 }
-function journal_search(){
- var input, search, table, tr, td, txtValue;
- var choice = document.getElementById("search_select").options.selectedIndex;
- input = document.getElementById("search_input").value.toUpperCase();
- table = document.getElementById("journal_table_body");
- tr = table.children;
- var txt ="";
- for(var i = 0; i < tr.length; i++){
-    txt = txt + tr[i].tagName + " ";
- }
+function showComment(event) {
+    document.getElementById("background_reason").style.display = "block";
+    document.getElementById("cover").style.width = "300%";
+    document.getElementById("cover").style.height = "300%";
+    document.body.style.overflow = "hidden";
+
+}
+function hideComment() {
+    document.getElementById("background_reason").style.display = "none";
+    document.getElementById("cover").style.width = "0%";
+    document.getElementById("cover").style.height = "0%";
+    document.body.style.overflow = "";
+}
+function submitInfo() {
+    hideComment();
+    document.getElementById("reason_text_form").value = document.getElementById("reason_text_area").value;
+    document.getElementById("reject_btn").click();
+
+
 }

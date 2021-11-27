@@ -7,6 +7,7 @@
     {% endblock %}
     {% block content %}
     <!--White ground box -->
+
     <div id="background_bx">
 		<div id="journal_lbl">
 			<p>Journal</p>
@@ -42,7 +43,7 @@
 							<textarea id="description" rows="5" cols="50" placeholder="Description here ..." name="description"></textarea>
 							<p>Choose a file to upload:</p>
   								<label for="file">Select a file:</label>
-  								<input type="file" id="file_btn" name="file">
+  								<input type="file" id="file_btn" name="file" multiple>
 						</div>
 					</td>
                 <!-- Accounts selection -->
@@ -105,7 +106,7 @@
         <div class="flex_container">
 		<div id="date_range">
 			<p>Filter: Date Range</p>
-			<p><input type="date"> to <input type="date"></p>
+			<p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()"></p>
 		</div>
 		<div id="status">
 			<p>Filter: Status</p>
@@ -137,7 +138,7 @@
             <tr class="entries_info">
                 <td>{{ entry.date }}</td>
                 <td>{{ entry.type }}</td>
-                <td>{{ entry.id }}</td>
+                <td><a href="{{ url_for('manager_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
                 <td>{{ entry.created_by }}</td>
                 <td colspan="3">
                     <table id="inner_table" class="inner_table">
@@ -179,8 +180,10 @@
                     {% if entry.status == "Pending" %}
                         <form action="{{ url_for('manager_accept_reject_entry') }}" method="post">
                             <input type="text" value="{{ entry.id }}" style="display: none" name="entry_id">
+                            <textarea id="reason_text_form" name="reason" style="display: None"></textarea>
                             <button id="accept" type="submit" name="accept_reject" value="Accept">Accept</button>
-                            <button id="reject" type="submit" name="accept_reject" value="Reject">Reject</button>
+                            <button id="reject" type="button" name="" value="Reject" onclick="showComment(event)">Reject</button>
+                            <button id="reject_btn" type="submit" name="accept_reject" value="Reject" style="display: none">Reject</button>
                         </form>
                     {% endif %}
                 </td>
@@ -191,27 +194,39 @@
 	</div>
         <script>
         const now = new Date();
-let now_day = now.getDate();
-let now_month = now.getMonth();
-now_month = now_month + 1;
-let year = now.getFullYear();
-let date;
-if (now_month < 10) {
-    if(now_day < 10) {
-        date = "" + year + "-0" + now_month + "-0" + now_day;
-    } else {
-        date = "" + year + "-0" + now_month + "-" + now_day;
-    }
-}
-else {
-    if(now_day < 10){
-        date = "" + year + "-" + now_month + "-0" + now_day;
-    } else {
-        date = "" + year + "-" + now_month + "-" + now_day;
-    }
-}
-document.getElementById("journal_date").min = date;
-document.getElementById("journal_date").value = date;
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("journal_date").min = date;
+        document.getElementById("journal_date").value = date;
+        document.getElementById("end_date").value = date;
+        document.getElementById("end_date").max = date;
+        document.getElementById("start_date").max = date;
         </script>
+    </div>
+    <div id="cover">
+    <div id="background_reason">
+        <label>Reason for Rejection<br>
+            <textarea id="reason_text_area" placeholder="Reason ..."></textarea>
+        </label><br>
+        <button id="cancel_reason" onclick="hideComment()">Cancel</button>
+        <button id="submit_reason" onclick="submitInfo()">Submit</button>
+    </div>
+    </div>
     {% endblock %}
-	</div>

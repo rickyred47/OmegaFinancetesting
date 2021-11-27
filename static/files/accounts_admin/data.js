@@ -27,6 +27,7 @@ function filter() {
   var date_end = document.getElementById("end_date").value;
   const start_date = new Date(date_start.substr(0,4), date_start.substr(5,2), date_start.substr(8,2))
   const end_date = new Date(date_end.substr(0,4), date_end.substr(5,2), date_end.substr(8,2))
+  alert(start_date)
   table = document.getElementById("accounts_table");
   tr = table.getElementsByTagName("tr");
   if(category === "All") {
