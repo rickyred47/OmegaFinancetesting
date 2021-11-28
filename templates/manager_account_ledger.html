@@ -10,10 +10,18 @@
         <div id="background_bx">
             <h1>{{ account.name }} Ledger</h1>
             <h2><span id="account_lbl">Account No. - {{ account.number }}</span><span id="balance_lbl">Balance: {{ "${:,.2f}".format(account.balance) }}</span></h2>
-            <div>
-                <label>Filter Date:<br>
-                    <input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()">
-                </label>
+            <div id="filters">
+                <div id="date_filter">
+                    <label>Filter Date:<br>
+                        <input id="start_date" class="filter_input" type="date" onchange="filter()"> to <input id="end_date" class="filter_input" type="date" onchange="filter()">
+                    </label>
+                </div>
+                <div id="amount_filter">
+                    <label>Filter Amount:<br>
+                        <input id="start_amount" class="filter_input" type="number" placeholder="0.00"> to <input id="end_amount" class="filter_input" type="number" placeholder="0.00">
+                        <input type="button" value="Enter" onclick="filter()">
+                    </label>
+                </div>
             </div>
             <div id="account_table_div">
                 <table id="account_table">

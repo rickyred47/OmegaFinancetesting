@@ -27,3 +27,16 @@ td {
 .ledger_entries:hover {
   background-color: #DDECF5;
 }
+#filters{
+  display: flex;
+}
+.filter_input{
+  height: 25px;
+}
+#start_amount, #end_amount{
+  text-align: right;
+  width: 150px;
+}
+#date_filter, #amount_filter{
+  padding: 30px;
+}
