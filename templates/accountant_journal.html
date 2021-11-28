@@ -39,7 +39,7 @@
 								<option value="Closing">Closing</option>
 							</select>
 							<br><br>
-							<textarea id="description" rows="5" cols="50" placeholder="Description here ..." name="description"></textarea>
+							<textarea id="description" rows="5" cols="50" placeholder="Description here ..." name="description" required></textarea>
 							<p>Choose a file to upload:</p>
   								<label for="file">Select a file:</label>
   								<input type="file" id="file_btn" name="file">
@@ -48,7 +48,7 @@
                 <!-- Accounts selection -->
 					<td id="accounts_column">
 						<div id="debit_accounts_div0" style="padding-left:10px">
-							<select id="debit_account_select0" class="debit_select_accounts" name="debit_account_select0">
+							<select id="debit_account_select0" class="debit_select_accounts" name="debit_account_select0" onchange="selectDisabled()">
                                 <option value="">--Accounts--</option>
                                 {% for account in accounts %}
                                 <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
@@ -58,7 +58,7 @@
                         </div>
                         <br id="break">
 						<div id="credit_accounts_div0" style="padding-left:50px">
-							<select id="credit_account_select0" class="credit_select_accounts" name="credit_account_select0">
+							<select id="credit_account_select0" class="credit_select_accounts" name="credit_account_select0" onchange="selectDisabled()">
                                 <option value="">--Accounts--</option>
                                 {% for account in accounts %}
                                 <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
@@ -69,22 +69,87 @@
 					</td>
 					<td id="debit_amount_column">
 						<div id="debit_amount0" style="padding-left:10px">
-							<label>&#36; </label><input id="debit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" name="debit_amount_input0" style="width: 150px">
+							<label>&#36; </label><input id="debit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" required name="debit_amount_input0" style="width: 150px">
 						</div>
 					</td>
 					<td id="credit_amount_column" style="padding-top:55px">
 						<div id="credit_amount0" style="padding-left:30px">
-							<label>&#36; </label><input id="credit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" name="credit_amount_input0" style="width: 150px">
+							<label>&#36; </label><input id="credit_amount_input0" class="input_amounts" type="number" onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" min="0" placeholder="0.00" required name="credit_amount_input0" style="width: 150px">
 						</div>
 					</td>
 				</tr>
 			</table>
 			<div id="buttons">
                 <input id="close" type="button" value="Close" onclick="close_journal_entry()">
-			    <input id="clear" type="reset" value="Clear">
-			    <button id="submit" type="submit" value="Submit" disabled>Submit</button>
+			    <input id="clear" type="button" value="Clear" onclick="clearInfo()">
+                <input id="clear_btn" type="reset" style="display: none">
+			    <button id="submit" type="button" value="Submit" onclick="checkAccounts()" disabled>Submit</button>
+                <input id="submit_button" type="submit" style="display: none">
                 <p id="balanced_error" style="color: red; display: none">{{ error_message }}</p>
+                <p id="accounts_error" style="color: red; display: none">{{ error_message1 }}</p>
 			</div>
+            <script>
+                function checkAccounts(){
+                        var d_value = true;
+                        var c_value = true;
+                        $(".debit_select_accounts").each(function() {
+                            var val = $(this).val();
+                            if(val === ""){
+                                d_value = false;
+                            }
+                        })
+                        $(".credit_select_accounts").each(function() {
+                            var val1 = $(this).val();
+                            if(val1 === ""){
+                                c_value = false;
+                            }
+                        })
+                        if( d_value && c_value){
+                            $("#submit_button").trigger("click");
+                        }else{
+                            $("#accounts_error").show();
+                        }
+                }
+                function selectDisabled() {
+                    clearSelect();
+                    $(".debit_select_accounts").each(function(){
+                        var index = $(this).prop('selectedIndex');
+                        if(index !== 0) {
+                            $(".debit_select_accounts").each(function (){
+                                $(this).children().eq(index).prop("disabled", "true");
+                                $(this).children().eq(index).css("color", "red");
+                            });
+                            $(".credit_select_accounts").each(function() {
+                                $(this).children().eq(index).prop("disabled", "true");
+                                $(this).children().eq(index).css("color", "red");
+                            });
+                        }
+                    });
+                    $(".credit_select_accounts").each(function(){
+                        var index1 = $(this).prop('selectedIndex');
+                        if(index1 !== 0) {
+                            $(".debit_select_accounts").each(function () {
+                                $(this).children().eq(index1).prop("disabled", "true");
+                                $(this).children().eq(index1).css("color", "red");
+                            });
+                            $(".credit_select_accounts").each(function() {
+                                $(this).children().eq(index1).prop("disabled", "true");
+                                $(this).children().eq(index1).css("color", "red");
+                            });
+                        }
+                    });
+                }
+                function clearSelect() {
+                    $(".debit_select_accounts").each(function(){
+                       $(this).children().prop("disabled", false);
+                       $(this).children().css("color", "black");
+                    });
+                    $(".credit_select_accounts").each(function(){
+                        $(this).children().prop("disabled", false);
+                        $(this).children().css("color", "black");
+                    });
+                }
+            </script>
 			</form>
 		</div>
 

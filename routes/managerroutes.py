@@ -75,8 +75,9 @@ def setup_page_routing(app, database):
             accounts = database.get_active_accounts()
             entries = database.get_journal_entries()
             error = database.get_error_message(11)
+            error1 = database.get_error_message(12)
             return render_template('manager_journal.html', username=username, accounts=accounts, entries=entries,
-                                   error_message=error.message)
+                                   error_message=error.message, error_message1=error1.message)
         else:
             return redirect(url_for('login_page'))
 

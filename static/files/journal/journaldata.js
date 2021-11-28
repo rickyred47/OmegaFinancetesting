@@ -1,3 +1,4 @@
+
 let debit_counter = 0;
 let credit_counter =  0;
 
@@ -14,7 +15,7 @@ function add_account_input(type){
     if(type === 'debit'){
         div_id = "" + type + "_accounts_div" + debit_counter;
         div_amount_id = "" + type + "_amount" + debit_counter;
-    }else{
+    }else {
         div_id = "" + type + "_accounts_div" + credit_counter;
         div_amount_id = "" + type + "_amount" + credit_counter;
     }
@@ -40,6 +41,8 @@ function add_account_input(type){
         accounts_column.insertBefore(cln_div, credit_div_before);
         cln_div.id = new_div_id;
 
+        changeCreditPos("Add");
+
         set_counter_input_text(debit_counter, type);
 
     }else if(type ==='credit'){
@@ -64,6 +67,7 @@ function add_account_input(type){
     var cln_div_amount_children = cln_div_amount.children;
     cln_div_amount_children[1].name = new_amount_input_id_name;
     cln_div_amount_children[1].id = new_amount_input_id_name;
+    balanced();
 
 }
 
@@ -80,6 +84,7 @@ function delete_account_input(type, clicked_id){
         div_amount_id = "" + type + "_amount" + number;
         div_amount = document.getElementById(div_amount_id);
         div_amount.remove();
+        changeCreditPos("Sub");
 
         set_counter_input_text(debit_counter, type);
 
@@ -98,6 +103,7 @@ function delete_account_input(type, clicked_id){
 
     }
     rename();
+    balanced();
 
 }
 function rename(){
@@ -125,7 +131,7 @@ function rename(){
                 new_minus_id = "debit_minus_btn" + d_counter;
                 d_counter ++;
             }else {
-                column_amount_c_children[d_counter].id = "credit_amount" + c_counter;
+                column_amount_c_children[c_counter].id = "credit_amount" + c_counter;
                 var div_amount_c_children = column_amount_c_children[c_counter].children;
                 div_amount_c_children[1].name = "credit_amount_input" + c_counter;
                 div_amount_c_children[1].id = "credit_amount_input" + c_counter;
@@ -246,6 +252,68 @@ function submitInfo() {
     hideComment();
     document.getElementById("reason_text_form").value = document.getElementById("reason_text_area").value;
     document.getElementById("reject_btn").click();
+}
+function clearInfo() {
+    var div_id, div, amount_id, div_amount;
+    for(var i = 0; debit_counter >= 1; --debit_counter){
+        div_id = "debit_accounts_div" + debit_counter;
+        amount_id = "debit_amount" + debit_counter;
+        div = document.getElementById(div_id);
+        div.remove();
+        div_amount = document.getElementById(amount_id);
+        div_amount.remove();
+        changeCreditPos("Sub");
+    }
+    for(i = 0; credit_counter >= 1; --credit_counter){
+        div_id = "credit_accounts_div" + credit_counter;
+        amount_id = "credit_amount" + credit_counter;
+        div = document.getElementById(div_id);
+        div.remove();
+        div_amount = document.getElementById(amount_id);
+        div_amount.remove();
+    }
+    document.getElementById("debit_accounts_div0").value = "";
+    document.getElementById("credit_accounts_div0").value = "";
+    document.getElementById("clear_btn").click();
 
+   const now = new Date();
+		let now_day = now.getDate();
+		let now_month = now.getMonth();
+		now_month = now_month + 1;
+		let year = now.getFullYear();
+		let date;
+		if (now_month < 10) {
+			if(now_day < 10) {
+				date = "" + year + "-0" + now_month + "-0" + now_day;
+			} else {
+				date = "" + year + "-0" + now_month + "-" + now_day;
+			}
+		}
+		else {
+			if(now_day < 10){
+				date = "" + year + "-" + now_month + "-0" + now_day;
+			} else {
+				date = "" + year + "-" + now_month + "-" + now_day;
+			}
+		}
+		document.getElementById("journal_date").min = date;
+		document.getElementById("journal_date").value = date;
 
+   document.getElementById("balanced_error").style.display = "none";
+   document.getElementById("submit").disabled = true;
+   document.getElementById("debit_amount_input0").style.boxShadow = "";
+   document.getElementById("credit_amount_input0").style.boxShadow = "";
+
+   clearSelect();
+}
+function changeCreditPos(addSub){
+    var padding = document.getElementById("credit_amount_column").style.paddingTop;
+    var padding_num = parseInt(padding, 10);
+    if(addSub === "Add"){
+        padding_num = padding_num + 30;
+    } else if(addSub === "Sub"){
+        padding_num = padding_num - 30;
+    }
+    padding = "" + padding_num + "px";
+    document.getElementById("credit_amount_column").style.paddingTop = padding;
 }
