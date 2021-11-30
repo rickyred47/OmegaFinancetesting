@@ -84,7 +84,7 @@
                 <input id="close" type="button" value="Close" onclick="close_journal_entry()">
 			    <input id="clear" type="button" value="Clear" onclick="clearInfo()">
                 <input id="clear_btn" type="reset" style="display: none">
-			    <button id="submit" type="button" value="Submit" disabled>Submit</button>
+			    <button id="submit" type="button" value="Submit" onclick="checkAccounts()" disabled>Submit</button>
                 <input id="submit_button" type="submit" style="display: none">
                 <p id="balanced_error" style="color: red; display: none">{{ error_message }}</p>
                 <p id="accounts_error" style="color: red; display: none">{{ error_message1 }}</p>
@@ -117,12 +117,10 @@
                         var index = $(this).prop('selectedIndex');
                         if(index !== 0) {
                             $(".debit_select_accounts").each(function (){
-                                $(this).children().eq(index).prop("disabled", "true");
-                                $(this).children().eq(index).css("color", "red");
+                                $(this).children().eq(index).css("display", "none");
                             });
                             $(".credit_select_accounts").each(function() {
-                                $(this).children().eq(index).prop("disabled", "true");
-                                $(this).children().eq(index).css("color", "red");
+                                $(this).children().eq(index).css("display", "none");
                             });
                         }
                     });
@@ -130,24 +128,20 @@
                         var index1 = $(this).prop('selectedIndex');
                         if(index1 !== 0) {
                             $(".debit_select_accounts").each(function () {
-                                $(this).children().eq(index1).prop("disabled", "true");
-                                $(this).children().eq(index1).css("color", "red");
+                                $(this).children().eq(index1).css("display", "none");
                             });
                             $(".credit_select_accounts").each(function() {
-                                $(this).children().eq(index1).prop("disabled", "true");
-                                $(this).children().eq(index1).css("color", "red");
+                                $(this).children().eq(index1).css("display", "none");
                             });
                         }
                     });
                 }
                 function clearSelect() {
                     $(".debit_select_accounts").each(function(){
-                       $(this).children().prop("disabled", false);
-                       $(this).children().css("color", "black");
+                       $(this).children().css("display", "");
                     });
                     $(".credit_select_accounts").each(function(){
-                        $(this).children().prop("disabled", false);
-                        $(this).children().css("color", "black");
+                        $(this).children().css("display", "");
                     });
                 }
             </script>
