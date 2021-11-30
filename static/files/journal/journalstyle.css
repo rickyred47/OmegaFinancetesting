@@ -187,3 +187,6 @@
 	.input_amounts{
 		height: 30px;
 	}
+	textarea{
+		resize: none;
+	}
