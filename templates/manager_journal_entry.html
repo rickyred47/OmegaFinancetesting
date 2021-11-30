@@ -13,7 +13,7 @@
                     <tr>
                         <th>Date</th>
                         <th>Type</th>
-                        <th>Created_by</th>
+                        <th>Created by</th>
                         <th>Status</th>
                         <th>Accounts</th>
                         <th>Debit</th>
@@ -43,13 +43,13 @@
             </div>
             <div id="description_div">
                 <label>Description<br>
-                    <textarea id="post_description">{{ entry.description }}</textarea>
+                    <textarea id="post_description" readonly>{{ entry.description }}</textarea>
                 </label>
             </div>
             <div id="comment_div">
                 {% if entry.status == "Rejected" %}
                 <label>Reason for Rejection<br>
-                    <textarea id="post_comments">{{ entry.comment_rejection}}</textarea>
+                    <textarea id="post_comments" readonly>{{ entry.comment_rejection}}</textarea>
                 </label>
             {% endif %}
             </div>

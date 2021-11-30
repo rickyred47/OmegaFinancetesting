@@ -8,9 +8,6 @@ def journal_entry_form(user, database):
     entry_date = request.form["date_entry"]
     journal_type = request.form["journal_type"]
     description = request.form["description"]
-    # print("testing")
-    # files = request.files.get('file')
-    # print(files.filename)
     account_name_number = request.form["debit_account_select0"]
     a = account_name_number.index("-")
     id_num = account_name_number[:a]
