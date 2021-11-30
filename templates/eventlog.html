@@ -6,23 +6,14 @@
 {% endblock %}
 {% block content %}
         <!-- White_Box (Rectangle) -->
-<div id="white_box">
+    <div id="white_box">
     <div id="event_log_header">
         <p>EventLog</p>
     </div>
 
-    <!-- Filter By Label (Rectangle) -->
-      <div id="filterbylbl" class="ax_default label" data-label="Account Name">
-        <div id="filterbylbl_div" class=""></div>
-        <div id="filterbylbl_text" class="text ">
-          <p><span>Filter by:</span></p>
-        </div>
-      </div>
-
     <!-- Date Range -->
-      <div id="date_filter" data-label="Date_range">
-          <p><span>Date range:</span></p>
-
+      <div id="date_filter" data-label="Date_range" style="padding-left:10px">
+          <p><span>Filter: Date Range</span></p>
       </div>
       <div id="date_range_input">
         <p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()">
