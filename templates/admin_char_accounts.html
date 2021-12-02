@@ -138,8 +138,8 @@
 		  </tr>
           {% for account in accounts %}
             <tr style="text-align: right">
-                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.number }}</a></td>
-                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}">{{ account.name }}</a></td>
+                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.number }} </a></td>
+                <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.name }}</a></td>
               <td>{{ account.category }}</td>
               <td>{{ account.subcategory }}</td>
               <td style="text-align: left; padding-left: 10px">{{ "${:,.2f}".format(account.balance)}}</td>
@@ -151,13 +151,13 @@
               {% else %}
                 <td>Inactive</td>
               {% endif %}
-              <td><input id="edit_btn" type="button" value="Edit" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
+              <td><input id="edit_btn" type="button" value="Edit" title = "Edit Account" onclick="window.location.href='{{ url_for("admin_edit_account", account_id=account.id) }}'"></td>
               <td><form method="post">
                   <input type="text" value="{{ account.id }}" style="display: none; visibility: hidden" name="account_id">
                   {% if account.active %}
-                    <input id="deactivate_btn" type="submit" value="Deactivate">
+                    <input id="deactivate_btn" type="submit" value="Deactivate" title = "Deactivate Account">
                   {% else %}
-                    <input id="deactivate_btn" type="submit" value="Activate" style="background-color: #2A7F62">
+                    <input id="deactivate_btn" type="submit" value="Activate" style="background-color: #2A7F62" title = "Activate Account">
                   {% endif %}
               </form></td>
               </tr>

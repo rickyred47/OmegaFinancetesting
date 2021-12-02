@@ -80,10 +80,10 @@
                   <td>{{ useraccount.role }}</td>
                   {% if useraccount.activated %}
                     <td>Active</td>
-                    <td><input type="button" value="Deactivate" onclick='showpopup({{ useraccount.username | tojson }})' style="background-color: red; color: white; height: 30px; width: 80px; border-radius: 5px"></td>
+                    <td><input type="button" value="Deactivate" title = "Suspend User" onclick='showpopup({{ useraccount.username | tojson }})' style="background-color: red; color: white; height: 30px; width: 80px; border-radius: 5px"></td>
                   {% else %}
                     <td>Deactivated</td>
-                    <td><input type="button" value="Activate" onclick="window.location.href='{{ url_for('admin_activate_user', username=useraccount.username)}}'" style="background-color: #2A7F62; color: white; height: 30px"></td>
+                    <td><input type="button" value="Activate" title = "Reactivate User" onclick="window.location.href='{{ url_for('admin_activate_user', username=useraccount.username)}}'" style="background-color: #2A7F62; color: white; height: 30px"></td>
                   {% endif %}
                   <td>{{ useraccount.password_expire_date }}</td>
                   <td>{{ useraccount.f_name }}</td>
@@ -110,8 +110,8 @@
               <br>to<br>
               <input id="date_end" type="date" onchange="correct_date_range()" name="end_date">
           </label><br><br>
-          <input id="popup_btn_sus" type="submit" value="Submit">
-          <input id="popup_cancel_sus" type="button" onclick="closepopup()" value="Cancel">
+          <input id="popup_btn_sus" type="submit" value="Submit" title = "Confirm User Suspension">
+          <input id="popup_cancel_sus" type="button" onclick="closepopup()" value="Cancel" title = "Cancel User Suspension">
       </form>
       </div>
 {% endblock %}

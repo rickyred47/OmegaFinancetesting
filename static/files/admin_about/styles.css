@@ -454,52 +454,7 @@
   text-transform:none;
   visibility:hidden;
 }
-#u25_div {
-  border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:46px;
-  height:18px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:"Montserrat SemiBold", "Montserrat", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:14px;
-  color:#043F60;
-}
-#u25 {
-  border-width:0px;
-  position:absolute;
-  left:142px;
-  top:1100px;
-  width:46px;
-  height:18px;
-  display:flex;
-  font-family:"Montserrat SemiBold", "Montserrat", sans-serif;
-  font-weight:600;
-  font-style:normal;
-  font-size:14px;
-  color:#043F60;
-}
-#u25 .text {
-  position:absolute;
-  align-self:flex-start;
-  padding:0px 0px 0px 0px;
-  box-sizing:border-box;
-  width:100%;
-}
-#u25_text {
-  border-width:0px;
-  white-space:nowrap;
-  text-transform:none;
-}
+
 #u26_div {
   border-width:0px;
   position:absolute;

@@ -80,7 +80,7 @@
 
             <!-- New_Users_Nav (Rectangle) -->
             <div id="new_users" class="nav_links_div" onclick="window.location.href='{{ url_for('admin_new_user_accounts') }}'">
-                <p class="nav_link_p"><a href="{{ url_for('admin_new_user_accounts') }}" title = "View new users">New users</a></p>
+                <p class="nav_link_p"><a href="{{ url_for('admin_new_user_accounts') }}" title = "View New Users">New Users</a></p>
             </div>
 
             <!-- Chart of Accounts (Rectangle) -->
@@ -90,7 +90,7 @@
 
             <!-- Event_Log_Nav (Rectangle) -->
             <div id="event_log" class="nav_links_div" onclick="window.location.href='{{ url_for('eventlog') }}'">
-                <p class="nav_link_p">Event Log</p>
+                <p class="nav_link_p" title = "View All Changes Made to Data in the System" >Event Log</p>
             </div>
 
             <!-- Reports_Nav (Rectangle) -->
@@ -99,23 +99,23 @@
                 <div id="password_report" class="nav_reports_links">
                     <a href="{{ url_for('admin_password_report') }}" title = "Browse All Expired Passwords">Expired Passwords Report </a>
                 </div>
-                <div id="trial_balance" class="nav_reports_links">
+                <div id="trial_balance" class="nav_reports_links" title = "Listing of the Ledger Account Balances">
                     <p>Trial Balance</p>
                 </div>
-                <div id="income_statement" class="nav_reports_links">
+                <div id="income_statement" class="nav_reports_links" title = "Browse Revenues and Expenses of a Company">
                     <p>Income Statement</p>
                 </div>
-                <div id="balance_sheet" class="nav_reports_links">
+                <div id="balance_sheet" class="nav_reports_links" title = "Browse Assets and Liabilities of a Company">
                     <p>Balance Sheet</p>
                 </div>
-                <div id="retained_statement" class="nav_reports_links">
+                <div id="retained_statement" class="nav_reports_links" title = "Browse Changes in the Retained Earnings of a Company">
                     <p>Retained Earnings Statement</p>
                 </div>
             </div>
 
             <!-- Email_Nav (Rectangle) -->
             <div id="email" class="nav_links_div"  onclick="window.location.href='{{ url_for('admin_email') }}'">
-            <p class="nav_link_p">Email</p>
+            <p class="nav_link_p" title = "Email Users of the System">Email</p>
             </div>
 
             <!-- About_Nav (Rectangle) -->

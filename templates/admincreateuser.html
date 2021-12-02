@@ -261,12 +261,12 @@
 
         <!-- createbtn (Rectangle) -->
         <div id="createbtn" class="ax_default primary_button" data-label="createbtn">
-          <input type="submit" value="Create User" style="width: 100%; color: white; background-color: #2A7F62">
+          <input type="submit" value="Create User" title = "Create New User in the System" style="width: 100%; color: white; background-color: #2A7F62">
         </div>
 
         <!-- cancelbtn (Rectangle) -->
         <div id="cancelbtn" class="ax_default primary_button" data-label="cancelbtn">
-          <input type="button" value="Cancel" onclick="window.location.href='{{ url_for('admin_user_accounts') }}" style="width: 100%; color: white; background-color: red">
+          <input type="button" value="Cancel" title = "Return to Previous Page" onclick="window.location.href='{{ 'javascript:javascript:history.go(-1)' }}'" style="width: 100%; color: white; background-color: red">
         </div>
       </div>
         </form>

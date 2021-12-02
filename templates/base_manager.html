@@ -82,22 +82,22 @@
 
             <!-- Event_Log_Nav (Rectangle) -->
             <div id="eventlog" class="nav_links_div" onclick="window.location.href='{{ url_for('manager_eventlog') }}'">
-                <p class="nav_link_p">Event Log</p>
+                <p class="nav_link_p" title = "View All Changes Made to Data in the System" >Event Log</p>
             </div>
 
             <!-- Reports_Nav (Rectangle) -->
             <div id="reports" class="nav_links_div" onmouseover="showReports()" onmouseout="hideReports()">
                 <p class="nav_link_p">Reports</p>
-                <div id="trial_balance" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_trial_balance') }}'">
+                <div id="trial_balance" class="nav_reports_links" title = "Listing of the Ledger Account Balances" onclick="window.location.href='{{ url_for('manager_trial_balance') }}'">
                     <p>Trial Balance</p>
                 </div>
-                <div id="income_statement" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_income_statement') }}'">
+                <div id="income_statement" class="nav_reports_links" title = "Browse Revenues and Expenses of a Company" onclick="window.location.href='{{ url_for('manager_income_statement') }}'">
                     <p>Income Statement</p>
                 </div>
-                <div id="balance_sheet" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_balance_sheet') }}'">
+                <div id="balance_sheet" class="nav_reports_links" title = "Browse Assets and Liabilities of a Company" onclick="window.location.href='{{ url_for('manager_balance_sheet') }}'">
                     <p>Balance Sheet</p>
                 </div>
-                <div id="retained_statement" class="nav_reports_links" onclick="window.location.href='{{ url_for('manager_retained_earnings') }}'">
+                <div id="retained_statement" class="nav_reports_links" title = "Browse Changes in the Retained Earnings of a Company" onclick="window.location.href='{{ url_for('manager_retained_earnings') }}'">
                     <p>Retained Earnings Statement</p>
                 </div>
             </div>
