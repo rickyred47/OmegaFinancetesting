@@ -69,7 +69,9 @@
         <div id="accountterm_div" class=""></div>
         <select id="accountsubcat_input" class="u17_input" onchange="filter()">
           <option class="accountterm_input_option" value="All">All</option>
-          <option class="accountterm_input_option" value="Current">Current</option>
+          {% for subcategory in sub_cat %}
+            <option class="accountterm_input_option" value={{ subcategory }}>{{ subcategory }}</option>
+          {% endfor %}
         </select>
       </div>
 		

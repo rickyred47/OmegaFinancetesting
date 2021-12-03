@@ -2,7 +2,7 @@ from functools import cmp_to_key
 
 from flask import render_template, request, session, redirect, url_for
 from datetime import datetime
-from obj import journal, documentation
+from obj import journal, documentation, admin_processes
 
 
 def setup_page_routing(app, database):
@@ -29,7 +29,9 @@ def setup_page_routing(app, database):
         if "Manager" in session:
             username = session["Manager"]
             accounts = database.get_active_accounts()
-            return render_template('manager_char_accounts.html', username=username, accounts=accounts)
+            subcategories = admin_processes.subcategory_accounts(accounts)
+            return render_template('manager_char_accounts.html', username=username, accounts=accounts,
+                                   sub_cats=subcategories)
         else:
             return redirect(url_for('login_page'))
 

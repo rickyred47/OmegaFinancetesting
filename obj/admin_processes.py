@@ -255,3 +255,21 @@ def change_ledger(account, number, database):
             database.commit_info()
             ledger.account_number = number
             database.commit_info()
+
+
+def subcategory_accounts(accounts):
+    subcategories = []
+    for account in accounts:
+        in_subcategories = False
+        subcategory = account.subcategory
+        if len(subcategories) == 0:
+            subcategories.append(subcategory)
+        else:
+            for sub_cat in subcategories:
+                if sub_cat == subcategory:
+                    in_subcategories = True
+            if not in_subcategories:
+                subcategories.append(subcategory)
+    return subcategories
+
+

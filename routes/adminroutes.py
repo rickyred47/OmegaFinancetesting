@@ -39,12 +39,15 @@ def setup_page_routing(app, database):
                 account = database.get_account_info(idnum)
                 num = admin_processes.toggle_active(account, database)
                 accounts = database.get_active_accounts()
+                subcategories = admin_processes.subcategory_accounts(accounts)
                 error = database.get_error_message(num)
                 return render_template('admin_char_accounts.html', accounts=accounts, username=username,
-                                       error_message=error.message)
+                                       error_message=error.message, sub_cat=subcategories)
             else:
                 accounts = database.get_active_accounts()
-                return render_template('admin_char_accounts.html', accounts=accounts, username=username)
+                subcategories = admin_processes.subcategory_accounts(accounts)
+                return render_template('admin_char_accounts.html', accounts=accounts, username=username,
+                                       sub_cat=subcategories)
         else:
             return redirect(url_for('login_page'))
 
