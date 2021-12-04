@@ -1,24 +1,55 @@
 ﻿{% extends "base_admin.html" %}
     {% block title %}Add To Chart of Accounts{% endblock %}
     {% block head %}
-    <link href="{{ url_for('static', filename= 'files/add_to_chart_of_accounts/styles.css')}}" type="text/css" rel="stylesheet"/>
+        <link href="{{ url_for('static', filename= 'files/add_to_chart_of_accounts/styles.css')}}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/add_to_chart_of_accounts/data.js') }}"></script>
     {% endblock %}
     {% block content %}
         <div id="background_bx" style="width: 700px">
             <h1>Add Account to Chart</h1>
+            <h3 id="error_message" style="display: none">{{ error_message }}</h3>
+            <form method="post">
             <div id="shader_bx">
                 <label>Account:
-                    <select id="select_accounts">
+                    <select id="select_accounts" name="select_account" onchange="changeMessage()">
                         <option value="">--Accounts--</option>
+                        {% for account in accounts %}
+                            <option value="{{ account.id }}">{{ account.name }}</option>
+                        {% endfor %}
                     </select>
                 </label><br><br>
                 <label>Initial Balance:
-                    <input id="balance_input" type="number" placeholder="0.00" required>
+                    <input id="balance_input" type="number" placeholder="0.00" required onkeyup="balanced()" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" name="initial_balance">
                 </label>
+                <h3>Choose order of account</h3>
+                <div id="account_list">
+                    <label>Accounts<br>
+                        <select id="select_order" size="{{ max_order }}" name="select_order">
+                            {% for x in range(0, max_order) %}
+                            <option value="{{ x }}">{{ x }} - {% for active_account in active_accounts %}
+                                {% if active_account.order == x %}
+                                    {{ active_account.name }}
+                                {% endif %}
+                                {% endfor %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
             </div>
             <div id="buttons">
-                <input id="back_btn" class="add_chart_buttons" type="button" value="Back">
-                <input id="add_btn" class="add_chart_buttons" type="button" value="Add">
+                <input id="back_btn" class="add_chart_buttons" type="button" value="Back" onclick="window.location.href='{{ url_for('admin_chart_accounts') }}'">
+                <input id="add_btn" class="add_chart_buttons" type="button" value="Add" onclick="checkLocation()">
+                <input id="submit_add" type="submit" style="display: none">
+                <input id="true_false" type="text" value="false" style="display: none" name="is_taken">
+            </div>
+            </form>
+        </div>
+        <div id="warning_cover">
+            <div id="warning_div">
+                <h3>An account is already in this slot.<br>Do you want to move it down?</h3>
+                <input id="cancel_btn" class="warning_buttons" type="button" onclick="closeWarning()" value="Cancel">
+                <input id="submit_true_btn" class="warning_buttons" type="button" value="Yes" onclick="submitTrue()">
             </div>
         </div>
     {% endblock %}

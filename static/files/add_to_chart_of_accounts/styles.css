@@ -1,4 +1,4 @@
-﻿#shader_bx{
+﻿#shader_bx, #order_account{
     background-color: #bfc6ce;
     padding: 30px;
     border: 1px solid black;
@@ -19,10 +19,43 @@
     color: white;
     font-size: 20px;
 }
-#add_btn{
+#add_btn, #submit_true_btn{
     background-color: #2A7F62;
     color:white;
 }
 #balance_input{
-    text-align: left;
+    text-align: right;
+}
+#select_order{
+    height: 500px;
+}
+#warning_cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.20);
+}
+#warning_div{
+    position: fixed;
+    top: 400px;
+    left: 400px;
+    width: 400px;
+    height: 200px;
+    background-color: #bfc6ce;
+    border: 1px solid black;
+    text-align: center;
+    display: none;
+}
+#cancel_btn{
+    background-color: red;
+    color: white;
+}
+.warning_buttons{
+    width: 100px;
+    height: 50px;
+}
+#error_message{
+    color: red;
 }

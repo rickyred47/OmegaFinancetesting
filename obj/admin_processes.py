@@ -273,3 +273,38 @@ def subcategory_accounts(accounts):
     return subcategories
 
 
+def max_order_num(accounts):
+    num = 0
+    for account in accounts:
+        if num < account.order:
+            num = account.order
+    return num
+
+
+def add_account_to_chart(account, database):
+    account.order = request.form["select_order"]
+    balance = request.form["initial_balance"]
+    account.balance = balance
+    account.initial_balance = balance
+    account.active = True
+    database.commit_info()
+
+
+def change_order(accounts, database):
+    start = False
+    order = request.form["select_order"]
+    order_num = int(order)
+    print(order_num)
+    for account in accounts:
+        print(account.order)
+        if int(account.order) == order_num:
+            order_num += 1
+            account.order = order_num
+            print(account.order)
+            database.commit_info()
+            start = True
+        else:
+            if start:
+                break
+
+

@@ -79,12 +79,27 @@ def setup_page_routing(app, database):
         else:
             return redirect(url_for('login_page'))
 
-    @app.route('/admin_add_chart_accounts')
+    @app.route('/admin_add_chart_accounts', methods=['GET', 'POST'])
     def admin_add_chart_accounts():
         if "Administrator" in session:
             username = session["Administrator"]
             accounts = database.get_inactive_accounts()
-            return render_template('add_to_chart_of_accounts.html', username=username)
+            active_accounts = database.get_active_accounts()
+            max_order = admin_processes.max_order_num(active_accounts)
+            error = database.get_error_message(12)
+            max_order += 2
+            if request.method == "POST":
+                account_id = request.form["select_account"]
+                account = database.get_account_info(account_id)
+                if request.form["is_taken"] == "true":
+                    print("test")
+                    admin_processes.change_order(active_accounts, database)
+                admin_processes.add_account_to_chart(account, database)
+                return redirect(url_for('admin_chart_accounts'))
+            else:
+                return render_template('add_to_chart_of_accounts.html', username=username, accounts=accounts,
+                                       active_accounts=active_accounts, max_order=max_order,
+                                       error_message=error.message)
         else:
             return redirect(url_for('login_page'))
 
