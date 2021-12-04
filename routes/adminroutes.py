@@ -41,12 +41,12 @@ def setup_page_routing(app, database):
                 accounts = database.get_active_accounts()
                 subcategories = admin_processes.subcategory_accounts(accounts)
                 error = database.get_error_message(num)
-                return render_template('admin_char_accounts.html', accounts=accounts, username=username,
+                return render_template("chart_of_accounts.html", accounts=accounts, username=username,
                                        error_message=error.message, sub_cat=subcategories)
             else:
                 accounts = database.get_active_accounts()
                 subcategories = admin_processes.subcategory_accounts(accounts)
-                return render_template('admin_char_accounts.html', accounts=accounts, username=username,
+                return render_template("chart_of_accounts.html", accounts=accounts, username=username,
                                        sub_cat=subcategories)
         else:
             return redirect(url_for('login_page'))
@@ -80,7 +80,7 @@ def setup_page_routing(app, database):
             return redirect(url_for('login_page'))
 
     @app.route('/admin_add_chart_accounts')
-    def admin_add_chart_account():
+    def admin_add_chart_accounts():
         if "Administrator" in session:
             username = session["Administrator"]
             accounts = database.get_inactive_accounts()
@@ -226,3 +226,7 @@ def setup_page_routing(app, database):
             return redirect(url_for('admin_user_accounts'))
         else:
             return '', 204
+
+    @app.route('/testing')
+    def admin_testing():
+        return render_template("chart_of_accounts.html")
