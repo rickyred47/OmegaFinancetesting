@@ -10,9 +10,11 @@ class DatabaseHandler:
         self.AccountsTable = None
         self.NewUsersTable = None
         self.UserTable = None
+        self.UserEventsTable = None
         self.ErrorTable = None
         self.AccountEventsTable = None
         self.Journal_Table = None
+        self.JournalEventsTable = None
         self.Ledger_Table = None
 
     # Accounts Database Methods
@@ -135,6 +137,12 @@ class DatabaseHandler:
         return userlist
 
     # End of User Database Methods
+
+    # User event database methods
+    def get_user_event_table(self):
+        self.UserEventsTable = self.base.classes.user_event
+        return self.UserEventsTable
+    # End user event database methods
 
     # Journal Database Methods
     def get_journal_table(self):
