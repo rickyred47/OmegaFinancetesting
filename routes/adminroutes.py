@@ -1,6 +1,7 @@
 from flask import render_template, redirect, request, url_for, session, send_file
 from functools import cmp_to_key
 from obj import admin_processes, documentation
+from datetime import datetime
 from io import BytesIO
 import base64
 
@@ -213,6 +214,23 @@ def setup_page_routing(app, database):
         if "Adminstrator" in session:
             new_user = database.get_new_user(username)
             database.delete_row(new_user)
+
+            # Create new user event
+            UserEventsTable = database.get_user_event_table()
+            new_user_event = UserEventsTable(username_before=new_user.username, username_after=None,
+                                             role_before=None, role_after=None, f_name_before=new_user.firstname,
+                                             f_name_after=None, l_name_before=new_user.lastname,
+                                             l_name_after=None, address_before=new_user.street,
+                                             address_after=None, city_before=None, city_after=None,
+                                             apt_number_before=new_user.aptnum, apt_number_after=None,
+                                             zip_before=new_user.zipcode, zip_after=None,
+                                             state_province_before=new_user.state, state_province_after=None,
+                                             country_before=new_user.country, country_after=None,
+                                             activated_before=False, activated_after=False, is_suspended_before=False,
+                                             is_suspended_after=False, date_made=datetime.now(),
+                                             event_type='Modified', username=session['username'], user_id=new_user.id)
+            database.commit_to_database(new_user_event)
+
             return redirect(url_for('admin_new_user_accounts'))
         else:
             return '', 204
