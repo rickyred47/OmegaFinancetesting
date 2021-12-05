@@ -4,6 +4,8 @@ from sqlalchemy.ext.automap import automap_base
 from obj.database_handler import DatabaseHandler
 from routine import password_expire_check
 
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "Futureime21"
 app.config[

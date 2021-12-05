@@ -17,7 +17,7 @@
 			<input id="add_btn_input" type="button" value="+Add" onclick="show_journal_entry()">
 		</div>
 		<div id="journal_entry" style="padding:20px">
-		<form action="{{ url_for('manager_entry') }}" method="post">
+		<form action="{{ url_for('manager_entry') }}" method="post" enctype="multipart/form-data">
         <input id="debit_accounts_counter" type="text" value="0" style="display: none" name="debit_accounts_counter">
         <input id="credit_accounts_counter" type="text" value="0" style="display: none" name="credit_accounts_counter">
 			<table id="journal_table_entry">
@@ -31,7 +31,7 @@
 					<td>
                         <br>
 						<div style="padding-left:10px">
-							<p><span>Date: </span><span><input id="journal_date" type="date" name="date_entry"></span></p>
+							<p><span>Date: </span><span><input id="journal_date" type="date" name="date_entry" required></span></p>
 							<br>
 							<select id="journal_type" name="journal_type" style="width: 400px">
 								<option value="Regular">Regular</option>
@@ -51,9 +51,41 @@
 						<div id="debit_accounts_div0" style="padding-left:10px">
 							<select id="debit_account_select0" class="debit_select_accounts" name="debit_account_select0" onchange="selectDisabled()">
                                 <option value="">--Accounts--</option>
-                                {% for account in accounts %}
-                                <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
-                                {% endfor %}
+                                <optgroup label="Assets">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Asset" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Liabilities">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Liability" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Equities">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Equity" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Revenues">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Revenue" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Expenses">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Expenses" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
                             </select>
 							<input id="debit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('debit')"><input id="debit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('debit', this.id)">
                         </div>
@@ -61,9 +93,41 @@
 						<div id="credit_accounts_div0" style="padding-left:50px">
 							<select id="credit_account_select0" class="credit_select_accounts" name="credit_account_select0" onchange="selectDisabled()">
                                 <option value="">--Accounts--</option>
-                                {% for account in accounts %}
-                                <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
-                                {% endfor %}
+                                <optgroup label="Assets">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Asset" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Liabilities">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Liability" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Equities">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Equity" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Revenues">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Revenue" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="Expenses">
+                                    {% for account in accounts %}
+                                        {% if account.category == "Expenses" %}
+                                            <option value="{{ account.number }}-{{ account.name }}">{{ account.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </optgroup>
                             </select>
 							<input id="credit_plus_btn" class="plus_minus_btns" type="button" value="+" onclick="add_account_input('credit')"><input id="credit_minus_btn0" class="plus_minus_btns" type="button" value="-" onclick="delete_account_input('credit', this.id)">
 						</div>
@@ -117,10 +181,10 @@
                         var index = $(this).prop('selectedIndex');
                         if(index !== 0) {
                             $(".debit_select_accounts").each(function (){
-                                $(this).children().eq(index).css("display", "none");
+                                $(this).find("option").eq(index).css("display", "none");
                             });
                             $(".credit_select_accounts").each(function() {
-                                $(this).children().eq(index).css("display", "none");
+                                $(this).find("option").eq(index).css("display", "none");
                             });
                         }
                     });
@@ -128,20 +192,20 @@
                         var index1 = $(this).prop('selectedIndex');
                         if(index1 !== 0) {
                             $(".debit_select_accounts").each(function () {
-                                $(this).children().eq(index1).css("display", "none");
+                                $(this).find("option").eq(index1).css("display", "none");
                             });
                             $(".credit_select_accounts").each(function() {
-                                $(this).children().eq(index1).css("display", "none");
+                                $(this).find("option").eq(index1).css("display", "none");
                             });
                         }
                     });
                 }
                 function clearSelect() {
                     $(".debit_select_accounts").each(function(){
-                       $(this).children().css("display", "");
+                       $(this).find("option").css("display", "");
                     });
                     $(".credit_select_accounts").each(function(){
-                        $(this).children().css("display", "");
+                        $(this).find("option").css("display", "");
                     });
                 }
             </script>
@@ -165,7 +229,7 @@
         <div class="flex_container">
 		<div id="date_range">
 			<p>Filter: Date Range</p>
-			<p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" onchange="filter()"></p>
+			<p><input id="start_date" type="date" onchange="filter()"> to <input id="end_date" type="date" required onchange="filter()"></p>
 		</div>
 		<div id="status">
 			<p>Filter: Status</p>

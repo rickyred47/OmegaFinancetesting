@@ -1,3 +1,6 @@
+from testingheroku import ALLOWED_EXTENSIONS
+
+
 def get_total_amounts(accounts):
     total_debit = 0
     total_credit = 0
@@ -14,3 +17,8 @@ def get_total_amount(accounts):
     for account in accounts:
         amount += account.balance
     return amount
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

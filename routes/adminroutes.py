@@ -1,6 +1,7 @@
-from flask import render_template, redirect, request, url_for, session
+from flask import render_template, redirect, request, url_for, session, send_file
 from functools import cmp_to_key
-from obj import admin_processes
+from obj import admin_processes, documentation
+from io import BytesIO
 import base64
 
 
@@ -242,6 +243,11 @@ def setup_page_routing(app, database):
         else:
             return '', 204
 
-    @app.route('/testing')
+    @app.route('/testing', methods=['GET', 'POST'])
     def admin_testing():
-        return render_template("chart_of_accounts.html")
+        if request.method == "POST":
+            file = request.files['file']
+            data = file.stream.read()
+            return send_file(BytesIO(data), attachment_filename=file.filename, as_attachment=False)
+        else:
+            return render_template("testing_files.html")

@@ -49,12 +49,24 @@ def journal_entry_form(user, database):
             credit_accounts_ids.append(id_num)
             credit_accounts_amount.append(amount)
 
+    if request.files:
+        files_inputs = request.files["file"]
+        files = []
+        filename = []
+        for files_input in files_inputs:
+            files.append(files_input.stream.read())
+            filename.append(files_input.filename)
+    else:
+        files = None
+        filename = None
+
+
     journal_entry = database.get_journal_table()
     new_entry = journal_entry(date=entry_date, type=journal_type, created_by=user,
                               debit_accounts=debit_accounts, credit_accounts=credit_accounts,
                               debit_amounts=debit_accounts_amount, credit_amounts=credit_accounts_amount,
                               status="Pending", description=description, debit_accounts_numbers=debit_account_ids,
-                              credit_accounts_numbers=credit_accounts_ids, file_name=None, file=None)
+                              credit_accounts_numbers=credit_accounts_ids, file_name=filename, file=files)
     database.commit_to_database(new_entry)
 
     journal_event = database.get_journal_event_table()

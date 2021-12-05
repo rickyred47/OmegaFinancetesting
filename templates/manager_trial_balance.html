@@ -25,12 +25,20 @@
                             <tr class="account_row">
                             {% if account.normal_side == "Left" %}
                                 <td class="account_name_column">{{ account.name }}</td>
-                                <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                {% if account.balance < 0 %}
+                                    <td class="debit_side">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                {% else %}
+                                    <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                {% endif %}
                                 <td></td>
                             {% elif account.normal_side == "Right" %}
                                 <td class="account_name_column"><span id="credit_name">{{ account.name }}</span></td>
                                 <td></td>
-                                <td class="credit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                {% if account.balance < 0 %}
+                                    <td class="credit_side">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                {% else %}
+                                    <td class="credit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                {% endif %}
                             {% endif %}
                             </tr>
                         {% endif %}

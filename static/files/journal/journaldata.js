@@ -104,6 +104,7 @@ function delete_account_input(type, clicked_id){
     }
     rename();
     balanced();
+    selectDisabled();
 
 }
 function rename(){
