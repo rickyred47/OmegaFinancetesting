@@ -63,8 +63,8 @@
 		            </tr>
                     {% for account in accounts %}
                     <tr style="text-align: right">
-                        <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.number }} </a></td>
-                        <td><a href="{{ url_for('admin_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.name }}</a></td>
+                        <td><a href="{{ url_for('accountant_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.number }} </a></td>
+                        <td><a href="{{ url_for('accountant_account_ledger', account_id=account.id)}}" title = "Navigate to Account's Ledger">{{ account.name }}</a></td>
                         <td>{{ account.category }}</td>
                         <td>{{ account.subcategory }}</td>
                         {%  if account.balance < 0 %}

@@ -3,7 +3,7 @@
     var choice = document.getElementById("search_options").options.selectedIndex;
   input = document.getElementById("search_input");
   filter = input.value.toUpperCase();
-  table = document.getElementById("accounts_table");
+  table = document.getElementById("chart_accounts_table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[choice];
@@ -28,7 +28,7 @@ function filter() {
   const start_date = new Date(date_start.substr(0,4), date_start.substr(5,2), date_start.substr(8,2))
   const end_date = new Date(date_end.substr(0,4), date_end.substr(5,2), date_end.substr(8,2))
 
-  table = document.getElementById("accounts_table");
+  table = document.getElementById("chart_accounts_table");
   tr = table.getElementsByTagName("tr");
   if(category === "All") {
     category = "";
