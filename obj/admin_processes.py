@@ -137,9 +137,12 @@ def new_use_admin(database):
         role = request.form["role"]
         username = NewUser.set_username(user[0], user[1], user[9])
         UserTable = database.get_user_table()
+        UserEventsTable = database.get_user_event_table()
         created = datetime.now()
         password_exp = created + timedelta(days=90)
         pre_passwords = [user[3]]
+
+        # Create new user
         new_user = UserTable(username=username, password=user[3], role=role, activated=True, profile_picture=" ",
                              f_name=user[0], l_name=user[1], email=user[2], address=user[4], dob=user[9],
                              account_creation_date=created, password_expire_date=password_exp,
@@ -147,6 +150,18 @@ def new_use_admin(database):
                              security_answers=None, city=None, apt_number=user[7], zip=user[8], state_province=user[5],
                              country=user[6], suspension_start=None, suspension_end=None, is_suspended=False)
         database.commit_to_database(new_user)
+
+        # Create new user event
+        new_user_event = UserEventsTable(username_before=None, username_after=username, role_before=None,
+                                         role_after=role, f_name_before=None, f_name_after=user[0], l_name_before=None,
+                                         l_name_after=user[1], address_before=None, address_after=user[4],
+                                         city_before=None, city_after=None, apt_number_before=None,
+                                         apt_number_after=user[7], zip_before=None, zip_after=user[8],
+                                         state_province_before=None, state_province_after=user[5], country_before=None,
+                                         country_after=user[6], activated_before=False, activated_after=False,
+                                         is_suspended_before=False, is_suspended_after=True, date_made=datetime.now(),
+                                         event_type='Created', username=session['username'], user_id=new_user.id)
+        database.commit_to_database(new_user_event)
         return True
 
     else:
