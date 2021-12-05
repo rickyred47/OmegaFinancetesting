@@ -273,6 +273,24 @@ def set_suspension(user, database):
     user.is_suspended = True
     database.commit_info()
 
+    # Create new user event
+    UserEventsTable = database.get_user_event_table()
+    new_user_event = UserEventsTable(username_before=user.username, username_after=user.username,
+                                     role_before=user.role, role_after=user.role, f_name_before=user.f_name,
+                                     f_name_after=user.f_name, l_name_before=user.l_name,
+                                     l_name_after=user.l_name, address_before=user.adr,
+                                     address_after=None, city_before=None, city_after=None,
+                                     apt_number_before=user.apt_number, apt_number_after=user.apt_number,
+                                     zip_before=user.zip, zip_after=user.zip,
+                                     state_province_before=user.state_province,
+                                     state_province_after=user.state_province,
+                                     country_before=user.country, country_after=user.country,
+                                     activated_before=True, activated_after=True,
+                                     is_suspended_before=False, is_suspended_after=True,
+                                     date_made=datetime.now(), event_type='Modified', username=session['username'],
+                                     user_id=user.id)
+    database.commit_to_database(new_user_event)
+
 
 def change_journal(account, name, number, database):
     entries = database.get_journal_contains_account(account.name)
