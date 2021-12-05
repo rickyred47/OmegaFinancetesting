@@ -1,0 +1,74 @@
+{% extends "base_admin.html" %}
+    {% block title %}Create Account{% endblock %}
+    {% block head %}
+        <link href="{{ url_for('static', filename= 'files/createnewaccount/account_modify.css')}}" type="text/css" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename= 'files/createnewaccount/data.js')}}"></script>
+    {% endblock %}
+    {% block content %}
+        <div id="white_background">
+            <h1>Create Account</h1>
+            <h3 id="error_message">{{ error_message }}</h3>
+            <form method="post">
+                <div id="background_shader">
+                    <table id="edit_table">
+                        <tr>
+                            <td>Account Name</td>
+                            <td><input id="name_input" type="text" class="Input_info" value="" name="name" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Account Category</td>
+                            <td>
+                                <select id="account_cat_selection" class="Input_info" name="category" onchange="changeCatNum()">
+                                    <option class="account_cat_input_option" value="Asset">Asset</option>
+                                    <option class="account_cat_input_option" value="Liability">Liability</option>
+                                    <option class="account_cat_input_option" value="Equity">Equity</option>
+                                    <option class="account_cat_input_option" value="Revenue">Revenue</option>
+                                    <option class="account_cat_input_option" value="Expenses">Expenses</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Account Subcategory</td>
+                            <td><input id="subcategory_input" type="text" value="" class="Input_info" name="subcategory" required/></td>
+                        </tr>
+                        <tr>
+                            <td>Account Number</td>
+                            <td><input id="initial_number_input" type="text" value="1" class="Input_info" name="initial_num" readonly/>
+                                <input id="number_input" type="number" value="" class="Input_info" pattern="[0-9]" onkeypress="return !(event.charCode === 46)" name="number" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td><textarea id="description" class="Input_info" name="description"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Normal Side</td>
+                            <td>
+                                <select id="normal_side_selection" class="Input_info" name="normal_side">
+                                    <option class="normalsidedl_input_option" value="Left">Left</option>
+                                    <option class="normalsidedl_input_option" value="Right">Right</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Balance</td>
+                            <td id="balance_column"><img id="dollarsign_img" src="{{ url_for('static', filename= 'images/createnewaccount/regen/u44.svg')}}" alt="Dollar_sign"/>
+                                <input id="balance_input" onkeypress="return !(event.charCode === 45 || event.charCode === 42 || event.charCode === 43)" type="number" class="Input_info" value="" name="initial_balance"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Comments</td>
+                            <td><textarea id="comment_input" class="Input_info" name="comment"></textarea></td>
+                        </tr>
+                    </table>
+                </div>
+            <table id="button_table">
+                <tr>
+                    <td><button id="back_button" class="button_class" type="button" onclick="window.location.href='{{ url_for('admin_chart_accounts') }}'">Back</button></td>
+                    <td><button id="save_button" class="button_class" type="submit">Save</button></td>
+                    <td><button id="reset_button" class="button_class" type="button" onclick="window.location.reload()">Reset</button></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    {% endblock %}

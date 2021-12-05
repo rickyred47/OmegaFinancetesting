@@ -3,7 +3,7 @@ function validPassword() {
 	var num = false;
 	var cap = false;
 	var spec = false;
-	var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+	var pattern = new RegExp(/[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g);
 	var input = document.getElementById("psswrdtxt_input").value;
 	if(input.length >= 8){
 		document.getElementById("psswrd8char").style.color = "green";
@@ -14,14 +14,14 @@ function validPassword() {
 		document.getElementById("check8char").style.visibility = "hidden";
 	}
 	for(var x = 0; x < input.length; x++){
-		var charcater = input.charAt(x);
-		if(/^\d+$/.test(charcater)){
+		var character = input.charAt(x);
+		if(/^\d+$/.test(character)){
 			num = true;
 		}
-		else if(pattern.test(charcater)){
+		else if(pattern.test(character)){
 			spec = true;
 		}
-		else if(charcater == charcater.toUpperCase()){
+		else if(character === character.toUpperCase()){
 			cap = true;
 		}
 	}
@@ -57,7 +57,7 @@ function validPassword() {
 function passwordMatch() {
 	var password1 = document.getElementById("psswrdtxt_input").value;
 	var password2 = document.getElementById("repsswrdtxtbx_input").value;
-	if(password1==password2){
+	if(password1===password2){
 		document.getElementById("psswrdmatchlbl").style.color = "green";
 	}
 	else{
@@ -70,7 +70,7 @@ function passwordPassed() {
 	var length = false
 	var cap = false;
 	var spec = false;
-	var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+	var pattern = new RegExp(/[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g);
 	var input = document.getElementById("psswrdtxt_input").value;
 	if(input.length >= 8){
 		length = true;
@@ -84,14 +84,14 @@ function passwordPassed() {
 		else if(pattern.test(charcater)){
 			spec = true;
 		}
-		else if(charcater == charcater.toUpperCase()){
+		else if(charcater === charcater.toUpperCase()){
 			cap = true;
 		}
 	}
 	var matched = false;
 	var password1 = document.getElementById("psswrdtxt_input").value;
 	var password2 = document.getElementById("repsswrdtxtbx_input").value;
-	if(password1==password2){
+	if(password1===password2){
 		matched=true;
 	}
 	

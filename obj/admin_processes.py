@@ -38,14 +38,23 @@ def is_valid_name_number(database):
     name = request.form["name"]
     number = request.form["number"]
     accounts = database.get_accounts_info()
+    valid_name = True
+    valid_number = True
+    print("testing")
     for account in accounts:
+        print("testing2")
         if name.lower() == account.name.lower():
-            return False
+            print("false")
+            valid_number = False
         if number == account.number:
-            return False
-        else:
-            return True
-    return True
+            print("false")
+            valid_number = False
+    if valid_number & valid_name:
+        print("True")
+        return True
+    else:
+        print("false")
+        return False
 
 
 def get_statement_doc(categories):

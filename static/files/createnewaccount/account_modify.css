@@ -78,3 +78,6 @@ td{
 #balance_input{
 	text-align: right;
 }
+#error_message{
+	color: red;
+}

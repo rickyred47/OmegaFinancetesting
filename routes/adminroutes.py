@@ -73,9 +73,9 @@ def setup_page_routing(app, database):
                     return redirect(url_for('admin_chart_accounts'))
                 else:
                     error = database.get_error_message(8)
-                    return render_template('createnewaccount.html', username=username, error_message=error.message)
+                    return render_template('create_account.html', username=username, error_message=error.message)
             else:
-                return render_template('createnewaccount.html', username=username)
+                return render_template('create_account.html', username=username)
         else:
             return redirect(url_for('login_page'))
 
