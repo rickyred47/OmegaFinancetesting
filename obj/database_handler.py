@@ -142,6 +142,11 @@ class DatabaseHandler:
     def get_user_event_table(self):
         self.UserEventsTable = self.base.classes.user_event
         return self.UserEventsTable
+
+    def get_all_user_events(self):
+        self.UserEventsTable = self.base.classes.user_event
+        user_events = self.db.session.query(self.UserEventsTable)
+        return user_events
     # End user event database methods
 
     # Journal Database Methods
