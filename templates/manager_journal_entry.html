@@ -55,6 +55,7 @@
             </div>
             <div id="files_div">
                 <p>Files: </p>
+                {% if entry.file_name != none %}
                 {% for file in entry.file_name %}
                 <div>
                     <form>
@@ -65,6 +66,9 @@
                     </form>
                 </div>
                 {% endfor %}
+                {% else %}
+                    <p>None</p>
+                {% endif %}
             </div>
         </div>
     {% endblock %}
