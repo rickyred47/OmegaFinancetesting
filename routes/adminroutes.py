@@ -56,7 +56,7 @@ def setup_page_routing(app, database):
     def admin_create_user():
         if "Administrator" in session:
             if request.method == "POST":
-                if admin_processes.new_use_admin(database):
+                if admin_processes.new_user_admin(database):
                     return redirect(url_for('admin_user_accounts'))
             else:
                 username = session["username"]

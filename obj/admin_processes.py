@@ -131,7 +131,7 @@ def toggle_active(account, database):
     return num
 
 
-def new_use_admin(database):
+def new_user_admin(database):
     if NewUser.correct_passwords_input():
         user = NewUser.get_new_user_info()
         role = request.form["role"]
