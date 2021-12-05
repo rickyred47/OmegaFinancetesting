@@ -1,14 +1,23 @@
-﻿function validPassword() {
-    var num = false;
-	var cap = false;
-	var spec = false;
-	var pattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+﻿var num = false;
+var cap = false;
+var spec = false;
+var match = true;
+var char = false;
+
+function validPassword() {
+	document.getElementById("error_message").style.display = "none"
+    num = false;
+	cap = false;
+	spec = false;
+	var pattern = new RegExp(/[\s~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?()\._]/g);
 	var input = document.getElementById("password1_input").value;
 	if(input.length >= 8){
 		document.getElementById("password8char").style.color = "green";
+		char = true;
 	}
 	else{
 		document.getElementById("password8char").style.color = "red";
+		char = false;
 	}
 	for(var x = 0; x < input.length; x++){
 		var character = input.charAt(x);
@@ -44,6 +53,9 @@
 	}
 
 	passwordMatch();
+	if(num && spec && cap && match && char){
+		document.getElementById("error_message2").style.display = "none";
+	}
 }
 
 function passwordMatch() {
@@ -51,8 +63,17 @@ function passwordMatch() {
 	var password2 = document.getElementById("password2_input").value;
 	if(password1===password2){
 		document.getElementById("passwordmatch").style.color = "green";
+		match = true;
 	}
 	else{
 		document.getElementById("passwordmatch").style.color = "red";
+		match = false;
+	}
+}
+function checkValid(){
+	if(num && spec && cap && match && char){
+		document.getElementById("submit_btn").click();
+	}else{
+		document.getElementById("error_message2").style.display = "block";
 	}
 }

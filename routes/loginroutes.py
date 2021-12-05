@@ -116,11 +116,12 @@ def setup_page_routing(app, database):
             username = session["user"]
             user = database.get_user_account(username)
             passwords = user.previous_passwords
+            error2 = database.get_error_message(13)
             if request.method == "POST":
                 used = False
                 password_in = request.form["password1"]
                 password2 = request.form["password2"]
-                if new_user.is_valid_password(password_in) and new_user.do_passwords_match(password_in, password2):
+                if NewUser.is_valid_password(password_in) and NewUser.do_passwords_match(password_in, password2):
                     for password in passwords:
                         if password == password_in:
                             used = True
@@ -133,9 +134,10 @@ def setup_page_routing(app, database):
                         return redirect(url_for('login_page'))
                     else:
                         error = database.get_error_message(7)
-                        return render_template('new_password.html', error_message=error.message)
-                return render_template('new_password.html')
+                        return render_template('new_password.html', error_message=error.message,
+                                               error_message2=error2.message)
+                return render_template('new_password.html', error_message2=error2.message)
             else:
-                return render_template('new_password.html')
+                return render_template('new_password.html', error_message2=error2.message)
         else:
             redirect(url_for('login_page'))
