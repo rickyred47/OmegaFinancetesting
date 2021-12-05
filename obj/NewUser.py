@@ -120,10 +120,7 @@ def do_passwords_match(password, password2):
     """
 
     # Checks both password match
-    if password == password2:
-        return True
-    else:
-        return False
+    return password == password2
 
 
 def get_new_user_info():
