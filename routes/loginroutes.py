@@ -8,6 +8,7 @@ def setup_page_routing(app, database):
     # the login page route
     @app.route('/', methods=['GET', 'POST'])
     def login_page():
+        session.pop("user", None)
         if request.method == "POST":
             return login_entry.is_valid_entry(database)
         else:

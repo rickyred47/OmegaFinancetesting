@@ -1,5 +1,4 @@
 ﻿function filter() {
-    alert();
     var table, tr, txtValue, td0, td3, td4, td5, txtDebit, txtCredit, txtBalance;
     var inDebit, inCredit, inBalance;
     var start_date = document.getElementById("start_date").value;

@@ -129,7 +129,7 @@
 	}
 	.debit_select_accounts, .credit_select_accounts {
 		height:30px;
-		width: 300px;
+		width: 250px;
 	}
 	#credit_accounts {
 		margin-left: 30px;
