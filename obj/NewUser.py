@@ -15,11 +15,13 @@ def gatherInfo_and_commit(database):
     """
     # Gather User's Information
     user = get_new_user_info()
-    username = set_username(user[0], user[1], user[9])
+    # Time of creation, Format Year-month-date Hour:minutes:seconds
+    created = datetime.now()
+    date_string = created.strftime("%x %X")
+    username = set_username(user[0], user[1], date_string, database)
     new_user = database.get_new_user(username)
     if not bool(new_user):
-        # Time of creation, Format Year-month-date Hour:minutes:seconds
-        created = datetime.now()
+
         # Creates a NewUser class based on the new_user table
         NewUserTable = database.get_new_user_Table()
         # Creates a new user object
@@ -165,6 +167,17 @@ def gather_security_info():
     return questions, answers
 
 
-def set_username(f_name, l_name, dob):
-    username = f_name[0].lower() + l_name.lower() + dob[5:7] + dob[2:4]
+def set_username(f_name, l_name, date, database):
+    username = f_name[0].lower() + l_name.lower() + date[0:2] + date[6:8]
+    new_users = database.get_new_users()
+    users = database.get_user_accounts()
+    found = False
+    for user in users:
+        if user.username == username:
+            found = True
+    for new_user in new_users:
+        if new_user.username == username:
+            found = True
+    if found:
+        username = f_name[0].lower() + l_name.lower() + date[0:2] + date[6:8] + date[9:11] + date[12:14]
     return username
