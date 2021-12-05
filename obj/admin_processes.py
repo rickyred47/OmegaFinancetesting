@@ -159,7 +159,7 @@ def new_user_admin(database):
                                          apt_number_after=user[7], zip_before=None, zip_after=user[8],
                                          state_province_before=None, state_province_after=user[5], country_before=None,
                                          country_after=user[6], activated_before=False, activated_after=False,
-                                         is_suspended_before=False, is_suspended_after=True, date_made=datetime.now(),
+                                         is_suspended_before=False, is_suspended_after=False, date_made=datetime.now(),
                                          event_type='Created', username=session['username'], user_id=new_user.id)
         database.commit_to_database(new_user_event)
         return True
@@ -188,9 +188,12 @@ def verify_answers(answers):
 def transfer_User_info(username, role, database):
     new_user = database.get_new_user(username)
     UserTable = database.get_user_table()
+    UserEventsTable = database.get_user_event_table()
     transfer = datetime.now()
     passwordExpire = transfer + timedelta(days=90)
     passwords = ["", new_user.password]
+
+    # Create new user
     user = UserTable(username=new_user.username, password=new_user.password, role=role, activated=True,
                      profile_picture="", f_name=new_user.firstname, l_name=new_user.lastname, email=new_user.email,
                      address=new_user.street, dob=new_user.dob, account_creation_date=transfer,
@@ -199,6 +202,23 @@ def transfer_User_info(username, role, database):
                      city=None, apt_number=new_user.aptnum, zip=new_user.zipcode, state_province=new_user.state,
                      country=new_user.country, suspension_start=None, suspension_end=None, is_suspended=False)
     database.commit_to_database(user)
+
+    # Create new user event
+    new_user_event = UserEventsTable(username_before=new_user.username, username_after=new_user.username,
+                                     role_before=role, role_after=role, f_name_before=new_user.firstname,
+                                     f_name_after=new_user.firstname, l_name_before=new_user.lastname,
+                                     l_name_after=new_user.lastname, address_before=new_user.street,
+                                     address_after=new_user.street, city_before=None, city_after=None,
+                                     apt_number_before=new_user.aptnum, apt_number_after=new_user.aptnum,
+                                     zip_before=new_user.zipcode, zip_after=new_user.zipcode,
+                                     state_province_before=new_user.state, state_province_after=new_user.state,
+                                     country_before=new_user.country, country_after=new_user.country,
+                                     activated_before=False, activated_after=True, is_suspended_before=False,
+                                     is_suspended_after=False, date_made=datetime.now(),
+                                     event_type='Modified', username=session['username'], user_id=new_user.id)
+    database.commit_to_database(new_user_event)
+
+    # Delete the entry in the new user table
     database.delete_row(new_user)
 
 
