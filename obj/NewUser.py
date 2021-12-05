@@ -20,7 +20,7 @@ def gatherInfo_and_commit(database):
     date_string = created.strftime("%x %X")
     username = set_username(user[0], user[1], date_string, database)
     new_user = database.get_new_user(username)
-    if not bool(new_user):
+    if not new_user:
 
         # Creates a NewUser class based on the new_user table
         NewUserTable = database.get_new_user_Table()
@@ -31,6 +31,19 @@ def gatherInfo_and_commit(database):
                                date_created=created)
         # Adds the Information to the database and commits it
         database.commit_to_database(newuser)
+
+        # Also adds a new user event
+        UserEventsTable = database.get_user_event_table()
+        new_user_event = UserEventsTable(username_before=None, username_after=username, role_before=None,
+                                         role_after=None, f_name_before=None, f_name_after=user[0], l_name_before=None,
+                                         l_name_after=user[1], address_before=None, address_after=user[4],
+                                         city_before=None, city_after=None, apt_number_before=None,
+                                         apt_number_after=user[7], zip_before=None, zip_after=user[8],
+                                         state_province_before=None, state_province_after=user[5], country_before=None,
+                                         country_after=user[6], activated_before=False, activated_after=False,
+                                         is_suspended_before=False, is_suspended_after=False, date_made=datetime.now(),
+                                         event_type='Created', username=session['username'], user_id=new_user.id)
+        database.commit_to_database(new_user_event)
     # Creates a session to complete Questions
     session["New_user"] = username
 
