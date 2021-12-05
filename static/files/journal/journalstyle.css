@@ -190,3 +190,11 @@
 	textarea{
 		resize: none;
 	}
+	.file_frames{
+		width: 1500px;
+		height: 1000px;
+	}
+	.show_file_btn{
+		background-color: #2A7F62;
+		color:white;
+	}

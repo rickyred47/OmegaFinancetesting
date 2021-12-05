@@ -1,7 +1,7 @@
 from functools import cmp_to_key
-
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, send_file
 from obj import journal, documentation, admin_processes
+from io import BytesIO
 
 
 def setup_page_routing(app, database):
@@ -133,3 +133,16 @@ def setup_page_routing(app, database):
             return render_template('accountant_retained_earning.html', username=username)
         else:
             return redirect(url_for('login_page'))
+
+    @app.route('/get_files_<post_reference>&_<file_name>', methods=['POST'])
+    def get_file(post_reference, file_name):
+        if request.method == "POST":
+            entry = database.get_journal_entry(post_reference)
+            print(file_name)
+            data = None
+            for x in range(0, len(entry.file_name)):
+                print(entry.file_name)
+                if file_name == entry.file_name[x]:
+                    print("true")
+                    data = entry.file_data[x]
+            return send_file(BytesIO(data), attachment_filename=file_name, as_attachment=False)

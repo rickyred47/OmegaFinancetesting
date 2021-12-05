@@ -55,7 +55,20 @@
             </div>
             <div id="files_div">
                 <p>Files:</p>
-                <embed type="application/pdf">
+                {% if entry.file_name != none %}
+                {% for file in entry.file_name %}
+                <div>
+                    <form>
+                    <p><button class="show_file_btn" type="submit" formmethod="post" formaction="{{ url_for('get_file', post_reference=entry.id, file_name=file) }}" formtarget="{{ file }}">Show File</button> </p>
+                    <iframe class="file_frames" name="{{ file }}" title="{{ file }}">
+
+                    </iframe>
+                    </form>
+                </div>
+                {% endfor %}
+                {% else %}
+                    <p>None</p>
+                {% endif %}
             </div>
         </div>
     {% endblock %}

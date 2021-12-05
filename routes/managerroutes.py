@@ -182,4 +182,3 @@ def setup_page_routing(app, database):
                                    retained_balance=0, dividends_amount=0, new_retained_balance=new_balance)
         else:
             return redirect(url_for('login_page'))
-
