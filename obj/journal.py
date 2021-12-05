@@ -50,7 +50,7 @@ def journal_entry_form(user, database):
             credit_accounts_amount.append(amount)
 
     if request.files:
-        files_inputs = request.files["file"]
+        files_inputs = request.files.getlist("file[]")
         files = []
         filename = []
         for files_input in files_inputs:
@@ -66,7 +66,7 @@ def journal_entry_form(user, database):
                               debit_accounts=debit_accounts, credit_accounts=credit_accounts,
                               debit_amounts=debit_accounts_amount, credit_amounts=credit_accounts_amount,
                               status="Pending", description=description, debit_accounts_numbers=debit_account_ids,
-                              credit_accounts_numbers=credit_accounts_ids, file_name=filename, file=files)
+                              credit_accounts_numbers=credit_accounts_ids, file_name=filename, file_data=files)
     database.commit_to_database(new_entry)
 
     journal_event = database.get_journal_event_table()
