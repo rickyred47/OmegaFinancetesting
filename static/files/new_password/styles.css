@@ -674,7 +674,7 @@
 #clear {
   border-width:0px;
   position:absolute;
-  left:694px;
+  left:630px;
   top:594px;
   width:46px;
   height:23px;
@@ -973,4 +973,8 @@
   border-width:0px;
   white-space:nowrap;
   text-transform:none;
+}
+.new_password_btn{
+  width: 80px;
+  height: 30px;
 }
