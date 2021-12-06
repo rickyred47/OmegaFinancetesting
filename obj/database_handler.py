@@ -159,6 +159,21 @@ class DatabaseHandler:
         journal = self.db.session.query(self.Journal_Table).order_by(desc(self.Journal_Table.id))
         return journal
 
+    def get_approved_journal_entries(self):
+        self.Journal_Table = self.base.classes.journal
+        journals = self.db.session.query(self.Journal_Table).filter_by(status='Accepted').order_by(desc(self.Journal_Table.id))
+        return journals
+
+    def get_pending_journal_entries(self):
+        self.Journal_Table = self.base.classes.journal
+        journals = self.db.session.query(self.Journal_Table).filter_by(status='Pending').order_by(desc(self.Journal_Table.id))
+        return journals
+
+    def get_rejected_journal_entries(self):
+        self.Journal_Table = self.base.classes.journal
+        journals = self.db.session.query(self.Journal_Table).filter_by(status='Rejected').order_by(desc(self.Journal_Table.id))
+        return journals
+
     def get_journal_entry(self, id_num):
         self.Journal_Table = self.base.classes.journal
         journal_entry = self.db.session.query(self.Journal_Table).filter_by(id=id_num).first()

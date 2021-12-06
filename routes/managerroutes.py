@@ -20,7 +20,11 @@ def setup_page_routing(app, database):
     def manager_home_page():
         if "Manager" in session:
             username = session["Manager"]
-            return render_template('manager_home_page.html', username=username)
+            approved_entries = database.get_approved_journal_entries()
+            pending_entries = database.get_pending_journal_entries()
+            rejected_entries = database.get_rejected_journal_entries()
+            return render_template('manager_home_page.html', username=username, approved_entries=approved_entries[:6],
+                                   pending_entries=pending_entries[:6], rejected_entries=rejected_entries[:4])
         else:
             return redirect(url_for('login_page'))
 

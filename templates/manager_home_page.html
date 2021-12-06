@@ -23,6 +23,40 @@
           <div id="u9_div" class=""></div>
           <div id="u9_text" class="text ">
             <p><span>Recent Approved Journal Entries</span></p>
+            <table style="width:1040px">
+              <tr>
+                <th style="width:150px">Date</th>
+                <th style="width:150px">Type</th>
+                <th style="width:45px">PR</th>
+                <th style="width:150px">Created By</th>
+                <th style="width:400px">Debit Accounts</th>
+                <th style="width:200px">Credit Accounts</th>
+                <th style="width:200px">Transfer Amount</th>
+              </tr>
+              <tbody>
+              {% for entry in approved_entries %}
+              <tr class="entries_info">
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.type }}</td>
+                <td><a href="{{ url_for('manager_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
+                <td>{{ entry.created_by }}</td>
+                <td>
+                  {% for x in range(0, (entry.debit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.debit_accounts_numbers[x]) }}">{{ entry.debit_accounts_numbers[x] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for y in range(0, (entry.credit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.credit_accounts_numbers[y]) }}">{{ entry.credit_accounts_numbers[y] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {{ "${:,.2f}".format(entry.credit_amounts|sum) }}
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -43,6 +77,40 @@
           <div id="u12_div" class=""></div>
           <div id="u12_text" class="text ">
             <p><span>Recent Pending Journal Entries</span></p>
+            <table style="width:1040px">
+              <tr>
+                <th style="width:150px">Date</th>
+                <th style="width:150px">Type</th>
+                <th style="width:45px">PR</th>
+                <th style="width:150px">Created By</th>
+                <th style="width:400px">Debit Accounts</th>
+                <th style="width:200px">Credit Accounts</th>
+                <th style="width:200px">Transfer Amount</th>
+              </tr>
+              <tbody>
+              {% for entry in pending_entries %}
+              <tr class="entries_info">
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.type }}</td>
+                <td><a href="{{ url_for('manager_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
+                <td>{{ entry.created_by }}</td>
+                <td>
+                  {% for x in range(0, (entry.debit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.debit_accounts_numbers[x]) }}">{{ entry.debit_accounts_numbers[x] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for y in range(0, (entry.credit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.credit_accounts_numbers[y]) }}">{{ entry.credit_accounts_numbers[y] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {{ "${:,.2f}".format(entry.credit_amounts|sum) }}
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -63,6 +131,40 @@
           <div id="u15_div" class=""></div>
           <div id="u15_text" class="text ">
             <p><span>Recent Rejected Journal Entries</span></p>
+            <table style="width:1040px">
+              <tr>
+                <th style="width:150px">Date</th>
+                <th style="width:150px">Type</th>
+                <th style="width:45px">PR</th>
+                <th style="width:150px">Created By</th>
+                <th style="width:400px">Debit Accounts</th>
+                <th style="width:200px">Credit Accounts</th>
+                <th style="width:200px">Transfer Amount</th>
+              </tr>
+              <tbody>
+              {% for entry in rejected_entries %}
+              <tr class="entries_info">
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.type }}</td>
+                <td><a href="{{ url_for('manager_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
+                <td>{{ entry.created_by }}</td>
+                <td>
+                  {% for x in range(0, (entry.debit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.debit_accounts_numbers[x]) }}">{{ entry.debit_accounts_numbers[x] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for y in range(0, (entry.credit_accounts|length)) %}
+                  <a href="{{ url_for('manager_number_id', account_number=entry.credit_accounts_numbers[y]) }}">{{ entry.credit_accounts_numbers[y] }} </a>
+                  {% endfor %}
+                </td>
+                <td>
+                  {{ "${:,.2f}".format(entry.credit_amounts|sum) }}
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
