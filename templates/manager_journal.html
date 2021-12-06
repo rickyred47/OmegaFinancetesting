@@ -3,7 +3,7 @@
     {% block head %}
         <link href="{{ url_for('static', filename= 'files/journal/journalstyle.css') }}" type="text/css" rel="stylesheet"/>
         <script src="{{ url_for('static', filename= 'files/journal/journaldata.js') }}"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% endblock %}
     {% block content %}
     <!--White ground box -->
@@ -213,7 +213,7 @@
 		</div>
 
 		<div id="search_bx">
-			<input id="search_input" type="text" placeholder="Journal Search" autocomplete="off">
+			<input id="search_input" type="text" placeholder="Journal Search" onkeyup="searchTable()" autocomplete="off">
             <script>
                 $(document).ready(function() {
                     $("#search_input").on("keyup",function() {
