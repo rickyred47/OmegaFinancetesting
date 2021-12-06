@@ -1,4 +1,4 @@
-from testingheroku import ALLOWED_EXTENSIONS
+ALLOWED_EXTENSIONS = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif']
 
 
 def get_total_amounts(accounts):
