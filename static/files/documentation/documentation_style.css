@@ -60,3 +60,11 @@ tr{
 #net_total, #total_retained{
     border-style:solid none double none;
 }
+#set_trial_balance, #set_balance_sheet{
+    padding: 20px;
+    background-color: #b5c5d8;
+    border: 1px solid black;
+}
+#div_print{
+    padding: 30px;
+}

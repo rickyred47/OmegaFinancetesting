@@ -118,7 +118,14 @@ def setup_page_routing(app, database):
     def accountant_income_statement():
         if "Accountant" in session:
             username = session["Accountant"]
-            return render_template('accountant_income_statement.html', username=username)
+            r_accounts = database.get_accounts_by_category("Revenue")
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            return render_template('accountant_income_statement.html', username=username, r_accounts=r_accounts,
+                                   exp_accounts=exp_accounts, total_revenue=total_revenue, total_expenses=total_expense,
+                                   total_netIncome=net_total)
         else:
             return redirect(url_for('login_page'))
 
@@ -134,7 +141,14 @@ def setup_page_routing(app, database):
     def accountant_retained_earnings():
         if "Accountant" in session:
             username = session["Accountant"]
-            return render_template('accountant_retained_earning.html', username=username)
+            r_accounts = database.get_accounts_by_category("Revenue")
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            new_balance = net_total - 0
+            return render_template('accountant_retained_earning.html', username=username, income_balance=net_total,
+                                   retained_balance=0, dividends_amount=0, new_retained_balance=new_balance)
         else:
             return redirect(url_for('login_page'))
 
@@ -142,11 +156,8 @@ def setup_page_routing(app, database):
     def get_file(post_reference, file_name):
         if request.method == "POST":
             entry = database.get_journal_entry(post_reference)
-            print(file_name)
             data = None
             for x in range(0, len(entry.file_name)):
-                print(entry.file_name)
                 if file_name == entry.file_name[x]:
-                    print("true")
                     data = entry.file_data[x]
             return send_file(BytesIO(data), attachment_filename=file_name, as_attachment=False)

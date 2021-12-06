@@ -168,6 +168,8 @@ def setup_page_routing(app, database):
     def manager_balance_sheet():
         if "Manager" in session:
             username = session["Manager"]
+            accounts = database.get_active_accounts()
+            total
             return render_template('manager_balance_sheet.html', username=username)
         else:
             return redirect(url_for('login_page'))

@@ -36,9 +36,9 @@
                 <div id="subcategory_filter" class="filters_divs">
                     <label>Account Subcategory:<br>
                         <select id="subcategory_filter" class="select_filters" onchange="filter()">
-                            <option class="subcategory_input_option" value="All">All</option>
+                            <option class="subcategory_select_input_option" value="All">All</option>
                             {% for subcategory in sub_cat %}
-                                <option class="subcategory_input_option" value={{ subcategory }}>{{ subcategory }}</option>
+                                <option class="subcategory_input_option" value="{{ subcategory }}">{{ subcategory }}</option>
                             {% endfor %}
                         </select>
                     </label>

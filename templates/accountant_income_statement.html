@@ -24,13 +24,13 @@
                     </tr>
                     {% for r_acount in r_accounts %}
                     <tr>
-                        <td class="account_name_column"><span style="margin-left: 30px">{{ r_acount.name }}</span></td>
-                        <td>{{ r_acount.balance }}</td>
+                        <td class="account_name_column"><span style="margin-left: 50px">{{ r_acount.name }}</span></td>
+                        <td class="money_value">{{ "${:,.2f}".format(r_acount.balance) }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td class="account_name_column">Total Revenue</td>
-                        <td>{{ total_revenue }}</td>
+                        <td class="total">{{ "${:,.2f}".format(total_revenue) }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
@@ -39,18 +39,18 @@
                     </tr>
                     {% for exp_account in exp_accounts %}
                     <tr>
-                        <td class="account_name_column">{{ exp_account.name }}</td>
-                        <td>{{ exp_account.balacne }}</td>
+                        <td class="account_name_column"><span style="margin-left: 50px">{{ exp_account.name }}</span></td>
+                        <td class="money_value">{{ "${:,.2f}".format(exp_account.balance) }}</td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td class="account_name_column">Total Expenses</td>
-                        <td>{{ total_expenses }}</td>
+                        <td class="total">{{ "${:,.2f}".format(total_expenses) }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
                         <td class="account_name_column">Net Income</td>
-                        <td>{{ total_netIncome }}</td>
+                        <td id="net_total">{{ "${:,.2f}".format(total_netIncome) }}</td>
                     </tr>
                 </table>
             </div>
