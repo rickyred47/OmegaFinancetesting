@@ -29,7 +29,7 @@
                     </tr>
                     {% for x in range(0,(asset_sub_cat|length)) %}
                         <tr>
-                            <td class="subcategory">{{ asset_sub_cat[x] }}</td>
+                            <td><span class="subcategory">{{ asset_sub_cat[x] }}</span></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -37,23 +37,27 @@
                             {% if account.category == "Asset" %}
                                 {% if account.subcategory == asset_sub_cat[x] %}
                                     <tr>
-                                        <td class="account_name">{{ account.name }}</td>
-                                        <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        <td><span class="account_name">{{ account.name }}</span></td>
+                                        {% if account.balance < 0 %}
+                                            <td class="money_value">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                        {% else %}
+                                            <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        {% endif %}
                                         <td></td>
                                     </tr>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
                         <tr>
-                            <td class="subcategory">Total {{ asset_sub_cat[x] }}</td>
-                            <td></td>
-                            <td>{{ "${:,.2f}".format(asset_sub_total[x]) }}</td>
+                            <td><span class="subcategory">Total {{ asset_sub_cat[x] }}</span></td>
+                            <td class="end_sub_total"></td>
+                            <td class="money_value">{{ "${:,.2f}".format(asset_sub_total[x]) }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td>Total Assets</td>
                         <td></td>
-                        <td>{{ "${:,.2f}".format(total_assets) }}</td>
+                        <td class="final_total">{{ "${:,.2f}".format(total_assets) }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
@@ -68,7 +72,7 @@
                     </tr>
                     {% for y in range(0,(lia_sub_cat|length)) %}
                         <tr>
-                            <td class="subcategory">{{ lia_sub_cat[y] }}</td>
+                            <td><span class="subcategory">{{ lia_sub_cat[y] }}</span></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -76,22 +80,26 @@
                             {% if account.category == "Liability" %}
                                 {% if account.subcategory == lia_sub_cat[y] %}
                                     <tr>
-                                        <td class="account_name">{{ account.name }}</td>
-                                        <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        <td><span class="account_name">{{ account.name }}</span></td>
+                                        {% if account.balance < 0 %}
+                                            <td class="money_value">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                        {% else %}
+                                            <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        {% endif %}
                                     </tr>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
                         <tr>
-                            <td class="subcategory">Total {{ lia_sub_cat[y] }}</td>
-                            <td></td>
-                            <td>{{ "${:,.2f}".format(lia_sub_total[y]) }}</td>
+                            <td><span class="subcategory">Total {{ lia_sub_cat[y] }}</span></td>
+                            <td class="end_sub_total"></td>
+                            <td class="money_value">{{ "${:,.2f}".format(lia_sub_total[y]) }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td>Total Liabilities</td>
                         <td></td>
-                        <td>{{ total_liability }}</td>
+                        <td class="total_le_column">{{ "${:,.2f}".format(total_liability) }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
@@ -100,7 +108,7 @@
                     </tr>
                     {% for z in range(0, (equi_sub_cat|length)) %}
                         <tr>
-                            <td class="subcategory">{{ equi_sub_cat[z] }}</td>
+                            <td><span class="subcategory">{{ equi_sub_cat[z] }}</span></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -108,28 +116,33 @@
                             {%  if account.category == "Equity" %}
                                 {% if account.subcategory == equi_sub_cat[z] %}
                                     <tr>
-                                        <td class="account_name">{{ account.name }}</td>
-                                        <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        <td><span class="account_name">{{ account.name }}</span></td>
+                                        {% if account.balance < 0 %}
+                                            <td class="money_value">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                        {% else %}
+                                            <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
+                                        {% endif %}
                                         <td></td>
                                     </tr>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
                         <tr>
-                            <td class="subcategory">Total {{ equi_sub_cat[z] }}</td>
-                            <td></td>
-                            <td>{{ "${:,.2f}".format(equi_sub_total[z]) }}</td>
+                            <td><span class="subcategory">Total {{ equi_sub_cat[z] }}</span></td>
+                            <td class="end_sub_total"></td>
+                            <td class="money_value">{{ "${:,.2f}".format(equi_sub_total[z]) }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td>Total Equity</td>
                         <td></td>
-                        <td>{{ "${:,.2f}".format(total_equity) }}</td>
+                        <td class="total_le_column">{{ "${:,.2f}".format(total_equity) }}</td>
                     </tr>
                     <tr></tr>
                     <tr>
                         <td>Total Liabilities & Equity</td>
-                        <td>{{ "${:,.2f}".format(total_le) }}</td>
+                        <td></td>
+                        <td class="final_total">{{ "${:,.2f}".format(total_le) }}</td>
                     </tr>
                 </table>
             </div>
