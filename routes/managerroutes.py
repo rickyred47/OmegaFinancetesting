@@ -169,7 +169,20 @@ def setup_page_routing(app, database):
         if "Manager" in session:
             username = session["Manager"]
             accounts = database.get_active_accounts()
-            return render_template('manager_balance_sheet.html', username=username)
+            assets_subcategory_totals = documentation.get_subcategory_totals("Asset", database)
+            total_Assets = documentation.get_category_totals(assets_subcategory_totals[1])
+            liability_subcategory_totals = documentation.get_subcategory_totals("Liability", database)
+            total_Liabilities = documentation.get_category_totals(liability_subcategory_totals[1])
+            equity_subcategory_totals = documentation.get_subcategory_totals("Equity", database)
+            total_Equity = documentation.get_category_totals(equity_subcategory_totals[1])
+            total_LE = total_Equity + total_Liabilities
+            return render_template('manager_balance_sheet.html', username=username, accounts=accounts,
+                                   asset_sub_cat=assets_subcategory_totals[0],
+                                   asset_sub_total=assets_subcategory_totals[1], total_assets=total_Assets,
+                                   lia_sub_cat=liability_subcategory_totals[0],
+                                   lia_sub_total=liability_subcategory_totals[1], total_liability=total_Liabilities,
+                                   equi_sub_cat=equity_subcategory_totals[0], total_equity=total_Equity,
+                                   equi_sub_total=equity_subcategory_totals[1], total_le=total_LE)
         else:
             return redirect(url_for('login_page'))
 

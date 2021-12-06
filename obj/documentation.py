@@ -1,3 +1,5 @@
+from obj import admin_processes
+
 ALLOWED_EXTENSIONS = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif']
 
 
@@ -22,3 +24,23 @@ def get_total_amount(accounts):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def get_category_totals(totals):
+    total_amount = 0
+    for total in totals:
+        total_amount += total
+    return total_amount
+
+
+def get_subcategory_totals(category, database):
+    accounts = database.get_accounts_by_category(category)
+    subcategories = admin_processes.subcategory_accounts(accounts)
+    totals = []
+    for subcategory in subcategories:
+        total = 0
+        for account in accounts:
+            if account.subcategory == subcategory:
+                total += account.balance
+        totals.append(total)
+    return subcategories, totals

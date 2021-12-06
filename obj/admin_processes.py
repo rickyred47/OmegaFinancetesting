@@ -368,9 +368,7 @@ def change_order(accounts, database):
     start = False
     order = request.form["select_order"]
     order_num = int(order)
-    print(order_num)
     for account in accounts:
-        print(account.order)
         if int(account.order) == order_num:
             order_num += 1
             account.order = order_num
