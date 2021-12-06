@@ -4,5 +4,157 @@
         <link href="{{ url_for('static', filename= 'files/documentation/documentation_style.css') }}" type="text/css" rel="stylesheet"/>
     {% endblock %}
     {% block content %}
-
+        <div id="white_div">
+            <h1>Balance Sheet</h1>
+            <div id="set_balance_sheet">
+                <label>Company Name:
+                    <input type="text" name="company_name">
+                </label><br>
+                <label>Set Date Range:<br>
+                    <input id="start_date" type="date" name="start_date"> to <input id="end_date" type="date" name="end_date">
+                </label>
+            </div>
+            <div id="div_print">
+            <div id="header" class="report_style">
+                <h1>Company Name</h1>
+                <h2>Balance Sheet</h2>
+                <h2 id="header_date"></h2>
+            </div>
+            <div id="balance_sheet_report" class="report_style">
+                <table id="balance_table">
+                    <tr>
+                        <td>Assets</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% for asset_sub_cat in asset_sub_cats %}
+                        <tr>
+                            <td class="subcategory">{{ asset_sub_cat }}s</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {% for account in accounts %}
+                            {% if account.category == "Asset" %}
+                                {% if account.subcatergory == asset_sub_cat %}
+                                    <tr>
+                                        <td class="account_name">{{ account.name }}</td>
+                                        <td>{{ account.balance }}</td>
+                                        <td></td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>Total {{ asset_sub_cat }}s</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Assets</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Liabilities & Equity</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Liabilities</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% for lia_sub_cat in lia_sub_cats %}
+                        <tr>
+                            <td class="subcategory">{{ lia_sub_cat }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {% for account in accounts %}
+                            {% if account.category == "Liability" %}
+                                {% if account.subcategory == lia_sub_cat %}
+                                    <tr>
+                                        <td class="account_name">{{ account.name }}</td>
+                                        <td>{{ account.balance }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>Total {{ lia_sub_cat }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Liabilities</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Equity</td>
+                        <td></td>
+                    </tr>
+                    {% for equi_sub_cat in equi_sub_cats %}
+                        <tr>
+                            <td class="subcategory">{{ equi_sub_cat }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {% for account in accounts %}
+                            {%  if account.category == "Equity" %}
+                                {% if account.subcategory == equi_sub_cat %}
+                                    <tr>
+                                        <td class="account_name">{{ account.name }}</td>
+                                        <td>{{ account.balance }}</td>
+                                        <td></td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>Total {{ equi_sub_cat }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Equity</td>
+                        <td></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Total Liabilities & Equity</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+        <script>
+        const now = new Date();
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("header_date").innerText = date;
+        </script>
     {% endblock %}

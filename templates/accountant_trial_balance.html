@@ -6,9 +6,23 @@
     {% endblock %}
     {% block content %}
         <!--White background Box -->
-        <div id="white_div">
+         <div id="white_div">
             <h1 id="trial_balance_lbl">Trial Balance</h1>
-            <div id="trial_balance_report">
+            <div id="set_trial_balance">
+                <label>Company Name:
+                    <input type="text" name="company_name">
+                </label><br>
+                <label>Set Date Range:<br>
+                    <input id="start_date" type="date" name="start_date"> to <input id="end_date" type="date" name="end_date">
+                </label>
+            </div>
+            <div id="div_print">
+            <div id="header" class="report_style">
+                <h1>Company Name</h1>
+                <h2>Trial Balance</h2>
+                <h2 id="header_date"></h2>
+            </div>
+            <div id="trial_balance_report" class="report_style">
                 <table id="trial_balance_table">
                     <tr>
                         <th>Accounts</th>
@@ -38,7 +52,7 @@
                             </tr>
                         {% endif %}
                     {% endfor %}
-                    <tr></tr>
+                    <tr id="empty"></tr>
                     <tr>
                         <td></td>
                         <td class="total_amount">{{ "${:,.2f}".format(total_amounts[0]) }}</td>
@@ -46,5 +60,29 @@
                     </tr>
                 </table>
             </div>
+            </div>
         </div>
+        <script>
+        const now = new Date();
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("header_date").innerText = date;
+        </script>
     {% endblock %}
