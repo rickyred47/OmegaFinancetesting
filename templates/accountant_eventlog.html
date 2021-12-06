@@ -57,20 +57,20 @@
           {% for event in events %}
             {% if event[1] == 'Account' %}
                 <tr style="text-align: center">
-                    <td> {{ event[0].id }}</td>
-                    <td> {{ event[0].date_made }}</td>
-                    <td> {{ event[0].event_type }}</td>
-                    <td> {{ event[0].account_number_before }} <br> {{ event[0].account_name_before }} <br> {{ event[0].account_balance_before }} <br> {{ event[0].account_normal_side_before }} <br> {{ ('Active' if event[0].account_active_before else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
-                    <td> {{ event[0].account_number_after }} <br> {{ event[0].account_name_after }} <br> {{ event[0].account_balance_after }} <br> {{ event[0].account_normal_side_after }} <br> {{ ('Active' if event[0].account_active_after else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
-                    <td> {{ event[0].account_id }}</td>
-                    <td> {{ event[0].username }}</td>
+                    <td>{{ event[0].id }}</td>
+                    <td>{{ event[0].date_made }}</td>
+                    <td>{{ event[0].event_type }}</td>
+                    <td>{{ event[0].account_number_before }} <br> {{ event[0].account_name_before }} <br> {{ event[0].account_balance_before }} <br> {{ event[0].account_normal_side_before }} <br> {{ ('Active' if event[0].account_active_before else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
+                    <td>{{ event[0].account_number_after }} <br> {{ event[0].account_name_after }} <br> {{ event[0].account_balance_after }} <br> {{ event[0].account_normal_side_after }} <br> {{ ('Active' if event[0].account_active_after else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
+                    <td>{{ event[0].account_id }}</td>
+                    <td>{{ event[0].username }}</td>
                 </tr>
             {% else %}
                 <tr style="text-align: center">
-                    <td> {{ event[0].id }}</td>
-                    <td> {{ event[0].date_made }}</td>
-                    <td> {{ event[0].event_type }}</td>
-                    <td> {{ event[0].journal_type_before }} <br>
+                    <td>{{ event[0].id }}</td>
+                    <td>{{ event[0].date_made }}</td>
+                    <td>{{ event[0].event_type }}</td>
+                    <td>{{ event[0].journal_type_before }} <br>
                         {% if event[0].journal_debit_accounts_before %}
                             {% for i in range(event[0].journal_debit_accounts_before|length) %}
                                 {{ event[0].journal_debit_accounts_before[i] + ' - ' + event[0].journal_debit_amounts_before[i]|string + ' (Debit)' }} <br>
@@ -90,7 +90,7 @@
                             {% endfor %}
                         {% endif %}
                         {{ event[0].journal_status_before }}</td>
-                    <td> {{ event[0].journal_type_after }} <br>
+                    <td>{{ event[0].journal_type_after }} <br>
                         {% for i in range(event[0].journal_debit_accounts_after|length) %}
                             {{ event[0].journal_debit_accounts_after[i] + ' - ' + event[0].journal_debit_amounts_after[i]|string + ' (Debit)' }} <br>
                         {% endfor %}
@@ -98,8 +98,8 @@
                             {{ event[0].journal_credit_accounts_after[i] + ' - ' + event[0].journal_credit_amounts_after[i]|string + ' (Credit)' }} <br>
                         {% endfor %}
                         {{ event[0].journal_status_after }}</td>
-                    <td> {{ event[0].journal_id }}</td>
-                    <td> {{ event[0].username }}</td>
+                    <td>{{ event[0].journal_id }}</td>
+                    <td>{{ event[0].username }}</td>
                 </tr>
             {% endif %}
           {% endfor %}
