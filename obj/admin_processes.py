@@ -249,7 +249,7 @@ def deactivated_user(user, database):
                                      role_before=user.role, role_after=user.role, f_name_before=user.f_name,
                                      f_name_after=user.f_name, l_name_before=user.l_name,
                                      l_name_after=user.l_name, address_before=user.address,
-                                     address_after=None, city_before=None, city_after=None,
+                                     address_after=user.address, city_before=None, city_after=None,
                                      apt_number_before=user.apt_number, apt_number_after=user.apt_number,
                                      zip_before=user.zip, zip_after=user.zip,
                                      state_province_before=user.state_province,
