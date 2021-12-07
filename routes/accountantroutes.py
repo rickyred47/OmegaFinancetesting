@@ -141,7 +141,7 @@ def setup_page_routing(app, database):
             equity_subcategory_totals = documentation.get_subcategory_totals("Equity", database)
             total_Equity = documentation.get_category_totals(equity_subcategory_totals[1])
             total_LE = total_Equity + total_Liabilities
-            return render_template('manager_balance_sheet.html', username=username, accounts=accounts,
+            return render_template('accountant_balance_sheet.html', username=username, accounts=accounts,
                                    asset_sub_cat=assets_subcategory_totals[0],
                                    asset_sub_total=assets_subcategory_totals[1], total_assets=total_Assets,
                                    lia_sub_cat=liability_subcategory_totals[0],
@@ -175,3 +175,11 @@ def setup_page_routing(app, database):
                 if file_name == entry.file_name[x]:
                     data = entry.file_data[x]
             return send_file(BytesIO(data), attachment_filename=file_name, as_attachment=False)
+
+    @app.route('/accountant_about')
+    def accountant_about():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            return render_template('accountant_about.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
