@@ -1,7 +1,7 @@
 from functools import cmp_to_key
 
 from flask import render_template, request, session, redirect, url_for
-from datetime import datetime
+from datetime import datetime, timedelta
 from obj import journal, documentation, admin_processes
 
 
@@ -62,6 +62,9 @@ def setup_page_routing(app, database):
                 return (item1[0].date_made - item2[0].date_made).total_seconds()
 
             events = sorted(events, key=cmp_to_key(event_compare), reverse=True)
+            # Set all times
+            for event in events:
+                event[0].date_made -= timedelta(hours=5)
             return render_template('manager_eventlog.html', username=username, events=events)
         else:
             return redirect(url_for('login_page'))
@@ -198,5 +201,13 @@ def setup_page_routing(app, database):
             new_balance = net_total - 0
             return render_template('manager_retained_earning.html', username=username, income_balance=net_total,
                                    retained_balance=0, dividends_amount=0, new_retained_balance=new_balance)
+        else:
+            return redirect(url_for('login_page'))
+
+    @app.route('/manager_about')
+    def manager_about():
+        if "Manager" in session:
+            username = session["Manager"]
+            return render_template('manager_about.html', username=username)
         else:
             return redirect(url_for('login_page'))

@@ -1,6 +1,7 @@
 from functools import cmp_to_key
 from flask import render_template, request, session, redirect, url_for, send_file
 from obj import journal, documentation, admin_processes
+from datetime import timedelta
 from io import BytesIO
 
 
@@ -99,6 +100,9 @@ def setup_page_routing(app, database):
                 return (item1[0].date_made - item2[0].date_made).total_seconds()
 
             events = sorted(events, key=cmp_to_key(event_compare), reverse=True)
+            # Set all times
+            for event in events:
+                event[0].date_made -= timedelta(hours=5)
             return render_template('accountant_eventlog.html', username=username, events=events)
         else:
             return redirect(url_for('login_page'))
@@ -176,3 +180,11 @@ def setup_page_routing(app, database):
                 if file_name == entry.file_name[x]:
                     data = entry.file_data[x]
             return send_file(BytesIO(data), attachment_filename=file_name, as_attachment=False)
+
+    @app.route('/accountant_about')
+    def accountant_about():
+        if "Accountant" in session:
+            username = session["Accountant"]
+            return render_template('accountant_about.html', username=username)
+        else:
+            return redirect(url_for('login_page'))
