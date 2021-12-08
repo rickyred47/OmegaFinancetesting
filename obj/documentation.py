@@ -8,9 +8,15 @@ def get_total_amounts(accounts):
     total_credit = 0
     for account in accounts:
         if account.normal_side == "Left":
-            total_debit += account.balance
+            if account.balance < 0:
+                total_credit += (account.balance * -1)
+            else:
+                total_debit += account.balance
         elif account.normal_side == "Right":
-            total_credit += account.balance
+            if account.balance < 0:
+                total_debit += (account.balance * -1)
+            else:
+                total_credit += account.balance
     return total_debit, total_credit
 
 
