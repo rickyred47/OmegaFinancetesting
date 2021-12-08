@@ -57,7 +57,7 @@
             {% if event[1] == 'Account' %}
                 <tr style="text-align: center">
                     <td>{{ event[0].id }}</td>
-                    <td>{{ event[0].date_made }}</td>
+                    <td>{{ event[0].date_made }} UTC</td>
                     <td>{{ event[0].event_type }}</td>
                     <td>{{ event[0].account_number_before }} <br> {{ event[0].account_name_before }} <br> {{ event[0].account_balance_before }} <br> {{ event[0].account_normal_side_before }} <br> {{ ('Active' if event[0].account_active_before else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
                     <td>{{ event[0].account_number_after }} <br> {{ event[0].account_name_after }} <br> {{ event[0].account_balance_after }} <br> {{ event[0].account_normal_side_after }} <br> {{ ('Active' if event[0].account_active_after else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
@@ -67,7 +67,7 @@
             {% else %}
                 <tr style="text-align: center">
                     <td>{{ event[0].id }}</td>
-                    <td>{{ event[0].date_made }}</td>
+                    <td>{{ event[0].date_made }} UTC</td>
                     <td>{{ event[0].event_type }}</td>
                     <td>{{ event[0].journal_type_before }} <br>
                         {% if event[0].journal_debit_accounts_before %}
