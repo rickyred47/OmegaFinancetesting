@@ -57,7 +57,7 @@
             {% if event[1] == 'Account' %}
                 <tr style="text-align: center">
                     <td>{{ event[0].id }}</td>
-                    <td>{{ event[0].date_made }} UTC</td>
+                    <td>{{ event[0].date_made }}</td>
                     <td>{{ event[0].event_type }}</td>
                     <td>{{ event[0].account_number_before }} <br> {{ event[0].account_name_before }} <br> {{ event[0].account_balance_before }} <br> {{ event[0].account_normal_side_before }} <br> {{ ('Active' if event[0].account_active_before else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
                     <td>{{ event[0].account_number_after }} <br> {{ event[0].account_name_after }} <br> {{ event[0].account_balance_after }} <br> {{ event[0].account_normal_side_after }} <br> {{ ('Active' if event[0].account_active_after else 'Inactive') if event[0].account_active_before != None else 'None' }}</td>
@@ -67,7 +67,7 @@
             {% elif event[1] == 'User' %}
                 <tr style="text-align: center">
                     <td>{{ event[0].id }}</td>
-                    <td>{{ event[0].date_made }} UTC</td>
+                    <td>{{ event[0].date_made }}</td>
                     <td>{{ event[0].event_type }}</td>
                     <td>{{ event[0].username_before }} <br> {{ event[0].role_before }} <br> {{ event[0].f_name_before + ' ' + event[0].l_name_before if event[0].f_name_before else 'None' }} <br> {{ event[0].address_before }} <br> {{event[0].city_before if event[0].city_before else ''}} {{event[0].state_province_before + ', ' + event[0].country_before}} {{event[0].zip_before}} <br> {{'Activated' if event[0].activated_before else 'Not Activated'}} <br> {{'Suspended' if event[0].is_suspended_before else 'Not Suspended'}} </td>
                     <td>{{ event[0].username_after }} <br> {{ event[0].role_after }} <br> {{ event[0].f_name_after + ' ' + event[0].l_name_after if event[0].f_name_after else 'None' }} <br> {{ event[0].address_after }} <br> {{event[0].city_after if event[0].city_after else ''}} {{event[0].state_province_after + ', ' + event[0].country_after}} {{event[0].zip_after}} <br> {{'Activated' if event[0].activated_after else 'Not Activated'}} <br> {{'Suspended' if event[0].is_suspended_after else 'Not Suspended'}} </td>
@@ -77,7 +77,7 @@
             {% else %}
                 <tr style="text-align: center">
                     <td>{{ event[0].id }}</td>
-                    <td>{{ event[0].date_made }} UTC</td>
+                    <td>{{ event[0].date_made }}</td>
                     <td>{{ event[0].event_type }}</td>
                     <td>{{ event[0].journal_type_before }} <br>
                         {% if event[0].journal_debit_accounts_before %}
