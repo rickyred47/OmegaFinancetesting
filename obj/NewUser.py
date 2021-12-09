@@ -42,7 +42,7 @@ def gatherInfo_and_commit(database):
                                          state_province_before=None, state_province_after=user[5], country_before=None,
                                          country_after=user[6], activated_before=False, activated_after=False,
                                          is_suspended_before=False, is_suspended_after=False, date_made=datetime.now(),
-                                         event_type='Created', username=session['username'], user_id=new_user.id)
+                                         event_type='Created', username=session['username'], user_id=newuser.id)
         database.commit_to_database(new_user_event)
     # Creates a session to complete Questions
     session["New_user"] = username
