@@ -167,7 +167,7 @@ def setup_page_routing(app, database):
             equity_subcategory_totals = documentation.get_subcategory_totals("Equity", database)
             total_Equity = documentation.get_category_totals(equity_subcategory_totals[1]) + total_retained
             total_LE = total_Equity + total_Liabilities
-            return render_template('manager_balance_sheet.html', username=username, accounts=accounts,
+            return render_template('accountant_balance_sheet.html', username=username, accounts=accounts,
                                    asset_sub_cat=assets_subcategory_totals[0],
                                    asset_sub_total=assets_subcategory_totals[1], total_assets=total_Assets,
                                    lia_sub_cat=liability_subcategory_totals[0],
@@ -190,7 +190,7 @@ def setup_page_routing(app, database):
             net_total = total_revenue - total_expense
             total_retained = net_total + retained_account.balance
             new_balance = total_retained - 0
-            return render_template('manager_retained_earning.html', username=username, income_balance=net_total,
+            return render_template('accountant_retained_earning.html', username=username, income_balance=net_total,
                                    retained_balance=retained_account.balance, dividends_amount=0,
                                    new_retained_balance=new_balance, total_retained=total_retained)
         else:
