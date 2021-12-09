@@ -23,7 +23,8 @@
           <div id="u9_div" class=""></div>
           <div id="u9_text" class="text ">
             <p><span>Recent Approved Journal Entries</span></p>
-            <table style="width:1040px">
+              <div style="height:200px; overflow: auto; width:1040px">
+            <table>
             <tr>
               <th style="width:150px">Date</th>
               <th style="width:150px">Type</th>
@@ -57,6 +58,7 @@
             {% endfor %}
             </tbody>
           </table>
+              </div>
           </div>
         </div>
       </div>
@@ -77,7 +79,8 @@
           <div id="u12_div" class=""></div>
           <div id="u12_text" class="text ">
             <p><span>Recent Pending Journal Entries</span></p>
-            <table style="width:1040px">
+            <div style="height:200px; overflow: auto; width:1040px">
+            <table>
               <tr>
                 <th style="width:150px">Date</th>
                 <th style="width:150px">Type</th>
@@ -111,6 +114,7 @@
               {% endfor %}
               </tbody>
             </table>
+              </div>
           </div>
         </div>
       </div>
@@ -131,7 +135,8 @@
           <div id="u15_div" class=""></div>
           <div id="u15_text" class="text ">
             <p><span>Recent Rejected Journal Entries</span></p>
-            <table style="width:1040px">
+            <div style="height:200px; overflow: auto; width:1040px">
+            <table>
               <tr>
                 <th style="width:150px">Date</th>
                 <th style="width:150px">Type</th>
@@ -165,6 +170,7 @@
               {% endfor %}
               </tbody>
             </table>
+              </div>
           </div>
         </div>
       </div>
@@ -186,52 +192,186 @@
             <p><span>Dashboard</span></p>
           </div>
         </div>
+
     <!-- Current_Ratio_Box (Rectangle) -->
       <div id="currentratiobx" class="ax_default box_1" data-label="Current_Ratio_Box">
         <div id="currentratiobx_div" class=""></div>
         <div id="currentratiobx_text" class="text " style="text-align: center">
-          <p><span>515.62%</span></p>
+          {%if lib_sub_total[4] <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{ asset_sub_total[4]/lib_sub_total[4] }}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a = {{asset_sub_total[4]}}
+          let b = {{lib_sub_total[4]}}
+          if ({{lib_sub_total[4]}} <= 0)
+          {
+            a = 0
+            b = 1
+            document.getElementById("currentratiobx_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a/b < 1.5 && a/b >= 1)
+          {
+            document.getElementById("currentratiobx_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a/b < 1)
+          {
+            document.getElementById("currentratiobx_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
+
     <!-- Asset_Turnover_Box (Rectangle) -->
       <div id="assetturnoverbx" class="ax_default box_1" data-label="Asset_Turnover_Box">
         <div id="assetturnoverbx_div" class=""></div>
         <div id="assetturnoverbx_text" class="text " style="text-align: center">
-          <p><span>38.18%</span></p>
+          {%if total_assets <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{ total_rev/total_assets }}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a1 = {{total_rev}}
+          let b1 = {{total_assets}}
+          if ({{total_assets}} <= 0)
+          {
+            a1 = 0
+            b1 = 1
+            document.getElementById("assetturnoverbx_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a1/b1 >= 0.25 && a1/b1 <= 0.5)
+          {
+            document.getElementById("assetturnoverbx_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a1/b1 < 0.25)
+          {
+            document.getElementById("assetturnoverbx_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
 
           <!-- Quick_Ratio_Box (Rectangle) -->
       <div id="quickratiobx" class="ax_default box_1" data-label="Quick_Ratio_Box">
         <div id="quickratiobx_div" class=""></div>
         <div id="quickratiobx_text" class="text " style="text-align: center">
-          <p><span>515.62%</span></p>
+          {%if lib_sub_total[4] <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{asset_sub_total[1]/lib_sub_total[4]}}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a2 = {{asset_sub_total[1]}}
+          let b2 = {{lib_sub_total[4]}}
+          if ({{lib_sub_total[4]}} <= 0)
+          {
+            a2 = 0
+            b2 = 1
+            document.getElementById("quickratiobx_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a2/b2 >= 0.5 && a2/b2 < 1)
+          {
+            document.getElementById("quickratiobx_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a2/b2 < 0.5)
+          {
+            document.getElementById("quickratiobx_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
 
           <!-- Net_Profit_Margin_Box (Rectangle) -->
       <div id="netprofitmargin" class="ax_default box_1" data-label="Net_Profit_Margin_Box">
         <div id="netprofitmargin_div" class=""></div>
         <div id="netprofitmargin_text" class="text " style="text-align: center">
-          <p><span>49.67%</span></p>
+          {%if total_rev <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{income_balance/total_rev}}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a3 = {{income_balance}}
+          let b3 = {{total_rev}}
+          if ({{total_rev}} <= 0)
+          {
+            a3 = 0
+            b3 = 1
+            document.getElementById("netprofitmargin_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a3/b3 >= 0.10 && a3/b3 < 0.20)
+          {
+            document.getElementById("netprofitmargin_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a3/b3 < 0.10)
+          {
+            document.getElementById("netprofitmargin_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
 
            <!-- Return_on_Assets_Box (Rectangle) -->
       <div id="returnonassetsbx" class="ax_default box_1" data-label="Return_on_Assets_Box">
         <div id="returnonassetsbx_div" class=""></div>
         <div id="returnonassetsbx_text" class="text " style="text-align: center">
-          <p><span>18.96%</span></p>
+          {%if total_assets <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{ income_balance/total_assets }}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a4 = {{income_balance}}
+          let b4 = {{total_assets}}
+          if ({{total_assets}} <= 0)
+          {
+            a = 0
+            b = 1
+            document.getElementById("returnonassetsbx_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a4/b4 >= 0.5 && a4/b4 < 0.20)
+          {
+            document.getElementById("returnonassetsbx_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a4/b4 < 0.5)
+          {
+            document.getElementById("returnonassetsbx_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
 
       <!-- Return_on_Equity_Box (Rectangle) -->
       <div id="returnonequitybx" class="ax_default box_1" data-label="Return_on_Equity_Box">
         <div id="returnonequitybx_div" class=""></div>
         <div id="returnonequitybx_text" class="text " style="text-align: center">
-          <p><span>28.02%</span></p>
+          {%if total_equity <= 0%}
+          <p><span>{{0}}</span></p>
+          {%else%}
+          <p><span>{{income_balance/total_equity}}</span></p>
+          {%endif%}
         </div>
       </div>
+        <script>
+          let a5 = {{income_balance}}
+          let b5 = {{total_equity}}
+          if ({{total_equity}} <= 0)
+          {
+            a = 0
+            b = 1
+            document.getElementById("returnonequitybx_div").style.setProperty("background-color", "#C41E3A");
+          }
+          else if(a5/b5 >= 0.15 && a5/b5 < 0.20)
+          {
+            document.getElementById("returnonequitybx_div").style.setProperty("background-color", "#FFBF00");
+          }
+          else if(a5/b5 < 0.15)
+          {
+            document.getElementById("returnonequitybx_div").style.setProperty("background-color", "#C41E3A");
+          }
+        </script>
 
       <!-- Current_Ratio_Text (Rectangle) -->
       <div id="currentratiotxt" class="ax_default label" data-label="Current_Ratio_Text">
