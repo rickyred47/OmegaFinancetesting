@@ -6,14 +6,7 @@
     {% block content %}
         <div id="white_div">
             <h1>Balance Sheet</h1>
-            <div id="set_balance_sheet">
-                <label>Company Name:
-                    <input type="text" name="company_name">
-                </label><br>
-                <label>Set Date Range:<br>
-                    <input id="start_date" type="date" name="start_date"> to <input id="end_date" type="date" name="end_date">
-                </label>
-            </div>
+            <input type="button" value="print" class="print_button" onclick="window.print()">
             <div id="div_print">
             <div id="header" class="report_style">
                 <h1>Company Name</h1>
@@ -116,6 +109,15 @@
                             {%  if account.category == "Equity" %}
                                 {% if account.subcategory == equi_sub_cat[z] %}
                                     <tr>
+                                    {% if account.name == "Retained Earnings" %}
+                                        <td><span class="account_name">{{ account.name }}</span></td>
+                                        {% if account.balance < 0 %}
+                                            <td class="money_value">({{ "{:,.2f}".format(total_retained * -1) }})</td>
+                                        {% else %}
+                                            <td class="money_value">{{ "${:,.2f}".format(total_retained) }}</td>
+                                        {% endif %}
+                                        <td></td>
+                                    {% else %}
                                         <td><span class="account_name">{{ account.name }}</span></td>
                                         {% if account.balance < 0 %}
                                             <td class="money_value">({{ "{:,.2f}".format(account.balance * -1) }})</td>
@@ -123,6 +125,7 @@
                                             <td class="money_value">{{ "${:,.2f}".format(account.balance) }}</td>
                                         {% endif %}
                                         <td></td>
+                                    {% endif %}
                                     </tr>
                                 {% endif %}
                             {% endif %}

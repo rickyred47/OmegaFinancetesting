@@ -2,20 +2,13 @@
     {% block title %}Trial Balance{% endblock %}
     {% block head %}
         <link href="{{ url_for('static', filename= 'files/documentation/documentation_style.css') }}" type="text/css" rel="stylesheet"/>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% endblock %}
     {% block content %}
         <!--White background Box -->
-         <div id="white_div">
+        <div id="white_div">
             <h1 id="trial_balance_lbl">Trial Balance</h1>
-            <div id="set_trial_balance">
-                <label>Company Name:
-                    <input type="text" name="company_name">
-                </label><br>
-                <label>Set Date Range:<br>
-                    <input id="start_date" type="date" name="start_date"> to <input id="end_date" type="date" name="end_date">
-                </label>
-            </div>
+            <input type="button" value="print" class="print_button" onclick="window.print()">
             <div id="div_print">
             <div id="header" class="report_style">
                 <h1>Company Name</h1>
@@ -35,17 +28,19 @@
                             {% if account.normal_side == "Left" %}
                                 <td class="account_name_column">{{ account.name }}</td>
                                 {% if account.balance < 0 %}
-                                    <td class="debit_side">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                    <td></td>
+                                    <td class="debit_side">{{ "${:,.2f}".format(account.balance * -1) }}</td>
                                 {% else %}
                                     <td class="debit_side">{{ "${:,.2f}".format(account.balance) }}</td>
+                                    <td></td>
                                 {% endif %}
-                                <td></td>
                             {% elif account.normal_side == "Right" %}
                                 <td class="account_name_column"><span id="credit_name">{{ account.name }}</span></td>
-                                <td></td>
                                 {% if account.balance < 0 %}
-                                    <td class="credit_side">({{ "{:,.2f}".format(account.balance * -1) }})</td>
+                                    <td class="credit_side">{{ "${:,.2f}".format(account.balance * -1) }}</td>
+                                    <td></td>
                                 {% else %}
+                                    <td></td>
                                     <td class="credit_side">{{ "${:,.2f}".format(account.balance) }}</td>
                                 {% endif %}
                             {% endif %}

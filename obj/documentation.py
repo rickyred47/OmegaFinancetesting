@@ -47,7 +47,8 @@ def get_subcategory_totals(category, database):
         total = 0
         for account in accounts:
             if account.subcategory == subcategory:
-                total += account.balance
+                if account.name != "Retained Earnings":
+                    total += account.balance
         totals.append(total)
     return subcategories, totals
 
