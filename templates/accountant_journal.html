@@ -169,7 +169,7 @@
                             }
                         })
                         if( d_value && c_value){
-                            document.getElementById("submit_button").click();
+                            $("#submit_button").trigger("click");
                         }else{
                             $("#accounts_error").show();
                         }
@@ -303,27 +303,27 @@
 		</div>
         <script>
         const now = new Date();
-		let now_day = now.getDate();
-		let now_month = now.getMonth();
-		now_month = now_month + 1;
-		let year = now.getFullYear();
-		let date;
-		if (now_month < 10) {
-			if(now_day < 10) {
-				date = "" + year + "-0" + now_month + "-0" + now_day;
-			} else {
-				date = "" + year + "-0" + now_month + "-" + now_day;
-			}
-		}
-		else {
-			if(now_day < 10){
-				date = "" + year + "-" + now_month + "-0" + now_day;
-			} else {
-				date = "" + year + "-" + now_month + "-" + now_day;
-			}
-		}
-		document.getElementById("journal_date").min = date;
-		document.getElementById("journal_date").value = date;
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("journal_date").min = date;
+        document.getElementById("journal_date").value = date;
         document.getElementById("end_date").value = date;
         document.getElementById("end_date").max = date;
         document.getElementById("start_date").max = date;
