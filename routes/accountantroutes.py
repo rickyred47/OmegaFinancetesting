@@ -21,8 +21,22 @@ def setup_page_routing(app, database):
             approved_entries = database.get_approved_journal_entries()
             pending_entries = database.get_pending_journal_entries()
             rejected_entries = database.get_rejected_journal_entries()
-            return render_template('accountant_home_page.html', username=username, approved_entries=approved_entries[:6],
-                                   pending_entries=pending_entries[:6], rejected_entries=rejected_entries[:4])
+            assets_subcategory_total = documentation.get_subcategory_total_number("Asset", database)
+            assets_subcategory_totals = documentation.get_subcategory_totals("Asset", database)
+            liability_subcategory_total = documentation.get_subcategory_total_number("Liability", database)
+            total_Assets = documentation.get_category_totals(assets_subcategory_totals[1])
+            r_accounts = database.get_accounts_by_category("Revenue")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            equity_subcategory_totals = documentation.get_subcategory_totals("Equity", database)
+            total_Equity = documentation.get_category_totals(equity_subcategory_totals[1])
+            return render_template('accountant_home_page.html', username=username, approved_entries=approved_entries[:5],
+                                   pending_entries=pending_entries[:5], rejected_entries=rejected_entries[:5],
+                                   asset_sub_total=assets_subcategory_total, lib_sub_total = liability_subcategory_total,
+                                   total_assets=total_Assets, asset_sub_totals=assets_subcategory_totals[1], total_rev = total_revenue,
+                                   income_balance=net_total, total_equity=total_Equity)
         else:
             return redirect(url_for('login_page'))
 

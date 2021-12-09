@@ -51,3 +51,16 @@ def get_subcategory_totals(category, database):
                     total += account.balance
         totals.append(total)
     return subcategories, totals
+
+
+def get_subcategory_total_number(category, database):
+    accounts = database.get_accounts_by_category(category)
+    subcategories = admin_processes.subcategory_accounts(accounts)
+    totals = []
+    for subcategory in subcategories:
+        total = 0
+        for account in accounts:
+            if account.subcategory == subcategory:
+                total += account.balance
+            totals.append(total)
+    return totals
