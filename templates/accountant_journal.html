@@ -255,6 +255,7 @@
 					<th style="width:200px">Credit</th>
 					<th style="width:145px">Status</th>
 				</tr>
+                <tbody id="journal_table_body">
 				{% for entry in entries %}
 				<tr class="entries_info">
 					<td>{{ entry.date }}</td>
@@ -299,6 +300,7 @@
 					<td>{{ entry.status }}</td>
 				</tr>
 				{% endfor %}
+                </tbody>
 			</table>
 		</div>
         <script>
