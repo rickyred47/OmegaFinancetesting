@@ -99,16 +99,16 @@
                 <div id="password_report" class="nav_reports_links">
                     <a href="{{ url_for('admin_password_report') }}" title = "Browse All Expired Passwords">Expired Passwords Report </a>
                 </div>
-                <div id="trial_balance" class="nav_reports_links" title = "Listing of the Ledger Account Balances">
+                <div id="trial_balance" class="nav_reports_links" title = "Listing of the Ledger Account Balances" onclick="window.location.href='{{ url_for('admin_trial_balance') }}'">
                     <p>Trial Balance</p>
                 </div>
-                <div id="income_statement" class="nav_reports_links" title = "Browse Revenues and Expenses of a Company">
+                <div id="income_statement" class="nav_reports_links" title = "Browse Revenues and Expenses of a Company" onclick="window.location.href='{{ url_for('admin_income_statement') }}'">
                     <p>Income Statement</p>
                 </div>
-                <div id="balance_sheet" class="nav_reports_links" title = "Browse Assets and Liabilities of a Company">
+                <div id="balance_sheet" class="nav_reports_links" title = "Browse Assets and Liabilities of a Company" onclick="window.location.href='{{ url_for('admin_balance_sheet') }}'">
                     <p>Balance Sheet</p>
                 </div>
-                <div id="retained_statement" class="nav_reports_links" title = "Browse Changes in the Retained Earnings of a Company">
+                <div id="retained_statement" class="nav_reports_links" title = "Browse Changes in the Retained Earnings of a Company" onclick="window.location.href='{{ url_for('admin_retained_earnings') }}'">
                     <p>Retained Earnings Statement</p>
                 </div>
             </div>

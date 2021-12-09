@@ -57,7 +57,7 @@ tr{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
-#net_total, #total_retained{
+#net_total, #new_total_retained{
     border-style:solid none double none;
 }
 #set_trial_balance, #set_balance_sheet{
@@ -89,4 +89,28 @@ tr{
 }
 .total_le_column, .final_total{
     border-top-width: 1px;
+}
+#total_retained{
+    border-style: solid none solid none;
+    border-width: 1px;
+}
+.print_button{
+    background-color: #0077B6;
+    width: 100px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #div_print, #div_print * {
+        visibility: visible;
+    }
+    #div_print{
+        position: absolute;
+        top: -180px;
+        left: -680px;
+    }
 }

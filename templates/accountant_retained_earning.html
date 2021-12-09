@@ -6,10 +6,12 @@
     {% block content %}
         <div id="white_div">
             <h1>Retained Earnings</h1>
+            <input type="button" value="print" class="print_button" onclick="window.print()">
+            <div id="div_print">
             <div id="header" class="report_style">
                 <h1>Company Name</h1>
                 <h2>Retained Earning Statement</h2>
-                <h2>{date}</h2>
+                <h2 id="header_date"></h2>
             </div>
             <div id="retained_div" class="report_style">
                 <table id="retained_table">
@@ -26,19 +28,43 @@
                         <td class="money_value">{{ "${:,.2f}".format(income_balance) }}</td>
                     </tr>
                     <tr>
-                        <td>Total</td>
-                        <td>{{ total_retained }}</td>
+                        <td class="account_name_column">Total Retained Earnings</td>
+                        <td id="total_retained" class="money_value">{{ "${:,.2f}".format(total_retained) }}</td>
                     </tr>
+                    <tr></tr>
                     <tr>
                         <td class="account_name_column">Less: Dividends</td>
                         <td class="money_value">{{ "${:,.2f}".format(dividends_amount) }}</td>
                     </tr>
                     <tr>
                         <td class="account_name_column">Retained Earnings,End {{ end_date }}</td>
-                        <td id="total_retained" class="money_value">{{ "${:,.2f}".format(new_retained_balance) }}</td>
+                        <td id="new_total_retained" class="money_value">{{ "${:,.2f}".format(new_retained_balance) }}</td>
                     </tr>
                 </table>
             </div>
-
         </div>
+        </div>
+        <script>
+        const now = new Date();
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("header_date").innerText = date;
+        </script>
     {% endblock %}

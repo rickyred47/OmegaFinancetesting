@@ -7,10 +7,12 @@
         <!-- White background Box-->
         <div id="white_div">
             <h1>Income Statement</h1>
+            <input type="button" value="print" class="print_button" onclick="window.print()">
+        <div id="div_print">
             <div id="header" class="report_style">
-                <h1>{companyName}</h1>
+                <h1>Company Name</h1>
                 <h2>Income Statement</h2>
-                <h2>{date}</h2>
+                <h2 id="header_date"></h2>
             </div>
             <div id="income_statement" class="report_style">
                 <table id="income_statement_table">
@@ -55,4 +57,28 @@
                 </table>
             </div>
         </div>
+        </div>
+        <script>
+        const now = new Date();
+        let now_day = now.getDate();
+        let now_month = now.getMonth();
+        now_month = now_month + 1;
+        let year = now.getFullYear();
+        let date;
+        if (now_month < 10) {
+            if(now_day < 10) {
+                date = "" + year + "-0" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-0" + now_month + "-" + now_day;
+            }
+        }
+        else {
+            if(now_day < 10){
+                date = "" + year + "-" + now_month + "-0" + now_day;
+            } else {
+                date = "" + year + "-" + now_month + "-" + now_day;
+            }
+        }
+        document.getElementById("header_date").innerText = date;
+        </script>
     {% endblock %}

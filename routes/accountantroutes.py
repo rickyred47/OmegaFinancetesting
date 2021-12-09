@@ -137,21 +137,30 @@ def setup_page_routing(app, database):
     def accountant_balance_sheet():
         if "Accountant" in session:
             username = session["Accountant"]
+            retained_account = database.get_account_info(149)
+            r_accounts = database.get_accounts_by_category("Revenue")
+            exp_accounts = database.get_accounts_by_category("Expenses")
+            total_revenue = documentation.get_total_amount(r_accounts)
+            total_expense = documentation.get_total_amount(exp_accounts)
+            net_total = total_revenue - total_expense
+            total_retained = net_total + retained_account.balance
+
             accounts = database.get_active_accounts()
             assets_subcategory_totals = documentation.get_subcategory_totals("Asset", database)
             total_Assets = documentation.get_category_totals(assets_subcategory_totals[1])
             liability_subcategory_totals = documentation.get_subcategory_totals("Liability", database)
             total_Liabilities = documentation.get_category_totals(liability_subcategory_totals[1])
             equity_subcategory_totals = documentation.get_subcategory_totals("Equity", database)
-            total_Equity = documentation.get_category_totals(equity_subcategory_totals[1])
+            total_Equity = documentation.get_category_totals(equity_subcategory_totals[1]) + total_retained
             total_LE = total_Equity + total_Liabilities
-            return render_template('accountant_balance_sheet.html', username=username, accounts=accounts,
+            return render_template('manager_balance_sheet.html', username=username, accounts=accounts,
                                    asset_sub_cat=assets_subcategory_totals[0],
                                    asset_sub_total=assets_subcategory_totals[1], total_assets=total_Assets,
                                    lia_sub_cat=liability_subcategory_totals[0],
                                    lia_sub_total=liability_subcategory_totals[1], total_liability=total_Liabilities,
                                    equi_sub_cat=equity_subcategory_totals[0], total_equity=total_Equity,
-                                   equi_sub_total=equity_subcategory_totals[1], total_le=total_LE)
+                                   equi_sub_total=equity_subcategory_totals[1], total_le=total_LE,
+                                   total_retained=total_retained)
         else:
             return redirect(url_for('login_page'))
 
@@ -159,15 +168,17 @@ def setup_page_routing(app, database):
     def accountant_retained_earnings():
         if "Accountant" in session:
             username = session["Accountant"]
+            retained_account = database.get_account_info(149)
             r_accounts = database.get_accounts_by_category("Revenue")
             exp_accounts = database.get_accounts_by_category("Expenses")
             total_revenue = documentation.get_total_amount(r_accounts)
             total_expense = documentation.get_total_amount(exp_accounts)
             net_total = total_revenue - total_expense
-            new_balance = net_total - 0
-
-            return render_template('accountant_retained_earning.html', username=username, income_balance=net_total,
-                                   retained_balance=0, dividends_amount=0, new_retained_balance=new_balance)
+            total_retained = net_total + retained_account.balance
+            new_balance = total_retained - 0
+            return render_template('manager_retained_earning.html', username=username, income_balance=net_total,
+                                   retained_balance=retained_account.balance, dividends_amount=0,
+                                   new_retained_balance=new_balance, total_retained=total_retained)
         else:
             return redirect(url_for('login_page'))
 
