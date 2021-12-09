@@ -165,7 +165,7 @@
           {%if lib_sub_total[4] <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{ asset_sub_total[4]/lib_sub_total[4] }}</span></p>
+          <p><span>{{ ((asset_sub_total[4]/lib_sub_total[4])|string)[:5] }}</span></p>
           {%endif%}
         </div>
       </div>
@@ -195,7 +195,7 @@
           {%if total_assets <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{ total_rev/total_assets }}</span></p>
+          <p><span>{{ ((total_rev/total_assets)|string)[:5] }}</span></p>
           {%endif%}
         </div>
       </div>
@@ -225,7 +225,7 @@
           {%if lib_sub_total[4] <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{asset_sub_total[1]/lib_sub_total[4]}}</span></p>
+          <p><span>{{((asset_sub_total[1]/lib_sub_total[4])|string)[:5]}}</span></p>
           {%endif%}
         </div>
       </div>
@@ -255,7 +255,7 @@
           {%if total_rev <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{income_balance/total_rev}}</span></p>
+          <p><span>{{((income_balance/total_rev)|string)[:5]}}</span></p>
           {%endif%}
         </div>
       </div>
@@ -285,7 +285,7 @@
           {%if total_assets <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{ income_balance/total_assets }}</span></p>
+          <p><span>{{ ((income_balance/total_assets)|string)[:5] }}</span></p>
           {%endif%}
         </div>
       </div>
@@ -315,7 +315,7 @@
           {%if total_equity <= 0%}
           <p><span>{{0}}</span></p>
           {%else%}
-          <p><span>{{income_balance/total_equity}}</span></p>
+          <p><span>{{((income_balance/total_equity)|string)[:5]}}</span></p>
           {%endif%}
         </div>
       </div>
