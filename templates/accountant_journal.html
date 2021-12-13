@@ -263,7 +263,7 @@
                     <td><a href="{{ url_for('accountant_post_reference', post_reference=entry.id) }}">{{ entry.id }}</a></td>
 					<td>{{ entry.created_by }}</td>
 					<td colspan="3">
-						<table id="inner_table">
+						<table id="inner_table" class="inner_table">
 							<tr id="debit_info">
 								<td style="width: 400px; font-weight: bold">
 									{% for x in range(0, (entry.debit_accounts|length)) %}
@@ -297,7 +297,7 @@
 							</tr>
 						</table>
 					</td>
-					<td>{{ entry.status }}</td>
+                    <td><p>{{ entry.status }}</p></td>
 				</tr>
 				{% endfor %}
                 </tbody>
